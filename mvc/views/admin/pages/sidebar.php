@@ -25,14 +25,14 @@
                 </a>
             </li>
             <li class="nav-item menu">
-                <a class="nav-link" href="?option=menu">
-                    <i class="material-icons">restaurant_menu</i>
-                    <p>Menu</p>
+                <a class="nav-link" href="<?=BASE_URL?>admin/category">
+                    <i class="material-icons">category</i>
+                    <p>Danh mục</p>
                 </a>
             </li>
             <li class="nav-item products">
                 <a class="nav-link" href="?option=products">
-                    <i class="material-icons">fastfood</i>
+                    <i class="material-icons">shopping_bag</i>
                     <p>Sản Phẩm</p>
                 </a>
             </li>

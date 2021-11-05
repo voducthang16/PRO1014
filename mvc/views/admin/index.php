@@ -35,6 +35,7 @@
                 <div class="content">
                     <div class="container-fluid">
                         <!-- Homepage -->
+                        <?php require_once __DIR__ . "/pages/".$data['page'].".php";?>
                     </div>
                 </div>
             </div>
@@ -50,6 +51,7 @@
     <script src="<?=BASE_URL?>public/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/material-dashboard.minf066.js?v=2.1.0" type="text/javascript"></script>
 
+    
     <script>
         $(document).ready(function() {
             $().ready(function() {
