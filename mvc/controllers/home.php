@@ -1,7 +1,7 @@
 <?php
     class home extends controller {
         function show() {
-            echo "HOME PAGE";
+            $this -> view("index", []);
         }
     }
 ?>
