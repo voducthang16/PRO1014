@@ -43,6 +43,12 @@
                 </div>
                 <div class="col l-4">
                     <div class="toolbar">
+                        <div class="expand">
+                            <p class="expand-btn">
+                                <span style="width: 86px">Expand Menu</span>
+                                <i class="fal fa-bars"></i>
+                            </p>
+                        </div>
                         <div class="wishlist">
                             <a href="wishlist" class="wishlist-link">
                                 <span>Wishlist</span>
@@ -163,6 +169,4 @@
             </div>
         </div>
     </div>
-
 </header>
-<div class="test"></div>

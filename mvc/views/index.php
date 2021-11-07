@@ -24,6 +24,11 @@
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/grid.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/header.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/footer.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/home.css">
+
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.theme.default.min.css">
+        
         <!-- <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/home.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/home-block.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/menu.css">
@@ -41,14 +46,18 @@
             <button class="scroll-to-top btn">
                 <i class="fal fa-arrow-up"></i>
             </button>
+            <!-- Start Header -->
             <?php require_once __DIR__ . '/pages/header.php'; ?>
+            <!-- End Header -->
+            
+            <?php require_once __DIR__ . "/pages/".$data['page'].".php";?>
 
-
+            <!-- Start Footer -->
             <?php require_once __DIR__ . '/pages/footer.php'; ?>
             <!-- End Footer -->
         </div>
     </body>
-    <!-- <script src="<?=BASE_URL?>public/assets/js/jquery.min.js"></script>
-    <script src="<?=BASE_URL?>public/assets/js/owl.carousel.min.js"></script> -->
+    <script src="<?=BASE_URL?>public/assets/js/jquery.min.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/owl.carousel.min.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/main.js"></script>
 </html>

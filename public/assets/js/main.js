@@ -1,4 +1,10 @@
+// Header
 document.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    const slide = document.querySelector('.slide');
+    navbar.classList.toggle('sticky', window.scrollY > 200);
+    slide.classList.toggle('sticky', window.scrollY > 200);
+
     const scrollToTop = document.querySelector('.scroll-to-top')
     scrollToTop.classList.toggle('active', window.scrollY > 76);
     scrollToTop.addEventListener('click', () => {
@@ -7,6 +13,13 @@ document.addEventListener('scroll', () => {
         });
     })
 });
+
+const expand = document.querySelector('.expand');
+const navbarMenu = document.querySelector('.navbar-menu');
+expand.onclick = () => {
+    navbarMenu.classList.toggle('active');
+}
+
 
 const texts = document.querySelector('.animate-text').children;
 const textsLength = texts.length;
@@ -38,26 +51,16 @@ function animateText() {
 
 window.onload = animateText;
 
-// const cart = document.querySelector('.cart');
-// const cartItems = document.querySelector('.cart-items');
-// console.log(cartItems.parentNode);
-// cart.onmouseover = () => {
-//     cartItems.classList.add('active');
-// }
-// window.onmousemove = (e) => {
-//     let targetElement = e.target;
-//     do {
-//         if (targetElement === cart) {
-//             console.log(targetElement === cart)
-//             return;
-//         }
-//         // tìm parent element
-//         targetElement = targetElement.parentNode;
-//     } while (targetElement);
-//     cartItems.classList.remove('active');
-// }
-// cart.onmouseout = () => {
-//     // console.log('out');
-//     cartItems.classList.remove('active');
-// }
-
+// Home Slider
+$(document).ready(function(){
+    $(".owl-carousel").owlCarousel({
+        items: 1,
+        loop: true,
+        nav: true,
+        dots: true,
+        // autoplay: true,
+        autoplaySpeed: 1000,
+        smartSpeed: 500,
+        autoplayHoverPause: true
+    });
+});
