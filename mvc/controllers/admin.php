@@ -51,7 +51,10 @@
             ]);
         }
 
-
+        // admin product
+        function product() {
+            
+        }
 
 
         // admin login
