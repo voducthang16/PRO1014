@@ -14,7 +14,7 @@
                 $this -> controller = $arr[0];
                 unset($arr[0]);
             } else {
-                require_once "./mvc/controllers/404.php";
+                header("location:".BASE_URL."pagenotfound");
                 exit();
             }
 
@@ -26,7 +26,7 @@
                 if (method_exists($this -> controller, $arr[1])) {
                     $this->action = $arr[1];
                 } else {
-                    require_once "./mvc/controllers/404.php";
+                    header("location:".BASE_URL."pagenotfound");
                     exit();
                 }
                 unset($arr[1]);
