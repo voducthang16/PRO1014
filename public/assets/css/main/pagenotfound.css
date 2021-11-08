@@ -1,0 +1,90 @@
+<<<<<<< Updated upstream
+=======
+
+.error-404 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 48px 15px;
+}
+
+.error__content {
+    text-align: center;
+    padding-top: 24px;
+    color: #373f50;
+}
+
+.error__content-img {
+    margin: 0px 77px 48px;
+}
+
+.error__content-heading {
+    font-size: 2.8rem;
+    margin: 0px 0px 12px;
+    line-height: 3.36rem;
+    font-weight: 600;
+}
+
+.error__content-text {
+    font-size: 2rem;
+    line-height: 2.4rem;
+    margin: 0px 0px 24px;
+}
+
+.error__content-link {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+    margin: 0px 0px 24px;
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.card {
+    text-decoration: none;
+}
+
+.card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card-body i {
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+}
+
+.card-body .fa-home {
+    color: #fe696a;
+}
+
+.card-body .fa-search {
+    color: #42d697;
+}
+
+.card-body .fa-life-ring {
+    color: #69b3fe;
+}
+
+.card-body--info {
+    color: #373f50;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.card-body--info h5 {
+    font-size: 1.4rem;
+    line-height: 1.68rem;
+}
+
+.card-body--info span {
+    font-size: 1.3rem;
+    line-height: 1.95rem;
+    opacity: 50%;
+}
+>>>>>>> Stashed changes
