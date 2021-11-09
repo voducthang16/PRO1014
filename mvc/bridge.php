@@ -10,4 +10,7 @@
 
     // Config
     require_once "./mvc/core/config.php";
+
+    // Library
+    require_once "./mvc/core/library.php";
 ?>

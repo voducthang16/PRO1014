@@ -3,7 +3,7 @@
         public $admin;
 
         function __construct() {
-            $this -> admin = $this -> model("adminModels");
+            $this-> admin= $this->model("adminModels");
         }
 
         // admin homepage
@@ -18,12 +18,13 @@
             // add category
             if (isset($_POST['category-name'])) {
                 $name = $_POST['category-name'];
+                $slug = to_slug($name);
                 $status = $_POST['category-status'];
-                $check = $this->admin->checkExistCategory($name);
+                $check = $this->admin->checkExistName('category', $name);
                 if ($check == 1) {
                     echo '<script>alert("Ten danh muc da tồn tại.");</script>';
                 } else {
-                    $this->admin->addCategory($name, $status);
+                    $this->admin->addCategory($name, $slug, $status);
                     echo '<script>alert("Thêm thành công.");</script>';
                 }
                 header("Refresh: 0");
@@ -53,9 +54,126 @@
 
         // admin product
         function product() {
-            
+            // add product
+            if (isset($_POST['product-name'])) {
+                $product_name = $_POST['product-name'];
+                $check = $this->admin->checkExistName('products', $product_name);
+                if ($check == 1) {
+                    echo '<script>alert("Ten san pham da tồn tại.");</script>';
+                } else {
+                    $product_slug = to_slug($product_name);
+                    $product_category = $_POST['product-category'];
+                    $product_price_origin = $_POST["product-price-origin"];
+                    $product_price_sale = $_POST["product-price-sale"];
+                    $product_quantity = $_POST["product-quantity"];
+                    $product_description = $_POST["product-description"];
+                    $product_parameters = $_POST["product-parameters"];
+                    $product_status = $_POST["product-status"];
+
+                    $product_size = [];
+                    $product_color = [];
+
+                    if (isset($_POST["product_size"])) {
+                        $product_size = $_POST["product_size"];
+                    }
+
+                    if (isset($_POST["product-color"])) {
+                        $product_color = $_POST["product-color"];
+                    }
+
+                    $format = array("JPG", "JPEG", "PNG", "GIF", "BMP", "jpg", "jpeg", "png", "gif", "bmp");
+
+                    $product_thumbnail = $_FILES["product-thumbnail"]['name'];
+                    $product_thumbnail_tmp = $_FILES["product-thumbnail"]['tmp_name'];
+                    $exp3 = substr($product_thumbnail, strlen($product_thumbnail) - 3);
+                    $exp4 = substr($product_thumbnail, strlen($product_thumbnail) - 4);
+                    $product_thumbnail = time()."_".$product_thumbnail;
+
+                    
+
+                    if (in_array($exp3, $format) || in_array($exp4, $format)) {
+                        $this->admin->addProduct($product_category, $product_name, $product_slug, $product_price_origin,
+                        $product_price_sale, $product_quantity, $product_thumbnail, $product_description, $product_parameters, $product_status, $product_size, $product_color);
+
+                        $product_id = $this->admin->getProductId();
+
+                        mkdir("public/upload/$product_id", 0777, true);
+
+                        $storage = "public/upload/$product_id/";
+                        move_uploaded_file($product_thumbnail_tmp, $storage . $product_thumbnail);
+
+                        if (isset($_FILES["product-list-images"])) {
+                            foreach ($_FILES["product-list-images"]['tmp_name'] as $key => $value) {
+                                $filename = $_FILES['product-list-images']['name'][$key];
+                                $filename_tmp = $_FILES['product-list-images']['tmp_name'][$key];
+                                $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    
+                                $filename = time().'_'.$filename;
+                                if (in_array($ext, $format)) {
+                                    move_uploaded_file($filename_tmp, $storage . $filename);
+                                    $this->admin->addProductImages($product_id, $filename);
+                                } else {
+                                    echo '<script>alert("File khong dung dinh dang.");</script>';
+                                }
+                            }
+                        }
+
+                        echo '<script>alert("Thêm thành công.");</script>';
+                    }
+
+                }
+                header("Refresh: 0");
+            }
+
+
+
+            // load view
+            $this -> view("admin/index", [
+                "page" => "product",
+                "getProducts" => $this->admin->getProducts(),
+                "getCategories" => $this->admin->getCategories(),
+            ]);
         }
 
+        function getSizes() {
+            if (isset($_POST["action"])) {
+                $name = $_POST['name'];
+                $result = $this->admin->getAttributes($name);
+                $output = '';
+                foreach ($result as $row) {
+                    $output .= '
+                        <div class="products-size">
+                            <div class="products-attribute-item">
+                                <input class="products-attribute-input" type="checkbox" name="product_size[]" id="'.$row["value"].'" value="'.$row["id"].'">
+                                <label class="products-attribute-option" for="'.$row["value"].'">'.$row["value"].'</label>
+                            </div>
+                        </div>
+                    ';
+                }
+                echo $output;
+            }
+        }
+
+        function getColors() {
+            if (isset($_POST["action"])) {
+                $name = $_POST['name'];
+                $result = $this->admin->getAttributes($name);
+                $output = '';
+                foreach ($result as $row) {
+                    $output .= '
+                        <div class="products-color">
+                            <div class="products-attribute-item">
+                                <input class="products-attribute-input" type="checkbox" name="product-color[]" id="'.$row["value"].'" value="'.$row["id"].'">
+                                <label class="products-attribute-option color" for="'.$row["value"].'">
+                                    <span style="background-color: '.$row["value"].'" class="products-attribute-color"></span>
+                                </label>
+                            </div>
+                        </div>
+                    ';
+                }
+                echo $output;
+            }
+        }
 
         // admin login
         function login() {

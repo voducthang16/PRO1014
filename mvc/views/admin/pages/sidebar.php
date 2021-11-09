@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li class="nav-item products">
-                <a class="nav-link" href="?option=products">
+                <a class="nav-link" href="<?=BASE_URL?>admin/product">
                     <i class="material-icons">shopping_bag</i>
                     <p>Sản Phẩm</p>
                 </a>
