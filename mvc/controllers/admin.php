@@ -57,6 +57,7 @@
             // add product
             if (isset($_POST['product-name'])) {
                 $product_name = $_POST['product-name'];
+                $product_name = ucwords(strtolower($product_name));
                 $check = $this->admin->checkExistName('products', $product_name);
                 if ($check == 1) {
                     echo '<script>alert("Ten san pham da tồn tại.");</script>';
