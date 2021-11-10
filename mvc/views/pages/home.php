@@ -628,3 +628,131 @@
 </div>
 
 <!-- Home Banner Ads -->
+<div class="home-banner-ads">
+    <div class="container wide">
+        <div class="row">
+            <div class="col l-8">
+                <div class="banner-ads-img">
+                    <div class="row">
+                        <div class="col l-6">
+                            <div class="banner-ads-img__content">
+                                <h3>Hurry up! Limited time offer</h3>
+                                <h2>Converse All Star on Sale</h2>
+                                <div>
+                                    <a href="#" class="btn box-shadow btn--size-s">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l-6">
+                            <div>
+                                <img class="banner-ads-img__thumbnail" src="<?=BASE_URL?>public/assets/img/banner.jpg" alt="Banner Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col l-4">
+                <div class="banner-ads-text">
+                    <h2>Your Ads Banner Here</h2>
+                    <h3>Hurry up to reserve your spot</h3>
+                    <div>
+                        <a href="#" class="btn box-shadow btn--size-s">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Home Brands -->
+<div class="home-brands">
+    <div class="container wide">
+        <h3 class="home-brands-title">Shop by brand</h3>
+        <div class="row">
+            <div class="col l-3">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/01.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/02.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/03.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/04.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3 mt-24">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/05.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3 mt-24">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/06.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3 mt-24">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/07.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3 mt-24">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/08.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3 mt-24">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/09.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3 mt-24">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/10.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3 mt-24">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/11.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-3 mt-24">
+                <div class="home-brands-wrapper">
+                    <a href="#" class="home-brands-link">
+                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/12.png" alt="Brand Thumbnail">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

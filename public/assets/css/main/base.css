@@ -38,9 +38,14 @@ html {
     transition: all ease 0.4s;
 }
 
+.btn.box-shadow {
+    box-shadow: 0 0.5rem 1.125rem -0.5rem rgb(254 105 106 / 90%);
+}
+
 .btn:hover {
     border-color: #fe3638;
     background-color: #fe3638;
+    box-shadow: none;
 }
 
 .btn--size-s {

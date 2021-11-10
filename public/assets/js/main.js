@@ -1,9 +1,18 @@
 // Header
 document.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    const slide = document.querySelector('.slide');
     navbar.classList.toggle('sticky', window.scrollY > 200);
-    slide.classList.toggle('sticky', window.scrollY > 200);
+
+    if (document.querySelector(".error-404")) {
+        const errorPage = document.querySelector(".error-404");
+        errorPage.classList.toggle("sticky", window.scrollY > 200);
+    }
+
+    if (document.querySelector('.slide')) {
+        const slide = document.querySelector('.slide');
+        slide.classList.toggle('sticky', window.scrollY > 200);
+    }
+
 
     const scrollToTop = document.querySelector('.scroll-to-top')
     scrollToTop.classList.toggle('active', window.scrollY > 76);

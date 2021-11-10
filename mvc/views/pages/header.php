@@ -30,7 +30,7 @@
             <div class="navbar-control row">
                 <div class="col l-2">
                     <div class="navbar-logo">
-                        <a href="#" class="navbar-logo-link">
+                        <a href="<?=BASE_URL?>" class="navbar-logo-link">
                             <img width="100%" src="<?=BASE_URL?>public/assets/img/test.png" alt="LOGO">
                         </a>
                     </div>

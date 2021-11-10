@@ -3,7 +3,7 @@
         public $admin;
 
         function __construct() {
-            $this-> admin= $this->model("adminModels");
+            $this-> admin = $this->model("adminModels");
         }
 
         // admin homepage
