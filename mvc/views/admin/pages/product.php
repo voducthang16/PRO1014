@@ -87,7 +87,29 @@
         opacity: 1 !important;
         position: unset !important;
         width: 100% !important;
-    } 
+    }
+
+    .modal .modal-dialog {
+        margin-top: 20px !important;
+    }
+
+    .modal-dialog .modal-content {
+        max-height: 600px !important;
+        overflow-y: scroll !important;
+    }
+
+    .modal-dialog .modal-content::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    .modal-dialog .modal-content::-webkit-scrollbar-track {
+        background-color: transparent !important;
+    }
+
+    .modal-dialog .modal-content::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 6px;
+    }
 </style>
 
 <div class="row">

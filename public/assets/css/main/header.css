@@ -69,6 +69,7 @@
 .navbar {
     position: relative;
     background-color: var(--white-color);
+    box-shadow: 0 0.125rem 0.3rem -0.0625rem rgb(0 0 0 / 3%), 0 0.275rem 0.75rem -0.0625rem rgb(0 0 0 / 6%) !important;
 }
 
 .navbar.sticky {
@@ -77,7 +78,6 @@
     left: 0;
     right: 0;
     z-index: 10;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     animation: navbar-show 0.4s;
     -webkit-animation: navbar-show .4s;
 }

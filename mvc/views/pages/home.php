@@ -115,7 +115,7 @@
                         <i class="fal fa-heart"></i>
                     </div>
                     <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/upload/1/1636467344_ao2.2.jpg" alt="Product Image" class="products-img">
+                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
                     </a>
                     <div class="products-body">
                         <a href="#" class="products-name">product title</a>
@@ -179,7 +179,7 @@
                         <i class="fal fa-heart"></i>
                     </div>
                     <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/upload/1/1636467344_ao2.1.jpg" alt="Product Image" class="products-img">
+                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
                     </a>
                     <div class="products-body">
                         <a href="#" class="products-name">product title</a>
@@ -243,7 +243,7 @@
                         <i class="fal fa-heart"></i>
                     </div>
                     <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/upload/1/1636467344_ao2.jpg" alt="Product Image" class="products-img">
+                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
                     </a>
                     <div class="products-body">
                         <a href="#" class="products-name">product title</a>
