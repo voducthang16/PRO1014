@@ -1,3 +1,63 @@
 .account {
     padding: 36px 0;
 }
+
+.account.sticky {
+    margin-top: 116px;
+}
+
+.sign-in {
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 0.25rem 0.5625rem -0.0625rem rgb(0 0 0 / 3%), 0 0.275rem 1.25rem -0.0625rem rgb(0 0 0 / 5%) !important;
+}
+
+.sign-up {
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.account-title {
+    margin-bottom: 24px;
+
+    color: var(--text-color);
+
+    font-size: 2.4rem;
+    font-weight: 600;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.form-icon {
+    position: absolute;
+    top: 48%;
+    transform: translateY(-50%);
+    left: 16px;
+    color: var(--text-color);
+    font-size: 1.6rem;
+}
+
+.form-control {
+    max-width: 100%;
+    width: 100%;
+    padding: 10px 18px;
+    border: 1px solid #dae1e7;
+    border-radius: 4px;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.6rem;
+    outline: none;
+    transition: all ease 0.4s;
+    box-shadow: inset 0 1px 2px transparent;
+}
+
+.form-control:focus {
+    color: var(--text-color);
+    background-color: #fff;
+    border-color: #ffb4b5;
+    outline: 0;
+    box-shadow: inset 0 1px 2px transparent, 0 0.375rem 0.625rem -0.3125rem rgb(254 105 106 / 15%);
+}

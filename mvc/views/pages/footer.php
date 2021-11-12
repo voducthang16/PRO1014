@@ -45,7 +45,7 @@
                             <form class="subscription-form" action="" method="post" name="ml-embedded-subscribe-form" target="">
                                 <div class="input-group">
                                     <i class="fal fa-envelope input-group__icon"></i>
-                                    <input class="form-control rounded-start" type="email" name="EMAIL" placeholder="Your email" required>
+                                    <input class="form-subscribe rounded-start" type="email" name="EMAIL" placeholder="Your email" required>
                                     <button class="btn btn-primary btn-subscription-form" type="submit" name="subscribe">Subscribe*</button>
                                 </div>
                             </form>

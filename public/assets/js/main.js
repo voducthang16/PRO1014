@@ -13,6 +13,10 @@ document.addEventListener('scroll', () => {
         slide.classList.toggle('sticky', window.scrollY > 200);
     }
 
+    if (document.querySelector('.account')) {
+        const account = document.querySelector('.account');
+        account.classList.toggle('sticky', window.scrollY > 200);
+    }
 
     const scrollToTop = document.querySelector('.scroll-to-top')
     scrollToTop.classList.toggle('active', window.scrollY > 76);
