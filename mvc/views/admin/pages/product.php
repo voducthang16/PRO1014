@@ -477,7 +477,7 @@
 
         $("#product-category").change(function() {
             let idCategory = this.value;
-            if (idCategory == "1" || idCategory == "2" || idCategory == "3") {
+            if (idCategory == "1" || idCategory == "2" || idCategory == "3" || idCategory == "4") {
                 tableBody.innerHTML = "";
                 $(".form-group.size").removeClass("d-none");
                 $(".col-size").removeClass("d-none");
@@ -486,14 +486,14 @@
                 $(".col-size").addClass("d-none");
                 tableBody.innerHTML = "";
             }
-            if (idCategory == "1" || idCategory == "2") {
+            if (idCategory == "1" || idCategory == "2" || idCategory == "3") {
                 $(".product-letter-size").removeClass("d-none");
                 letterSizes();
             } else {
                 $(".product-letter-size").addClass("d-none");
             }
 
-            if (idCategory == "3") {
+            if (idCategory == "4") {
                 $(".product-number-size").removeClass("d-none");
                 numberSizes();
             } else {

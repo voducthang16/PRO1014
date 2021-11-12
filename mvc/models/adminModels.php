@@ -46,7 +46,7 @@
         }
 
         function getAttributes($name) {
-            $query = "SELECT * FROM `attributes` WHERE name = ?";
+            $query = "SELECT * FROM `products_attributes` WHERE name = ?";
             $result = $this->connect->prepare($query);
             $result->execute([$name]);
             return $result->fetchAll();

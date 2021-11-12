@@ -19,7 +19,8 @@
                                 <th class="text-center">#</th>
                                 <th class="text-center">ID</th>
                                 <th>Tên</th>
-                                <th>Trạng thái</th>
+                                <th>Slug</th>
+                                <th class="text-center">Trạng thái</th>
                                 <th class="text-right">Hành động</th>
                             </tr>
                         </thead>
@@ -28,9 +29,10 @@
                             <?php foreach ($data['getCategories'] as $item): ?>
                                 <tr>
                                     <td width="10%" class="text-center"><?=$count++?></td>
-                                    <td width="20%" class="text-center"><?=$item["id"]?></td>
-                                    <td width="30%"><?=$item["name"]?></td>
-                                    <td width="20%"><?=$item['status'] == 1 ? 'Active' : 'Inactive'?></td>
+                                    <td width="10%" class="text-center"><?=$item["id"]?></td>
+                                    <td width="25%"><?=$item["name"]?></td>
+                                    <td width="20%"><?=$item["slug"]?></td>
+                                    <td width="15%" class="text-center"><?=$item['status'] == 1 ? 'Active' : 'Inactive'?></td>
                                     <td width="20%" class="td-actions text-right">
                                         <button type="button" rel="tooltip" class="btn btn-success update-category">
                                             <i class="material-icons">edit</i>
