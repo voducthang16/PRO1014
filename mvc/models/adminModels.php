@@ -59,25 +59,32 @@
             return $result->fetch()['id'];
         }
 
-        function addProduct($category_id, $name, $slug, $price_origin, $price_sale, $quantity, $thumbnail, $description, $parameters, $status, $size, $color) {
-            $query = "INSERT INTO products(category_id, name, slug, price_origin, price_sale, quantity, thumbnail, description, parameters, status) 
-            VALUES ('$category_id', '$name', '$slug', '$price_origin', '$price_sale', '$quantity','$thumbnail', '$description', '$parameters', '$status')";
+        function getProductTypeId() {
+            $query = "SELECT * FROM `products_type` ORDER BY id DESC LIMIT 1";
             $result = $this->connect->prepare($query);
             $result->execute();
+            return $result->fetch()['id'];
+        }
 
-            $product_id = $this->getProductId();
+        function addProduct($category_id, $name, $slug, $thumbnail, $description, $parameters, $status) {
+            $query = "INSERT INTO products(category_id, name, slug, thumbnail, description, parameters, status) 
+            VALUES ('$category_id', '$name', '$slug', '$thumbnail', '$description', '$parameters', '$status')";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
 
-            foreach ($size as $value) {
-                $query = "INSERT INTO products_attributes(product_id, attributes_id) VALUES ('$product_id', '$value')";
-                $result = $this->connect->prepare($query);
-                $result->execute();
-            }
+        function addProductType($product_id, $price_origin, $price_sale, $quantity) {
+            $query = "INSERT INTO products_type(product_id, price_origin, price_sale, quantity) 
+            VALUES ('$product_id', '$price_origin', '$price_sale', '$quantity')";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
 
-            foreach ($color as $value) {
-                $query = "INSERT INTO products_attributes(product_id, attributes_id) VALUES ('$product_id', '$value')";
-                $result = $this->connect->prepare($query);
-                $result->execute();
-            }
+        function addProductTypeAttribute($product_type_id, $attributes_id) {
+            $query = "INSERT INTO products_type_attributes(product_type_id, attributes_id) 
+            VALUES ('$product_type_id', '$attributes_id')";
+            $result = $this->connect->prepare($query);
+            $result->execute();
         }
 
         function addProductImages($product_id, $image) {
