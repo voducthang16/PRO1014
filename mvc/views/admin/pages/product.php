@@ -366,7 +366,7 @@
         let applyColorElement = document.querySelector(".apply-color");
 
         function applyColor(e) {
-            if (e == 1 || e == 2 || e == 3) { 
+            if (e == 1 || e == 2 || e == 3 || e == 4) { 
                 applyColorElement.onclick = function() {
                     let sizeWColor = document.querySelectorAll(".size-w-color");
                     let sizeWPriceOrigin = document.querySelectorAll(".size-w-price-origin");
@@ -434,7 +434,7 @@
             applySizeElement.onclick = () => {
                 tableBody.innerHTML = "";
                 let size = "";
-                if (e == 1 || e == 2) {
+                if (e == 1 || e == 2 || e == 3) {
                     for (let i = 0; i < letterSizesArray.length; i++) {
                         size += `<tr class='text-center'>
                                     <td>${letterSizesArray[i]}</td>
