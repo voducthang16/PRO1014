@@ -86,7 +86,6 @@
                     $product_quantity = $_POST["product-quantity"];
 
                     $length = count($product_quantity);
-                    echo $length;
 
                     $format = array("JPG", "JPEG", "PNG", "GIF", "BMP", "jpg", "jpeg", "png", "gif", "bmp");
 
