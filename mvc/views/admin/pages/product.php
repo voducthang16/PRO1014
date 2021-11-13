@@ -166,7 +166,6 @@
         </div>
     </div>
 </div>
-<base href="<?=BASE_URL?>">
 <!-- Create Product -->
 <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="addProductLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -10,4 +10,5 @@
             $this->connect = new PDO("mysql:host=$this->host; dbname=$this->dbname; charset=utf8", 
             $this->username, $this->password);   
         }
-}
+    }
+?>

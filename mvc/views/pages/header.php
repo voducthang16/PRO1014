@@ -1,3 +1,7 @@
+<?php
+    ob_start();
+?>
+
 <header class="header">
     <div class="topbar">
         <div class="container wide">
@@ -56,11 +60,15 @@
                             </a>
                         </div>
                         <div class="user">
-                            <a href="account" class="user-link">
+                            <a href="<?=isset($_SESSION["member-login"]) ? 'account' : 'sign'?>" class="user-link">
                                 <i class="fal fa-user"></i>
                                 <div class="user-action">
-                                    <span>Hello, Đăng nhập</span>
-                                    <span>My Account</span>
+                                    <?php if (!isset($_SESSION["member-login"])):?>
+                                        <span>Hello, Đăng nhập</span>
+                                    <?php endif;?>
+                                    <?php if (isset($_SESSION["member-login"])):?>
+                                        <span>My account</span>
+                                    <?php endif;?>
                                 </div>
                             </a>
                         </div>
@@ -75,50 +83,9 @@
                                 </div>
                             </a>
                             <div class="cart-items">
+                                <!--  -->
                                 <h3 class="cart-items__title">Sản phẩm đã thêm</h3>
                                 <ul class="cart-items__list">
-                                    <li class="cart-items__product">
-                                        <span>
-                                            <a href="<?=BASE_URL?>product" class="cart-product__link">
-                                                <img src="<?=BASE_URL?>public/assets/img/product.jpg" alt="Product Thumbnail" class="cart-product__img">
-                                            </a>
-                                        </span>
-                                        <div class="cart-product">
-                                            <a href="<?=BASE_URL?>product" class="cart-product__name">Chúa tể những chiếc nhẫn - The Lord of the Rings (1954 & 1955)</a>
-                                            <p class="cart-product__price">200.000đ</p>
-                                            <span class="cart-product__x">x</span>
-                                            <p class="cart-product__quantity">3</p>
-                                            <p class="cart-product__delete">Xóa</p>
-                                        </div>
-                                    </li>
-                                    <li class="cart-items__product">
-                                        <span>
-                                            <a href="<?=BASE_URL?>product" class="cart-product__link">
-                                                <img src="<?=BASE_URL?>public/assets/img/product.jpg" alt="Product Thumbnail" class="cart-product__img">
-                                            </a>
-                                        </span>
-                                        <div class="cart-product">
-                                            <a href="<?=BASE_URL?>product" class="cart-product__name">Chúa tể những chiếc nhẫn - The Lord of the Rings (1954 & 1955)</a>
-                                            <p class="cart-product__price">200.000đ</p>
-                                            <span class="cart-product__x">x</span>
-                                            <p class="cart-product__quantity">3</p>
-                                            <p class="cart-product__delete">Xóa</p>
-                                        </div>
-                                    </li>
-                                    <li class="cart-items__product">
-                                        <span>
-                                            <a href="<?=BASE_URL?>product" class="cart-product__link">
-                                                <img src="<?=BASE_URL?>public/assets/img/product.jpg" alt="Product Thumbnail" class="cart-product__img">
-                                            </a>
-                                        </span>
-                                        <div class="cart-product">
-                                            <a href="<?=BASE_URL?>product" class="cart-product__name">Chúa tể những chiếc nhẫn - The Lord of the Rings (1954 & 1955)</a>
-                                            <p class="cart-product__price">200.000đ</p>
-                                            <span class="cart-product__x">x</span>
-                                            <p class="cart-product__quantity">3</p>
-                                            <p class="cart-product__delete">Xóa</p>
-                                        </div>
-                                    </li>
                                     <li class="cart-items__product">
                                         <span>
                                             <a href="<?=BASE_URL?>product" class="cart-product__link">

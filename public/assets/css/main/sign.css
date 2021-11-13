@@ -40,6 +40,16 @@
     font-size: 1.6rem;
 }
 
+.su-re-password-notification,
+.su-password-notification,
+.su-name-notification,
+.su-email-notification,
+.su-username-notification {
+    left: unset;
+    right: 16px;
+    color: var(--success-color);
+}
+
 .form-control {
     max-width: 100%;
     width: 100%;

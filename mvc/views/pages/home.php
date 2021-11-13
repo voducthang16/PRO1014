@@ -1,3 +1,20 @@
+<?php 
+    class homepage extends database {
+        function getProductAttribute($attribute, $id) {
+            $query = "SELECT DISTINCT products_attributes.id, products_attributes.value FROM products_attributes INNER JOIN products_type_attributes 
+            ON products_attributes.id = products_type_attributes.attributes_id 
+            WHERE products_type_attributes.product_type_id 
+            IN (SELECT products_type.id FROM products_type WHERE products_type.product_id = $id) AND products_attributes.name LIKE '%$attribute%'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+    }
+    $homepage = new homepage();
+?>
+
+
+
 <!-- Slide -->
 <div class="slide">
     <div class="owl-carousel owl-theme owl-banner">
@@ -108,518 +125,57 @@
     <div class="container wide">
         <h3 class="home-product-title">Trending Product</h3>
         <div class="row home-product-wrapper">
-            <div class="col l-3">
-                <form class="products">
-                    <div class="products-heart">
-                        <span>Add to wishlist</span>
-                        <i class="fal fa-heart"></i>
-                    </div>
-                    <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
-                    </a>
-                    <div class="products-body">
-                        <a href="#" class="products-name">product title</a>
-                        <h4 class="products-price">123.000vnd</h4>
-                    </div>
-                    <div class="products-attribute-hidden">
-                        <div class="products-size">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-7" checked>
-                                <label class="products-attribute-option" for="s-7">X</label>
+            <?php 
+                foreach ($data["getProducts"] as $item):
+            ?>
+                <div class="col l-3">
+                    <form class="products" id="<?=$item["id"]?>" method="POST">
+                        <input type="hidden" name="product-id" class="products-id" value="<?=$item["id"]?>">
+                        <div class="products-heart">
+                            <span>Add to wishlist</span>
+                            <i class="fal fa-heart"></i>
+                        </div>
+                        <a href="#" class="products-link">
+                            <img src="<?=BASE_URL?>public/upload/<?=$item["id"]?>/<?=$item["thumbnail"]?>" alt="Product Image" class="products-img">
+                        </a>
+                        <div class="products-body">
+                            <a href="#" class="products-name"><?=$item["name"]?></a>
+                            <h4 class="products-price">123.000vnd</h4>
+                        </div>
+                        <div class="products-attribute-hidden">
+                            <div class="products-size">
+                                <?php 
+                                    $product_size = $homepage->getProductAttribute('size', $item["id"]);
+                                    foreach ($product_size as $size):
+                                ?>
+                                    <div class="products-attribute-item">
+                                        <input class="products-attribute-input" type="radio" name="size" id="<?=$item["id"]?>_<?=$size['id']?>">
+                                        <label class="products-attribute-option" for="<?=$item["id"]?>_<?=$size['id']?>"><?=$size['value']?></label>
+                                    </div>
+                                <?php endforeach;?>
                             </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-8">
-                                <label class="products-attribute-option" for="s-8">XS</label>
+                            <div class="products-color">
+                                <?php 
+                                    $product_color = $homepage->getProductAttribute('color', $item["id"]);
+                                    foreach ($product_color as $color):
+                                ?>
+                                    <div class="products-attribute-item">
+                                        <input class="products-attribute-input" type="radio" name="color" id="<?=$item['id']?>_<?=$color['id']?>">
+                                        <label class="products-attribute-option color" for="<?=$item['id']?>_<?=$color['id']?>">
+                                            <span style="background-color: <?=$color['value']?>" class="products-attribute-color"></span>
+                                        </label>
+                                    </div>
+                                <?php endforeach;?>
                             </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-9">
-                                <label class="products-attribute-option" for="s-9">L</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-10">
-                                <label class="products-attribute-option" for="s-10">M</label>
+                            <div class="products-btn">
+                                <button class="btn btn--size-s">Add to cart</button>
                             </div>
                         </div>
-                        <div class="products-color">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="brown" checked>
-                                <label class="products-attribute-option color" for="brown">
-                                    <span style="background-color: brown" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="green">
-                                <label class="products-attribute-option color" for="green">
-                                    <span style="background-color: green" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="blue">
-                                <label class="products-attribute-option color" for="blue">
-                                    <span style="background-color: blue" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="yellow">
-                                <label class="products-attribute-option color" for="yellow">
-                                    <span style="background-color: yellow" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="products-btn">
-                            <button class="btn btn--size-s">Add to cart</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col l-3">
-                <form class="products">
-                    <div class="products-heart">
-                        <span>Add to wishlist</span>
-                        <i class="fal fa-heart"></i>
-                    </div>
-                    <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
-                    </a>
-                    <div class="products-body">
-                        <a href="#" class="products-name">product title</a>
-                        <h4 class="products-price">123.000vnd</h4>
-                    </div>
-                    <div class="products-attribute-hidden">
-                        <div class="products-size">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-7" checked>
-                                <label class="products-attribute-option" for="s-7">X</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-8">
-                                <label class="products-attribute-option" for="s-8">XS</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-9">
-                                <label class="products-attribute-option" for="s-9">L</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-10">
-                                <label class="products-attribute-option" for="s-10">M</label>
-                            </div>
-                        </div>
-                        <div class="products-color">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="brown" checked>
-                                <label class="products-attribute-option color" for="brown">
-                                    <span style="background-color: brown" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="green">
-                                <label class="products-attribute-option color" for="green">
-                                    <span style="background-color: green" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="blue">
-                                <label class="products-attribute-option color" for="blue">
-                                    <span style="background-color: blue" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="yellow">
-                                <label class="products-attribute-option color" for="yellow">
-                                    <span style="background-color: yellow" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="products-btn">
-                            <button class="btn btn--size-s">Add to cart</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col l-3">
-                <form class="products">
-                    <div class="products-heart">
-                        <span>Add to wishlist</span>
-                        <i class="fal fa-heart"></i>
-                    </div>
-                    <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
-                    </a>
-                    <div class="products-body">
-                        <a href="#" class="products-name">product title</a>
-                        <h4 class="products-price">123.000vnd</h4>
-                    </div>
-                    <div class="products-attribute-hidden">
-                        <div class="products-size">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-7" checked>
-                                <label class="products-attribute-option" for="s-7">X</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-8">
-                                <label class="products-attribute-option" for="s-8">XS</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-9">
-                                <label class="products-attribute-option" for="s-9">L</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-10">
-                                <label class="products-attribute-option" for="s-10">M</label>
-                            </div>
-                        </div>
-                        <div class="products-color">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="brown" checked>
-                                <label class="products-attribute-option color" for="brown">
-                                    <span style="background-color: brown" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="green">
-                                <label class="products-attribute-option color" for="green">
-                                    <span style="background-color: green" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="blue">
-                                <label class="products-attribute-option color" for="blue">
-                                    <span style="background-color: blue" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="yellow">
-                                <label class="products-attribute-option color" for="yellow">
-                                    <span style="background-color: yellow" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="products-btn">
-                            <button class="btn btn--size-s">Add to cart</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col l-3">
-                <form class="products">
-                    <div class="products-heart">
-                        <span>Add to wishlist</span>
-                        <i class="fal fa-heart"></i>
-                    </div>
-                    <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
-                    </a>
-                    <div class="products-body">
-                        <a href="#" class="products-name">product title</a>
-                        <h4 class="products-price">123.000vnd</h4>
-                    </div>
-                    <div class="products-attribute-hidden">
-                        <div class="products-size">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-7" checked>
-                                <label class="products-attribute-option" for="s-7">X</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-8">
-                                <label class="products-attribute-option" for="s-8">XS</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-9">
-                                <label class="products-attribute-option" for="s-9">L</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-10">
-                                <label class="products-attribute-option" for="s-10">M</label>
-                            </div>
-                        </div>
-                        <div class="products-color">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="brown" checked>
-                                <label class="products-attribute-option color" for="brown">
-                                    <span style="background-color: brown" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="green">
-                                <label class="products-attribute-option color" for="green">
-                                    <span style="background-color: green" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="blue">
-                                <label class="products-attribute-option color" for="blue">
-                                    <span style="background-color: blue" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="yellow">
-                                <label class="products-attribute-option color" for="yellow">
-                                    <span style="background-color: yellow" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="products-btn">
-                            <button class="btn btn--size-s">Add to cart</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col l-3">
-                <form class="products">
-                    <div class="products-heart">
-                        <span>Add to wishlist</span>
-                        <i class="fal fa-heart"></i>
-                    </div>
-                    <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
-                    </a>
-                    <div class="products-body">
-                        <a href="#" class="products-name">product title</a>
-                        <h4 class="products-price">123.000vnd</h4>
-                    </div>
-                    <div class="products-attribute-hidden">
-                        <div class="products-size">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-7" checked>
-                                <label class="products-attribute-option" for="s-7">X</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-8">
-                                <label class="products-attribute-option" for="s-8">XS</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-9">
-                                <label class="products-attribute-option" for="s-9">L</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-10">
-                                <label class="products-attribute-option" for="s-10">M</label>
-                            </div>
-                        </div>
-                        <div class="products-color">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="brown" checked>
-                                <label class="products-attribute-option color" for="brown">
-                                    <span style="background-color: brown" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="green">
-                                <label class="products-attribute-option color" for="green">
-                                    <span style="background-color: green" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="blue">
-                                <label class="products-attribute-option color" for="blue">
-                                    <span style="background-color: blue" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="yellow">
-                                <label class="products-attribute-option color" for="yellow">
-                                    <span style="background-color: yellow" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="products-btn">
-                            <button class="btn btn--size-s">Add to cart</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col l-3">
-                <form class="products">
-                    <div class="products-heart">
-                        <span>Add to wishlist</span>
-                        <i class="fal fa-heart"></i>
-                    </div>
-                    <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
-                    </a>
-                    <div class="products-body">
-                        <a href="#" class="products-name">product title</a>
-                        <h4 class="products-price">123.000vnd</h4>
-                    </div>
-                    <div class="products-attribute-hidden">
-                        <div class="products-size">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-7" checked>
-                                <label class="products-attribute-option" for="s-7">X</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-8">
-                                <label class="products-attribute-option" for="s-8">XS</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-9">
-                                <label class="products-attribute-option" for="s-9">L</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-10">
-                                <label class="products-attribute-option" for="s-10">M</label>
-                            </div>
-                        </div>
-                        <div class="products-color">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="brown" checked>
-                                <label class="products-attribute-option color" for="brown">
-                                    <span style="background-color: brown" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="green">
-                                <label class="products-attribute-option color" for="green">
-                                    <span style="background-color: green" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="blue">
-                                <label class="products-attribute-option color" for="blue">
-                                    <span style="background-color: blue" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="yellow">
-                                <label class="products-attribute-option color" for="yellow">
-                                    <span style="background-color: yellow" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="products-btn">
-                            <button class="btn btn--size-s">Add to cart</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col l-3">
-                <form class="products">
-                    <div class="products-heart">
-                        <span>Add to wishlist</span>
-                        <i class="fal fa-heart"></i>
-                    </div>
-                    <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
-                    </a>
-                    <div class="products-body">
-                        <a href="#" class="products-name">product title</a>
-                        <h4 class="products-price">123.000vnd</h4>
-                    </div>
-                    <div class="products-attribute-hidden">
-                        <div class="products-size">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-7" checked>
-                                <label class="products-attribute-option" for="s-7">X</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-8">
-                                <label class="products-attribute-option" for="s-8">XS</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-9">
-                                <label class="products-attribute-option" for="s-9">L</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-10">
-                                <label class="products-attribute-option" for="s-10">M</label>
-                            </div>
-                        </div>
-                        <div class="products-color">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="brown" checked>
-                                <label class="products-attribute-option color" for="brown">
-                                    <span style="background-color: brown" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="green">
-                                <label class="products-attribute-option color" for="green">
-                                    <span style="background-color: green" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="blue">
-                                <label class="products-attribute-option color" for="blue">
-                                    <span style="background-color: blue" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="yellow">
-                                <label class="products-attribute-option color" for="yellow">
-                                    <span style="background-color: yellow" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="products-btn">
-                            <button class="btn btn--size-s">Add to cart</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col l-3">
-                <form class="products">
-                    <div class="products-heart">
-                        <span>Add to wishlist</span>
-                        <i class="fal fa-heart"></i>
-                    </div>
-                    <a href="#" class="products-link">
-                        <img src="<?=BASE_URL?>public/assets/img/pixlr-bg-result.png" alt="Product Image" class="products-img">
-                    </a>
-                    <div class="products-body">
-                        <a href="#" class="products-name">product title</a>
-                        <h4 class="products-price">123.000vnd</h4>
-                    </div>
-                    <div class="products-attribute-hidden">
-                        <div class="products-size">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-7" checked>
-                                <label class="products-attribute-option" for="s-7">X</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-8">
-                                <label class="products-attribute-option" for="s-8">XS</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-9">
-                                <label class="products-attribute-option" for="s-9">L</label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="size" id="s-10">
-                                <label class="products-attribute-option" for="s-10">M</label>
-                            </div>
-                        </div>
-                        <div class="products-color">
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="brown" checked>
-                                <label class="products-attribute-option color" for="brown">
-                                    <span style="background-color: brown" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="green">
-                                <label class="products-attribute-option color" for="green">
-                                    <span style="background-color: green" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="blue">
-                                <label class="products-attribute-option color" for="blue">
-                                    <span style="background-color: blue" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                            <div class="products-attribute-item">
-                                <input class="products-attribute-input" type="radio" name="color" id="yellow">
-                                <label class="products-attribute-option color" for="yellow">
-                                    <span style="background-color: yellow" class="products-attribute-color"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="products-btn">
-                            <button class="btn btn--size-s">Add to cart</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+            <?php 
+                endforeach;
+            ?>
         </div>
         <div class="home-product-btn">
             <a href="#" class="btn home-product-all">More Product<i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
@@ -756,3 +312,13 @@
         </div>
     </div>
 </div>
+
+<base href="<?=BASE_URL?>">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        
+    });
+</script>

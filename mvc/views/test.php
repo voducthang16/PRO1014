@@ -9,18 +9,11 @@
 </form>
 
 <?php
-    if (isset($_POST['test'])) {
-        $test = $_POST['test'];
-        echo count($test);
-
-        echo $test[0];
-        echo $test[1];
-        echo $test[2];
-        echo $test[3];
-        echo $test[4];
-        echo $test[5];
+    $a = array("Volvo", "BMW", "Toyota", "Volvo 2", "BMW 2", "Toyota 2");
+    $b = array("a", "b", "c", "a 2", "b 2", "c 2");
+    foreach ($a as $value) {
+        echo $value . "<br>";
+        echo $b[0];
+        array_shift($b);
     }
-    $a = "áo thun";
-    // echo ucwords(mb_strtolower($a, 'UTF-8'));
-    echo mb_convert_case($a, MB_CASE_TITLE, "UTF-8");
 ?>

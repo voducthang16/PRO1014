@@ -4,6 +4,10 @@
     --third-color: #4e54c8;
     --text-color: #4b566b;
     --white-color: #fff;
+    --success-color: #4BB543;
+    --danger-color: #FC100D;
+    /* --warning-color: #fdcb6e;
+    --info-color: #55efc4; */
 }
 
 html {
