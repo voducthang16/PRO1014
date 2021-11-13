@@ -149,7 +149,7 @@
                                     foreach ($product_size as $size):
                                 ?>
                                     <div class="products-attribute-item">
-                                        <input class="products-attribute-input" type="radio" name="size" id="<?=$item["id"]?>_<?=$size['id']?>">
+                                        <input class="products-attribute-input" type="radio" name="size" id="<?=$item["id"]?>_<?=$size['id']?>" value="<?=$size['id']?>">
                                         <label class="products-attribute-option" for="<?=$item["id"]?>_<?=$size['id']?>"><?=$size['value']?></label>
                                     </div>
                                 <?php endforeach;?>
@@ -160,7 +160,7 @@
                                     foreach ($product_color as $color):
                                 ?>
                                     <div class="products-attribute-item">
-                                        <input class="products-attribute-input" type="radio" name="color" id="<?=$item['id']?>_<?=$color['id']?>">
+                                        <input class="products-attribute-input" type="radio" name="color" id="<?=$item['id']?>_<?=$color['id']?>" value="<?=$color['id']?>">
                                         <label class="products-attribute-option color" for="<?=$item['id']?>_<?=$color['id']?>">
                                             <span style="background-color: <?=$color['value']?>" class="products-attribute-color"></span>
                                         </label>
