@@ -30,6 +30,7 @@
 
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.carousel.min.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.theme.default.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
         <!-- <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/home.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/home-block.css">
@@ -62,4 +63,5 @@
     <script src="<?=BASE_URL?>public/assets/js/jquery.min.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/owl.carousel.min.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/main.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/nguyennhieu.js"></script>
 </html>
