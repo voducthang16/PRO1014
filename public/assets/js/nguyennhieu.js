@@ -10,8 +10,19 @@ $(document).ready(function(){
             }
         });
     }
+    function get_count(){
+        $.ajax({
+            url: "cart/countCart",
+            method: "POST",
+            success:function(data){
+                console.log(data)
+                document.getElementById('cart-total-val').innerHTML = data.toLocaleString('vi-VN') +' đ';
+            }
+        });
+    }
 
     get_data();
+    get_count();
 
     $(document).on('click','.btn-add-cart',function(e){
         e.preventDefault();
@@ -46,6 +57,7 @@ $(document).ready(function(){
                 }
         });
         get_data();
+        get_count();
         cart_quantity();
     });
     $(document).on('click','.btn-delete-prd-cart',function(e){
@@ -65,6 +77,7 @@ $(document).ready(function(){
                 }
         })
         get_data();
+        get_count();
         cart_quantity();
     });
 

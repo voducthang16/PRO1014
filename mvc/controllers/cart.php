@@ -28,7 +28,7 @@
 
                 if($num==0) {
                     $output .= '
-                        <li class="cart-items__product">
+                        <li class="cart-items__products">
                             chưa có sản phẩm
                         </li>
                     ';
@@ -55,15 +55,36 @@
                         $count += $row['price_sale']*$row['quantity'];
                     }
                     echo $output;
-                    $_SESSION['count-cart']=$count;
                 }
             } else {
                 $output .= '
-                        <li class="cart-items__product">
+                        <li class="cart-items__products">
                             chưa có sản phẩm
                         </li>
                     ';
                 echo $output;
+            }
+        }
+        function countCart(){
+
+            $count = 0;
+
+            if(isset($_SESSION["member-username"])){
+
+                $result = $this-> cart->getCart($this->id_member);
+                $num = $result->rowCount();
+                $data = $result->FetchAll();
+
+                if($num==0) {
+                    echo $count;
+                } else {
+                    foreach ($data as $row) {
+                        $count += $row['price_sale']*$row['quantity'];
+                    }
+                    echo $count;
+                }
+            } else {
+                echo $count;
             }
         }
 

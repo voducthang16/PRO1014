@@ -92,7 +92,7 @@
                                 </ul>
                                 <div class="cart-footer">
                                     <div class="cart-total">
-                                        <p>Tổng tiền: <span><?=number_format($_SESSION['count-cart'])?> đ</span></p>
+                                        <p>Tổng tiền: <span id="cart-total-val"></span></p>
                                         <a href="#" class="cart-view btn btn--size-s">Xem giỏ hàng <i class="fal fa-chevron-right"></i></a>
                                     </div>
                                     <a href="#" class="btn cart-checkout"><i class="fal fa-credit-card"></i> Thanh toán</a>
