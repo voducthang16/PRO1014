@@ -34,8 +34,8 @@
             <div class="navbar-control row">
                 <div class="col l-2">
                     <div class="navbar-logo">
-                        <a href="<?=BASE_URL?>" class="navbar-logo-link">
-                            <img width="100%" src="<?=BASE_URL?>public/assets/img/test.png" alt="LOGO">
+                        <a href="" class="navbar-logo-link">
+                            <img width="100%" src="public/assets/img/test.png" alt="LOGO">
                         </a>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                         <div class="cart">
                             <a class="cart-link">
                                 <i class="fal fa-shopping-cart cart-icon">
-                                    <span class="cart-quantity">4</span>
+                                    <span class="cart-quantity" id="cart-quantity-val">4</span>
                                 </i>
                                 <div class="cart-body">
                                     <span>My cart</span>
@@ -92,7 +92,7 @@
                                 </ul>
                                 <div class="cart-footer">
                                     <div class="cart-total">
-                                        <p>Tổng tiền: <span>600.000đ</span></p>
+                                        <p>Tổng tiền: <span><?=number_format($_SESSION['count-cart'])?> đ</span></p>
                                         <a href="#" class="cart-view btn btn--size-s">Xem giỏ hàng <i class="fal fa-chevron-right"></i></a>
                                     </div>
                                     <a href="#" class="btn cart-checkout"><i class="fal fa-credit-card"></i> Thanh toán</a>
@@ -105,21 +105,13 @@
             <div class="navbar-menu row">
                 <div class="col l-10 l-o-2">
                     <ul class="navbar-menu-list">
-                        <li class="navbar-menu-item">
-                            <a href="#" class="navbar-menu-link">
-                                Home
-                            </a>
-                        </li>
-                        <li class="navbar-menu-item">
-                            <a href="#" class="navbar-menu-link">
-                                Home
-                            </a>
-                        </li>
-                        <li class="navbar-menu-item">
-                            <a href="#" class="navbar-menu-link">
-                                Home
-                            </a>
-                        </li>
+                        <?php foreach ($data['getCategories'] as $category):?>
+                            <li class="navbar-menu-item">
+                                <a href="#" class="navbar-menu-link">
+                                    <?=$category['name']?>
+                                </a>
+                            </li>
+                        <?php endforeach;?>
                     </ul>
                 </div>
             </div>

@@ -55,10 +55,10 @@
                             <h3 class="footer__heading">Download our app</h3>
                             <div class="footer__app-download">
                                 <a href="#!">
-                                    <img src="<?= BASE_URL ?>public/assets/img/gg_play.png" class="gg-play-store" alt="google-play-store">
+                                    <img src="public/assets/img/gg_play.png" class="gg-play-store" alt="google-play-store">
                                 </a>
                                 <a href="#!">
-                                    <img src="<?= BASE_URL ?>public/assets/img/app_store.png" class="app-store" alt="app-store">
+                                    <img src="public/assets/img/app_store.png" class="app-store" alt="app-store">
                                 </a>
                             </div>
                         </div>
@@ -105,11 +105,11 @@
                     <div class="box-1">
                         <div class="navbar-logo footer-logo">
                             <a href="#" class="navbar-logo-link">
-                                <img width="100%" src="<?= BASE_URL ?>public/assets/img/test.png" alt="LOGO">
+                                <img width="100%" src="public/assets/img/test.png" alt="LOGO">
                             </a>
                         </div>
                         <div class="currency-exchange">
-                            <img src="<?= BASE_URL ?>public/assets/img/flags/US.png" alt="">
+                            <img src="public/assets/img/flags/US.png" alt="">
                             <span>Eng / $</span>
                             <i class="fad fa-caret-down"></i>
                         </div>

@@ -15,5 +15,7 @@
         echo $value . "<br>";
         echo $b[0];
         array_shift($b);
+        
     }
+    echo $_SESSION['member-login'];
 ?>

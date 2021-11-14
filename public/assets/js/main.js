@@ -66,7 +66,7 @@ window.onload = animateText;
 
 // Home Slider
 $(document).ready(function(){
-    $(".owl-carousel").owlCarousel({
+    $(".home-slide").owlCarousel({
         items: 1,
         loop: true,
         nav: true,
@@ -76,4 +76,14 @@ $(document).ready(function(){
         smartSpeed: 500,
         autoplayHoverPause: true
     });
+    // $(".home-hoodie-slide").owlCarousel({
+    //     items: 3,
+    //     loop: true,
+    //     nav: true,
+    //     dots: true,
+    //     // autoplay: true,
+    //     autoplaySpeed: 1000,
+    //     smartSpeed: 500,
+    //     autoplayHoverPause: true
+    // });
 });
