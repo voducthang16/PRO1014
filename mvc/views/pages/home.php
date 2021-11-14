@@ -13,11 +13,9 @@
     $homepage = new homepage();
 ?>
 
-
-
 <!-- Slide -->
 <div class="slide">
-    <div class="owl-carousel owl-theme owl-banner">
+    <div class="owl-carousel owl-theme owl-banner home-slide">
         <div class="slide-wrapper slide-wrapper-1">
             <div class="container wide">
                 <div class="row">
@@ -33,7 +31,7 @@
                     </div>
                     <div class="col l-6">
                         <div class="slide-img">
-                            <img src="<?=BASE_URL?>public/assets/img/01.jpg" alt="Slide Image">
+                            <img src="public/assets/img/01.jpg" alt="Slide Image">
                         </div>
                     </div>
                 </div>
@@ -54,7 +52,7 @@
                     </div>
                     <div class="col l-6">
                         <div class="slide-img">
-                            <img src="<?=BASE_URL?>public/assets/img/02.jpg" alt="Slide Image">
+                            <img src="public/assets/img/02.jpg" alt="Slide Image">
                         </div>
                     </div>
                 </div>
@@ -75,7 +73,7 @@
                     </div>
                     <div class="col l-6">
                         <div class="slide-img">
-                            <img src="<?=BASE_URL?>public/assets/img/03.jpg" alt="Slide Image">
+                            <img src="public/assets/img/03.jpg" alt="Slide Image">
                         </div>
                     </div>
                 </div>
@@ -93,7 +91,7 @@
                     <div class="col l-4">
                         <div class="block-wrapper">
                             <a href="#" class="block-category-link">
-                                <img src="<?=BASE_URL?>public/assets/img/cat-sm01.jpg" alt="Men">
+                                <img src="public/assets/img/cat-sm01.jpg" alt="Men">
                                 <h3>Men</h3>
                             </a>
                         </div>
@@ -101,7 +99,7 @@
                     <div class="col l-4">
                         <div class="block-wrapper">
                             <a href="#" class="block-category-link">
-                                <img src="<?=BASE_URL?>public/assets/img/cat-sm02.jpg" alt="Men">
+                                <img src="public/assets/img/cat-sm02.jpg" alt="Men">
                                 <h3>Women</h3>
                             </a>
                         </div>
@@ -109,7 +107,7 @@
                     <div class="col l-4">
                         <div class="block-wrapper">
                             <a href="#" class="block-category-link">
-                                <img src="<?=BASE_URL?>public/assets/img/cat-sm03.jpg" alt="Men">
+                                <img src="public/assets/img/cat-sm03.jpg" alt="Men">
                                 <h3>Kid</h3>
                             </a>
                         </div>
@@ -136,7 +134,7 @@
                             <i class="fal fa-heart"></i>
                         </div>
                         <a href="#" class="products-link">
-                            <img src="<?=BASE_URL?>public/upload/<?=$item["id"]?>/<?=$item["thumbnail"]?>" alt="Product Image" class="products-img">
+                            <img src="public/upload/<?=$item["id"]?>/<?=$item["thumbnail"]?>" alt="Product Image" class="products-img">
                         </a>
                         <div class="products-body">
                             <a href="#" class="products-name"><?=$item["name"]?></a>
@@ -201,7 +199,7 @@
                         </div>
                         <div class="col l-6">
                             <div>
-                                <img class="banner-ads-img__thumbnail" src="<?=BASE_URL?>public/assets/img/banner.jpg" alt="Banner Image">
+                                <img class="banner-ads-img__thumbnail" src="public/assets/img/banner.jpg" alt="Banner Image">
                             </div>
                         </div>
                     </div>
@@ -220,6 +218,47 @@
     </div>
 </div>
 
+
+<!-- Home Hoodie -->
+<div class="home-hoodie">
+    <div class="container wide">
+        <div class="row">
+            <div class="col l-5">
+                <div class="home-hoodie-thumbnail">
+                    <div class="hoodie-thumbnail-header">
+                        <h2>Hoodie Day</h2>
+                        <a href="#">Ao Hoodie <i class="fal fa-chevron-right"></i></a>
+                    </div>
+                    <a class="hoodie-thumbnail-img">
+                        <img src="public/assets/img/hoodie.jpg" alt="Hoodie Thumbnail">
+                    </a>
+                </div>
+            </div>
+            <div class="col l-7">
+                <div class="row home-hoodie-slide">
+                    <?php foreach ($data['getHoodiesProducts'] as $hoodie): ?>
+                        <div class="col l-4">
+                            <div class="home-hoodie-item">
+                                <div class="products-heart">
+                                    <span>Add to wishlist</span>
+                                    <i class="fal fa-heart"></i>
+                                </div>
+                                <a href="#" class="home-hoodie-item-link">
+                                    <img src="public/upload/<?=$hoodie['id']?>/<?=$hoodie['thumbnail']?>" alt="Hoodie Image">
+                                </a>
+                                <div class="home-hoodie-item-body">
+                                    <a href="#" class="home-hoodie-item-name"><?=$hoodie['name']?></a>
+                                    <h4 class="home-hoodie-item-price">123.000vnd</h4>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Home Brands -->
 <div class="home-brands">
     <div class="container wide">
@@ -228,91 +267,89 @@
             <div class="col l-3">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/01.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/01.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/02.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/02.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/03.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/03.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/04.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/04.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/05.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/05.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/06.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/06.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/07.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/07.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/08.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/08.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/09.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/09.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/10.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/10.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/11.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/11.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
             <div class="col l-3 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
-                        <img class="home-brands-img" src="<?=BASE_URL?>public/assets/img/brands/12.png" alt="Brand Thumbnail">
+                        <img class="home-brands-img" src="public/assets/img/brands/12.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<base href="<?=BASE_URL?>">
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

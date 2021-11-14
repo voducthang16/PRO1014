@@ -1,9 +1,9 @@
 <?php
     class sign extends controller {
-        public $account;
+        public $sign;
 
         function __construct() {
-            $this->account = $this->model('signModels');
+            $this->sign = $this->model('signModels');
         }
 
         function show() {
@@ -13,7 +13,7 @@
                 $name = $_POST["su-name"];
                 $password = $_POST["su-password"];
                 
-                $this->account->createAccount($username, $email, $name, $password);
+                $this->sign->createAccount($username, $email, $name, $password);
                 echo '<script>alert("Tao tk thanh cong.");</script>';
                 header("Refresh: 0");
             }
@@ -21,7 +21,7 @@
             if (isset($_POST["si-username"])) {
                 $username = $_POST["si-username"];
                 $password = $_POST["si-password"];
-                $check = $this->account->checkLogin($username, $password);
+                $check = $this->sign->checkLogin($username, $password);
                 if ($check == 0) {
                     echo '<script>alert("TK KHONG CHINH XAC.");</script>';
                 } else {
@@ -34,14 +34,14 @@
             }
 
             $this -> view("index", [
-                "page" => "sign"
+                "page" => "sign",
             ]);
         }
 
         function checkExistAttribute() {
             $attribute = $_POST['attribute'];
             $column = $_POST['column'];
-            $result = $this -> account -> checkExistAttribute($column, $attribute);
+            $result = $this -> sign -> checkExistAttribute($column, $attribute);
             echo $result;
         }
     }

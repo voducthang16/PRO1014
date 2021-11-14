@@ -239,6 +239,7 @@
     padding: 8px 20px;
 }
 
+.home-hoodie-item-name,
 .products-name {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -260,6 +261,7 @@
     transition: all ease 0.4s;
 }
 
+.home-hoodie-item-price,
 .products-price {
     font-size: 1.6rem;
     font-weight: 600;
@@ -497,6 +499,73 @@
     width: 100%;
 }
 
+/* Home Hoodie */
+.home-hoodie {
+    padding: 36px 0;
+}
+
+.home-hoodie-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.home-hoodie-thumbnail {
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 8px;
+
+    background-color: #e2e9ef;
+    overflow: hidden;
+}
+
+.hoodie-thumbnail-header {
+    padding: 30px;
+}
+
+.hoodie-thumbnail-header h2 {
+    margin-bottom: 16px;
+    font-size: 2.8rem;
+    font-weight: 600;
+
+    color: var(--text-color);
+}
+
+.hoodie-thumbnail-header a {
+    text-decoration: none;
+    outline: none;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+.hoodie-thumbnail-img {
+    display: block;
+    text-decoration: none;
+    outline: none;
+}
+
+.hoodie-thumbnail-img img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.home-hoodie-item-link {
+    text-decoration: none;
+    outline: none;
+}
+
+.home-hoodie-item-link img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.home-hoodie-slide {
+    height: 100%;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .products:hover {
         box-shadow: 0 0.3rem 1.525rem -0.375rem rgb(0 0 0 / 10%);
@@ -531,5 +600,3 @@
         background-color: var(--third-color);
     }
 }
-
-/* Home Banner Ads */

@@ -18,6 +18,7 @@
                 "page" => "cart",
             ]);
         }
+
         function showCart() {
 
             $output ='';
@@ -28,14 +29,14 @@
                 $num = $result->rowCount();
                 $data = $result->FetchAll();
 
-                if($num==0){
+                if($num==0) {
                     $output .= '
                         <li class="cart-items__product">
                             chưa có sản phẩm
                         </li>
                     ';
                     echo $output;
-                }else{
+                }else {
                     foreach ($data as $row) {
                         $output .= '
                             <li class="cart-items__product">
@@ -65,6 +66,7 @@
                 echo $output;
             }
         }
+
         function insertCart(){
             if(isset($_POST['insertCart'])){
                 $id_product = $_POST['id_product'];

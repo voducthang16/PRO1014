@@ -34,8 +34,8 @@
             <div class="navbar-control row">
                 <div class="col l-2">
                     <div class="navbar-logo">
-                        <a href="<?=BASE_URL?>" class="navbar-logo-link">
-                            <img width="100%" src="<?=BASE_URL?>public/assets/img/test.png" alt="LOGO">
+                        <a href="" class="navbar-logo-link">
+                            <img width="100%" src="public/assets/img/test.png" alt="LOGO">
                         </a>
                     </div>
                 </div>
@@ -105,21 +105,13 @@
             <div class="navbar-menu row">
                 <div class="col l-10 l-o-2">
                     <ul class="navbar-menu-list">
-                        <li class="navbar-menu-item">
-                            <a href="#" class="navbar-menu-link">
-                                Home
-                            </a>
-                        </li>
-                        <li class="navbar-menu-item">
-                            <a href="#" class="navbar-menu-link">
-                                Home
-                            </a>
-                        </li>
-                        <li class="navbar-menu-item">
-                            <a href="#" class="navbar-menu-link">
-                                Home
-                            </a>
-                        </li>
+                        <?php foreach ($data['getCategories'] as $category):?>
+                            <li class="navbar-menu-item">
+                                <a href="#" class="navbar-menu-link">
+                                    <?=$category['name']?>
+                                </a>
+                            </li>
+                        <?php endforeach;?>
                     </ul>
                 </div>
             </div>

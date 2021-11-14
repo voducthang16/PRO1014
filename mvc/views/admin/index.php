@@ -14,14 +14,14 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <title>ADMIN HOMEPAGE</title>
 
-    <link rel="icon" type="image/png" href="<?=BASE_URL?>public/assets/img/favicon.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="<?=BASE_URL?>public/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="public/assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="public/assets/img/apple-icon.png">
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="public/assets/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="<?=BASE_URL?>public/assets/css/material-dashboard.minf066.css?v=2.1.0" rel="stylesheet" />
+    <link href="public/assets/css/material-dashboard.minf066.css?v=2.1.0" rel="stylesheet" />
 </head>
 <body class="">
     <div class="wrapper">
@@ -45,11 +45,11 @@
     </div>
     
     <!--   Core JS Files   -->
-    <script src="<?=BASE_URL?>public/assets/js/core/jquery.min.js"></script>
-    <script src="<?=BASE_URL?>public/assets/js/core/popper.min.js"></script>
-    <script src="<?=BASE_URL?>public/assets/js/core/bootstrap-material-design.min.js"></script>
-    <script src="<?=BASE_URL?>public/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <script src="<?=BASE_URL?>public/assets/js/material-dashboard.minf066.js?v=2.1.0" type="text/javascript"></script>
+    <script src="public/assets/js/core/jquery.min.js"></script>
+    <script src="public/assets/js/core/popper.min.js"></script>
+    <script src="public/assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="public/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="public/assets/js/material-dashboard.minf066.js?v=2.1.0" type="text/javascript"></script>
 
     
     <script>

@@ -6,7 +6,7 @@ $(document).ready(function(){
             method: "POST",
             success:function(data){
                 $('.cart-items__list').html(data);
-                get_data();
+                console.log("1")
             }
         });
     }
@@ -46,5 +46,5 @@ $(document).ready(function(){
                 }
         });
         get_data();
-   });
+    });
 })

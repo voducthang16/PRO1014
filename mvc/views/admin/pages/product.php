@@ -257,7 +257,7 @@
                         <h6><label style="text-transform: none;">Ảnh bìa sản phẩm</label></h6>
                         <div class="fileinput fileinput-new text-center" style="width: 100%" data-provides="fileinput">
                             <div class="fileinput-new thumbnail">
-                            <img src="<?=BASE_URL?>public/assets/img/image_placeholder.jpg" alt="Product Image">
+                            <img src="public/assets/img/image_placeholder.jpg" alt="Product Image">
                             </div>
                             <div class="fileinput-preview fileinput-exists thumbnail"></div>
                             <div>
@@ -304,7 +304,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="<?=BASE_URL?>public/assets/js/plugins/jasny-bootstrap.min.js"></script>
+<script src="public/assets/js/plugins/jasny-bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
         let letterSizesArray = [];
