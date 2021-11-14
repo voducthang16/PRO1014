@@ -13,9 +13,5 @@
                 "getHoodiesProducts" => $this->home->getHoodiesProducts(),
             ]);
         }
-
-        function product() {
-            echo "product";
-        }
     }
 ?>

@@ -118,7 +118,7 @@
                     <ul class="navbar-menu-list">
                         <?php foreach ($categories as $category):?>
                             <li class="navbar-menu-item">
-                                <a href="category/<?=$category['slug']?>" class="navbar-menu-link">
+                                <a href="category/detail/<?=$category['slug']?>" class="navbar-menu-link">
                                     <?=$category['name']?>
                                 </a>
                             </li>

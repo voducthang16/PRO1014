@@ -4,12 +4,12 @@
     }
 ?>
 
-<div class="account">
+<div class="sign">
     <div class="container wide">
         <div class="row">
             <div class="col l-6">
                 <div class="sign-in">
-                    <h2 class="account-title">Đăng nhập</h2>
+                    <h2 class="sign-title">Đăng nhập</h2>
                     <form action="" class="sign-in-form" method="POST">
                         <div class="form-group">
                             <i class="form-icon fal fa-user"></i>
@@ -27,7 +27,7 @@
             </div>
             <div class="col l-6">
                 <div class="sign-up">
-                    <h2 class="account-title">Đăng ký</h2>
+                    <h2 class="sign-title">Đăng ký</h2>
                     <form action="" class="sign-up-form" method="POST">
                         <div class="form-group">
                             <input type="text" class="form-control" id="su-username" name="su-username" placeholder="Username">

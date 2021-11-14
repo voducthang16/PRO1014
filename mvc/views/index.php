@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Vo Duc Thang</title>
         <!-- Icon -->
-        <link rel="icon" href="public/assets/img/favicon.png">
+        <link rel="icon" href="<?=BASE_URL?>public/assets/img/favicon.png">
 
         <!-- Reset CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,16 +20,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="public/assets/css/main/base.css">
-        <link rel="stylesheet" href="public/assets/css/main/grid.css">
-        <link rel="stylesheet" href="public/assets/css/main/header.css">
-        <link rel="stylesheet" href="public/assets/css/main/footer.css">
-        <link rel="stylesheet" href="public/assets/css/main/home.css">
-        <link rel="stylesheet" href="public/assets/css/main/sign.css">
-        <link rel="stylesheet" href="public/assets/css/main/pagenotfound.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/base.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/grid.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/header.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/footer.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/home.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/sign.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/pagenotfound.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/category.css">
 
-        <link rel="stylesheet" href="public/assets/css/carousel/owl.carousel.min.css">
-        <link rel="stylesheet" href="public/assets/css/carousel/owl.theme.default.min.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.theme.default.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
         <!-- <link rel="stylesheet" href="public/assets/css/main/home.css">
@@ -61,8 +62,8 @@
             <!-- End Footer -->
         </div>
     </body>
-    <script src="public/assets/js/jquery.min.js"></script>
-    <script src="public/assets/js/owl.carousel.min.js"></script>
-    <script src="public/assets/js/main.js"></script>
-    <script src="public/assets/js/nguyennhieu.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/jquery.min.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/owl.carousel.min.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/main.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/nguyennhieu.js"></script>
 </html>

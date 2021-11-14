@@ -3,6 +3,11 @@ document.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     navbar.classList.toggle('sticky', window.scrollY > 200);
 
+    if (document.querySelector(".category")) {
+        const category = document.querySelector(".category");
+        category.classList.toggle("sticky", window.scrollY > 200);
+    }
+
     if (document.querySelector(".error-404")) {
         const errorPage = document.querySelector(".error-404");
         errorPage.classList.toggle("sticky", window.scrollY > 200);
@@ -13,9 +18,9 @@ document.addEventListener('scroll', () => {
         slide.classList.toggle('sticky', window.scrollY > 200);
     }
 
-    if (document.querySelector('.account')) {
-        const account = document.querySelector('.account');
-        account.classList.toggle('sticky', window.scrollY > 200);
+    if (document.querySelector('.sign')) {
+        const sign = document.querySelector('.sign');
+        sign.classList.toggle('sticky', window.scrollY > 200);
     }
 
     const scrollToTop = document.querySelector('.scroll-to-top')

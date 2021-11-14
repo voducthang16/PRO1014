@@ -1,8 +1,8 @@
-.account {
+.sign {
     padding: 36px 0;
 }
 
-.account.sticky {
+.sign.sticky {
     margin-top: 116px;
 }
 
@@ -17,7 +17,7 @@
     border-radius: 8px;
 }
 
-.account-title {
+.sign-title {
     margin-bottom: 24px;
 
     color: var(--text-color);

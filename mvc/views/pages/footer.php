@@ -105,11 +105,11 @@
                     <div class="box-1">
                         <div class="navbar-logo footer-logo">
                             <a href="#" class="navbar-logo-link">
-                                <img width="100%" src="public/assets/img/test.png" alt="LOGO">
+                                <img width="100%" src="<?=BASE_URL?>public/assets/img/test.png" alt="LOGO">
                             </a>
                         </div>
                         <div class="currency-exchange">
-                            <img src="public/assets/img/flags/US.png" alt="">
+                            <img src="<?=BASE_URL?>public/assets/img/flags/US.png" alt="">
                             <span>Eng / $</span>
                             <i class="fad fa-caret-down"></i>
                         </div>
