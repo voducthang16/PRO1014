@@ -136,7 +136,7 @@
                             <i class="fal fa-heart"></i>
                         </div>
                         <a href="#" class="products-link">
-                            <img src="<?=BASE_URL?>public/upload/<?=$item["id"]?>/<?=$item["thumbnail"]?>" alt="Product Image" class="products-img">
+                            <img src="public/upload/<?=$item["id"]?>/<?=$item["thumbnail"]?>" alt="Product Image" class="products-img">
                         </a>
                         <div class="products-body">
                             <a href="#" class="products-name"><?=$item["name"]?></a>

@@ -6,7 +6,6 @@ $(document).ready(function(){
             method: "POST",
             success:function(data){
                 $('.cart-items__list').html(data);
-                get_data();
             }
         });
     }
