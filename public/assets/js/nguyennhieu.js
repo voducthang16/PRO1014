@@ -1,28 +1,34 @@
 $(document).ready(function(){
 
+    // fetch in the screen
+
     function get_data(){
         $.ajax({
             url: "cart/showCart",
             method: "POST",
             success:function(data){
                 $('.cart-items__list').html(data);
-                cart_quantity();
             }
         });
-    }
-    function get_count(){
+        $.ajax({
+            url: "cart/totalCart",
+            method: "POST",
+            success:function(data){
+                document.getElementById('cart-total-val').innerHTML = data;
+            }
+        });
         $.ajax({
             url: "cart/countCart",
             method: "POST",
             success:function(data){
-                console.log(data)
-                document.getElementById('cart-total-val').innerHTML = data.toLocaleString('vi-VN') +' đ';
+                document.getElementById('cart-quantity-val').innerHTML = data;
             }
-        });
+        })
     }
 
     get_data();
-    get_count();
+
+    // add product in cart
 
     $(document).on('click','.btn-add-cart',function(e){
         e.preventDefault();
@@ -43,23 +49,34 @@ $(document).ready(function(){
                 var attributes_size = size[i].value;
             }
         }
-        $.ajax({
-            url: "cart/insertCart",
-                method: "POST",
-                data: {
-                    insertCart: 'true',
-                    id_product: id_product,
-                    id_color: attributes_color,
-                    id_size: attributes_size
-                },
-                success:function(data){
-                    alert (data);
-                }
-        });
-        get_data();
-        get_count();
-        cart_quantity();
+
+        if (attributes_color == null || attributes_size == null){
+            alert('vui lòng chọn size và color đầy đủ');
+        } else {
+            $.ajax({
+                url: "cart/insertCart",
+                    method: "POST",
+                    data: {
+                        insertCart: 'true',
+                        id_product: id_product,
+                        id_color: attributes_color,
+                        id_size: attributes_size
+                    },
+                    success:function(data){
+                        console.log(data);
+                        if (data=='sign') {
+                            window.location="sign";
+                        } else {
+                            alert (data);
+                        }
+                    }
+            });
+            get_data();
+        }
     });
+
+    // delete product in cart
+
     $(document).on('click','.btn-delete-prd-cart',function(e){
         e.preventDefault();
         var parent = $(this).parents('.cart-items__product');
@@ -77,13 +94,5 @@ $(document).ready(function(){
                 }
         })
         get_data();
-        get_count();
-        cart_quantity();
     });
-
-    function cart_quantity(){
-        let cart_quantity = document.getElementsByClassName('cart-items__product');
-        console.log(cart_quantity);
-        document.getElementById('cart-quantity-val').innerHTML = cart_quantity.length;
-    };
 })

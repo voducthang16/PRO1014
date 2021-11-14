@@ -70,5 +70,11 @@
                 }
             return json_encode($kq);
         }
+        function getTotal($id_member){
+            $qr = "SELECT * FROM `cart_temporary` WHERE member_id=?";
+            $result = $this->connect->prepare($qr);
+            $result->execute([$id_member]);
+            return $result->fetchAll();
+        }
     }
 ?>

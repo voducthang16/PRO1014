@@ -67,8 +67,18 @@
             }
         }
         function countCart(){
-
             $count = 0;
+            if(isset($_SESSION['member-username'])){
+                $result = $this-> cart->getTotal($this->id_member);
+                foreach ($result as $row){
+                    $count += $row['quantity'];
+                }
+            }
+            echo $count;
+        }
+
+        function totalCart(){
+            $total = 0;
 
             if(isset($_SESSION["member-username"])){
 
@@ -77,46 +87,51 @@
                 $data = $result->FetchAll();
 
                 if($num==0) {
-                    echo $count;
+                    echo number_format($total);
                 } else {
                     foreach ($data as $row) {
-                        $count += $row['price_sale']*$row['quantity'];
+                        $total += $row['price_sale']*$row['quantity'];
                     }
-                    echo $count;
+                    echo number_format($total);
                 }
             } else {
-                echo $count;
+                echo number_format($total);
             }
         }
 
         function insertCart(){
-            if(isset($_POST['insertCart'])){
-                $id_product = $_POST['id_product'];
-                $id_color = $_POST['id_color'];
-                $id_size = $_POST['id_size'];
+            if(isset($_SESSION['member-username'])){
+                if(isset($_POST['insertCart'])){
 
-                $id_type = $this-> cart->get_type_id($id_product,$id_color,$id_size);
+                    $id_product = $_POST['id_product'];
+                    $id_color = $_POST['id_color'];
+                    $id_size = $_POST['id_size'];
 
-                $check_id_type = $this-> cart->check_type_id($this->id_member,$id_type);
-                $num = $check_id_type->rowCount();
+                    $id_type = $this-> cart->get_type_id($id_product,$id_color,$id_size);
 
-                if($num==0){
-                    $insert = $this-> cart->insertCart($this->id_member,$id_type);
-                    if ($insert == true){
-                        echo 'Thêm Thành Công';
-                    } else{
-                        echo 'Thêm Thất Bại';
-                    }
-                } else {
-                    $quantity = $check_id_type->fetch()['quantity'] +1;
-                    // echo $quantity;
-                    $updateCart = $this-> cart->updateQtt($quantity,$this->id_member,$id_type);
-                    if ($updateCart == true){
-                        echo 'Đã update +1 trong giỏ hàng';
+                    $check_id_type = $this-> cart->check_type_id($this->id_member,$id_type);
+                    $num = $check_id_type->rowCount();
+    
+                    if($num==0){
+                            $insert = $this-> cart->insertCart($this->id_member,$id_type);
+                        if ($insert == true){
+                            echo 'Thêm Thành Công';
+                        } else{
+                            echo 'Thêm Thất Bại';
+                        }
                     } else {
-                        echo 'Vui lòng thực hiện lại !!';
+                        $quantity = $check_id_type->fetch()['quantity'] +1;
+                        // echo $quantity;
+                        $updateCart = $this-> cart->updateQtt($quantity,$this->id_member,$id_type);
+                        if ($updateCart == true){
+                            echo 'Đã update +1 trong giỏ hàng';
+                        } else {
+                            echo 'Vui lòng thực hiện lại !!';
+                        }
                     }
                 }
+            } else{
+                echo 'sign';
             }
         }
         function deleteCart(){
