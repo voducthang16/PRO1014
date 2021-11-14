@@ -9,10 +9,13 @@
         function show() {
             $this -> view("index", [
                 "page" => "home",
-                "getCategories" => $this->home->getCategories(),
                 "getProducts" => $this->home->getProducts(),
                 "getHoodiesProducts" => $this->home->getHoodiesProducts(),
             ]);
+        }
+
+        function product() {
+            echo "product";
         }
     }
 ?>

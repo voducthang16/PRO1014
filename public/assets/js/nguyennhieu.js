@@ -83,6 +83,7 @@ $(document).ready(function(){
 
     function cart_quantity(){
         let cart_quantity = document.getElementsByClassName('cart-items__product');
+        console.log(cart_quantity);
         document.getElementById('cart-quantity-val').innerHTML = cart_quantity.length;
     };
 })

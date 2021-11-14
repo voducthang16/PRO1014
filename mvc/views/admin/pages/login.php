@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <title>Đăng Nhập - THANGVD</title>
-    <link rel="apple-touch-icon" sizes="76x76" href="public/assets/img/favicon.png">
-    <link rel="icon" type="image/png" href="public/assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?=BASE_URL?>public/assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="<?=BASE_URL?>public/assets/img/favicon.png">
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="public/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="public/assets/css/material-dashboard.minf066.css?v=2.1.0" rel="stylesheet"/>
+    <link href="<?=BASE_URL?>public/assets/css/material-dashboard.minf066.css?v=2.1.0" rel="stylesheet"/>
 </head>
 
 <body class="off-canvas-sidebar">
@@ -51,7 +51,7 @@
     </nav>
     <!-- End Navbar -->
     <div class="wrapper wrapper-full-page">
-        <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('public/assets/img/login.jpg'); background-size: cover; background-position: top center;">
+        <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('<?=BASE_URL?>public/assets/img/login.jpg'); background-size: cover; background-position: top center;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
@@ -101,12 +101,12 @@
     </div>
 
     <!--   Core JS Files   -->
-    <script src="public/assets/js/core/jquery.min.js"></script>
-    <script src="public/assets/js/core/popper.min.js"></script>
-    <script src="public/assets/js/core/bootstrap-material-design.min.js"></script>
-    <script src="public/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/core/jquery.min.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/core/popper.min.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="public/assets/js/material-dashboard.minf066.js?v=2.1.0" type="text/javascript"></script>
+    <script src="<?=BASE_URL?>public/assets/js/material-dashboard.minf066.js?v=2.1.0" type="text/javascript"></script>
 
     <script>
         $(document).ready(function() {

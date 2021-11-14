@@ -10,6 +10,7 @@
                 $this->id_member = $this-> cart->getProfile($username);
             }  
         }
+
         function show() {
             $this -> view("index", [
                 "page" => "cart",

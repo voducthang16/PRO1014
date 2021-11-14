@@ -1,5 +1,16 @@
 <?php
     ob_start();
+    class headerModel extends database {
+        function getCategories() {
+            $query = "SELECT * FROM `category` WHERE status = 1";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+    }
+    $header = new headerModel();
+
+    $categories = $header->getCategories();
 ?>
 
 <header class="header">
@@ -105,9 +116,9 @@
             <div class="navbar-menu row">
                 <div class="col l-10 l-o-2">
                     <ul class="navbar-menu-list">
-                        <?php foreach ($data['getCategories'] as $category):?>
+                        <?php foreach ($categories as $category):?>
                             <li class="navbar-menu-item">
-                                <a href="#" class="navbar-menu-link">
+                                <a href="category/<?=$category['slug']?>" class="navbar-menu-link">
                                     <?=$category['name']?>
                                 </a>
                             </li>

@@ -1,13 +1,13 @@
-<div class="sidebar" data-color="rose" data-background-color="black" data-image="public/assets/img/sidebar-1.jpg">
+<div class="sidebar" data-color="rose" data-background-color="black" data-image="<?=BASE_URL?>public/assets/img/sidebar-1.jpg">
     <div class="logo" style="text-align: center;">
         <a href="admin" style="display: inline-block">
-            <img width="80%" src="public/assets/img/logo-white.png" alt="Image Logo">
+            <img width="80%" src="<?=BASE_URL?>public/assets/img/logo-white.png" alt="Image Logo">
         </a>
     </div>
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="public/assets/img/faces/avatar.jpg" />
+                <img src="<?=BASE_URL?>public/assets/img/faces/avatar.jpg" />
             </div>
             <div class="user-info">
                 <a style="user-select: none">
@@ -19,19 +19,19 @@
         </div>
         <ul class="nav">
             <li class="nav-item home">
-                <a class="nav-link" href="admin">
+                <a class="nav-link" href="">
                     <i class="material-icons">dashboard</i>
                     <p> Trang chủ </p>
                 </a>
             </li>
             <li class="nav-item menu">
-                <a class="nav-link" href="admin/category">
+                <a class="nav-link" href="category">
                     <i class="material-icons">category</i>
                     <p>Danh mục</p>
                 </a>
             </li>
             <li class="nav-item products">
-                <a class="nav-link" href="admin/product">
+                <a class="nav-link" href="product">
                     <i class="material-icons">shopping_bag</i>
                     <p>Sản Phẩm</p>
                 </a>
