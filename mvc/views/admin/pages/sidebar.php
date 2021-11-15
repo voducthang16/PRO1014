@@ -1,6 +1,6 @@
 <div class="sidebar" data-color="rose" data-background-color="black" data-image="<?=BASE_URL?>public/assets/img/sidebar-1.jpg">
     <div class="logo" style="text-align: center;">
-        <a href="admin" style="display: inline-block">
+        <a href="<?=BASE_URL?>admin" style="display: inline-block">
             <img width="80%" src="<?=BASE_URL?>public/assets/img/logo-white.png" alt="Image Logo">
         </a>
     </div>
@@ -19,19 +19,19 @@
         </div>
         <ul class="nav">
             <li class="nav-item home">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="<?=BASE_URL?>admin">
                     <i class="material-icons">dashboard</i>
                     <p> Trang chủ </p>
                 </a>
             </li>
             <li class="nav-item menu">
-                <a class="nav-link" href="admin/category">
+                <a class="nav-link" href="<?=BASE_URL?>admin/category">
                     <i class="material-icons">category</i>
                     <p>Danh mục</p>
                 </a>
             </li>
             <li class="nav-item products">
-                <a class="nav-link" href="admin/product">
+                <a class="nav-link" href="<?=BASE_URL?>admin/product">
                     <i class="material-icons">shopping_bag</i>
                     <p>Sản Phẩm</p>
                 </a>
