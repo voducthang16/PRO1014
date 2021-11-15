@@ -18,24 +18,23 @@
         }
 
         function showCart() {
-
             $output ='';
-
-            if(isset($_SESSION["member-username"])){
-                
+            if(isset($_SESSION["member-username"])) {
                 $result = $this-> cart->getCart($this->id_member);
                 $num = $result->rowCount();
                 $data = $result->FetchAll();
 
-                if($num==0) {
+                if ($num == 0) {
                     $output .= '
-                        <li class="cart-items__products">
-                            chưa có sản phẩm
-                        </li>
+                        <div class="no-cart">
+                            <img src="'.BASE_URL.'public/assets/img/no_cart.png" alt="No Cart">
+                            <span>Giỏ hàng trống</span>
+                        </div>
                     ';
                     echo $output;
-                }else {
+                } else {
                     $count = 0;
+                    $output .= "<h3 class='cart-items__title'>Sản phẩm đã thêm</h3><ul class='cart-items__list'>";
                     foreach ($data as $row) {
                         $output .= '
                             <li class="cart-items__product" name="'.$row['product_type_id'].'">
@@ -45,30 +44,31 @@
                                     </a>
                                 </span>
                                 <div class="cart-product">
-                                    <a href="product" class="cart-product__name">'.$row['name'].'</a>
-                                    <p class="cart-product__price">'.number_format($row['price_sale']).'</p>
+                                    <div>
+                                        <a href="product" class="cart-product__name">'.$row['name'].'</a>
+                                        <p class="cart-product__attribute">
+                                            <span>Size: '.$this->cart->getAttributes($row['product_type_id'], "size").'</span> - 
+                                            Color:<span style="background-color: '.$this->cart->getAttributes($row['product_type_id'], "color").'" class="cart-product__color"></span>
+                                        </p>
+                                    </div>
+                                    <p class="cart-product__price">'.number_format($row['price_sale']).'đ</p>
                                     <span class="cart-product__x">x</span>
                                     <p class="cart-product__quantity">'.number_format($row['quantity']).'</p>
                                     <p class="cart-product__delete btn-delete-prd-cart">Xóa</p>
                                 </div>
                             </li>
                         ';
-                        $count += $row['price_sale']*$row['quantity'];
+                        $count += $row['price_sale'] * $row['quantity'];
                     }
+                    $output .= "</ul>";
                     echo $output;
                 }
-            } else {
-                $output .= '
-                        <li class="cart-items__products">
-                            chưa có sản phẩm
-                        </li>
-                    ';
-                echo $output;
             }
         }
-        function countCart(){
+
+        function countCart() {
             $count = 0;
-            if(isset($_SESSION['member-username'])){
+            if(isset($_SESSION['member-username'])) {
                 $result = $this-> cart->getTotal($this->id_member);
                 foreach ($result as $row){
                     $count += $row['quantity'];
@@ -77,25 +77,23 @@
             echo $count;
         }
 
-        function totalCart(){
+        function totalCart() {
             $total = 0;
-
-            if(isset($_SESSION["member-username"])){
-
+            if(isset($_SESSION["member-username"])) {
                 $result = $this-> cart->getCart($this->id_member);
                 $num = $result->rowCount();
                 $data = $result->FetchAll();
 
-                if($num==0) {
-                    echo number_format($total);
+                if($num == 0) {
+                    echo number_format($total)."đ";
                 } else {
                     foreach ($data as $row) {
-                        $total += $row['price_sale']*$row['quantity'];
+                        $total += $row['price_sale'] * $row['quantity'];
                     }
-                    echo number_format($total);
+                    echo number_format($total)."đ";
                 }
             } else {
-                echo number_format($total);
+                echo number_format($total)."đ";
             }
         }
 
@@ -112,7 +110,7 @@
                     $check_id_type = $this-> cart->check_type_id($this->id_member,$id_type);
                     $num = $check_id_type->rowCount();
     
-                    if($num==0){
+                    if ($num == 0){
                             $insert = $this-> cart->insertCart($this->id_member,$id_type);
                         if ($insert == true){
                             echo 'Thêm Thành Công';
@@ -130,10 +128,11 @@
                         }
                     }
                 }
-            } else{
+            } else {
                 echo 'sign';
             }
         }
+
         function deleteCart(){
             if(isset($_POST['deleteCart'])){
                 $id_type = $_POST['id_type'];
@@ -145,6 +144,5 @@
                 }
             }
         }
-        
     }
 ?>

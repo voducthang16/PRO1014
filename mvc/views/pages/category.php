@@ -17,14 +17,14 @@
     <div class="page-header">
         <div class="container wide">
             <div class="page-wrapper">
-                <h2 class="page-title">Danh mục</h2>
+                <h2 class="page-title"><?=$data['categoryName']?></h2>
                 <nav class="page-navbar">
                     <ul class="page-list">
                         <li class="page-item">
                             <a href="<?=BASE_URL?>" class="page-link"><i class="fal fa-home"></i>Trang chủ<i class="fal fa-chevron-right"></i></a>
                         </li>
                         <li class="page-item">
-                            <a href="<?=BASE_URL?>" class="page-link">Danh mục<i class="fal fa-chevron-right"></i></a>
+                            <a href="<?=BASE_URL?>category/detail/all" class="page-link">Danh mục<i class="fal fa-chevron-right"></i></a>
                         </li>
                         <li class="page-item">
                             <a class="page-link"><?=$data['categoryName']?></a>
@@ -36,7 +36,7 @@
     </div>
     <div class="page-body container wide">
         <div class="row">
-            <div class="col l-4">
+            <div class="col l-3">
                 <div class="page-sidebar">
                     <div class="category-list">
                         <h3>Danh mục</h3>
@@ -52,9 +52,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col l-8">
+            <div class="col l-9">
                 <div class="row mt-80">
-                    <?php foreach ($data['getProducts'] as $product): ?>
+                    <?php foreach ($data['getProducts'] as $key=>$product): ?>
                         <div class="col l-4">
                             <form class="products" id="<?=$product["id"]?>" method="POST">
                                 <input type="hidden" name="product-id" class="products-id" value="<?=$product["id"]?>">

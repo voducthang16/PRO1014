@@ -7,7 +7,7 @@ $(document).ready(function(){
             url: "cart/showCart",
             method: "POST",
             success:function(data){
-                $('.cart-items__list').html(data);
+                $('.render-cart').html(data);
             }
         });
         $.ajax({
@@ -15,6 +15,7 @@ $(document).ready(function(){
             method: "POST",
             success:function(data){
                 document.getElementById('cart-total-val').innerHTML = data;
+                document.getElementById('cart-total-val-2').innerHTML = data;
             }
         });
         $.ajax({
@@ -30,21 +31,21 @@ $(document).ready(function(){
 
     // add product in cart
 
-    $(document).on('click','.btn-add-cart',function(e){
+    $(document).on('click','.btn-add-cart',function(e) {
         e.preventDefault();
         var parent = $(this).parents('.products');
         var id_product = parent.find('.products-id').val();
         // console.log(id_product);
         var color = parent.find('.attributes-color-input');
-        for(var i=0; i<color.length;i++){
-            if(color[i].checked === true){
+        for(var i=0; i < color.length; i++) {
+            if(color[i].checked === true) {
                 // console.log(checkbox[i].value);
                 var attributes_color = color[i].value;
             }
         }
         var size = parent.find('.attributes-size-input');
-        for(var i=0; i<size.length;i++){
-            if(size[i].checked === true){
+        for(var i=0; i < size.length; i++) {
+            if(size[i].checked === true) {
                 // console.log(checkbox[i].value);
                 var attributes_size = size[i].value;
             }
@@ -65,9 +66,9 @@ $(document).ready(function(){
                     success:function(data){
                         console.log(data);
                         if (data=='sign') {
-                            window.location="sign";
+                            window.location = "sign";
                         } else {
-                            alert (data);
+                            alert(data);
                         }
                     }
             });

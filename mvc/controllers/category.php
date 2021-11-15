@@ -13,6 +13,16 @@
                 exit();
             }
             $this->category = $this->model('categoryModels');
+            $slugs = $this->category->getSlugs();
+            $array_slug = [];
+            foreach ($slugs as $slug) {
+                array_push($array_slug, $slug['slug']);
+            }
+            array_push($array_slug, 'all');
+            if (!in_array($url[2], $array_slug)) {
+                header("Location:".BASE_URL."pagenotfound");
+                exit();
+            }
         }
 
         function detail($slug) {
@@ -21,8 +31,8 @@
             $this -> view("index", [
                 "page" => "category",
                 "categories" => $this->category->getCategories(),
-                "categoryName" => $this->category->getCategoryName($slug),
-                "getProducts" => $this->category->getProducts($this->id),
+                "categoryName" => $slug == "all" ? "Tất cả sản phẩm" : $this->category->getCategoryName($slug),
+                "getProducts" => $slug == "all" ? $this->category->getAllProducts() : $this->category->getProducts($this->id),
             ]);
         }
     }

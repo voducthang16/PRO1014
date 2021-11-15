@@ -8,7 +8,7 @@
         }
 
         function getCategoryName($slug) {
-            $query = "SELECT * FROM `category` WHERE slug = '$slug'";
+            $query = "SELECT * FROM `category` WHERE slug = '$slug' AND status = 1";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetch()["name"];
@@ -22,10 +22,26 @@
         }
 
         function getProducts($id) {
-            $query = "SELECT * FROM `products` WHERE category_id = '$id'";
+            $query = "SELECT * FROM `products` WHERE category_id = '$id' AND status = 1 ORDER BY id DESC";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
         }
+
+        function getAllProducts() {
+            $query = "SELECT * FROM `products` WHERE status = 1 ORDER BY id DESC";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function getSlugs() {
+            $query = "SELECT slug FROM `category`";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        
     }
 ?>
