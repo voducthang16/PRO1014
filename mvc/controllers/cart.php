@@ -47,8 +47,8 @@
                                     <div>
                                         <a href="product" class="cart-product__name">'.$row['name'].'</a>
                                         <p class="cart-product__attribute">
-                                            <span>Size: '.$this->cart->getAttributes($row['product_type_id'], "size").'</span> - 
-                                            Color:<span style="background-color: '.$this->cart->getAttributes($row['product_type_id'], "color").'" class="cart-product__color"></span>
+                                            <span>Size: '.($this->cart->getAttributes($row['product_type_id'], "size")['value'] != "" ? $this->cart->getAttributes($row['product_type_id'], "size")['value'] : "Free Size").'</span> - 
+                                            Color:<span style="background-color: '.$this->cart->getAttributes($row['product_type_id'], "color")['value'].'" class="cart-product__color"></span>
                                         </p>
                                     </div>
                                     <p class="cart-product__price">'.number_format($row['price_sale']).'đ</p>

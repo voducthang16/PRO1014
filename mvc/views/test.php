@@ -9,13 +9,10 @@
 </form>
 
 <?php
-    $a = array("Volvo", "BMW", "Toyota", "Volvo 2", "BMW 2", "Toyota 2");
-    $b = array("a", "b", "c", "a 2", "b 2", "c 2");
-    foreach ($a as $value) {
-        echo $value . "<br>";
-        echo $b[0];
-        array_shift($b);
-        
+    $num = -1;
+    if (!filter_var($num, FILTER_VALIDATE_INT)) {
+        echo "k phai so nguyen";
+    } else {
+        echo "so nguyen";
     }
-    echo $_SESSION['member-login'];
 ?>

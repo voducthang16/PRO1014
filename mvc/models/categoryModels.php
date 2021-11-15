@@ -21,18 +21,32 @@
             return $result->fetch()["id"];
         }
 
-        function getProducts($id) {
-            $query = "SELECT * FROM `products` WHERE category_id = '$id' AND status = 1 ORDER BY id DESC";
+        function getProducts($id, $from, $ppp) {
+            $query = "SELECT * FROM `products` WHERE category_id = '$id' AND status = 1 ORDER BY id DESC LIMIT $from, $ppp";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
         }
 
-        function getAllProducts() {
-            $query = "SELECT * FROM `products` WHERE status = 1 ORDER BY id DESC";
+        function countProductsByCategory($id) {
+            $query = "SELECT COUNT(*) as 'count' FROM `products` WHERE category_id = $id AND status = 1 ORDER BY id DESC";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch()['count'];
+        }
+
+        function getAllProducts($from, $ppp) {
+            $query = "SELECT * FROM `products` WHERE status = 1 ORDER BY id DESC LIMIT $from, $ppp";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
+        }
+
+        function countAllProducts() {
+            $query = "SELECT COUNT(*) as 'count' FROM `products` WHERE status = 1 ORDER BY id DESC";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch()['count'];
         }
 
         function getSlugs() {

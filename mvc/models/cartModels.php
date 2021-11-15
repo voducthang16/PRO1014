@@ -29,7 +29,7 @@
             $query = "SELECT products_attributes.value FROM products_attributes INNER JOIN products_type_attributes ON products_attributes.id = products_type_attributes.attributes_id WHERE products_type_attributes.product_type_id = $id AND products_attributes.name LIKE '%$attribute%'";
             $result = $this->connect->prepare($query);
             $result->execute();
-            return $result->fetch()['value'];
+            return $result->fetch();
         }
 
         function get_type_id($id_product,$color,$size) {

@@ -285,7 +285,7 @@
 
     opacity: 0;
     visibility: hidden;
-    z-index: 1;
+    z-index: 5;
 }
 
 .products-attribute-hidden::before {
