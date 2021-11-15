@@ -1,0 +1,35 @@
+.product.sticky {
+    margin-top: 116px;
+}
+
+.product-wrapper {
+    margin-bottom: 60px;
+    padding: 30px;
+    border-radius: 8px;
+
+    background-color: var(--white-color);
+    box-shadow: 0 0.3rem 1.525rem -0.375rem rgb(0 0 0 / 10%) !important;
+}
+
+.product-slide-image {
+    width: 100%;
+    border: 1px solid #e3e9ef;
+    border-radius: 8px;
+    vertical-align: middle;
+
+    transition: all ease 0.4s;
+}
+
+.product-slide-image + .product-slide-image {
+    margin-top: 24px;
+}
+
+.product-slide-image.active {
+    border: 1px solid var(--primary-color);
+}
+
+.product-thumbnail img {
+    width: 100%;
+    vertical-align: middle;
+    transition: all ease 0.4s;
+}

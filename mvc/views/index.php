@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/sign.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/pagenotfound.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/category.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/product.css">
 
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.carousel.min.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.theme.default.min.css">
@@ -66,4 +67,5 @@
     <script src="<?=BASE_URL?>public/assets/js/owl.carousel.min.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/main.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/cart.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/product.js"></script>
 </html>

@@ -39,13 +39,13 @@
                         $output .= '
                             <li class="cart-items__product" name="'.$row['product_type_id'].'">
                                 <span>
-                                    <a href="product" class="cart-product__link" name="'.$row['product_type_id'].'">
+                                    <a href="product/detail/'.$row['slug'].'" class="cart-product__link" name="'.$row['product_type_id'].'">
                                         <img src="public/upload/'.$row["product_id"].'/'.$row["thumbnail"].'" alt="Product Thumbnail" class="cart-product__img">
                                     </a>
                                 </span>
                                 <div class="cart-product">
                                     <div>
-                                        <a href="product" class="cart-product__name">'.$row['name'].'</a>
+                                        <a href="product/detail/'.$row['slug'].'" class="cart-product__name">'.$row['name'].'</a>
                                         <p class="cart-product__attribute">
                                             <span>Size: '.($this->cart->getAttributes($row['product_type_id'], "size")['value'] != "" ? $this->cart->getAttributes($row['product_type_id'], "size")['value'] : "Free Size").'</span> - 
                                             Color:<span style="background-color: '.$this->cart->getAttributes($row['product_type_id'], "color")['value'].'" class="cart-product__color"></span>

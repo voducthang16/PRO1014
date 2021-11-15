@@ -62,11 +62,11 @@
                                     <span>Add to wishlist</span>
                                     <i class="fal fa-heart"></i>
                                 </div>
-                                <a href="#" class="products-link">
+                                <a href="product/detail/<?=$product["slug"]?>" class="products-link">
                                     <img src="public/upload/<?=$product["id"]?>/<?=$product["thumbnail"]?>" alt="Product Image" class="products-img">
                                 </a>
                                 <div class="products-body">
-                                    <a href="#" class="products-name"><?=$product["name"]?></a>
+                                    <a href="product/detail/<?=$product["slug"]?>" class="products-name"><?=$product["name"]?></a>
                                     <h4 class="products-price">123.000vnd</h4>
                                 </div>
                                 <div class="products-attribute-hidden">

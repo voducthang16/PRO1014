@@ -134,12 +134,12 @@
                             <span>Add to wishlist</span>
                             <i class="fal fa-heart"></i>
                         </div>
-                        <a href="#" class="products-link">
+                        <a href="product/detail/<?=$item["slug"]?>" class="products-link">
                             <img src="public/upload/<?=$item["id"]?>/<?=$item["thumbnail"]?>" alt="Product Image" class="products-img">
                         </a>
                         <div class="products-body">
-                            <a href="#" class="products-name"><?=$item["name"]?></a>
-                            <h4 class="products-price">123.000vnd</h4>
+                            <a href="product/detail/<?=$item["slug"]?>" class="products-name"><?=$item["name"]?></a>
+                            <h4 class="products-price"><?=number_format($item["price_sale"])?>đ</h4>
                         </div>
                         <div class="products-attribute-hidden">
                             <div class="products-size">
@@ -244,12 +244,12 @@
                                     <span>Add to wishlist</span>
                                     <i class="fal fa-heart"></i>
                                 </div>
-                                <a href="#" class="home-hoodie-item-link">
+                                <a href="product/detail/<?=$hoodie["slug"]?>" class="home-hoodie-item-link">
                                     <img src="public/upload/<?=$hoodie['id']?>/<?=$hoodie['thumbnail']?>" alt="Hoodie Image">
                                 </a>
                                 <div class="home-hoodie-item-body">
-                                    <a href="#" class="home-hoodie-item-name"><?=$hoodie['name']?></a>
-                                    <h4 class="home-hoodie-item-price">123.000vnd</h4>
+                                    <a href="product/detail/<?=$hoodie["slug"]?>" class="home-hoodie-item-name"><?=$hoodie['name']?></a>
+                                    <h4 class="home-hoodie-item-price"><?=$hoodie["price_sale"]?>đ</h4>
                                 </div>
                             </div>
                         </div>

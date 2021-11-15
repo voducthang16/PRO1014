@@ -55,7 +55,5 @@
             $result->execute();
             return $result->fetchAll();
         }
-
-        
     }
 ?>

@@ -8,6 +8,11 @@ document.addEventListener('scroll', () => {
         category.classList.toggle("sticky", window.scrollY > 200);
     }
 
+    if (document.querySelector(".product")) {
+        const product = document.querySelector(".product");
+        product.classList.toggle("sticky", window.scrollY > 200);
+    }
+
     if (document.querySelector(".error-404")) {
         const errorPage = document.querySelector(".error-404");
         errorPage.classList.toggle("sticky", window.scrollY > 200);
