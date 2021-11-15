@@ -69,10 +69,10 @@ $(document).ready(function(){
                             window.location = "sign";
                         } else {
                             alert(data);
+                            get_data();
                         }
                     }
             });
-            get_data();
         }
     });
 
@@ -92,8 +92,8 @@ $(document).ready(function(){
                 },
                 success:function(data){
                     alert (data);
+                    get_data();
                 }
         })
-        get_data();
     });
 })
