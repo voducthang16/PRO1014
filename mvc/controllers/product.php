@@ -39,7 +39,21 @@
                 "product" => $this->product->getProduct($slug),
                 "category" => $this->product->getCategoryInfo($category_id),
                 "productImages" => $this->product->getProductImages($this->id),
+                "productSize" => $this->product->getProductAttribute("size", $this->id),
+                "productColor" => $this->product->getProductAttribute("color", $this->id),
+                "countAllProducts" => $this->product->countAllProducts($this->id),
             ]);
         }
+
+        // function getProductTypeId() {
+        //     if (isset($_POST['color'])) {
+        //         $id = $_POST['productId'];
+        //         $size = $_POST['size'];
+        //         $color = $_POST['color'];
+
+        //         $result = $this->product->getProductTypeId($id, $color, $size);
+        //         $output = "";
+        //     }
+        // }
     }
 ?>

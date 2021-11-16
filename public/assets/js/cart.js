@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
     // fetch in the screen
 
@@ -14,7 +14,9 @@ $(document).ready(function(){
             url: "cart/totalCart",
             method: "POST",
             success:function(data){
-                document.getElementById('cart-total-val').innerHTML = data;
+                if (document.getElementById('cart-total-val')) {
+                    document.getElementById('cart-total-val').innerHTML = data;
+                }
                 document.getElementById('cart-total-val-2').innerHTML = data;
             }
         });
@@ -37,21 +39,21 @@ $(document).ready(function(){
         var id_product = parent.find('.products-id').val();
         // console.log(id_product);
         var color = parent.find('.attributes-color-input');
-        for(var i=0; i < color.length; i++) {
+        for(var i = 0; i < color.length; i++) {
             if(color[i].checked === true) {
                 // console.log(checkbox[i].value);
                 var attributes_color = color[i].value;
             }
         }
         var size = parent.find('.attributes-size-input');
-        for(var i=0; i < size.length; i++) {
+        for(var i = 0; i < size.length; i++) {
             if(size[i].checked === true) {
                 // console.log(checkbox[i].value);
                 var attributes_size = size[i].value;
             }
         }
 
-        if (attributes_color == null || attributes_size == null){
+        if (attributes_color == null || attributes_size == null) {
             alert('vui lòng chọn size và color đầy đủ');
         } else {
             $.ajax({

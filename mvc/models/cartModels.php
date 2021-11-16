@@ -40,7 +40,7 @@
             GROUP BY product_type_id HAVING COUNT(1) = 2";
             $result = $this->connect->prepare($query);
             $result->execute([$id_product,$color, $size]);
-            return $result->Fetch()['product_type_id'];
+            return $result->fetch()['product_type_id'];
         }
 
         function check_type_id($id_member,$id_type){
