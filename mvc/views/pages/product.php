@@ -85,11 +85,56 @@
                             <div class="quantity-minus quantity-btn"><i class="fal fa-minus"></i></div>
                             <input type="number" name="product-quantity" class="product-quantity-value" value="1" min="1">
                             <div class="quantity-plus quantity-btn"><i class="fal fa-plus"></i></div>
-                            <span class="product-quantity-detail"><?=$data['countAllProducts']?> sản phẩm có sẵn</span> 
+                            <span class="product-quantity-detail"><span id="type_quantity"><?=$data['countAllProducts']?></span> sản phẩm có sẵn</span> 
+                        </div>
+                        <div class="product-cta">
+                            <button class="btn"><i style="margin-right: 8px" class="fal fa-cart-plus"></i>Add to cart</button>
                         </div>
                     </form>
+                    <div class="product-parameters">
+                        <h3><i style="margin-right: 8px; margin-left: 20px" class="fal fa-info-circle"></i>Thông số sản phẩm:</h3>
+                        <ul>
+                            <?php
+                                $parameters = explode("-", trim($data['product']['parameters']));
+                                array_shift($parameters);
+                                foreach ($parameters as $value):
+                            ?>
+                                <li><?=$value?></li>
+                            <?php endforeach;?>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="product-description row">
+            <div class="l-o-1"></div>
+            <div class="col l-5">
+                <div class="product-description-content">
+                    <h3 class="product-description-title">High quality materials</h3>
+                    <h6 class="product-description-sub-title"><?=$data['product']['description']?></h6>
+                    <div class="product-description-footer">
+                        <h4>Washing instructions</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col l-5">
+                <img class="product-description-img" src="https://cartzilla.createx.studio/img/shop/single/prod-img.jpg" alt="Image">
+            </div>
+            <div class="l-o-1"></div>
+        </div>
+
+        <div class="product-origin row">
+            <div class="l-o-1"></div>
+            <div class="col l-5">
+                <img class="product-origin-img" src="https://cartzilla.createx.studio/img/shop/single/prod-map.png" alt="Image">
+            </div>
+            <div class="col l-5">
+                <div class="product-origin-content">
+                    <h3 class="product-description-title">Where is it made?</h3>
+                </div>
+            </div>
+            <div class="l-o-1"></div>
         </div>
     </div>
 </div>

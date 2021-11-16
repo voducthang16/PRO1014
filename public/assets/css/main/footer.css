@@ -128,14 +128,9 @@
 }
 
 .footer__bottom hr {
-    border-color: var(--text-color);
-    opacity: 50%;
-    border-width: 1px;
+    border-width: 0px;
+    border-top: 1px solid rgba(255,255,255,.12);
 }
-
-/* .footer__services {
-  padding-bottom: 16px;
-} */
 
 .footer__services-item {
     display: flex;
