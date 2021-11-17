@@ -14,8 +14,117 @@
         function show() {
             $this -> view("index", [
                 "page" => "cart",
-                "getCart" => isset($_SESSION["member-username"]) ? $this->cart->getCart($this->id_member) : "",
+                // "getCart" => isset($_SESSION["member-username"]) ? $this->cart->getCart($this->id_member) : "",
             ]);
+        }
+        function showOder(){
+            $output ='';
+            if (empty($_SESSION["member-login"])){
+                $output .= '<div class="no-cart-wrapper">
+                    <img src="<?=BASE_URL?>public/assets/img/no_cart.png" alt="No Cart Image">
+                    <h3>Giỏ hàng của bạn đang trống</h3>
+                    <a href="<?=BASE_URL?>" class="btn"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
+                    </div>';
+            } else {
+                $result = $this-> cart->getCart($this->id_member);
+                $total = 0;
+                if(isset($_SESSION["member-username"])) {
+                    $count = $this-> cart->getCart($this->id_member);
+                    $num = $count->rowCount();
+                    $data = $count->FetchAll();
+
+                    if($num == 0) {
+                        $total = 0;
+                    } else {
+                        foreach ($data as $row) {
+                            $total += $row['price_sale'] * $row['quantity'];
+                        }
+                    }
+                } else {
+                    $total = 0;
+                }
+                if ($result->rowCount() > 0){
+                    $output .= '<form class="row" method="POST">
+                                    <div class="col l-8">
+                                    <div class="cart-page-header">
+                                        <h3>Sản phẩm</h3>
+                                        <a href="<?=BASE_URL?>" class="btn btn--size-s"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
+                                    </div>
+                                    <div class="order-product-wrapper">';
+                    foreach ($result as $row){
+                        $output .= ' <div class="order-products cart-items__product">
+                        <div class="order-products-info cart-product__link" name="'.$row['product_type_id'].'">
+                                <a href="<?=BASE_URL?>product/detail/'.$row['slug'].'">
+                                    <img src="public/upload/'.$row['product_id'].'/'.$row['thumbnail'].'" alt="Product Thumbnail">
+                                </a>
+                                <div class="order-products-body">
+                                    <a href="<?=BASE_URL?>product/detail/'.$row['slug'].'">'.$row['name'].'</a>
+                                    <h4>Size: '.($this->cart->getAttributes($row['product_type_id'], "size")['value'] != "" ? $this->cart->getAttributes($row['product_type_id'], "size")['value'] : "Free Size").'</h4>
+                                    <h4>Color: <span style="background-color: '.$this->cart->getAttributes($row['product_type_id'], "color")['value'].'" class="cart-product__color ps"></span></h4>
+                                    <h3 class="order-products-price">'.number_format($row['price_sale']).'đ</h3>
+                                </div>
+                            </div>
+                            <div class="order-quantity">
+                                <div class="product-quantity op">
+                                    <span class="product-quantity-title op">Số lượng: </span>
+                                    <div class="quantity-minus quantity-btn btn-change-quantity-minus"><i class="fal fa-minus"></i></div>
+                                    <input type="number" name="product-quantity" class="product-quantity-value" value="'.$row['quantity'].'" min="1">
+                                    <div class="quantity-plus quantity-btn btn-change-quantity-flus"><i class="fal fa-plus"></i></div>
+                                </div>
+                                <p class="order-delete btn-delete-prd-cart"><i style="margin-right: 4px" class="fal fa-trash"></i> Xóa</p>
+                            </div>
+                        </div>';
+                    }
+                    $output .='</div>
+                                </div>
+                                <div class="col l-4">
+                                    <div class="cart-page-sub-total">
+                                        <h4>Subtotal</h4>
+                                        <h3 id="sub-total-money">'.number_format($total).' đ</h3>
+                                        <div class="order-note">
+                                            <label for="note">
+                                                <span class="label-button">Note</span>
+                                                <span class="label-note">Ghi chú</span>
+                                            </label>
+                                            <textarea name="note" id="note" rows="10"></textarea>
+                                        </div>
+                                        <a href="<?=BASE_URL?>checkout" class="btn order-cta"><i style="margin-right: 8px" class="fal fa-credit-card"></i>Process to checkout</a>
+                                    </div>
+                                </div>
+                            </form>';
+                } else {
+                    $output .= ' <div class="no-cart-wrapper">
+                                    <img src="<?=BASE_URL?>public/assets/img/no_cart.png" alt="No Cart Image">
+                                    <h3>Giỏ hàng của bạn đang trống</h3>
+                                    <a href="<?=BASE_URL?>" class="btn"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
+                                </div>';
+                }
+                    
+            }
+            echo $output;
+            
+        }
+        function updateQuantity(){
+            if(isset($_POST['updateQtt'])){
+                $id_type = $_POST['id_type'];
+                $action = $_POST['updateQtt'];
+                $check_id_type = $this-> cart->check_type_id($this->id_member,$id_type);
+                if($action == 'flus'){
+                    $quantity = $check_id_type->fetch()['quantity'] + 1;
+                } else{
+                    $quantity = $check_id_type->fetch()['quantity'] - 1;
+                }
+                $updateCart = $this-> cart->updateQtt($quantity,$this->id_member,$id_type);
+                if ($updateCart == true){
+                    if($action == 'flus'){
+                        echo 'Đã update +1 trong giỏ hàng';
+                    } else{
+                        echo 'Đã update -1 trong giỏ hàng';
+                    }
+                } else {
+                    echo 'Vui lòng thực hiện lại !!';
+                }
+            }
         }
 
         function showCart() {
@@ -59,7 +168,6 @@
                                 </div>
                             </li>
                         ';
-                        $count += $row['price_sale'] * $row['quantity'];
                     }
                     $output .= "</ul>";
                     echo $output;

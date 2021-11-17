@@ -11,6 +11,13 @@ $(document).ready(function() {
             }
         });
         $.ajax({
+            url:"cart/showOder",
+            method:"POST",
+            success:function(data){
+                $('.container-gd-order').html(data);
+            }
+        });
+        $.ajax({
             url: "cart/totalCart",
             method: "POST",
             success:function(data){
@@ -91,6 +98,45 @@ $(document).ready(function() {
                 }
         });
     });
+
+    //change quantity
+
+    $(document).on('click','.btn-change-quantity-flus',function(e){
+        e.preventDefault();
+        let parent = $(this).parents('.cart-items__product');
+        let id_type = parent.find('.cart-product__link').attr('name');
+
+        $.ajax({
+            url:'cart/updateQuantity',
+            method:'POST',
+            data: {
+                updateQtt: 'flus',
+                id_type: id_type
+            },
+            success:function(data){
+                alert (data);
+                get_data();
+            }
+        })
+    })
+    $(document).on('click','.btn-change-quantity-minus',function(e){
+        e.preventDefault();
+        let parent = $(this).parents('.cart-items__product');
+        let id_type = parent.find('.cart-product__link').attr('name');
+
+        $.ajax({
+            url:'cart/updateQuantity',
+            method:'POST',
+            data: {
+                updateQtt: 'minus',
+                id_type: id_type
+            },
+            success:function(data){
+                alert (data);
+                get_data();
+            }
+        })
+    })
 
     // delete product in cart
 
