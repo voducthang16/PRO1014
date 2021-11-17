@@ -14,6 +14,7 @@
         function show() {
             $this -> view("index", [
                 "page" => "cart",
+                "getCart" => isset($_SESSION["member-username"]) ? $this->cart->getCart($this->id_member) : "",
             ]);
         }
 

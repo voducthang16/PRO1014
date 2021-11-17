@@ -84,7 +84,7 @@
                             </a>
                         </div>
                         <div class="cart">
-                            <a class="cart-link">
+                            <a href="<?=BASE_URL?>cart" class="cart-link">
                                 <i class="fal fa-shopping-cart cart-icon">
                                     <span class="cart-quantity" id="cart-quantity-val">0</span>
                                 </i>
@@ -108,7 +108,7 @@
                                     <div class='cart-footer'>
                                         <div class='cart-total'>
                                             <p>Tổng tiền: <span id='cart-total-val'></span></p>
-                                            <a href='#' class='cart-view btn btn--size-s'>Xem giỏ hàng <i class='fal fa-chevron-right'></i></a>
+                                            <a href='<?=BASE_URL?>cart' class='cart-view btn btn--size-s'>Xem giỏ hàng <i class='fal fa-chevron-right'></i></a>
                                         </div>
                                         <a href='#' class='btn cart-checkout'><i class='fal fa-credit-card'></i> Thanh toán</a>
                                     </div>
