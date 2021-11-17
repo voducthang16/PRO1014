@@ -98,8 +98,8 @@
             }
         }
 
-        function insertCart(){
-            if(isset($_SESSION['member-username'])){
+        function insertCart() {
+            if(isset($_SESSION['member-username'])) {
                 if(isset($_POST['insertCart'])){
 
                     $id_product = $_POST['id_product'];
@@ -124,7 +124,7 @@
                             echo 'Thêm Thất Bại';
                         }
                     } else {
-                        $quantity = $check_id_type->fetch()['quantity'] +1;
+                        $quantity = $check_id_type->fetch()['quantity'] + 1;
                         // echo $quantity;
                         $updateCart = $this-> cart->updateQtt($quantity,$this->id_member,$id_type);
                         if ($updateCart == true){
