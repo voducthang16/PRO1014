@@ -46,6 +46,21 @@
                 header("Refresh: 0");
             }
 
+            // delete category
+            if (isset($_POST['delete-category-id'])) {
+                $category_id = $_POST['delete-category-id'];
+                $count = $this->admin->countProductsByCategory($category_id);
+                if ($count > 0) {
+                    echo '<script>alert("k xoa duoc.");</script>';
+                    $this->admin->updateCategoryStatus($category_id);
+                } else {
+                    $this->admin->deleteCategory($category_id);
+                    echo '<script>alert("da xoa.");</script>';
+                }
+
+                header("Refresh: 0");
+            }
+
             // load view
             $this -> view("admin/index", [
                 "page" => "category",

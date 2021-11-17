@@ -169,17 +169,15 @@
             
             let categoryId = data[1];
             let categoryName = data[2];
-            let categoryStatus = data[3] == "Active" ? 1 : 0;
-
+            let categoryStatus = data[4] == "Active" ? 1 : 0;
             document.cookie = `update-category-id-temp=${categoryId}`;
             document.cookie = `update-category-name-temp=${categoryName}`;
             document.cookie = `update-category-status-temp=${categoryStatus}`;
 
             $("#u-category-id").val(categoryId);
             $("#u-category-name").val(categoryName);
-
             if (categoryStatus == 1) {
-                $(".active").prop("checked", true);
+                $(".form-check-input.active").prop("checked", true);
             } else {
                 $(".inactive").prop("checked", true);
             }

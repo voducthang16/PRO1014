@@ -35,7 +35,15 @@
         }
 
         function deleteCategory($id) {
-            
+            $query = "DELETE FROM category WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function updateCategoryStatus($id) {
+            $query = "UPDATE category SET status = '0', updated_at = current_timestamp() WHERE id = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$id]);
         }
 
         function getProducts() {
@@ -92,5 +100,12 @@
             $result = $this->connect->prepare($query);
             $result->execute();
         }
-    }
+
+        function countProductsByCategory($category_id) {
+            $query = "SELECT COUNT(*) as 'count' FROM products WHERE category_id = $category_id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch()['count'];
+        }
+    } 
 ?>
