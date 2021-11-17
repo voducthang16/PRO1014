@@ -103,13 +103,7 @@
                 if(isset($_POST['insertCart'])){
 
                     $id_product = $_POST['id_product'];
-                    echo $_POST['id_color'];
-                    exit();
-                    if ($_POST['id_color']== null){
-                        $id_color = 0;
-                    } else {
-                        $id_color = $_POST['id_color'];
-                    }
+                    $id_color = $_POST['id_color'];
                     $id_size = $_POST['id_size'];
                     $id_category = $_POST['id_category'];
 

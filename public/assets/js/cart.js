@@ -66,6 +66,10 @@ $(document).ready(function() {
                 return
             }
         }
+
+        if (attributes_color == null){
+            attributes_color = 0;
+        }
         $.ajax({
             url: "cart/insertCart",
                 method: "POST",
