@@ -27,8 +27,10 @@ changeQuantityButton.forEach(e => {
     }
 });
 
-quantityValue.onchange = function () {
-    if (this.value < 0) {
-        this.value = 1;
+if (quantityValue) {
+    quantityValue.onchange = function () {
+        if (this.value < 0) {
+            this.value = 1;
+        }
     }
 }
