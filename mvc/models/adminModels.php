@@ -8,7 +8,7 @@
         }
 
         function getCategories() {
-            $query = "SELECT * FROM `category`";
+            $query = "SELECT * FROM `category` ORDER BY id DESC";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
@@ -47,7 +47,7 @@
         }
 
         function getProducts() {
-            $query = "SELECT * FROM `products`";
+            $query = "SELECT * FROM `products` ORDER BY id DESC";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
