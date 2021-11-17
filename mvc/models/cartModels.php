@@ -32,14 +32,14 @@
             return $result->fetch();
         }
 
-        function get_type_id($id_product,$color,$size) {
+        function get_type_id($id_product,$color,$size,$row) {
             $query = "SELECT product_type_id FROM products_type_attributes 
             INNER JOIN products_type ON product_type_id = products_type.id 
             INNER JOIN products ON products_type.product_id = products.id 
             WHERE products.id = ? AND attributes_id IN (?,?) 
-            GROUP BY product_type_id HAVING COUNT(1) = 2";
+            GROUP BY product_type_id HAVING COUNT(1) = ?";
             $result = $this->connect->prepare($query);
-            $result->execute([$id_product,$color, $size]);
+            $result->execute([$id_product,$color, $size,$row]);
             return $result->fetch()['product_type_id'];
         }
 

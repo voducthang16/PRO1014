@@ -103,10 +103,21 @@
                 if(isset($_POST['insertCart'])){
 
                     $id_product = $_POST['id_product'];
-                    $id_color = $_POST['id_color'];
+                    echo $_POST['id_color'];
+                    exit();
+                    if ($_POST['id_color']== null){
+                        $id_color = 0;
+                    } else {
+                        $id_color = $_POST['id_color'];
+                    }
                     $id_size = $_POST['id_size'];
+                    $id_category = $_POST['id_category'];
 
-                    $id_type = $this-> cart->get_type_id($id_product,$id_color,$id_size);
+                    if ($id_category != 5){
+                        $id_type = $this-> cart->get_type_id($id_product,$id_color,$id_size,'2');
+                    } else {
+                        $id_type = $this-> cart->get_type_id($id_product,$id_color,$id_size,'1');
+                    }
 
                     $check_id_type = $this-> cart->check_type_id($this->id_member,$id_type);
                     $num = $check_id_type->rowCount();
