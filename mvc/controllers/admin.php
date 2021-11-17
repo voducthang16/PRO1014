@@ -164,9 +164,6 @@
                 }
                 header("Refresh: 0");
             }
-
-
-
             // load view
             $this -> view("admin/index", [
                 "page" => "product",
@@ -178,6 +175,25 @@
             ]);
         }
         
+        // product details
+        function productDetails() {
+            if (isset($_POST['productId'])) {
+                $product_id = $_POST['productId'];
+            }
+            echo $product_id;
+        }
+
+        function product_update() {
+            if (empty($_POST['update-product-by-id'])) {
+                header("Location:".BASE_URL."admin/product");
+            }
+
+            $this-> view("admin/index", [
+                "page" => "product_update",
+                "product_id" => $_POST['update-product-by-id']
+            ]);
+        }
+
         // admin login
         function login() {
             // check login

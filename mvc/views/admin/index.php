@@ -44,6 +44,7 @@
         </div>
     </div>
     
+    <base href="<?=BASE_URL?>">
     <!--   Core JS Files   -->
     <script src="<?=BASE_URL?>public/assets/js/core/jquery.min.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/core/popper.min.js"></script>
