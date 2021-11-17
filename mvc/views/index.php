@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/pagenotfound.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/category.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/product.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/cart.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/account.css">
 
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.carousel.min.css">
