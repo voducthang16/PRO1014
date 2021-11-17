@@ -58,6 +58,7 @@
                         <div class="col l-4">
                             <form class="products" id="<?=$product["id"]?>" method="POST">
                                 <input type="hidden" name="product-id" class="products-id" value="<?=$product["id"]?>">
+                                <input type="hidden" name="product-category-id" class="products-category-id" value="<?=$item["category_id"]?>">
                                 <div class="products-heart">
                                     <span>Add to wishlist</span>
                                     <i class="fal fa-heart"></i>

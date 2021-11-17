@@ -61,8 +61,8 @@
             return json_encode($kq);
         }
 
-        function insertCart($id_member,$id_type) {
-            $qr = "INSERT INTO `cart_temporary`(`member_id`, `product_type_id`, `quantity`) VALUES ('$id_member','$id_type','1')";
+        function insertCart($id_member,$id_type,$qtt) {
+            $qr = "INSERT INTO `cart_temporary`(`member_id`, `product_type_id`, `quantity`) VALUES ('$id_member','$id_type','$qtt')";
             $result = $this->connect->prepare($qr);
             $kq = false;
                 if ($result->execute()){

@@ -45,6 +45,10 @@ $(document).ready(function() {
         var parent = $(this).parents('.products');
         var id_product = parent.find('.products-id').val();
         var id_category = parent.find('.products-category-id').val();
+        var quantity = parent.find('.product-quantity-value').val();
+        if (quantity == null){
+            quantity = 1;
+        }
         // console.log(id_category);
         // return
         var color = parent.find('.attributes-color-input');
@@ -85,7 +89,8 @@ $(document).ready(function() {
                     id_product: id_product,
                     id_color: attributes_color,
                     id_size: attributes_size,
-                    id_category: id_category
+                    id_category: id_category,
+                    quantity: quantity
                 },
                 success:function(data){
                     console.log(data);

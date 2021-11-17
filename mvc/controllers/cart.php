@@ -48,17 +48,17 @@
                                     <div class="col l-8">
                                     <div class="cart-page-header">
                                         <h3>Sản phẩm</h3>
-                                        <a href="<?=BASE_URL?>" class="btn btn--size-s"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
+                                        <a href="'.BASE_URL.'" class="btn btn--size-s"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
                                     </div>
                                     <div class="order-product-wrapper">';
                     foreach ($result as $row){
                         $output .= ' <div class="order-products cart-items__product">
                         <div class="order-products-info cart-product__link" name="'.$row['product_type_id'].'">
-                                <a href="<?=BASE_URL?>product/detail/'.$row['slug'].'">
+                                <a href="'.BASE_URL.'product/detail/'.$row['slug'].'">
                                     <img src="public/upload/'.$row['product_id'].'/'.$row['thumbnail'].'" alt="Product Thumbnail">
                                 </a>
                                 <div class="order-products-body">
-                                    <a href="<?=BASE_URL?>product/detail/'.$row['slug'].'">'.$row['name'].'</a>
+                                    <a href="'.BASE_URL.'product/detail/'.$row['slug'].'">'.$row['name'].'</a>
                                     <h4>Size: '.($this->cart->getAttributes($row['product_type_id'], "size")['value'] != "" ? $this->cart->getAttributes($row['product_type_id'], "size")['value'] : "Free Size").'</h4>
                                     <h4>Color: <span style="background-color: '.$this->cart->getAttributes($row['product_type_id'], "color")['value'].'" class="cart-product__color ps"></span></h4>
                                     <h3 class="order-products-price">'.number_format($row['price_sale']).'đ</h3>
@@ -88,15 +88,15 @@
                                             </label>
                                             <textarea name="note" id="note" rows="10"></textarea>
                                         </div>
-                                        <a href="<?=BASE_URL?>checkout" class="btn order-cta"><i style="margin-right: 8px" class="fal fa-credit-card"></i>Process to checkout</a>
+                                        <a href="'.BASE_URL.'checkout" class="btn order-cta"><i style="margin-right: 8px" class="fal fa-credit-card"></i>Process to checkout</a>
                                     </div>
                                 </div>
                             </form>';
                 } else {
                     $output .= ' <div class="no-cart-wrapper">
-                                    <img src="<?=BASE_URL?>public/assets/img/no_cart.png" alt="No Cart Image">
+                                    <img src="'.BASE_URL.'public/assets/img/no_cart.png" alt="No Cart Image">
                                     <h3>Giỏ hàng của bạn đang trống</h3>
-                                    <a href="<?=BASE_URL?>" class="btn"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
+                                    <a href="'.BASE_URL.'" class="btn"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
                                 </div>';
                 }
                     
@@ -214,6 +214,7 @@
                     $id_color = $_POST['id_color'];
                     $id_size = $_POST['id_size'];
                     $id_category = $_POST['id_category'];
+                    $qtt = $_POST['quantity'];
 
                     if ($id_category != 5){
                         $id_type = $this-> cart->get_type_id($id_product,$id_color,$id_size,'2');
@@ -225,18 +226,18 @@
                     $num = $check_id_type->rowCount();
     
                     if ($num == 0){
-                            $insert = $this-> cart->insertCart($this->id_member,$id_type);
+                            $insert = $this-> cart->insertCart($this->id_member,$id_type,$qtt);
                         if ($insert == true){
                             echo 'Thêm Thành Công';
                         } else{
                             echo 'Thêm Thất Bại';
                         }
                     } else {
-                        $quantity = $check_id_type->fetch()['quantity'] + 1;
+                        $quantity = $check_id_type->fetch()['quantity'] + $qtt;
                         // echo $quantity;
                         $updateCart = $this-> cart->updateQtt($quantity,$this->id_member,$id_type);
                         if ($updateCart == true){
-                            echo 'Đã update +1 trong giỏ hàng';
+                            echo 'Đã update +'.$qtt.' trong giỏ hàng';
                         } else {
                             echo 'Vui lòng thực hiện lại !!';
                         }

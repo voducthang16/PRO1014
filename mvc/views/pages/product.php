@@ -55,9 +55,9 @@
                             <p class="product-price-sale"><?=number_format($data['product']['price_origin'])?>đ</p>
                         <?php endif;?>
                     </div>
-                    <form action="" method="POST">
-                        <input type="hidden" name="product-id" id="product-id" value="<?=$data['product']['id']?>">
-                        <input type="hidden" name="product-category-id" id="product-category-id" value="<?=$data['product']['category_id']?>">
+                    <form action="" method="POST" class="products">
+                        <input type="hidden" class="products-id" name="product-id" id="product-id" value="<?=$data['product']['id']?>">
+                        <input type="hidden" class="products-category-id" name="product-category-id" id="product-category-id" value="<?=$data['product']['category_id']?>">
                         <div class="product-attribute">
                             <div class="products-size p">
                                 <?php echo count($data['productSize']) > 0 ? "<span>Size:</span>" : "";?>
@@ -88,7 +88,7 @@
                             <span class="product-quantity-detail"><span id="type_quantity"><?=$data['countAllProducts']?></span> sản phẩm có sẵn</span> 
                         </div>
                         <div class="product-cta">
-                            <button class="btn"><i style="margin-right: 8px" class="fal fa-cart-plus"></i>Add to cart</button>
+                            <button class="btn btn-add-cart"><i style="margin-right: 8px" class="fal fa-cart-plus"></i>Add to cart</button>
                         </div>
                     </form>
                     <div class="product-parameters">
