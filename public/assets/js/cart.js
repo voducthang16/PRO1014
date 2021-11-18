@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     // fetch in the screen
 
-    function get_data(){
+    function get_data() {
         $.ajax({
             url: "cart/showCart",
             method: "POST",
@@ -11,7 +11,7 @@ $(document).ready(function() {
             }
         });
         $.ajax({
-            url:"cart/showOder",
+            url:"cart/showOrder",
             method:"POST",
             success:function(data){
                 $('.container-gd-order').html(data);
@@ -46,7 +46,7 @@ $(document).ready(function() {
         var id_product = parent.find('.products-id').val();
         var id_category = parent.find('.products-category-id').val();
         var quantity = parent.find('.product-quantity-value').val();
-        if (quantity == null){
+        if (quantity == null) {
             quantity = 1;
         }
         // console.log(id_category);
@@ -67,7 +67,7 @@ $(document).ready(function() {
         }
 
         if (id_category == 5) {
-            if (attributes_size == null){
+            if (attributes_size == null) {
                 alert('vui lòng chọn color đầy đủ');
                 return
             }
@@ -78,7 +78,7 @@ $(document).ready(function() {
             }
         }
 
-        if (attributes_color == null){
+        if (attributes_color == null) {
             attributes_color = 0;
         }
         $.ajax({
@@ -94,7 +94,7 @@ $(document).ready(function() {
                 },
                 success:function(data){
                     console.log(data);
-                    if (data=='sign') {
+                    if (data == 'sign') {
                         window.location = "sign";
                     } else {
                         alert(data);
@@ -106,7 +106,7 @@ $(document).ready(function() {
 
     //change quantity
 
-    $(document).on('click','.btn-change-quantity-flus',function(e){
+    $(document).on('click','.btn-change-quantity-plus',function(e){
         e.preventDefault();
         let parent = $(this).parents('.cart-items__product');
         let id_type = parent.find('.cart-product__link').attr('name');
@@ -115,7 +115,7 @@ $(document).ready(function() {
             url:'cart/updateQuantity',
             method:'POST',
             data: {
-                updateQtt: 'flus',
+                updateQtt: 'plus',
                 id_type: id_type
             },
             success:function(data){

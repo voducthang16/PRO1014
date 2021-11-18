@@ -17,7 +17,7 @@
                 // "getCart" => isset($_SESSION["member-username"]) ? $this->cart->getCart($this->id_member) : "",
             ]);
         }
-        function showOder(){
+        function showOrder(){
             $output ='';
             if (empty($_SESSION["member-login"])){
                 $output .= '<div class="no-cart-wrapper">
@@ -69,7 +69,7 @@
                                     <span class="product-quantity-title op">Số lượng: </span>
                                     <div class="quantity-minus quantity-btn btn-change-quantity-minus"><i class="fal fa-minus"></i></div>
                                     <input type="number" name="product-quantity" class="product-quantity-value" value="'.$row['quantity'].'" min="1">
-                                    <div class="quantity-plus quantity-btn btn-change-quantity-flus"><i class="fal fa-plus"></i></div>
+                                    <div class="quantity-plus quantity-btn btn-change-quantity-plus"><i class="fal fa-plus"></i></div>
                                 </div>
                                 <p class="order-delete btn-delete-prd-cart"><i style="margin-right: 4px" class="fal fa-trash"></i> Xóa</p>
                             </div>
@@ -104,19 +104,24 @@
             echo $output;
             
         }
-        function updateQuantity(){
-            if(isset($_POST['updateQtt'])){
+        function updateQuantity() {
+            if(isset($_POST['updateQtt'])) {
                 $id_type = $_POST['id_type'];
                 $action = $_POST['updateQtt'];
                 $check_id_type = $this-> cart->check_type_id($this->id_member,$id_type);
-                if($action == 'flus'){
+                if($action == 'plus') {
                     $quantity = $check_id_type->fetch()['quantity'] + 1;
-                } else{
-                    $quantity = $check_id_type->fetch()['quantity'] - 1;
+                } else {
+                    if ($this->cart->getQuantity($id_type, $this->id_member) > 1) {
+                        $quantity = $check_id_type->fetch()['quantity'] - 1;
+                    } else {
+                        echo "k update duoc";
+                        return;
+                    }
                 }
                 $updateCart = $this-> cart->updateQtt($quantity,$this->id_member,$id_type);
-                if ($updateCart == true){
-                    if($action == 'flus'){
+                if ($updateCart == true) {
+                    if($action == 'plus') {
                         echo 'Đã update +1 trong giỏ hàng';
                     } else{
                         echo 'Đã update -1 trong giỏ hàng';

@@ -61,6 +61,13 @@
             return json_encode($kq);
         }
 
+        function getQuantity($id_type, $member_id) {
+            $query = "SELECT quantity FROM cart_temporary WHERE product_type_id = '$id_type' AND member_id = '$member_id'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch()['quantity'];
+        }
+
         function insertCart($id_member,$id_type,$qtt) {
             $qr = "INSERT INTO `cart_temporary`(`member_id`, `product_type_id`, `quantity`) VALUES ('$id_member','$id_type','$qtt')";
             $result = $this->connect->prepare($qr);
