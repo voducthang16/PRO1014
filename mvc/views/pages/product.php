@@ -55,7 +55,8 @@
                             <p class="product-price-sale"><?= number_format($data['product']['price_origin']) ?>đ</p>
                         <?php endif; ?>
                     </div>
-                    <form action="" method="POST" class="products">
+
+                    <form action="" method="POST" class="products" name="products">
                         <input type="hidden" class="products-id" name="product-id" id="product-id" value="<?= $data['product']['id'] ?>">
                         <input type="hidden" class="products-category-id" name="product-category-id" id="product-category-id" value="<?= $data['product']['category_id'] ?>">
                         <div class="product-attribute">
@@ -63,7 +64,7 @@
                                 <?php echo count($data['productSize']) > 0 ? "<span>Size:</span>" : ""; ?>
                                 <?php foreach ($data['productSize'] as $size) : ?>
                                     <div class="products-attribute-item">
-                                        <input class="products-attribute-input attributes-size-input" type="radio" name="product-size" id="<?= $size['id'] ?>" value="<?= $size['id'] ?>">
+                                        <input class="products-attribute-input attributes-color-input radio-box-get-quantity" type="radio" name="product-size product-size-pr" id="<?= $size['id'] ?>" value="<?= $size['id'] ?>">
                                         <label class="products-attribute-option" for="<?= $size['id'] ?>"><?= $size['value'] ?></label>
                                     </div>
                                 <?php endforeach; ?>
@@ -72,7 +73,7 @@
                                 <?php echo count($data['productColor']) > 0 ? "<span class='color-title'>Màu:</span>" : ""; ?>
                                 <?php foreach ($data['productColor'] as $color) : ?>
                                     <div class="products-attribute-item">
-                                        <input class="products-attribute-input attributes-color-input" type="radio" name="product-color" id="<?= $color['id'] ?>" value="<?= $color['id'] ?>">
+                                        <input class="products-attribute-input attributes-size-input radio-box-get-quantity" type="radio" name="product-color product-color-pr" id="<?= $color['id'] ?>" value="<?= $color['id'] ?>">
                                         <label class="products-attribute-option color" for="<?= $color['id'] ?>">
                                             <span style="background-color: <?= $color['value'] ?>" class="products-attribute-color"></span>
                                         </label>
@@ -85,7 +86,9 @@
                             <div class="quantity-minus quantity-btn"><i class="fal fa-minus"></i></div>
                             <input type="number" name="product-quantity" class="product-quantity-value" value="1" min="1">
                             <div class="quantity-plus quantity-btn"><i class="fal fa-plus"></i></div>
-                            <span class="product-quantity-detail"><span id="type_quantity"><?= $data['countAllProducts'] ?></span> sản phẩm có sẵn</span>
+                            <span class="product-quantity-detail"><span id="type_quantity"><?php if (isset($data['countAllProducts'])) {
+                                                                                                echo $data['countAllProducts'];
+                                                                                            } ?></span> sản phẩm có sẵn</span>
                         </div>
                         <div class="product-cta">
                             <button class="btn btn-add-cart"><i style="margin-right: 8px" class="fal fa-cart-plus"></i>Add to cart</button>

@@ -54,19 +54,26 @@
             return $result->fetchAll();
         }
 
-        // function getProductTypeId($id, $color, $size) {
-        //     $query = "SELECT product_type_id FROM products_type_attributes 
-        //     INNER JOIN products_type ON product_type_id = products_type.id 
-        //     INNER JOIN products ON products_type.product_id = products.id 
-        //     WHERE products.id = ? AND attributes_id IN (?,?) 
-        //     GROUP BY product_type_id HAVING COUNT(1) = 2";
-        //     $result = $this->connect->prepare($query);
-        //     $result->execute([$id,$color, $size]);
-        //     return $result->fetch()['product_type_id'];
-        // }
+        function getProductTypeId($id, $color, $size, $row) {
+            $query = "SELECT product_type_id FROM products_type_attributes 
+            INNER JOIN products_type ON product_type_id = products_type.id 
+            INNER JOIN products ON products_type.product_id = products.id 
+            WHERE products.id = ? AND attributes_id IN (?,?) 
+            GROUP BY product_type_id HAVING COUNT(1) = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$id,$color, $size, $row]);
+            return $result->fetch()['product_type_id'];
+        }
 
         function countAllProducts($id) {
             $query = "SELECT SUM(quantity) as 'quantity' FROM products_type INNER JOIN products ON products_type.product_id = products.id WHERE products.id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch()['quantity'];
+        }
+
+        function countProduct($id){
+            $query = "SELECT products_type.quantity FROM products_type WHERE products_type.id = $id";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetch()['quantity'];
