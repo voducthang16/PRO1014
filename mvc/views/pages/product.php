@@ -119,41 +119,38 @@
                             <!-- Tab items -->
                             <div class="tabs">
                                 <div class="tab-item active">
-                                    <i class="tab-icon fas fa-code"></i>
-                                    React
+                                    <i class="fal fa-washer"></i>
                                 </div>
                                 <div class="tab-item">
-                                    <i class="tab-icon fas fa-cog"></i>
-                                    Angular
+                                    <i class="fal fa-tint-slash"></i>
                                 </div>
                                 <div class="tab-item">
-                                    <i class="tab-icon fas fa-plus-circle"></i>
-                                    Ember
+                                    <i class="fal fa-hands-wash"></i>
                                 </div>
                                 <div class="tab-item">
-                                    <i class="tab-icon fas fa-pen-nib"></i>
-                                    Vue.JS
+                                    <i class="fal fa-temperature-low"></i>
+                                </div>
+                                <div class="tab-item">
+                                    <i class="fal fa-dryer"></i>
                                 </div>
                                 <div class="line"></div>
                             </div>
-
                             <!-- Tab content -->
                             <div class="tab-content">
                                 <div class="tab-pane active">
-                                    <h2>React</h2>
-                                    <p>React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.</p>
+                                    <p>30° mild machine washing</p>
                                 </div>
                                 <div class="tab-pane">
-                                    <h2>Angular</h2>
-                                    <p>Angular is an application design framework and development platform for creating efficient and sophisticated single-page apps.</p>
+                                    <p>Do not use any bleach</p>
                                 </div>
                                 <div class="tab-pane">
-                                    <h2>Ember</h2>
-                                    <p>Ember.js is a productive, battle-tested JavaScript framework for building modern web applications. It includes everything you need to build rich UIs that work on any device.</p>
+                                    <p>Hand wash normal (30°)</p>
                                 </div>
                                 <div class="tab-pane">
-                                    <h2>Vue.js</h2>
-                                    <p>Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. </p>
+                                    <p>Low temperature ironing</p>
+                                </div>
+                                <div class="tab-pane">
+                                    <p>Do not dry clean</p>
                                 </div>
                             </div>
                         </div>
@@ -173,8 +170,25 @@
             </div>
             <div class="col l-5">
                 <div class="product-origin-content">
-                    <h3 class="product-description-title">Where is it made?</h3>
-
+                    <h3 class="product-description-title mb-24 pb-8">Where is it made?</h3>
+                    <h6 class="mb-16">Apparel Manufacturer, Ltd.</h6>
+                    <p class="pb-8 mb-16">&ZeroWidthSpace;Sam Tower, 6 Road No 32, Dhaka 1875, Bangladesh</p>
+                    <div class="d-flex mb-8">
+                        <div class="mr-24 pr-8 text-center">
+                            <h4 class="mb-4 thd-color">3258</h4>
+                            <h5 class="mb-16">Workers</h5>
+                        </div>
+                        <div class="mr-24 pr-8 text-center">
+                            <h4 class="mb-4 thd-color">43%</h4>
+                            <h5 class="mb-16">Female</h5>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="mb-4 thd-color">57%</h4>
+                            <h5 class="mb-16">Male</h5>
+                        </div>
+                    </div>
+                    <h6 class="mb-16">Factory information</h6>
+                    <p class="mb-16 pb-8">&ZeroWidthSpace;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
                 </div>
             </div>
             <div class="l-o-1"></div>
