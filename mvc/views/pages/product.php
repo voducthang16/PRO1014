@@ -55,6 +55,7 @@
                             <p class="product-price-sale"><?= number_format($data['product']['price_origin']) ?>đ</p>
                         <?php endif; ?>
                     </div>
+
                     <form action="" method="POST" class="products" name="products">
                         <input type="hidden" class="products-id" name="product-id" id="product-id" value="<?= $data['product']['id'] ?>">
                         <input type="hidden" class="products-category-id" name="product-category-id" id="product-category-id" value="<?= $data['product']['category_id'] ?>">
@@ -176,6 +177,7 @@
             <div class="col l-5">
                 <div class="product-origin-content">
                     <h3 class="product-description-title">Where is it made?</h3>
+
                 </div>
             </div>
             <div class="l-o-1"></div>
