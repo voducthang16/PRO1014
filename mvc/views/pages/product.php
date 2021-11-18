@@ -56,7 +56,7 @@
                         <?php endif; ?>
                     </div>
 
-                    <form action="" method="POST" class="products" name="products">
+                    <form action="" method="POST" class="products-p" name="products">
                         <input type="hidden" class="products-id" name="products-id" id="product-id" value="<?= $data['product']['id'] ?>">
                         <input type="hidden" class="products-category-id" name="products-category-id" id="product-category-id" value="<?= $data['product']['category_id'] ?>">
                         <div class="product-attribute">
@@ -86,7 +86,9 @@
                             <div class="quantity-minus quantity-btn"><i class="fal fa-minus"></i></div>
                             <input type="number" name="product-quantity" class="product-quantity-value" value="1" min="1">
                             <div class="quantity-plus quantity-btn"><i class="fal fa-plus"></i></div>
-                            <span class="product-quantity-detail"><span id="type_quantity"><?php if (isset($data['countAllProducts'])) {echo $data['countAllProducts'];} ?></span> sản phẩm có sẵn</span>
+                            <span class="product-quantity-detail">
+                                <span id="type_quantity"><?php if (isset($data['countAllProducts'])) {echo $data['countAllProducts'];} ?>
+                            </span> sản phẩm có sẵn</span>
                         </div>
                         <div class="product-cta">
                             <button class="btn btn-add-cart"><i style="margin-right: 8px" class="fal fa-cart-plus"></i>Add to cart</button>

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  
     const slideImages = document.querySelectorAll(".product-slide-image");
 
     slideImages.forEach((slide, index) => {
@@ -37,11 +36,11 @@ $(document).ready(function() {
         }
     }
 
-    $(document).on('change','.radio-box-get-quantity',function(e){
+    $(document).on('change','.radio-box-get-quantity',function(e) {
         e.preventDefault();
         let prdColor = 0;
         let prdSize = 0;
-        let parent = $(this).parents('.products');
+        let parent = $(this).parents('.products-p');
         let id_product = parent.find('.products-id').val();
         let id_category = parent.find('.products-category-id').val();
 
@@ -51,6 +50,7 @@ $(document).ready(function() {
                 prdColor = color[i].value;
             }
         }
+
         let size = parent.find('.attributes-size-input');
         for(var i = 0; i < size.length; i++) {
             if(size[i].checked === true) {
@@ -68,21 +68,19 @@ $(document).ready(function() {
                     id_size: prdSize,
                     id_category: id_category,
                 },
-                success:function(data){
+                success:function(data) {
+                    console.log(data);
                     $('#type_quantity').html(data);
                 }
         });
 
     })
 
-    const $ = document.querySelector.bind(document);
-    const $$ = document.querySelectorAll.bind(document);
+    const tabs = document.querySelectorAll(".tab-item");
+    const panes = document.querySelectorAll(".tab-pane");
 
-    const tabs = $$(".tab-item");
-    const panes = $$(".tab-pane");
-
-    const tabActive = $(".tab-item.active");
-    const line = $(".tabs .line");
+    const tabActive = document.querySelector(".tab-item.active");
+    const line = document.querySelector(".tabs .line");
 
     line.style.left = tabActive.offsetLeft + "px";
     line.style.width = tabActive.offsetWidth + "px";
@@ -91,8 +89,8 @@ $(document).ready(function() {
         const pane = panes[index];
 
         tab.onclick = function () {
-            $(".tab-item.active").classList.remove("active");
-            $(".tab-pane.active").classList.remove("active");
+            document.querySelector(".tab-item.active").classList.remove("active");
+            document.querySelector(".tab-pane.active").classList.remove("active");
 
             line.style.left = this.offsetLeft + "px";
             line.style.width = this.offsetWidth + "px";

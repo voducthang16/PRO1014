@@ -49,6 +49,7 @@
                 "countAllProducts" => $this->product->countAllProducts($this->id)
             ]);
         }
+
         function getProductTypeId() {
             if (isset($_POST['get_quantity'])) {
                 $id = $_POST['id_product'];
@@ -62,6 +63,4 @@
                 echo $qtt;
             }
         }
-        
-        
     }
