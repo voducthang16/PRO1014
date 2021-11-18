@@ -9,14 +9,16 @@
                 exit();
             }
 
-            if (!strstr($_GET['url'], 'detail')) {
+            if (!strstr($_GET['url'], 'detail') && !strstr($_GET['url'],'getProductTypeId')) {
                 header("Location:".BASE_URL."pagenotfound");
                 exit();
             }
 
-            if (!isset($url[2])) {
-                header("Location:".BASE_URL."pagenotfound");
-                exit();
+            if(strstr($_GET['url'], 'detail')){
+                if (!isset($url[2])) {
+                    header("Location:".BASE_URL."pagenotfound");
+                    exit();
+                }
             }
 
             $this->product = $this->model('productModels');
@@ -25,9 +27,12 @@
             foreach ($slugs as $slug) {
                 array_push($array_slug, $slug['slug']);
             }
-            if (!in_array($url[2], $array_slug)) {
-                header("Location:".BASE_URL."pagenotfound");
-                exit();
+
+            if(strstr($_GET['url'], 'detail')){
+                if (!in_array($url[2], $array_slug)) {
+                    header("Location:".BASE_URL."pagenotfound");
+                    exit();
+                }
             }
         }
 
@@ -41,19 +46,22 @@
                 "productImages" => $this->product->getProductImages($this->id),
                 "productSize" => $this->product->getProductAttribute("size", $this->id),
                 "productColor" => $this->product->getProductAttribute("color", $this->id),
-                "countAllProducts" => $this->product->countAllProducts($this->id),
+                "countAllProducts" => $this->product->countAllProducts($this->id)
             ]);
         }
-
-        // function getProductTypeId() {
-        //     if (isset($_POST['color'])) {
-        //         $id = $_POST['productId'];
-        //         $size = $_POST['size'];
-        //         $color = $_POST['color'];
-
-        //         $result = $this->product->getProductTypeId($id, $color, $size);
-        //         $output = "";
-        //     }
-        // }
+        function getProductTypeId() {
+            if (isset($_POST['get_quantity'])) {
+                $id = $_POST['id_product'];
+                $size = $_POST['id_size'];
+                $color = $_POST['id_color'];
+                $num = $_POST['id_category'];
+    
+                $result = $this->product->getProductTypeId($id, $size, $color, $num);
+                $qtt = $this->product->countProduct($result);
+    
+                echo $qtt;
+            }
+        }
+        
+        
     }
-?>
