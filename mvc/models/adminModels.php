@@ -78,7 +78,12 @@
             $query = "INSERT INTO products(category_id, name, slug, thumbnail, description, parameters, status) 
             VALUES ('$category_id', '$name', '$slug', '$thumbnail', '$description', '$parameters', '$status')";
             $result = $this->connect->prepare($query);
-            $result->execute();
+            $kq = false;
+            if ($result->execute()) {
+                $kq = true;
+                return json_encode($kq);
+            }
+            return json_encode($kq);
         }
 
         function addProductType($product_id, $price_origin, $price_sale, $quantity) {
@@ -106,6 +111,22 @@
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetch()['count'];
+        }
+
+        function getProductById($id) {
+            $query = "SELECT * FROM products WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch();
+        }
+
+        
+
+        // test
+        function updateNameProduct($name, $id) {
+            $query = "UPDATE products SET name = '$name' WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
         }
     } 
 ?>

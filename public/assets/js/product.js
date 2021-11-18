@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  
     const slideImages = document.querySelectorAll(".product-slide-image");
 
     slideImages.forEach((slide, index) => {

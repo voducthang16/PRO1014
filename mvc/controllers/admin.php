@@ -36,7 +36,7 @@
                 $id = $_POST['u-category-id'];
                 $name = $_POST['u-category-name'];
                 $status = $_POST['u-category-status'];
-                $check = $this->admin->checkExistCategory($name, $id);
+                $check = $this->admin->checkExistName('category', $name, $id);
                 if ($check == 1) {
                     echo '<script>alert("Ten danh muc da tồn tại.");</script>';
                 } else {
@@ -110,55 +110,54 @@
                     $exp4 = substr($product_thumbnail, strlen($product_thumbnail) - 4);
                     $product_thumbnail = time()."_".$product_thumbnail;
 
-                    
-
                     if (in_array($exp3, $format) || in_array($exp4, $format)) {
-                        $this->admin->addProduct($product_category, $product_name, $product_slug, $product_thumbnail, $product_description, $product_parameters, $product_status);
-
-                        $product_id = $this->admin->getProductId();
-
-                        $j = 0;
-                        $k = 0;
-                        for ($i = 0; $i < $length; $i++) {
-                            $this->admin->addProductType($product_id, $product_price_origin[$i], $product_price_sale[$i], $product_quantity[$i]);
-
-                            $product_type_id = $this->admin->getProductTypeId();
-
-                            if ($k == count($product_color)) {
-                                $j++;
-                                $k = 0;
+                        $result = $this->admin->addProduct($product_category, $product_name, $product_slug, $product_thumbnail, $product_description, $product_parameters, $product_status);
+                        if ($result == true) {
+                            $product_id = $this->admin->getProductId();
+    
+                            $j = 0;
+                            $k = 0;
+                            for ($i = 0; $i < $length; $i++) {
+                                $this->admin->addProductType($product_id, $product_price_origin[$i], $product_price_sale[$i], $product_quantity[$i]);
+    
+                                $product_type_id = $this->admin->getProductTypeId();
+    
+                                if ($k == count($product_color)) {
+                                    $j++;
+                                    $k = 0;
+                                }
+    
+                                if (count($product_size) > 0) {
+                                    $this->admin->addProductTypeAttribute($product_type_id, $product_size[$j]);
+                                }
+    
+                                $this->admin->addProductTypeAttribute($product_type_id, $product_color[$k]);
+                                $k++;
                             }
-
-                            if (count($product_size) > 0) {
-                                $this->admin->addProductTypeAttribute($product_type_id, $product_size[$j]);
-                            }
-
-                            $this->admin->addProductTypeAttribute($product_type_id, $product_color[$k]);
-                            $k++;
-                        }
-
-                        mkdir("public/upload/$product_id", 0777, true);
-
-                        $storage = "public/upload/$product_id/";
-                        move_uploaded_file($product_thumbnail_tmp, $storage . $product_thumbnail);
-
-                        if (isset($_FILES["product-list-images"])) {
-                            foreach ($_FILES["product-list-images"]['tmp_name'] as $key => $value) {
-                                $filename = $_FILES['product-list-images']['name'][$key];
-                                $filename_tmp = $_FILES['product-list-images']['tmp_name'][$key];
-                                $ext = pathinfo($filename, PATHINFO_EXTENSION);
-
-                                $filename = time().'_'.$filename;
-                                if (in_array($ext, $format)) {
-                                    move_uploaded_file($filename_tmp, $storage . $filename);
-                                    $this->admin->addProductImages($product_id, $filename);
-                                } else {
-                                    echo '<script>alert("File khong dung dinh dang.");</script>';
+    
+                            mkdir("public/upload/$product_id", 0777, true);
+    
+                            $storage = "public/upload/$product_id/";
+                            move_uploaded_file($product_thumbnail_tmp, $storage . $product_thumbnail);
+    
+                            if (isset($_FILES["product-list-images"])) {
+                                foreach ($_FILES["product-list-images"]['tmp_name'] as $key => $value) {
+                                    $filename = $_FILES['product-list-images']['name'][$key];
+                                    $filename_tmp = $_FILES['product-list-images']['tmp_name'][$key];
+                                    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    
+                                    $filename = time().'_'.$filename;
+                                    if (in_array($ext, $format)) {
+                                        move_uploaded_file($filename_tmp, $storage . $filename);
+                                        $this->admin->addProductImages($product_id, $filename);
+                                    } else {
+                                        echo '<script>alert("File khong dung dinh dang.");</script>';
+                                    }
                                 }
                             }
+    
+                            echo '<script>alert("Thêm thành công.");</script>';
                         }
-
-                        echo '<script>alert("Thêm thành công.");</script>';
                     }
 
                 }
@@ -188,10 +187,32 @@
                 header("Location:".BASE_URL."admin/product");
             }
 
+            if (isset($_POST['u-product-id'])) {
+                $this->admin->updateNameProduct($_POST['u-product-name'], $_POST['u-product-id']);
+            }
+
             $this-> view("admin/index", [
                 "page" => "product_update",
-                "product_id" => $_POST['update-product-by-id']
+                "product" => $this->admin->getProductById($_POST['update-product-by-id']),
+                "getCategories" => $this->admin->getCategories(),
+                "getLetterSizes" => $this->admin->getAttributes("letter_size"),
+                "getNumberSizes" => $this->admin->getAttributes("number_size"),
+                "getColors" => $this->admin->getAttributes("color"),
             ]);
+        }
+
+        function checkExistName() {
+            if (isset($_POST['productId'])) {
+                $product_id = $_POST['productId'];
+                $product_name = $_POST['productName'];
+                $product_name = trim($product_name);
+                $check = $this->admin->checkExistName('products', $product_name, $product_id);
+                if ($check == 1) {
+                    echo "ten san pham da ton tai";
+                } else {
+                    return;
+                }
+            }
         }
 
         // admin login
