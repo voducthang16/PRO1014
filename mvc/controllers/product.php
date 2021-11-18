@@ -9,7 +9,7 @@
                 exit();
             }
 
-            if (!strstr($_GET['url'], 'detail') && !strstr($_GET['url'],'getProductTypeId')) {
+            if (!strstr($_GET['url'], 'detail') && !strstr($_GET['url'], 'getProductTypeId')) {
                 header("Location:".BASE_URL."pagenotfound");
                 exit();
             }
@@ -28,7 +28,7 @@
                 array_push($array_slug, $slug['slug']);
             }
 
-            if(strstr($_GET['url'], 'detail')){
+            if(strstr($_GET['url'], 'detail')) {
                 if (!in_array($url[2], $array_slug)) {
                     header("Location:".BASE_URL."pagenotfound");
                     exit();
@@ -64,11 +64,12 @@
                 $result = $this->product->getProductTypeId($id, $size, $color, $num);
                 $qtt = $this->product->countProduct($result);
                 
-                if($qtt == null){
-                    $qtt = rand(50, 150);
+                if($qtt == null) {
+                    $qtt = $this->product->countAllProducts($id);
                 }
 
                 echo $qtt;
             }
         }
     }
+?>

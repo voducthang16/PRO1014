@@ -30,7 +30,7 @@ $(document).ready(function() {
 
     if (quantityValue) {
         quantityValue.onchange = function () {
-            if (this.value < 0) {
+            if (this.value < 0 || !Number.isInteger(this.value)) {
                 this.value = 1;
             }
         }
@@ -99,5 +99,4 @@ $(document).ready(function() {
             pane.classList.add("active");
         };
     });
-
 })
