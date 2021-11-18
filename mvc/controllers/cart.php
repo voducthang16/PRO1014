@@ -21,9 +21,9 @@
             $output ='';
             if (empty($_SESSION["member-login"])){
                 $output .= '<div class="no-cart-wrapper">
-                    <img src="<?=BASE_URL?>public/assets/img/no_cart.png" alt="No Cart Image">
+                    <img src="'.BASE_URL.'public/assets/img/no_cart.png" alt="No Cart Image">
                     <h3>Giỏ hàng của bạn đang trống</h3>
-                    <a href="<?=BASE_URL?>" class="btn"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
+                    <a href="'.BASE_URL.'" class="btn"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
                     </div>';
             } else {
                 $result = $this-> cart->getCart($this->id_member);
