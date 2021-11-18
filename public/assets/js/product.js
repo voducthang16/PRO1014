@@ -36,6 +36,15 @@ $(document).ready(function() {
         }
     }
 
+    $('.product-quantity-value-val').on('keypress', function (event) {
+        var regex = new RegExp("[0-9]");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+           event.preventDefault();
+           return false;
+        }
+    });
+
     $(document).on('change','.radio-box-get-quantity',function(e) {
         e.preventDefault();
         let prdColor = 0;
@@ -69,34 +78,11 @@ $(document).ready(function() {
                     id_category: id_category,
                 },
                 success:function(data) {
-                    console.log(data);
+                    // console.log(data);
                     $('#type_quantity').html(data);
                 }
         });
 
     })
 
-    const tabs = document.querySelectorAll(".tab-item");
-    const panes = document.querySelectorAll(".tab-pane");
-
-    const tabActive = document.querySelector(".tab-item.active");
-    const line = document.querySelector(".tabs .line");
-
-    line.style.left = tabActive.offsetLeft + "px";
-    line.style.width = tabActive.offsetWidth + "px";
-
-    tabs.forEach((tab, index) => {
-        const pane = panes[index];
-
-        tab.onclick = function () {
-            document.querySelector(".tab-item.active").classList.remove("active");
-            document.querySelector(".tab-pane.active").classList.remove("active");
-
-            line.style.left = this.offsetLeft + "px";
-            line.style.width = this.offsetWidth + "px";
-
-            this.classList.add("active");
-            pane.classList.add("active");
-        };
-    });
 })

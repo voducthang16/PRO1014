@@ -68,7 +68,7 @@
                                 <div class="product-quantity op">
                                     <span class="product-quantity-title op">Số lượng: </span>
                                     <div class="quantity-minus quantity-btn btn-change-quantity-minus"><i class="fal fa-minus"></i></div>
-                                    <input type="number" name="product-quantity" class="product-quantity-value" value="'.$row['quantity'].'" min="1">
+                                    <input type="number" name="product-quantity" id="'.$row['product_type_id'].'" class="product-quantity-value product-quantity-value-val" value="'.$row['quantity'].'" min="1">
                                     <div class="quantity-plus quantity-btn btn-change-quantity-plus"><i class="fal fa-plus"></i></div>
                                 </div>
                                 <p class="order-delete btn-delete-prd-cart"><i style="margin-right: 4px" class="fal fa-trash"></i> Xóa</p>
@@ -103,6 +103,18 @@
             }
             echo $output;
             
+        }
+        function updateQtt() {
+            if(isset($_POST['updateQtt'])){
+                $id_type = $_POST['id_type'];
+                $qtt = $_POST['quantity'];
+                $updateCart = $this-> cart->updateQtt($qtt,$this->id_member,$id_type);
+                if($updateCart==true){
+                    echo 'đã cập nhật số lượng';
+                } else {
+                    echo 'cập nhật số lượng thất bại';
+                }
+            }
         }
         function updateQuantity() {
             if(isset($_POST['updateQtt'])) {
@@ -222,9 +234,9 @@
                     $qtt = $_POST['quantity'];
 
                     if ($id_category != 5){
-                        $id_type = $this-> cart->get_type_id($id_product,$id_color,$id_size,'2');
+                        $id_type = $this-> cart->get_type_id($id_product,$id_size,$id_color,'2');
                     } else {
-                        $id_type = $this-> cart->get_type_id($id_product,$id_color,$id_size,'1');
+                        $id_type = $this-> cart->get_type_id($id_product,$id_size,$id_color,'1');
                     }
 
                     $check_id_type = $this-> cart->check_type_id($this->id_member,$id_type);

@@ -42,7 +42,7 @@ $(document).ready(function() {
 
     $(document).on('click','.btn-add-cart',function(e) {
         e.preventDefault();
-        var parent = $(this).parents('.products');
+        var parent = $(this).parents('.products-s');
         var id_product = parent.find('.products-id').val();
         var id_category = parent.find('.products-category-id').val();
         var quantity = parent.find('.product-quantity-value').val();
@@ -53,33 +53,33 @@ $(document).ready(function() {
         // return
         var color = parent.find('.attributes-color-input');
         for(var i = 0; i < color.length; i++) {
-            if(color[i].checked === true) {
+            if(color[i].checked == true) {
                 // console.log(checkbox[i].value);
                 var attributes_color = color[i].value;
             }
         }
         var size = parent.find('.attributes-size-input');
         for(var i = 0; i < size.length; i++) {
-            if(size[i].checked === true) {
+            if(size[i].checked == true) {
                 // console.log(checkbox[i].value);
                 var attributes_size = size[i].value;
             }
         }
 
-        if (id_category == 5) {
-            if (attributes_size == null) {
-                alert('vui lòng chọn color đầy đủ');
-                return
-            }
-        } else {
+        if (id_category != 5) {
             if (attributes_color == null || attributes_size == null) {
                 alert('vui lòng chọn size và color đầy đủ');
                 return
             }
+        } else {
+            if (attributes_color == null) {
+                alert('vui lòng chọn color đầy đủ');
+                return
+            }
         }
 
-        if (attributes_color == null) {
-            attributes_color = 0;
+        if (attributes_size == null) {
+            attributes_size = 0;
         }
         $.ajax({
             url: "cart/insertCart",
@@ -163,4 +163,33 @@ $(document).ready(function() {
                 }
         })
     });
+
+    $(document).on('keypress','.product-quantity-value-val',function(e){
+        return e.charCode >= 48 && e.charCode <= 57;
+    })
+    $(document).on('blur','.product-quantity-value-val',function(e){
+        e.preventDefault();
+        let value = $(this).val();
+        let id_type = $(this).attr('id');
+
+        if (value < 1){
+            value =1;
+        }
+
+        $.ajax({
+            url:'cart/updateQtt',
+            method:'POST',
+            data: {
+                updateQtt: 'true',
+                quantity: value,
+                id_type: id_type
+            },
+            success:function(data){
+                alert (data);
+                get_data();
+            }
+        })
+        
+    })
+    
 })

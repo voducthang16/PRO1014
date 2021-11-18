@@ -56,7 +56,7 @@
                         <?php endif; ?>
                     </div>
 
-                    <form action="" method="POST" class="products-p" name="products">
+                    <form action="" method="POST" class="products-p products-s" name="products">
                         <input type="hidden" class="products-id" name="products-id" id="product-id" value="<?= $data['product']['id'] ?>">
                         <input type="hidden" class="products-category-id" name="products-category-id" id="product-category-id" value="<?= $data['product']['category_id'] ?>">
                         <div class="product-attribute">
@@ -64,7 +64,7 @@
                                 <?php echo count($data['productSize']) > 0 ? "<span>Size:</span>" : ""; ?>
                                 <?php foreach ($data['productSize'] as $size) : ?>
                                     <div class="products-attribute-item">
-                                        <input class="products-attribute-input attributes-color-input radio-box-get-quantity" type="radio" name="product-size product-size-pr" id="<?= $size['id'] ?>" value="<?= $size['id'] ?>">
+                                        <input class="products-attribute-input attributes-size-input radio-box-get-quantity" type="radio" name="product-size product-size-pr" id="<?= $size['id'] ?>" value="<?= $size['id'] ?>">
                                         <label class="products-attribute-option" for="<?= $size['id'] ?>"><?= $size['value'] ?></label>
                                     </div>
                                 <?php endforeach; ?>
@@ -73,7 +73,7 @@
                                 <?php echo count($data['productColor']) > 0 ? "<span class='color-title'>Màu:</span>" : ""; ?>
                                 <?php foreach ($data['productColor'] as $color) : ?>
                                     <div class="products-attribute-item">
-                                        <input class="products-attribute-input attributes-size-input radio-box-get-quantity" type="radio" name="product-color product-color-pr" id="<?= $color['id'] ?>" value="<?= $color['id'] ?>">
+                                        <input class="products-attribute-input attributes-color-input radio-box-get-quantity" type="radio" name="product-color product-color-pr" id="<?= $color['id'] ?>" value="<?= $color['id'] ?>">
                                         <label class="products-attribute-option color" for="<?= $color['id'] ?>">
                                             <span style="background-color: <?= $color['value'] ?>" class="products-attribute-color"></span>
                                         </label>
@@ -84,7 +84,7 @@
                         <div class="product-quantity">
                             <span class="product-quantity-title">Số lượng: </span>
                             <div class="quantity-minus quantity-btn"><i class="fal fa-minus"></i></div>
-                            <input type="number" name="product-quantity" class="product-quantity-value" value="1" min="1">
+                            <input type="number" name="product-quantity" class="product-quantity-value product-quantity-value-val" value="1" min="1">
                             <div class="quantity-plus quantity-btn"><i class="fal fa-plus"></i></div>
                             <span class="product-quantity-detail">
                                 <span id="type_quantity"><?php if (isset($data['countAllProducts'])) {echo $data['countAllProducts'];} ?>
@@ -198,3 +198,27 @@
         </div>
     </div>
 </div>
+<script>
+    const tabs = document.querySelectorAll(".tab-item");
+    const panes = document.querySelectorAll(".tab-pane");
+
+    const tabActive = document.querySelector(".tab-item.active");
+    const line = document.querySelector(".tabs .line");
+    line.style.left = tabActive.offsetLeft + "px";
+    line.style.width = tabActive.offsetWidth + "px";
+
+    tabs.forEach((tab, index) => {
+    const pane = panes[index];
+
+    tab.onclick = function () {
+        document.querySelector(".tab-item.active").classList.remove("active");
+        document.querySelector(".tab-pane.active").classList.remove("active");
+    
+        line.style.left = this.offsetLeft + "px";
+        line.style.width = this.offsetWidth + "px";
+
+        this.classList.add("active");
+        pane.classList.add("active");
+        };
+    });
+</script>

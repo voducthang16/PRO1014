@@ -61,7 +61,7 @@
                     $num = 2;
                 }
     
-                $result = $this->product->getProductTypeId($id, $size, $color, $num);
+                $result = $this->product->getProductTypeId($id, $color, $size, $num);
                 $qtt = $this->product->countProduct($result);
                 
                 if($qtt == null) {
