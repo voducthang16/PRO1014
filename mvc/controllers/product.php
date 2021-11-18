@@ -55,11 +55,19 @@
                 $id = $_POST['id_product'];
                 $size = $_POST['id_size'];
                 $color = $_POST['id_color'];
-                $num = $_POST['id_category'];
+                if($_POST['id_category']==5){
+                    $num = 1;        
+                } else {
+                    $num = 2;
+                }
     
                 $result = $this->product->getProductTypeId($id, $size, $color, $num);
                 $qtt = $this->product->countProduct($result);
-    
+                
+                if($qtt == null){
+                    $qtt = rand(50, 150);
+                }
+
                 echo $qtt;
             }
         }
