@@ -8,7 +8,7 @@
             if(isset($_SESSION["member-username"])){
                 $username = $_SESSION["member-username"];
                 $this->id_member = $this-> cart->getProfile($username);
-            }  
+            }
         }
 
         function show() {

@@ -110,7 +110,7 @@
                                             <p>Tổng tiền: <span id='cart-total-val'></span></p>
                                             <a href='<?=BASE_URL?>cart' class='cart-view btn btn--size-s'>Xem giỏ hàng <i class='fal fa-chevron-right'></i></a>
                                         </div>
-                                        <a href='#' class='btn cart-checkout'><i class='fal fa-credit-card'></i> Thanh toán</a>
+                                        <a href='checkout' class='btn cart-checkout'><i class='fal fa-credit-card'></i> Thanh toán</a>
                                     </div>
                                 <?php endif;?>
                             </div>
