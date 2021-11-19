@@ -1,8 +1,11 @@
+// reload web start function
 $(document).ready(function() {
 
-    // fetch in the screen
+    // fetch data to the screen
 
     function get_data() {
+
+        // 	cart_temporary
         $.ajax({
             url: "cart/showCart",
             method: "POST",
@@ -10,6 +13,8 @@ $(document).ready(function() {
                 $('.render-cart').html(data);
             }
         });
+
+        // cart pending
         $.ajax({
             url:"cart/showOrder",
             method:"POST",
@@ -17,6 +22,8 @@ $(document).ready(function() {
                 $('.container-gd-order').html(data);
             }
         });
+
+        // total cart
         $.ajax({
             url: "cart/totalCart",
             method: "POST",
@@ -27,6 +34,8 @@ $(document).ready(function() {
                 document.getElementById('cart-total-val-2').innerHTML = data;
             }
         });
+
+        // count cart
         $.ajax({
             url: "cart/countCart",
             method: "POST",
@@ -36,6 +45,7 @@ $(document).ready(function() {
         })
     }
 
+    // run function
     get_data();
 
     // add product in cart
@@ -66,6 +76,7 @@ $(document).ready(function() {
             }
         }
 
+        // check category - if =5 => bag no size
         if (id_category != 5) {
             if (attributes_color == null || attributes_size == null) {
                 alert('vui lòng chọn size và color đầy đủ');
@@ -82,6 +93,7 @@ $(document).ready(function() {
             attributes_size = 0;
         }
 
+        // ajax to insertCart
         $.ajax({
             url: "cart/insertCart",
                 method: "POST",
@@ -104,8 +116,7 @@ $(document).ready(function() {
         });
     });
 
-    //change quantity
-
+    //change quantity in product
     $(document).on('click','.btn-change-quantity-plus',function(e){
         e.preventDefault();
         let parent = $(this).parents('.cart-items__product');
@@ -144,7 +155,6 @@ $(document).ready(function() {
     })
 
     // delete product in cart
-
     $(document).on('click','.btn-delete-prd-cart',function(e){
         e.preventDefault();
         let parent = $(this).parents('.cart-items__product');
@@ -164,10 +174,12 @@ $(document).ready(function() {
         })
     });
 
+    // validated input quantity
     $(document).on('keypress','.product-quantity-value',function(e){
         return e.charCode >= 48 && e.charCode <= 57;
     })
 
+    // update quantity after input
     $(document).on('blur','.product-quantity-value-val',function(e) {
         e.preventDefault();
         let value = $(this).val();

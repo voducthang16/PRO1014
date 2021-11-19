@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    
+    //change image
     const slideImages = document.querySelectorAll(".product-slide-image");
 
     slideImages.forEach((slide, index) => {
@@ -11,8 +13,8 @@ $(document).ready(function() {
         }
     })
 
+    // js change quantity
     const changeQuantityButton = document.querySelectorAll('.quantity-btn');
-    const quantityValue = document.querySelector('.product-quantity-value');
 
     changeQuantityButton.forEach(e => {
         e.onclick = function () {
@@ -28,6 +30,7 @@ $(document).ready(function() {
         }
     });
 
+    // fetch data count quantity product
     $(document).on('change','.radio-box-get-quantity',function(e) {
         e.preventDefault();
         let prdColor = 0;

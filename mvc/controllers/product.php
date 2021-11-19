@@ -3,6 +3,8 @@
         public $product;
         public $id;
         function __construct() {
+
+            // cut link + check link
             $url = explode("/", filter_var(trim($_GET["url"], "/")));
             if (count($url) > 3) {
                 header("Location:".BASE_URL."pagenotfound");
@@ -51,6 +53,8 @@
         }
 
         function getProductTypeId() {
+            
+            //handle fetch data count qtt product 
             if (isset($_POST['get_quantity'])) {
                 $id = $_POST['id_product'];
                 $size = $_POST['id_size'];

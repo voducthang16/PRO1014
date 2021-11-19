@@ -3,8 +3,8 @@
         public $cart;
 
         function __construct() {
+            // get the data shared by all functions
             $this->cart = $this->model('cartModels');
-
             if(isset($_SESSION["member-username"])){
                 $username = $_SESSION["member-username"];
                 $this->id_member = $this-> cart->getProfile($username);
@@ -14,7 +14,6 @@
         function show() {
             $this -> view("index", [
                 "page" => "cart",
-                // "getCart" => isset($_SESSION["member-username"]) ? $this->cart->getCart($this->id_member) : "",
             ]);
         }
         function showOrder(){
