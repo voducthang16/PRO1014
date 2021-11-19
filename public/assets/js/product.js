@@ -28,23 +28,6 @@ $(document).ready(function() {
         }
     });
 
-    if (quantityValue) {
-        quantityValue.onchange = function () {
-            if (this.value < 0 || !Number.isInteger(this.value)) {
-                this.value = 1;
-            }
-        }
-    }
-
-    $('.product-quantity-value-val').on('keypress', function (event) {
-        var regex = new RegExp("[0-9]");
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
-           event.preventDefault();
-           return false;
-        }
-    });
-
     $(document).on('change','.radio-box-get-quantity',function(e) {
         e.preventDefault();
         let prdColor = 0;

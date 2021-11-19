@@ -164,7 +164,7 @@ $(document).ready(function() {
         })
     });
 
-    $(document).on('keypress','.product-quantity-value-val',function(e){
+    $(document).on('keypress','.product-quantity-value',function(e){
         return e.charCode >= 48 && e.charCode <= 57;
     })
     $(document).on('blur','.product-quantity-value-val',function(e){

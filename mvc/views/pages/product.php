@@ -84,7 +84,7 @@
                         <div class="product-quantity">
                             <span class="product-quantity-title">Số lượng: </span>
                             <div class="quantity-minus quantity-btn"><i class="fal fa-minus"></i></div>
-                            <input type="number" name="product-quantity" class="product-quantity-value product-quantity-value-val" value="1" min="1">
+                            <input type="number" name="product-quantity" class="product-quantity-value" value="1" min="1">
                             <div class="quantity-plus quantity-btn"><i class="fal fa-plus"></i></div>
                             <span class="product-quantity-detail">
                                 <span id="type_quantity"><?php if (isset($data['countAllProducts'])) {echo $data['countAllProducts'];} ?>
