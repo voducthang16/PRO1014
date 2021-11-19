@@ -31,6 +31,7 @@
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/product.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/cart.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/account.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/checkout.css">
 
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.carousel.min.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.theme.default.min.css">

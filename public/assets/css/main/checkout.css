@@ -1,0 +1,19 @@
+.checkout.sticky {
+    margin-top: 116px;
+}
+
+.form-wrapper {
+    margin-top: 100px;
+}
+
+.checkout-title {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e3e9ef !important;
+
+    font-weight: 700;
+    font-size: 1.8rem;
+
+    color: var(--secondary-color);
+}
+
