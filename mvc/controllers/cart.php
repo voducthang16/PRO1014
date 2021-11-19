@@ -51,7 +51,7 @@
                                         <a href="'.BASE_URL.'" class="btn btn--size-s"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
                                     </div>
                                     <div class="order-product-wrapper">';
-                    foreach ($result as $row){
+                    foreach ($result as $row) {
                         $output .= ' <div class="order-products cart-items__product">
                         <div class="order-products-info cart-product__link" name="'.$row['product_type_id'].'">
                                 <a href="'.BASE_URL.'product/detail/'.$row['slug'].'">
