@@ -65,7 +65,5 @@ $(document).ready(function() {
                     $('#type_quantity').html(data);
                 }
         });
-
     })
-
 })
