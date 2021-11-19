@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     // js change quantity
     const changeQuantityButton = document.querySelectorAll('.quantity-btn');
-
+    const quantityValue = document.querySelector('.product-quantity-value');
     changeQuantityButton.forEach(e => {
         e.onclick = function () {
             if (this.classList.contains('quantity-minus')) {
