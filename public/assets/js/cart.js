@@ -30,8 +30,23 @@ $(document).ready(function() {
         $.ajax({
             url: "cart/countCart",
             method: "POST",
-            success:function(data){
+            success:function(data) {
                 document.getElementById('cart-quantity-val').innerHTML = data;
+            }
+        })
+        $.ajax({
+            url: "checkout/showCheckout",
+            method: "POST",
+            success:function(data) {
+                $('.checkout-product-list').html(data)
+            }
+        })
+        $.ajax({
+            url: "checkout/totalCheckout",
+            method: "POST",
+            success:function(data) {
+                $('#checkout-subtotal-money').html(data)
+                $('#order-total-money').html(data)
             }
         })
     }

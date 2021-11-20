@@ -18,8 +18,50 @@
 
         function show() {
             $this -> view("index", [
-                "page" => "checkout"
+                "page" => "checkout",
+                "order_method" => $this->checkout->getOrderMethods()
             ]);
+        }
+
+        function showCheckout() {
+            $output ='';
+            $data = $this->checkout->getProductsById($this->member_id);
+            foreach ($data as $item) {
+                $output .= '
+                    <div class="order-summary-product">
+                        <a href="product/detail/'.$item['slug'].'" class="order-summary-link">
+                            <img src="'.BASE_URL.'public/upload/'.$item['product_id'].'/'.$item['thumbnail'].'" alt="Product Image" class="order-summary-img">
+                        </a>
+                        <div class="order-summary-list">
+                            <a href="product/detail/'.$item['slug'].'" class="order-summary-list-name">'.$item['name'].'</a>
+                            <p class="order-summary-attribute">
+                                <span>Size</span> - Color: <span style="background-color: #ccc; top: 3px; left: 3px" class="order-summary-color"></span>
+                            </p>
+                            <p class="order-summary-money">
+                                <span class="price">'.number_format($item['price_sale']).'đ</span>
+                                <span>x</span>
+                                <span>'.$item['quantity'].'</span>
+                            </p>
+                        </div>
+                    </div>
+                ';
+            }
+            echo $output;
+        }
+
+        function totalCheckout() {
+            $ship = 0;
+            if (isset($_POST['ship'])) {
+                $ship = $_POST['ship'];
+            }
+
+            $subtotal = 0;
+            $data = $this->checkout->getProductsById($this->member_id);
+            foreach ($data as $item) {
+                $subtotal += $item['price_sale'] * $item['quantity'];
+            }
+            $total = $ship + $subtotal;
+            echo number_format($total)."đ";
         }
     }
 ?>
