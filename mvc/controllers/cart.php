@@ -16,9 +16,10 @@
                 "page" => "cart",
             ]);
         }
-        function showOrder(){
+
+        function showOrder() {
             $output ='';
-            if (empty($_SESSION["member-login"])){
+            if (empty($_SESSION["member-login"])) {
                 $output .= '<div class="no-cart-wrapper">
                     <img src="'.BASE_URL.'public/assets/img/no_cart.png" alt="No Cart Image">
                     <h3>Giỏ hàng của bạn đang trống</h3>
@@ -101,8 +102,8 @@
                     
             }
             echo $output;
-            
         }
+
         function updateQtt() {
             if(isset($_POST['updateQtt'])){
                 $id_type = $_POST['id_type'];
@@ -264,7 +265,7 @@
             }
         }
 
-        function deleteCart(){
+        function deleteCart() {
             if(isset($_POST['deleteCart'])){
                 $id_type = $_POST['id_type'];
                 $kq_delete = $this-> cart->deleteCart($this->id_member,$id_type);
