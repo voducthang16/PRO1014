@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="col l-10">
-                        <div class="product-thumbnail">
+                        <div class="product-thumbnail background-zoom" style="background-image: url('public/upload/<?= $data['product']['id'] ?>/<?= $data['product']['thumbnail'] ?>');" onmousemove="zoom(event)">
                             <img id="product-thumbnail" src="public/upload/<?= $data['product']['id'] ?>/<?= $data['product']['thumbnail'] ?>" alt="Product Thumbnail">
                         </div>
                     </div>
