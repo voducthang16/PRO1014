@@ -82,7 +82,7 @@ $(document).ready(function() {
             return;
         }
 
-        if(quantity > maxQtt){
+        if(Number(quantity) > Number(maxQtt)){
             alert('nếu bạn muốn đặt đơn hàng sll vui lòng ib fanpage đễ được hỗ trợ');
             return;
         }
