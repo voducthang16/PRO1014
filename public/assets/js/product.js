@@ -54,10 +54,12 @@ $(document).ready(function() {
             }
         }
 
-        if(prdColor == 0 || prdSize == 0){
-            return;
+        if (id_category != 5){
+            if(prdColor == 0 || prdSize == 0){
+                return;
+            }
         }
-
+        
         // alert(prdColor +'\n'+ prdSize +'\n'+ id_category +'\n'+ id_product)
 
         $.ajax({
