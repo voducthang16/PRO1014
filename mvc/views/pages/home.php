@@ -139,7 +139,7 @@
                         </a>
                         <div class="products-body">
                             <a href="product/detail/<?=$item["slug"]?>" class="products-name"><?=$item["name"]?></a>
-                            <h4 class="products-price"><?=number_format($item["price_sale"])?>đ</h4>
+                            <h4 class="products-price"><?=number_format($item["minn"])?>đ - <?=number_format($item["maxx"])?>đ</h4>
                         </div>
                         <div class="products-attribute-hidden">
                             <div class="products-size">

@@ -152,7 +152,7 @@
         city.change(function() {
             list_district = "<option hidden selected>--- Chọn Quận / Huyện ---</option>";
             list_ward = "";
-            $("#order-ship").html("");
+            $("#order-ship").html("-");
             $.ajax({
                 url: "https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district",
                 type: "GET",
@@ -188,9 +188,6 @@
                 beforeSend: function(request) {
                     request.setRequestHeader("Token", "f2a7666f-4923-11ec-ac64-422c37c6de1b");
                 },
-                // data: {
-                //     "district_id": $(this).val()
-                // },
                 success: function(data) {
                     let length = data.data.length;
                     for (let i = 0; i < length; i++) {
