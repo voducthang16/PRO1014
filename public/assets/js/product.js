@@ -53,6 +53,12 @@ $(document).ready(function() {
             }
         }
 
+        if(prdColor == 0 || prdSize == 0){
+            return;
+        }
+
+        // alert(prdColor +'\n'+ prdSize +'\n'+ id_category +'\n'+ id_product)
+
         $.ajax({
             url: "product/getProductTypeId",
                 method: "POST",
@@ -64,8 +70,11 @@ $(document).ready(function() {
                     id_category: id_category,
                 },
                 success:function(data) {
-                    // console.log(data);
-                    $('#type_quantity').html(data);
+                    let json = JSON.parse(data);
+                    parent.find('#type_quantity').html(json.quantity);
+                    parent.find('.price-sale-value').html(json.price_sale +'đ');
+                    parent.find('.price-origin-value').html(json.price_origin +'đ')
+                    // alert(json.price_sale +'\n'+ json.price_origin +'\n'+json.quantity)
                 }
         });
     })

@@ -44,19 +44,15 @@
                         <div class="product-heart-wrapper">
                             <span>Add to wishlist</span>
                             <i class="fal fa-heart"></i>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <?php if ($data['product']['price_origin'] > $data['product']['price_sale']) : ?>
-                            <p class="product-price-sale"><?= number_format($data['product']['price_sale']) ?>đ</p>
-                            <del class="product-price-origin"><?= number_format($data['product']['price_origin']) ?>đ</del>
-                            <span class="product-sale-label">Sale</span>
-                        <?php else : ?>
-                            <p class="product-price-sale"><?= number_format($data['product']['price_origin']) ?>đ</p>
-                        <?php endif; ?>
+                        </div>  
                     </div>
 
                     <form action="" method="POST" class="products-p products-s" name="products">
+                    <div class="product-price">
+                            <p class="product-price-sale price-sale-value"><?= number_format($data['priceProduct']['minn'])?>đ - <?=number_format(($data['priceProduct']['maxx']))?>đ</p>
+                            <del class="product-price-origin price-origin-value"><?= number_format($data['priceProduct']['min2'])?>đ - <?=number_format(($data['priceProduct']['max2']))?>đ</del>
+                            <span class="product-sale-label">Sale</span>
+                    </div>
                         <input type="hidden" class="products-id" name="products-id" id="product-id" value="<?= $data['product']['id'] ?>">
                         <input type="hidden" class="products-category-id" name="products-category-id" id="product-category-id" value="<?= $data['product']['category_id'] ?>">
                         <div class="product-attribute">

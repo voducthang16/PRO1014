@@ -233,6 +233,11 @@
                     $id_category = $_POST['id_category'];
                     $qtt = $_POST['quantity'];
 
+                    // if($qtt == 0){
+                    //     echo('vui long nhap so luong');
+                    //     exit;
+                    // }
+
                     if ($id_category != 5){
                         $id_type = $this-> cart->get_type_id($id_product,$id_size,$id_color,'2');
                     } else {

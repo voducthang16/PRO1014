@@ -73,10 +73,18 @@
         }
 
         function countProduct($id){
-            $query = "SELECT products_type.quantity FROM products_type WHERE products_type.id = $id";
+            $query = "SELECT products_type.quantity,products_type.price_sale,products_type.price_origin FROM products_type WHERE products_type.id = $id";
             $result = $this->connect->prepare($query);
             $result->execute();
-            return $result->fetch()['quantity'];
+            return $result;
+        }
+        function getProductPrice($id){
+            $query = "SELECT products.id, quantity.maxx , quantity.minn, quantity.min2, quantity.max2
+            FROM products INNER JOIN (SELECT product_id, MAX(price_sale) as maxx, MIN(price_sale) as minn, MIN(price_origin) as min2, MAX(price_origin) as max2 FROM products_type GROUP BY product_id) quantity 
+            ON products.id = quantity.product_id WHERE products.id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch();
         }
     }
 ?>

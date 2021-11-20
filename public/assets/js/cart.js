@@ -71,8 +71,20 @@ $(document).ready(function() {
         var id_product = parent.find('.products-id').val();
         var id_category = parent.find('.products-category-id').val();
         var quantity = parent.find('.product-quantity-value').val();
+        var maxQtt = parent.find('#type_quantity').text();
+
         if (quantity == null) {
             quantity = 1;
+        }
+
+        if(quantity == 0){
+            alert('vui lòng nhập số lượng');
+            return;
+        }
+
+        if(quantity > maxQtt){
+            alert('nếu bạn muốn đặt đơn hàng sll vui lòng ib fanpage đễ được hỗ trợ');
+            return;
         }
         // console.log(id_category);
         // return

@@ -48,7 +48,8 @@
                 "productImages" => $this->product->getProductImages($this->id),
                 "productSize" => $this->product->getProductAttribute("size", $this->id),
                 "productColor" => $this->product->getProductAttribute("color", $this->id),
-                "countAllProducts" => $this->product->countAllProducts($this->id)
+                "countAllProducts" => $this->product->countAllProducts($this->id),
+                "priceProduct" => $this->product->getProductPrice($this->id)
             ]);
         }
 
@@ -64,15 +65,19 @@
                 } else {
                     $num = 2;
                 }
-    
-                $result = $this->product->getProductTypeId($id, $color, $size, $num);
-                $qtt = $this->product->countProduct($result);
-                
-                if($qtt == null) {
-                    $qtt = $this->product->countAllProducts($id);
-                }
 
-                echo $qtt;
+                $result = $this->product->getProductTypeId($id, $color, $size, $num);
+                $qtt = $this->product->countProduct($result)->fetch()['quantity'];
+                $price_sale = $this->product->countProduct($result)->fetch()['price_sale'];
+                $price_origin = $this->product->countProduct($result)->fetch()['price_origin'];
+
+                $data = array(
+                    "quantity" => $qtt,
+                    "price_sale" => number_format($price_sale),
+                    "price_origin" => number_format($price_origin)
+                );
+
+                echo json_encode($data);
             }
         }
     }
