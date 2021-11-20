@@ -120,7 +120,19 @@
             return $result->fetch();
         }
 
-        
+        function getCoupon() {
+            $query = "SELECT * FROM `coupon`";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function insertCoupon($name, $type, $value, $quantity, $note, $date_start, $date_end) {
+            $query = "INSERT INTO coupon(name, type, coupon.value, quantity, note, created_at, ended_at) 
+            VALUES('$name', '$type', '$value', '$quantity', '$note', '$date_start', '$date_end')";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
 
         // test
         function updateNameProduct($name, $id) {
