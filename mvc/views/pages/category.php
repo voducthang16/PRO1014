@@ -56,7 +56,7 @@
                 <div class="row mt-80">
                     <?php foreach ($data['getProducts'] as $key=>$product): ?>
                         <div class="col l-4">
-                            <form class="products products-s" id="<?=$product["id"]?>" method="POST">
+                            <form class="products products-s products-p" id="<?=$product["id"]?>" method="POST">
                                 <input type="hidden" name="product-id" class="products-id" value="<?=$product["id"]?>">
                                 <input type="hidden" name="product-category-id" class="products-category-id" value="<?=$product["category_id"]?>">
                                 <div class="products-heart">
@@ -68,7 +68,7 @@
                                 </a>
                                 <div class="products-body">
                                     <a href="product/detail/<?=$product["slug"]?>" class="products-name"><?=$product["name"]?></a>
-                                    <h4 class="products-price"><?=number_format($product["minn"])?>đ - <?=number_format($product["maxx"])?>đ</h4>
+                                    <h4 class="products-price price-sale-value"><?=number_format($product["minn"])?>đ - <?=number_format($product["maxx"])?>đ</h4>
                                 </div>
                                 <div class="products-attribute-hidden">
                                     <div class="products-size">
@@ -77,7 +77,7 @@
                                             foreach ($product_size as $size):
                                         ?>
                                             <div class="products-attribute-item">
-                                                <input class="products-attribute-input attributes-size-input" type="radio" name="size" id="<?=$product["id"]?>_<?=$size['id']?>" value="<?=$size['id']?>">
+                                                <input class="products-attribute-input attributes-size-input radio-box-get-quantity" type="radio" name="size" id="<?=$product["id"]?>_<?=$size['id']?>" value="<?=$size['id']?>">
                                                 <label class="products-attribute-option" for="<?=$product["id"]?>_<?=$size['id']?>"><?=$size['value']?></label>
                                             </div>
                                         <?php endforeach;?>
@@ -88,13 +88,16 @@
                                             foreach ($product_color as $color):
                                         ?>
                                             <div class="products-attribute-item">
-                                                <input class="products-attribute-input attributes-color-input" type="radio" name="color" id="<?=$product['id']?>_<?=$color['id']?>" value="<?=$color['id']?>">
+                                                <input class="products-attribute-input attributes-color-input radio-box-get-quantity" type="radio" name="color" id="<?=$product['id']?>_<?=$color['id']?>" value="<?=$color['id']?>">
                                                 <label class="products-attribute-option color" for="<?=$product['id']?>_<?=$color['id']?>">
                                                     <span style="background-color: <?=$color['value']?>" class="products-attribute-color"></span>
                                                 </label>
                                             </div>
                                         <?php endforeach;?>
                                     </div>
+                                    <span class="product-quantity-detail" style="display: none;">
+                                        <span id="type_quantity" style="display: block;">
+                                    </span> sản phẩm có sẵn</span>
                                     <div class="products-btn">
                                         <button class="btn btn--size-s btn-add-cart">Add to cart</button>
                                     </div>

@@ -166,6 +166,9 @@
                                     </div>
                                 <?php endforeach;?>
                             </div>
+                            <span class="product-quantity-detail" style="display: none;">
+                                    <span id="type_quantity" style="display: block;">
+                            </span> sản phẩm có sẵn</span>
                             <div class="products-btn">
                                 <button class="btn btn--size-s btn-add-cart">Add to cart</button>
                             </div>

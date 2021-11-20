@@ -86,6 +86,7 @@ $(document).ready(function() {
             alert('nếu bạn muốn đặt đơn hàng sll vui lòng ib fanpage đễ được hỗ trợ');
             return;
         }
+        
         // console.log(id_category);
         // return
         var color = parent.find('.attributes-color-input');
