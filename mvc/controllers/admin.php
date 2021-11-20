@@ -215,6 +215,33 @@
             }
         }
 
+        // coupon
+        function coupon() {
+            if (isset($_POST['coupon-name'])) {
+                $name = $_POST['coupon-name'];
+                $type = $_POST['coupon-type'];
+                if ($type == 1) {
+                    $value = $_POST['coupon-value-percent'];
+                } else {
+                    $value = $_POST['coupon-value-money'];
+                }
+                $quantity = $_POST['coupon-quantity'];
+                $note = $_POST['coupon-note'];
+                $date_start = $_POST['coupon-date-start'];
+                $date_end = $_POST['coupon-date-end'];
+                $this->admin->insertCoupon($name, $type, $value, $quantity, $note, $date_start, $date_end);
+                echo '<script>alert("Them tc.");</script>';
+
+                header("Refresh: 0");
+            }
+
+            $this -> view("admin/index", [
+                "page" => "coupon",
+                "getCoupon" => $this->admin->getCoupon(),
+            ]);
+        }
+
+
         // admin login
         function login() {
             // check login

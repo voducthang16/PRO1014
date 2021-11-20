@@ -36,6 +36,12 @@
                     <p>Sản Phẩm</p>
                 </a>
             </li>
+            <li class="nav-item products">
+                <a class="nav-link" href="<?=BASE_URL?>admin/coupon">
+                    <i class="material-icons">local_offer</i>
+                    <p>Coupon</p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link orders" data-toggle="collapse" href="#formsExamples">
                     <i class="material-icons">content_paste</i>
