@@ -89,7 +89,11 @@
                 if ($row > 0) {
                     $result_coupon_order  = $this->checkout->checkCouponInOrder($member_id, $coupon_id);
                     if ($result_coupon_order < 1) {
-                        echo $type_coupon."-".$value_coupon;
+                        $data = array(
+                            'type_coupon' => $type_coupon,
+                            'value_coupon' => $value_coupon
+                        );
+                        echo json_encode($data);
                         return;
                     } else {
                         echo 'coupon not found';

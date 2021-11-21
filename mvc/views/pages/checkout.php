@@ -241,58 +241,51 @@
             // })
         })
 
-        // $(".order-coupon-submit").on('click', function(e) {
-        //     e.preventDefault();
-        //     const couponName = $("#coupon").val();
+        $(".order-coupon-submit").on('click', function(e) {
+            e.preventDefault();
+            const couponName = $("#coupon").val();
             
-        //     let formatNumber = new Intl.NumberFormat('vn-VN', {
-        //         style: 'currency',
-        //         currency: 'VND'
-        //     })
-        //     $.ajax({
-        //         url: "checkout/checkCoupon",
-        //         method: "POST",
-        //         data: {
-        //             couponName: couponName
-        //         },
-        //         success:function(data) {
-        //             if ($("#coupon").hasClass("error-coupon")) {
-        //                 $("#coupon").removeClass('error-coupon');
-        //                 $(".order-coupon-error").removeClass('active');
-        //             }
-        //             if (data == 'coupon not found') {
-        //                 $("#coupon").addClass('error-coupon');
-        //                 $(".order-coupon-error").addClass('active');
-        //             } else {
-        //                 $("#coupon").val(couponName);
-        //                 let result = data.split("-")
-        //                 let type = result[0];
-        //                 let value = result[1];
-        //                 let value_coupon = result[1];
-        //                 if (type == "0") {
-        //                     value = formatNumber.format(value);
-        //                     value = value.substring(1);
-        //                     $("#order-discount").html(`${value}đ`);
-        //                 } else {
-        //                     $("#order-discount").html(`${value}%`);
-        //                 }
-        //                 let total = $("#order-total-money").text();
-        //                 total = total.replace(/[^0-9]+/g, '');
-        //                 $.ajax({
-        //                     url: "checkout/discount",
-        //                     method: "POST",
-        //                     data: {
-        //                         type: type,
-        //                         value: value_coupon,
-        //                         total: total
-        //                     },
-        //                     success: function(data) {
-        //                         $("#order-total-money").html(data);
-        //                     }
-        //                 })
-        //             }
-        //         }
-        //     })
-        // })
+            let formatNumber = new Intl.NumberFormat('vn-VN', {
+                style: 'currency',
+                currency: 'VND'
+            })
+            $.ajax({
+                url: "checkout/checkCoupon",
+                method: "POST",
+                data: {
+                    couponName: couponName
+                },
+                success:function(data) {
+                    if ($("#coupon").hasClass("error-coupon")) {
+                        $("#coupon").removeClass('error-coupon');
+                        $(".order-coupon-error").removeClass('active');
+                    }
+                    if (data == 'coupon not found') {
+                        $("#coupon").addClass('error-coupon');
+                        $(".order-coupon-error").addClass('active');
+                    } else {
+                        const subtotal = $('#checkout-subtotal-money').text().replace('đ','').split(',').join('');
+                        let json = JSON.parse(data);
+                        if(json.type_coupon == 0){
+                            var value = json.value_coupon;
+                            const Discount = formatNumber.format(value);
+                            $('#order-discount').html(Discount);
+                        } else {
+                            var value =(subtotal/100)*json.value_coupon;
+                            const Discount = formatNumber.format(value);
+                            $('#order-discount').html(Discount);
+                        }
+                        let ship = $('#order-ship').text();
+                        if (ship === '-') {
+                            ship = 0;
+                        } else {
+                            ship = ship.replace('đ','').split(',').join('');
+                        }
+                        const total = formatNumber.format(subtotal - value + Number(ship));
+                        $('#order-total-money').html(total);
+                    }
+                }
+            })
+        })
     })
 </script>

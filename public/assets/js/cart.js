@@ -81,11 +81,6 @@ $(document).ready(function() {
             alert('vui lòng nhập số lượng');
             return;
         }
-
-        if(Number(quantity) > Number(maxQtt)){
-            alert('nếu bạn muốn đặt đơn hàng sll vui lòng ib fanpage đễ được hỗ trợ');
-            return;
-        }
         
         // console.log(id_category);
         // return
@@ -119,6 +114,11 @@ $(document).ready(function() {
 
         if (attributes_size == null) {
             attributes_size = 0;
+        }
+
+        if(Number(quantity) > Number(maxQtt)){
+            alert('nếu bạn muốn đặt đơn hàng sll vui lòng ib fanpage đễ được hỗ trợ');
+            return;
         }
 
         // ajax to insertCart
