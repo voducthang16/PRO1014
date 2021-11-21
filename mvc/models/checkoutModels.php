@@ -38,7 +38,7 @@
         }
 
         function checkCoupon($name) {
-            $query = "SELECT * FROM coupon WHERE coupon.name = ?";
+            $query = "SELECT * FROM coupon WHERE coupon.name = ?  and coupon.ended_at > DATE(NOW())";
             $result = $this->connect->prepare($query);
             $result->execute([$name]);
             return $result;
@@ -56,6 +56,20 @@
             $result = $this->connect->prepare($query);
             $result->execute([$id, $name]);
             return $result->rowCount();
+        }
+
+        function insertOrder($member_id, $coupon_id, $order_method_id, $name, $address, $email, $phone, $note) {
+            $query = "INSERT INTO `orders`(`member_id`, `coupon_id`, `order_method_id`, `name`, `address`, `email`, `phone`, `note`) 
+            VALUES('$member_id', '$coupon_id', '$order_method_id', '$name', '$address', '$email', '$phone', '$note')";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function insertOrderWithoutCoupon($member_id, $order_method_id, $name, $address, $email, $phone, $note) {
+            $query = "INSERT INTO `orders`(`member_id`, `order_method_id`, `name`, `address`, `email`, `phone`, `note`) 
+            VALUES('$member_id', '$order_method_id', '$name', '$address', '$email', '$phone', '$note')";
+            $result = $this->connect->prepare($query);
+            $result->execute();
         }
     }
 ?>

@@ -17,6 +17,29 @@
         }
 
         function show() {
+            if (isset($_POST['first_name'])) {
+                $member_id = $this->member_id;
+                $first_name = $_POST['first_name'];
+                $last_name = $_POST['last_name'];
+                $email = $_POST['email'];
+                $phone = $_POST['phone'];
+                $city = $_POST['city_selected'];
+                $district = $_POST['district_selected'];
+                $ward = $_POST['ward_selected'];
+                $street = $_POST['street'];
+                $note = $_POST['note'];
+                $order_method = $_POST['order_method'];
+                $fullName = $first_name." ".$last_name;
+                $address = $street.", ".$ward.", ".$district.", ".$city;
+                if (isset($_POST['coupon_id']) && $_POST['coupon_id']) {
+                    $coupon = $_POST['coupon_id'];
+                    $this->checkout->insertOrder($member_id, $coupon, $order_method, $fullName, $address, $email, $phone, $note);
+                } else {
+                    $this->checkout->insertOrderWithoutCoupon($member_id, $order_method, $fullName, $address, $email, $phone, $note);
+                }
+                header("Refresh: 0");
+            }
+
             $this -> view("index", [
                 "page" => "checkout",
                 "order_method" => $this->checkout->getOrderMethods()
@@ -50,30 +73,17 @@
         }
 
         function totalCheckout() {
+            $ship = 0;
+            if (isset($_POST['ship'])) {
+                $ship = $_POST['ship'];
+            }
             $subtotal = 0;
             $data = $this->checkout->getProductsById($this->member_id);
             foreach ($data as $item) {
                 $subtotal += $item['price_sale'] * $item['quantity'];
             }
-            $total = $subtotal;
+            $total = $subtotal + $ship;
             echo number_format($total)."đ";
-        }
-
-        function discount() {
-            if (isset($_POST['type'])) {
-                $type = $_POST['type'];
-                $value = $_POST['value'];
-                $total = $_POST['total'];
-                // if ($type == '0') {
-                //     $result = $total - $value;
-                //     echo number_format($result)."đ";
-                //     return;
-                // } else {
-                //     $result = $total - ($total * ($value / 100));
-                //     echo number_format($result)."đ";
-                //     return;
-                // }
-            }
         }
 
         function checkCoupon() {
@@ -91,7 +101,8 @@
                     if ($result_coupon_order < 1) {
                         $data = array(
                             'type_coupon' => $type_coupon,
-                            'value_coupon' => $value_coupon
+                            'value_coupon' => $value_coupon,
+                            'id_coupon' => $coupon_id
                         );
                         echo json_encode($data);
                         return;

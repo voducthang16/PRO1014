@@ -33,13 +33,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="city">Tỉnh / Thành phố</label>
-                                <select id="city" class="form-control" name="city">
-                                    
-                                </select>
+                                <select id="city" class="form-control" name="city"></select>
+                                <input type="hidden" id="city_selected" name="city_selected">
                             </div>
                             <div class="form-group">
                                 <label for="ward">Phường</label>
                                 <select id="ward" class="form-control" name="ward"></select>
+                                <input type="hidden" id="ward_selected" name="ward_selected">
                             </div>
                         </div>
                         <div class="col l-6">
@@ -54,6 +54,7 @@
                             <div class="form-group">
                                 <label for="district">Quận / Huyện</label>
                                 <select id="district" class="form-control" name="district"></select>
+                                <input type="hidden" id="district_selected" name="district_selected">
                             </div>
                             <div class="form-group">
                                 <label for="street">Đường</label>
@@ -108,6 +109,7 @@
                         <div class="order-coupon">
                             <!-- add class error-coupon-->
                             <input type="text" class="form-control" id="coupon" name="coupon" placeholder="Promo Code">
+                            <input type="hidden" id="coupon_id" name="coupon_id">
                             <!-- add class active-->
                             <span class="order-coupon-error ">Please provide promo code.</span>
                             <button class="btn order-coupon-submit">Apply promo code</button>
@@ -141,11 +143,6 @@
             document.querySelector('#note').innerHTML = note
         }
 
-        const couponElement = document.querySelector('.order-coupon-submit');
-        couponElement.onclick = function(e) {
-            e.preventDefault();
-        }
-
         const city = $("#city");
         const district = $("#district");
         const ward = $("#ward");
@@ -170,6 +167,7 @@
         })
 
         city.change(function() {
+            $("#city_selected").val(city.find(':selected').text());
             list_district = "<option hidden selected>--- Chọn Quận / Huyện ---</option>";
             list_ward = "";
             $("#order-ship").html("-");
@@ -201,6 +199,7 @@
         })
 
         district.change(function() {
+            $("#district_selected").val(district.find(':selected').text());
             list_ward = "<option hidden selected>--- Chọn Xã / Phường ---</option>";
             $.ajax({
                 url: `https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${$(this).val()}`,
@@ -219,6 +218,7 @@
         })
 
         ward.change(function() {
+            $("#ward_selected").val(ward.find(':selected').text());
             let cityChecked = city.find(':selected').val()
             let ship = $("#order-ship");
             if (cityChecked == 202) {
@@ -228,17 +228,16 @@
                 ship.html("30,000đ")
                 ship = 30000;
             }
-            console.log()
-            // $.ajax({
-            //     url: "checkout/totalCheckout",
-            //     method: "POST",
-            //     data: {
-            //         ship: ship
-            //     },
-            //     success:function(data) {
-            //         $('#order-total-money').html(data)
-            //     }
-            // })
+            $.ajax({
+                url: "checkout/totalCheckout",
+                method: "POST",
+                data: {
+                    ship: ship
+                },
+                success:function(data) {
+                    $('#order-total-money').html(data)
+                }
+            })
         })
 
         $(".order-coupon-submit").on('click', function(e) {
@@ -256,6 +255,7 @@
                     couponName: couponName
                 },
                 success:function(data) {
+                    console.log(data);
                     if ($("#coupon").hasClass("error-coupon")) {
                         $("#coupon").removeClass('error-coupon');
                         $(".order-coupon-error").removeClass('active');
@@ -275,6 +275,7 @@
                             const Discount = formatNumber.format(value);
                             $('#order-discount').html(Discount);
                         }
+                        $("#coupon_id").val(json.id_coupon)
                         let ship = $('#order-ship').text();
                         if (ship === '-') {
                             ship = 0;
