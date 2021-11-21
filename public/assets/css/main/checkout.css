@@ -166,4 +166,5 @@ select.form-control {
     background-repeat: no-repeat;
     background-position: right calc(0.375em + 0.3125rem) center;
     background-size: calc(0.75em + 0.625rem) calc(0.75em + 0.625rem);
+    transition: unset !important;
 }

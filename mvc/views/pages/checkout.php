@@ -100,7 +100,7 @@
                                     Shipping: <span id="order-ship">-</span>
                                 </li>
                                 <li class="order-number-li">
-                                    Discount: <span>-</span>
+                                    Discount: <span id="order-discount">-</span>
                                 </li>
                             </ul>
                         </div>
@@ -228,16 +228,71 @@
                 ship.html("30,000đ")
                 ship = 30000;
             }
-            $.ajax({
-                url: "checkout/totalCheckout",
-                method: "POST",
-                data: {
-                    ship: ship
-                },
-                success:function(data) {
-                    $('#order-total-money').html(data)
-                }
-            })
+            console.log()
+            // $.ajax({
+            //     url: "checkout/totalCheckout",
+            //     method: "POST",
+            //     data: {
+            //         ship: ship
+            //     },
+            //     success:function(data) {
+            //         $('#order-total-money').html(data)
+            //     }
+            // })
         })
+
+        // $(".order-coupon-submit").on('click', function(e) {
+        //     e.preventDefault();
+        //     const couponName = $("#coupon").val();
+            
+        //     let formatNumber = new Intl.NumberFormat('vn-VN', {
+        //         style: 'currency',
+        //         currency: 'VND'
+        //     })
+        //     $.ajax({
+        //         url: "checkout/checkCoupon",
+        //         method: "POST",
+        //         data: {
+        //             couponName: couponName
+        //         },
+        //         success:function(data) {
+        //             if ($("#coupon").hasClass("error-coupon")) {
+        //                 $("#coupon").removeClass('error-coupon');
+        //                 $(".order-coupon-error").removeClass('active');
+        //             }
+        //             if (data == 'coupon not found') {
+        //                 $("#coupon").addClass('error-coupon');
+        //                 $(".order-coupon-error").addClass('active');
+        //             } else {
+        //                 $("#coupon").val(couponName);
+        //                 let result = data.split("-")
+        //                 let type = result[0];
+        //                 let value = result[1];
+        //                 let value_coupon = result[1];
+        //                 if (type == "0") {
+        //                     value = formatNumber.format(value);
+        //                     value = value.substring(1);
+        //                     $("#order-discount").html(`${value}đ`);
+        //                 } else {
+        //                     $("#order-discount").html(`${value}%`);
+        //                 }
+        //                 let total = $("#order-total-money").text();
+        //                 total = total.replace(/[^0-9]+/g, '');
+        //                 $.ajax({
+        //                     url: "checkout/discount",
+        //                     method: "POST",
+        //                     data: {
+        //                         type: type,
+        //                         value: value_coupon,
+        //                         total: total
+        //                     },
+        //                     success: function(data) {
+        //                         $("#order-total-money").html(data);
+        //                     }
+        //                 })
+        //             }
+        //         }
+        //     })
+        // })
     })
 </script>

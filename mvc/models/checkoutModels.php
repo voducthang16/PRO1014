@@ -29,5 +29,33 @@
             $result->execute();
             return $result->fetchAll();
         }
+
+        function getProfile($username) {
+            $qr = "SELECT id FROM members WHERE username = ?";
+            $result = $this->connect->prepare($qr);
+            $result->execute([$username]);
+            return $result->fetch()['id'];
+        }
+
+        function checkCoupon($name) {
+            $query = "SELECT * FROM coupon WHERE coupon.name = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$name]);
+            return $result;
+        }
+
+        function getCouponValue($id) {
+            $query = "SELECT value FROM coupon WHERE coupon.id = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$id]);
+            return $result->fetch()['value'];
+        }
+
+        function checkCouponInOrder($id, $name) {
+            $query = "SELECT * FROM `orders` WHERE orders.member_id = ? AND orders.coupon_id = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$id, $name]);
+            return $result->rowCount();
+        }
     }
 ?>
