@@ -111,7 +111,13 @@
             if(isset($_POST['updateQtt'])){
                 $id_type = $_POST['id_type'];
                 $qtt = $_POST['quantity'];
+                $check_id_type = $this-> cart->check_type_id($this->id_member,$id_type);
                 $valQtTy = $this->product->countProduct($id_type)->fetch()['quantity'];
+
+                if ($qtt == $check_id_type->fetch()['quantity']){
+                    return;
+                }
+
                 if ($qtt > $valQtTy){
                     echo "k update duoc";
                     return;
