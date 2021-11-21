@@ -1,10 +1,12 @@
 <?php
     class cart extends controller {
         public $cart;
+        public $product;
 
         function __construct() {
             // get the data shared by all functions
             $this->cart = $this->model('cartModels');
+            $this->product = $this->model('productModels');
             if(isset($_SESSION["member-username"])){
                 $username = $_SESSION["member-username"];
                 $this->id_member = $this-> cart->getProfile($username);
@@ -70,6 +72,7 @@
                                     <div class="quantity-minus quantity-btn btn-change-quantity-minus"><i class="fal fa-minus"></i></div>
                                     <input type="number" name="product-quantity" id="'.$row['product_type_id'].'" class="product-quantity-value product-quantity-value-val" value="'.$row['quantity'].'" min="1">
                                     <div class="quantity-plus quantity-btn btn-change-quantity-plus"><i class="fal fa-plus"></i></div>
+                                    <div style="display: none;"> '.$this->product->countProduct($row['product_type_id'])->fetch()['quantity'].' </div>
                                 </div>
                                 <p class="order-delete btn-delete-prd-cart"><i style="margin-right: 4px" class="fal fa-trash"></i> Xóa</p>
                             </div>
@@ -108,7 +111,14 @@
             if(isset($_POST['updateQtt'])){
                 $id_type = $_POST['id_type'];
                 $qtt = $_POST['quantity'];
+                $valQtTy = $this->product->countProduct($id_type)->fetch()['quantity'];
+                if ($qtt > $valQtTy){
+                    echo "k update duoc";
+                    return;
+                }
+
                 $updateCart = $this-> cart->updateQtt($qtt,$this->id_member,$id_type);
+
                 if($updateCart==true){
                     echo 'đã cập nhật số lượng';
                 } else {
@@ -121,8 +131,14 @@
                 $id_type = $_POST['id_type'];
                 $action = $_POST['updateQtt'];
                 $check_id_type = $this-> cart->check_type_id($this->id_member,$id_type);
+                $valQtt = $this->product->countProduct($id_type)->fetch()['quantity'];
+
                 if($action == 'plus') {
                     $quantity = $check_id_type->fetch()['quantity'] + 1;
+                    if ($quantity >  $valQtt){
+                        echo "k update duoc";
+                        return;
+                    }
                 } else {
                     if ($this->cart->getQuantity($id_type, $this->id_member) > 1) {
                         $quantity = $check_id_type->fetch()['quantity'] - 1;
