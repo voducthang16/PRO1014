@@ -275,10 +275,21 @@
                 $id_type = $_POST['id_type'];
                 $kq_delete = $this-> cart->deleteCart($this->id_member,$id_type);
                 if ($kq_delete == true){
-                    echo 'Delete Thành Công';
+                    $kqDl = 'Delete Thành Công';
                 } else{
-                    echo 'Delete Thất Bại';
+                    $kqDl = 'Delete Thất Bại';
                 }
+                $check = $this-> cart->getCart($this->id_member);
+                if ($check->rowCount()==0){
+                    $stt = true;
+                } else {
+                    $stt = false;
+                }
+                $data = array(
+                    'ketQua' => $kqDl,
+                    'Load' => $stt
+                );
+                echo json_encode($data);
             }
         }
     }

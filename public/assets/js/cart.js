@@ -210,7 +210,12 @@ $(document).ready(function() {
                     id_type: id_type
                 },
                 success:function(data){
-                    alert (data);
+                    let json = JSON.parse(data);
+                    if(json.Load == false){
+                        alert (json.ketQua);
+                    }else{
+                        window.location='home';
+                    }
                     get_data();
                 }
         })
