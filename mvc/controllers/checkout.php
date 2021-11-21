@@ -89,23 +89,30 @@
         function checkCoupon() {
             if (isset($_POST['couponName'])) {
                 $coupon = $_POST['couponName'];
+                $total = $_POST['total'];
                 $result = $this->checkout->checkCoupon($coupon);
                 $row = $result->rowCount();
                 $result = $result->fetch();
                 $coupon_id = $result['id'];
                 $type_coupon = $result['type'];
                 $value_coupon = $result['value'];
+                $min_order = $result['min_order'];
                 $member_id = $this->checkout->getProfile($_SESSION["member-username"]);
                 if ($row > 0) {
                     $result_coupon_order  = $this->checkout->checkCouponInOrder($member_id, $coupon_id);
                     if ($result_coupon_order < 1) {
-                        $data = array(
-                            'type_coupon' => $type_coupon,
-                            'value_coupon' => $value_coupon,
-                            'id_coupon' => $coupon_id
-                        );
-                        echo json_encode($data);
-                        return;
+                        if ($total < $min_order) {
+                            echo 'coupon not found';
+                            return;
+                        } else {
+                            $data = array(
+                                'type_coupon' => $type_coupon,
+                                'value_coupon' => $value_coupon,
+                                'id_coupon' => $coupon_id,
+                            );
+                            echo json_encode($data);
+                            return;
+                        }
                     } else {
                         echo 'coupon not found';
                         return;

@@ -243,6 +243,7 @@
         $(".order-coupon-submit").on('click', function(e) {
             e.preventDefault();
             const couponName = $("#coupon").val();
+            const total = $('#checkout-subtotal-money').text().replace('đ','').split(',').join('');
             
             let formatNumber = new Intl.NumberFormat('vn-VN', {
                 style: 'currency',
@@ -252,7 +253,8 @@
                 url: "checkout/checkCoupon",
                 method: "POST",
                 data: {
-                    couponName: couponName
+                    couponName: couponName,
+                    total : total
                 },
                 success:function(data) {
                     console.log(data);
