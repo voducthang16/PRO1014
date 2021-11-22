@@ -7,38 +7,12 @@
         }
 
         function show() {
-            if (isset($_POST["su-username"])) {
-                $username = $_POST["su-username"];
-                $checkUserName = $this ->sign-> checkExistAttribute('username', $username);
-                if ($checkUserName != 0) {
-                    echo '<script>alert("UserName đã tồn tại.");</script>';
-                    return;
-                }
-                $email = $_POST["su-email"];
-                $checkEmail = $this ->sign-> checkExistAttribute('email', $email);
-                if ($checkEmail != 0) {
-                    echo '<script>alert("Email đã tồn tại.");</script>';
-                    return;
-                }
-                $name = $_POST["su-name"];
-                $password = $_POST["su-password"];
-                $rePassword = $_POST['su-re-password'];
-                if ($password != $rePassword) {
-                    echo '<script>alert("Mật khẩu không trùng nhau.");</script>';
-                    return;
-                }
-                
-                $this->sign->createAccount($username, $email, $name, $password);
-                echo '<script>alert("Tao tk thanh cong.");</script>';
-                header("Refresh: 0");
-            }
-
             if (isset($_POST["si-username"])) {
                 $username = $_POST["si-username"];
                 $password = $_POST["si-password"];
                 $check = $this->sign->checkLogin($username, $password);
                 if ($check == 0) {
-                    echo '<script>alert("TK KHONG CHINH XAC.");</script>';
+                    echo '<script>alert("TK KHONG CHINH XAC.");</>';
                 } else {
                     $_SESSION["member-login"] = "true";
                     $_SESSION["member-username"] = $username;
@@ -51,6 +25,19 @@
             $this -> view("index", [
                 "page" => "sign",
             ]);
+        }
+        function signUp(){
+            if (isset($_POST["username"])) {
+                $username = $_POST["username"];
+                $email = $_POST["email"];
+                $name = $_POST["name"];
+                $password = $_POST["password"];
+
+                $this->sign->createAccount($username, $email, $name, $password);
+                $_SESSION["member-login"] = "true";
+                $_SESSION["member-username"] = $username;
+                echo 'Tao tk thanh cong';
+            }
         }
 
         function checkExistAttribute() {
