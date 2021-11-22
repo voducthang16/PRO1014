@@ -119,6 +119,7 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
                 } else {
                     $("#su-email").css('border-color', 'var(--danger-color)');
                     $(".su-email-notification").html('<i class="fal fa-times-circle"></i>');
+                    return;
                 }
 
             if (email.length > 0) {
