@@ -79,7 +79,7 @@
                     <div class="form-check" style="padding-bottom: 8px;">
                         <label>Loại giảm giá</label> <br>
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="coupon-type" value="1" > Phần trăm
+                            <input class="form-check-input" type="radio" name="coupon-type" value="1" min=1 max="100"> Phần trăm
                             <span class="circle"><span class="check"></span></span>
                         </label>
                         <label class="form-check-label">
@@ -87,6 +87,7 @@
                             <span class="circle"><span class="check"></span></span>
                         </label>
                     </div>
+
                     <div class="form-group percent d-none">
                         <label for="coupon-value-percent">Phần trăm giảm giá</label>
                         <input type="number" class="form-control" id="coupon-value-percent" name="coupon-value-percent" placeholder="Nhập % mã giảm giá" min="0" max="100" >
@@ -94,6 +95,10 @@
                     <div class="form-group money d-none">
                         <label for="coupon-value-money">So tien giảm giá</label>
                         <input type="number" class="form-control" id="coupon-value-money" name="coupon-value-money" placeholder="Nhập so tien mã giảm giá" min="0" >
+                    </div>
+                    <div class="form-group min-order d-none">
+                        <label for="coupon-value-min-order">Don hang toi thieu</label>
+                        <input type="number" class="form-control" id="coupon-value-min-order" name="coupon-value-min-order" placeholder="Nhập Don hang toi thieu" min="1000"  >
                     </div>
                     <div class="form-group quantity d-none">
                         <label for="coupon-quantity">So lan giảm giá</label>
@@ -127,10 +132,12 @@
         $(document).on('click', '.form-check-input', function(event) {
             if (event.target.value == 1) {
                 $(".form-group.money").addClass("d-none");
+                $(".form-group.min-order").addClass("d-none");
                 $(".form-group.percent").removeClass("d-none");
                 $(".form-group.quantity").removeClass("d-none");
             } else {
                 $(".form-group.percent").addClass("d-none");
+                $(".form-group.min-order").removeClass("d-none");
                 $(".form-group.money").removeClass("d-none");
                 $(".form-group.quantity").removeClass("d-none");
             }

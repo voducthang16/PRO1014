@@ -127,9 +127,38 @@
             return $result->fetchAll();
         }
 
-        function insertCoupon($name, $type, $value, $quantity, $note, $date_start, $date_end) {
-            $query = "INSERT INTO coupon(name, type, coupon.value, quantity, note, created_at, ended_at) 
-            VALUES('$name', '$type', '$value', '$quantity', '$note', '$date_start', '$date_end')";
+        function insertCoupon($name, $type, $value, $min_order, $quantity, $note, $date_start, $date_end) {
+            $query = "INSERT INTO coupon(name, type, coupon.value, min_order, quantity, note, created_at, ended_at) 
+            VALUES('$name', '$type', '$value', '$min_order','$quantity', '$note', '$date_start', '$date_end')";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function getProductTypeIdById($product_id) {
+            $query = "SELECT orders_details.product_type_id FROM orders_details 
+            INNER JOIN products_type ON products_type.id = orders_details.product_type_id 
+            INNER JOIN products ON products.id = products_type.product_id WHERE products.id = ? GROUP BY orders_details.product_type_id";
+            $result = $this->connect->prepare($query);
+            $result->execute([$product_id]);
+            return $result->fetchAll();
+        }
+
+        function getProductImages($id) {
+            $query = "SELECT * FROM `products_images` WHERE product_id = '$id'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function getProductImagesById($id) {
+            $query = "SELECT * FROM `products_images` WHERE id = '$id'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch();
+        }
+
+        function deleteImage($id) {
+            $query = "DELETE FROM products_images WHERE id = '$id'";
             $result = $this->connect->prepare($query);
             $result->execute();
         }

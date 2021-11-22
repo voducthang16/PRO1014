@@ -9,6 +9,15 @@
             $result->execute();
             return $result->fetch()['value'];
         }
+
+        function getAttributes($product_type_id, $attribute) {
+            $query = "SELECT products_attributes.value FROM products_attributes 
+            INNER JOIN products_type_attributes ON products_type_attributes.attributes_id = products_attributes.id 
+            WHERE products_type_attributes.product_type_id = $product_type_id AND products_attributes.name LIKE '%$attribute%'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
     }
 
     $product_update = new product_update();
@@ -111,6 +120,16 @@
         right: 37%;
         transform: translateY(-15%);
     }
+
+    .upload-multi {
+        opacity: 1 !important;
+        position: unset !important;
+        width: unset !important;
+    }
+
+    .box-shadow-img {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    }
 </style>
 <div class="row">
     <div class="col-md-12">
@@ -120,6 +139,14 @@
                     <i class="material-icons">assignment</i>
                 </div>
                 <h4 class="card-title">Cập nhật sản phẩm có id là <?=$data['product']['id']?></h4>
+                <?php foreach ($data['getProductTypeIdById'] as $type): ?>
+                    <?php foreach ($product_update->getAttributes($type['product_type_id'], 'size') as $attr): ?>
+                        <span class="size-order d-none"><?=$attr['value']?></span>
+                    <?php endforeach;?>
+                    <?php foreach ($product_update->getAttributes($type['product_type_id'], 'color') as $attr): ?>
+                        <span class="color-order d-none"><?=$attr['value']?></span>
+                    <?php endforeach;?>
+                <?php endforeach;?>
             </div>
             <div class="card-body">
                 <form method="POST" action="" enctype="multipart/form-data">
@@ -205,10 +232,46 @@
                             </tbody>
                         </table>
                     </div>
-
-
-
-
+                    <div class="form-group">
+                        <h6><label style="text-transform: none;">Ảnh bìa sản phẩm</label></h6>
+                        <div class="fileinput fileinput-new text-center load-thumbnail-product" style="width: 100%" data-provides="fileinput">
+                            <!-- <div class="fileinput-new thumbnail">
+                                <img src="<?=BASE_URL?>public/upload/<?=$data['product']['id']?>/<?=$data['product']['thumbnail']?>" alt="Product Image">
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                            <div>
+                            <span class="btn btn-rose btn-round btn-file">
+                                <span class="fileinput-new">Chọn ảnh bìa</span>
+                                <span class="fileinput-exists">Thay đổi</span>
+                                <input style="z-index: 2 !important;" type="file" name="product-thumbnail" accept="image/*" />
+                            </span>
+                            <a href="#delImg" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Xóa</a>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: block;">Ảnh sản phẩm</label>
+                        <div id="list-images"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description">Miêu tả sản phẩm</label>
+                        <textarea class="form-control" name="product-description" rows="3" placeholder="Nhập miêu tả sản phẩm"><?=$data['product']['description']?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description">Thông sản phẩm</label>
+                        <textarea class="form-control" name="product-parameters" rows="3" placeholder="Nhập thông số sản phẩm"><?=$data['product']['parameters']?></textarea>
+                    </div>
+                    <div class="form-check">
+                        <label>Trạng thái sản phẩm</label> <br>
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="product-status" value="1" <?=$data['product']['status'] == 1 ? 'checked' : ''?>> Active
+                            <span class="circle"><span class="check"></span></span>
+                        </label>
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="product-status" value="0" <?=$data['product']['status'] == 0 ? 'checked' : ''?>> Inactive
+                            <span class="circle"><span class="check"></span></span>
+                        </label>
+                    </div>
                     <div class="form-group">
                         <button id="btn-submit" type="submit" class="btn btn-primary">Lưu thay đổi</button>
                     </div>
@@ -219,6 +282,7 @@
 </div>
 <base href="<?=BASE_URL?>">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="<?=BASE_URL?>public/assets/js/plugins/jasny-bootstrap.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -226,22 +290,114 @@
             let productId = $("#u-product-id").val();
             let productName = $(this).val();
             $.ajax({
-                    url: 'admin/checkExistName',
-                    type: 'POST',
-                    data: {
-                        productName: productName,
-                        productId: productId
-                    },
-                    success: function(data) {
-                        if (data != '') {
-                            alert(data);
-                        }
+                url: 'admin/checkExistName',
+                type: 'POST',
+                data: {
+                    productName: productName,
+                    productId: productId
+                },
+                success: function(data) {
+                    if (data != '') {
+                        alert(data);
                     }
-                })
+                }
+            })
         })
+        
+        function loadImages() {
+            $.ajax({
+                url: 'admin/getProductThumbnail',
+                type: 'POST',
+                data: {
+                    productId: $("#u-product-id").val(),
+                },
+                success: function(data) {
+                    $(".load-thumbnail-product").html(data);
+                }
+            })
+            $.ajax({
+                url: 'admin/getProductImages',
+                type: 'POST',
+                data: {
+                    productId: $("#u-product-id").val(),
+                },
+                success: function(data) {
+                    $("#list-images").html(data);
+                }
+            })
+        }
+
+        loadImages();
+
+        $(document).on('click', '.upload-multi', function(event) {
+            $(this).change(function() {
+                let preview = $(this).prev();
+                let file = $(this).prop('files')[0]
+                let reader = new FileReader();
+                reader.onloadend = function () {
+                    preview.attr('src', reader.result);
+                }
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.attr('src', 'http://localhost/PRO1014/public/assets/img/image_placeholder.jpg')
+                }
+            })
+        })
+
+        $(document).on('click', '.del-img', function(e) {
+            let id = $(this).attr('id');
+            $.ajax({
+                url: 'admin/deleteImage',
+                type: 'POST',
+                data: {
+                    id: id,
+                    productId : $("#u-product-id").val(),
+                },
+                success: function(data) {
+                    alert(data);
+                    loadImages();
+                }
+            })
+        })
+
+        // Code here
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // =============================================
         let letterSizesArray = [];
         let numberSizesArray = [];
         let colorArray = [];
+        let sizeFromOrder = [];
+        let colorFromOrder = [];
+
+        let sizeOrder = document.querySelectorAll(".size-order");
+        sizeOrder.forEach(e => {
+            if (!sizeFromOrder.includes(e.textContent)) {
+                sizeFromOrder.push(e.textContent);
+            }
+        })
+
+        let colorOrder = document.querySelectorAll(".color-order");
+        colorOrder.forEach(e => {
+            if (!colorFromOrder.includes(e.textContent)) {
+                colorFromOrder.push(e.textContent);
+            }
+        })
+
+        // console.log(sizeFromOrder);
+        // console.log(colorFromOrder);
 
         let numberSizesArray2 = document.querySelectorAll(".products-attribute-input.number");
         numberSizesArray2.forEach(e => {
@@ -279,7 +435,14 @@
                             letterSizesArray.splice(letterSizesArray.indexOf(e.id), 1);
                         }
                     }
-                    console.log(letterSizesArray)
+                    let difference = sizeFromOrder.filter(x => !letterSizesArray.includes(x));
+                    if (difference.length > 0) {
+                        e.checked = true
+                        alert('khong duoc bo chon: ' + difference[0])
+                        letterSizesArray.push(difference[0])
+                        difference = [];
+                        letterSizesArray.sort();
+                    }
                 }
             })
         }
@@ -297,7 +460,14 @@
                             numberSizesArray.splice(numberSizesArray.indexOf(e.id), 1);
                         }
                     }
-                    console.log(numberSizesArray)
+                    let difference = sizeFromOrder.filter(x => !numberSizesArray.includes(x));
+                    if (difference.length > 0) {
+                        e.checked = true
+                        alert('khong duoc bo chon: ' + difference[0])
+                        numberSizesArray.push(difference[0])
+                        difference = [];
+                        numberSizesArray.sort();
+                    }
                 }
             })
         }
@@ -313,6 +483,14 @@
                     if (colorArray.includes(e.id)) {
                         colorArray.splice(colorArray.indexOf(e.id), 1);
                     }
+                }
+                let difference = colorFromOrder.filter(x => !colorArray.includes(x));
+                if (difference.length > 0) {
+                    e.checked = true
+                    alert('khong duoc bo chon: ' + difference[0])
+                    colorArray.push(difference[0])
+                    difference = [];
+                    colorArray.sort();
                 }
             }
         })
@@ -389,6 +567,7 @@
                 tableBody.innerHTML = "";
                 let size = "";
                 if (e == 1 || e == 2 || e == 3) {
+                    console.log(letterSizesArray)
                     for (let i = 0; i < letterSizesArray.length; i++) {
                         size += `<tr class='text-center'>
                                     <td>${letterSizesArray[i]}</td>

@@ -184,11 +184,72 @@
 
         function product_update() {
             if (empty($_POST['update-product-by-id'])) {
-                header("Location:".BASE_URL."admin/product");
+                // header("Location:".BASE_URL."admin/product");
             }
 
             if (isset($_POST['u-product-id'])) {
-                $this->admin->updateNameProduct($_POST['u-product-name'], $_POST['u-product-id']);
+                $product_size = [];
+                $product_color = [];
+
+                if (isset($_POST["product_size"])) {
+                    $product_size = $_POST["product_size"];
+                }
+
+                if (isset($_POST["product-color"])) {
+                    $product_color = $_POST["product-color"];
+                }
+                $product_name = $_POST['u-product-name'];
+                $product_slug = to_slug($product_name);
+                $product_category = $_POST['product-category'];
+                
+                $product_description = $_POST["product-description"];
+                $product_parameters = $_POST["product-parameters"];
+                $product_status = $_POST["product-status"];
+
+                $product_price_origin = $_POST["product-price-origin"];
+                $product_price_sale = $_POST["product-price-sale"];
+                $product_quantity = $_POST["product-quantity"];
+
+                $product_thumbnail_origin = $this->admin->getProductById($_POST['u-product-id'])['thumbnail'];
+
+                $product_thumbnail = $_FILES["product-thumbnail"]['name'];
+                $product_thumbnail_tmp = $_FILES["product-thumbnail"]['tmp_name'];
+
+                $exp3 = substr($product_thumbnail, strlen($product_thumbnail) - 3);
+                $exp4 = substr($product_thumbnail, strlen($product_thumbnail) - 4);
+
+                $format = array("JPG", "JPEG", "PNG", "GIF", "BMP", "jpg", "jpeg", "png", "gif", "bmp");
+                $storage = 'public/upload/'.$_POST['u-product-id'].'/';
+
+                if (strlen($product_thumbnail) > 0) {
+                    if (in_array($exp3, $format) || in_array($exp4, $format)) {
+                        $product_thumbnail = time()."_".$product_thumbnail;
+                        move_uploaded_file($product_thumbnail_tmp, $storage . $product_thumbnail);
+                        unlink($storage.$product_thumbnail_origin);
+                    } else {
+                        echo '<script>alert("File khong dung dinh dang.");</script>';
+                    }
+                }
+
+                if (strlen($product_thumbnail) == 0) {
+                    $product_thumbnail = $product_thumbnail_origin;
+                }
+                
+                var_dump($product_thumbnail); echo "<br>";
+                var_dump($product_size); echo "<br>";
+                var_dump($product_color); echo "<br>";
+                var_dump($product_price_origin); echo "<br>";
+                var_dump($product_price_sale); echo "<br>";
+                var_dump($product_quantity); echo "<br>";
+                var_dump($storage); echo "<br>";
+                var_dump($product_quantity); echo "<br>";
+                var_dump($product_name); echo "<br>";
+                var_dump($product_slug); echo "<br>";
+                var_dump($product_category); echo "<br>";
+                var_dump($product_description); echo "<br>";
+                var_dump($product_parameters); echo "<br>";
+                var_dump($product_status); echo "<br>";
+                // $this->admin->updateNameProduct($_POST['u-product-name'], $_POST['u-product-id']);
             }
 
             $this-> view("admin/index", [
@@ -198,6 +259,7 @@
                 "getLetterSizes" => $this->admin->getAttributes("letter_size"),
                 "getNumberSizes" => $this->admin->getAttributes("number_size"),
                 "getColors" => $this->admin->getAttributes("color"),
+                "getProductTypeIdById" => $this->admin->getProductTypeIdById($_POST['update-product-by-id']),
             ]);
         }
 
@@ -215,6 +277,65 @@
             }
         }
 
+        function getProductImages() {
+            if (isset($_POST['productId'])) {
+                $product_id = $_POST['productId'];
+                $result = $this->admin->getProductImages($product_id);
+                $output = "";
+                foreach ($result as $row) {
+                    $output .= '<div class="text-center">
+                        <span id="'.$row['id'].'" style="position: relative; top: -41px; right: -104px;" class="material-icons del-img">close</span>
+                        <img class="box-shadow-img" style="width: 10%; display: inline-block; margin-right: 20px; margin-bottom: 20px" 
+                        src="'.BASE_URL.'public/upload/'.$product_id.'/'.$row['image'].'" alt="Product Image">
+                        <input type="file" class="upload-multi" accept="image/*" name="product-list-images[]" multiple="">
+                    </div>';
+                };
+                $output .= '<div class="text-center">
+                    <label>Them anh sản phẩm: </label>
+                    <input type="file" class="upload-multi" accept="image/*" name="product-list-images[]" multiple="">
+                </div>';
+            }
+            echo $output;
+        }
+
+        function getProductThumbnail() {
+            if (isset($_POST['productId'])) {
+                $product_id = $_POST['productId'];
+                $result = $this->admin->getProductById($product_id)['thumbnail'];
+                $output = "";
+                $output .= '
+                    <div class="fileinput-new thumbnail">
+                        <img src="'.BASE_URL.'public/upload/'.$product_id.'/'.$result.'" alt="Product Image">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                    <div>
+                    <span class="btn btn-rose btn-round btn-file">
+                        <span class="fileinput-new">Chọn ảnh bìa</span>
+                        <span class="fileinput-exists">Thay đổi</span>
+                        <input style="z-index: 2 !important;" type="file" name="product-thumbnail" accept="image/*" />
+                    </span>
+                    <a href="#delImg" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Xóa</a>
+                    </div>
+                ';
+                echo $output;
+            }
+        }
+
+        function deleteImage() {
+            if (isset($_POST['id'])) {
+                $id = $_POST['id'];
+                $product_id = $_POST['productId'];
+
+                $name = $this->admin->getProductImagesById($id)['image'];
+
+                $storage = 'public/upload/'.$product_id.'/';
+                unlink($storage.$name);
+
+                $this->admin->deleteImage($id);
+                echo "Image deleted successfully";
+            }
+        }
+
         // coupon
         function coupon() {
             if (isset($_POST['coupon-name'])) {
@@ -229,7 +350,11 @@
                 $note = $_POST['coupon-note'];
                 $date_start = $_POST['coupon-date-start'];
                 $date_end = $_POST['coupon-date-end'];
-                $this->admin->insertCoupon($name, $type, $value, $quantity, $note, $date_start, $date_end);
+                $min_order = 0;
+                if (isset($_POST['coupon-value-min-order'])) {
+                    $min_order = $_POST['coupon-value-min-order'];
+                }
+                $this->admin->insertCoupon($name, $type, $value, $min_order, $quantity, $note, $date_start, $date_end);
                 echo '<script>alert("Them tc.");</script>';
 
                 header("Refresh: 0");

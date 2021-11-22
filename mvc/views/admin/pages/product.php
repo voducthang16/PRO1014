@@ -88,6 +88,7 @@
         position: unset !important;
         width: 100% !important;
     }
+
     .modal .modal-dialog {
         margin-top: 20px !important;
     }

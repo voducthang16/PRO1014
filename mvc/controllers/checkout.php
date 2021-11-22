@@ -23,6 +23,7 @@
                 $last_name = $_POST['last_name'];
                 $email = $_POST['email'];
                 $phone = $_POST['phone'];
+                $city_code = $_POST['city'];
                 $city = $_POST['city_selected'];
                 $district = $_POST['district_selected'];
                 $ward = $_POST['ward_selected'];
@@ -31,13 +32,40 @@
                 $order_method = $_POST['order_method'];
                 $fullName = $first_name." ".$last_name;
                 $address = $street.", ".$ward.", ".$district.", ".$city;
+                $coupon_value = 0;
                 if (isset($_POST['coupon_id']) && $_POST['coupon_id']) {
+                    $coupon_name = $_POST['coupon'];
+                    $coupon_value = $this->checkout->checkCoupon($coupon_name)->fetch()['value'];
                     $coupon = $_POST['coupon_id'];
                     $this->checkout->insertOrder($member_id, $coupon, $order_method, $fullName, $address, $email, $phone, $note);
+                    $this->checkout->updateCouponQuantity($coupon);
                 } else {
                     $this->checkout->insertOrderWithoutCoupon($member_id, $order_method, $fullName, $address, $email, $phone, $note);
                 }
-                header("Refresh: 0");
+
+                $ship = 0;
+                if ($city_code == 202) {
+                    $ship = 20000;
+                } else {
+                    $ship = 30000;
+                }
+
+                $products = $this->checkout->getProductsById($member_id);
+                $order_id = $this->checkout->getOrderId();
+
+                foreach ($products as $product) {
+                    $this-> checkout->insertOrderDetails($order_id, $product['product_type_id'], $product['quantity'], $product['price_sale']);
+                    $total += $product['price_sale'] * $product['quantity'];
+                    $this-> checkout->deleteProductFromCartTemp($member_id, $product['product_type_id']);
+                }
+
+                if ($coupon_value < 100) {
+                    $total = $total - ($total * ($coupon_value / 100)) + $ship;
+                } else {
+                    $total = $total - $coupon_value + $ship;
+                }
+                $this->checkout->updateTotalMoney($total, $order_id);
+                header("Location:".BASE_URL);
             }
 
             $this -> view("index", [

@@ -17,7 +17,7 @@
         function getProductsById($id) {
             $query = "SELECT cart_temporary.member_id, cart_temporary.product_type_id, cart_temporary.quantity, products_type.product_id, products_type.price_sale, products.name, products.slug, products.thumbnail 
             FROM `cart_temporary` INNER JOIN products_type ON cart_temporary.product_type_id = products_type.id 
-            INNER JOIN products ON products.id = products_type.product_id WHERE member_id = 1 ORDER BY cart_temporary.id DESC";
+            INNER JOIN products ON products.id = products_type.product_id WHERE member_id = ? ORDER BY cart_temporary.id DESC";
             $result = $this->connect->prepare($query);
             $result->execute([$id]);
             return $result->fetchAll();
@@ -28,6 +28,13 @@
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
+        }
+
+        function getOrderId() {
+            $query = "SELECT id FROM orders ORDER BY id DESC LIMIT 1";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch()['id'];
         }
 
         function getProfile($username) {
@@ -70,6 +77,31 @@
             VALUES('$member_id', '$order_method_id', '$name', '$address', '$email', '$phone', '$note')";
             $result = $this->connect->prepare($query);
             $result->execute();
+        }
+
+        function insertOrderDetails($order, $product_type, $quantity, $price_sale) {
+            $query = "INSERT INTO `orders_details` (`order_id`, `product_type_id`, `quantity`, `price_sale`) 
+            VALUES ('$order', '$product_type', '$quantity', '$price_sale')";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function updateCouponQuantity($id) {
+            $query = "UPDATE coupon SET quantity = quantity - 1, used = used + 1 WHERE id = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$id]);
+        }
+
+        function deleteProductFromCartTemp($member_id, $product_type_id) {
+            $query = "DELETE FROM cart_temporary WHERE member_id = ? AND product_type_id = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$member_id, $product_type_id]);
+        }
+
+        function updateTotalMoney($total, $id) {
+            $query = "UPDATE `orders` SET `total` = ? WHERE `orders`.`id` = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$total, $id]);
         }
     }
 ?>
