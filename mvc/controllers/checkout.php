@@ -52,6 +52,7 @@
 
                 $products = $this->checkout->getProductsById($member_id);
                 $order_id = $this->checkout->getOrderId();
+                $total = 0;
 
                 foreach ($products as $product) {
                     $this-> checkout->insertOrderDetails($order_id, $product['product_type_id'], $product['quantity'], $product['price_sale']);

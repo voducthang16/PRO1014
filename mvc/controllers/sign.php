@@ -9,9 +9,24 @@
         function show() {
             if (isset($_POST["su-username"])) {
                 $username = $_POST["su-username"];
+                $checkUserName = $this ->sign-> checkExistAttribute('username', $username);
+                if ($checkUserName != 0) {
+                    echo '<script>alert("UserName đã tồn tại.");</script>';
+                    return;
+                }
                 $email = $_POST["su-email"];
+                $checkEmail = $this ->sign-> checkExistAttribute('email', $email);
+                if ($checkEmail != 0) {
+                    echo '<script>alert("Email đã tồn tại.");</script>';
+                    return;
+                }
                 $name = $_POST["su-name"];
                 $password = $_POST["su-password"];
+                $rePassword = $_POST['su-re-password'];
+                if ($password != $rePassword) {
+                    echo '<script>alert("Mật khẩu không trùng nhau.");</script>';
+                    return;
+                }
                 
                 $this->sign->createAccount($username, $email, $name, $password);
                 echo '<script>alert("Tao tk thanh cong.");</script>';
@@ -41,8 +56,8 @@
         function checkExistAttribute() {
             $attribute = $_POST['attribute'];
             $column = $_POST['column'];
-            $result = $this -> sign -> checkExistAttribute($column, $attribute);
-            echo $result;
+            $check = $this ->sign-> checkExistAttribute($column, $attribute);
+            echo $check;
         }
     }
 ?>

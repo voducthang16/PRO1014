@@ -1,9 +1,9 @@
 <?php
     class signModels extends database {
-        function checkExistAttribute($column, $username) {
-            $sql = "SELECT * FROM users WHERE $column = ?";
+        function checkExistAttribute($column, $attribute) {
+            $sql = "SELECT * FROM `members` WHERE members.$column = '$attribute'";
             $result = $this->connect->prepare($sql);
-            $result->execute([$username]);
+            $result->execute();
             return $result->rowCount();
         }
 

@@ -1,7 +1,7 @@
 <?php
-    if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
-        header("Location:".BASE_URL);
-    }
+if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
+    header("Location:" . BASE_URL);
+}
 ?>
 
 <div class="sign">
@@ -30,23 +30,23 @@
                     <h2 class="sign-title">Đăng ký</h2>
                     <form action="" class="sign-up-form" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="su-username" name="su-username" placeholder="Username">
+                            <input type="text" class="form-control" id="su-username" name="su-username" placeholder="Username" required>
                             <span class="form-icon su-username-notification"></span>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="su-email" name="su-email" placeholder="Email">
+                            <input type="email" class="form-control" id="su-email" name="su-email" placeholder="Email" required>
                             <span class="form-icon su-email-notification"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="su-name" name="su-name" placeholder="Full name">
+                            <input type="text" class="form-control" id="su-name" name="su-name" placeholder="Full name" required>
                             <span class="form-icon su-name-notification"></span>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="su-password" name="su-password" placeholder="Mật khẩu">
+                            <input type="password" class="form-control" id="su-password" name="su-password" placeholder="Mật khẩu" required>
                             <span class="form-icon su-password-notification"></span>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="su-re-password" name="su-re-password" placeholder="NL Mật khẩu">
+                            <input type="password" class="form-control" id="su-re-password" name="su-re-password" placeholder="NL Mật khẩu" required>
                             <span class="form-icon su-re-password-notification"></span>
                         </div>
                         <div style="text-align: right" class="form-group">
@@ -63,24 +63,24 @@
 
 <script>
     $(document).ready(function() {
-        $("#su-username").change(function() {
+        $("#su-username").keyup(function() {
             let username = $(this).val();
-            username = username.replace(/ /g,'');
+            username = username.replace(/ /g, '');
             if (username.length > 0) {
                 $.ajax({
                     url: 'sign/checkExistAttribute',
                     type: 'POST',
                     data: {
-                        column: "username",
-                        attribute: username
+                        'column': 'username',
+                        'attribute': username
                     },
                     success: function(data) {
-                        if (data == '1') {
-                            $("#su-username").css('border-color', 'var(--danger-color)');
-                            $(".su-username-notification").html('<i class="fal fa-times-circle"></i>');
-                        } else {
+                        if (data == 0) {
                             $("#su-username").css('border-color', 'var(--success-color)');
                             $(".su-username-notification").html('<i class="fal fa-check-circle"></i>');
+                        } else {
+                            $("#su-username").css('border-color', 'var(--danger-color)');
+                            $(".su-username-notification").html('<i class="fal fa-times-circle"></i>');
                         }
                     }
                 });
@@ -90,24 +90,52 @@
             }
         });
 
-        $("#su-email").change(function() {
-            let email = $(this).val();
-            email = email.replace(/ /g,'');
+        $('#su-re-password').keyup(function() {
+            let password = $('#su-password').val();
+            let rePassword = $(this).val();
+            if (rePassword.length >0) {
+                if (password != rePassword){
+                    $("#su-re-password").css('border-color', 'var(--danger-color)');
+                    $(".su-re-password-notification").html('<i class="fal fa-times-circle"></i>');
+                } else {
+                    $("#su-re-password").css('border-color', 'var(--success-color)');
+                    $(".su-re-password-notification").html('<i class="fal fa-check-circle"></i>');
+                }
+            } else {
+                $("#su-re-password").css('border-color', '#dae1e7');
+                $(".su-re-password-notification").html('');
+            }
+           
+        });
+
+        $("#su-email").keyup(function() {
+                let email = $(this).val();
+                email = email.replace(/ /g, '');
+                
+                var mailFormat = /^\w+([\.-]?\w+)*@gmail.com/;
+                // \w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                if (email.match(mailFormat)) {
+                    email = email;
+                } else {
+                    $("#su-email").css('border-color', 'var(--danger-color)');
+                    $(".su-email-notification").html('<i class="fal fa-times-circle"></i>');
+                }
+
             if (email.length > 0) {
                 $.ajax({
                     url: 'sign/checkExistAttribute',
                     type: 'POST',
                     data: {
-                        column: "email",
-                        attribute: email
+                        'column': 'email',
+                        'attribute': email
                     },
                     success: function(data) {
-                        if (data == '1') {
-                            $("#su-email").css('border-color', 'var(--danger-color)');
-                            $(".su-email-notification").html('<i class="fal fa-times-circle"></i>');
-                        } else {
+                        if (data == 0) {
                             $("#su-email").css('border-color', 'var(--success-color)');
                             $(".su-email-notification").html('<i class="fal fa-check-circle"></i>');
+                        } else {
+                            $("#su-email").css('border-color', 'var(--danger-color)');
+                            $(".su-email-notification").html('<i class="fal fa-times-circle"></i>');
                         }
                     }
                 });
