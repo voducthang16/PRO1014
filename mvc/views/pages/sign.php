@@ -19,6 +19,9 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
                             <i class="form-icon fal fa-lock"></i>
                             <input style="padding-left: 40px!important" type="password" class="form-control" id="si-password" name="si-password" placeholder="Mật khẩu" required>
                         </div>
+                        <div class="form-group" style="text-align: right">
+                            <a href="<?=BASE_URL?>sign/forgotpassword" class="forgot-pass">Quên mật khẩu ?</a>
+                        </div>
                         <div style="text-align: right" class="form-group">
                             <button type="submit" class="btn btn-primary">Đăng nhập</button>
                         </div>

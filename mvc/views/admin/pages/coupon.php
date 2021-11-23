@@ -16,13 +16,13 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="text-center">#</th>
-                                <th class="text-center">ID</th>
+                                <th class="text-left">#</th>
                                 <th>Name</th>
                                 <th>Type</th>
                                 <th>Value</th>
+                                <th>Don hang toi thieu</th>
                                 <th>So luong</th>
-                                <th>Used</th>
+                                <th>Da su dung</th>
                                 <th>ngay bat dau</th>
                                 <th>ngay ket thuc</th>
                                 <th class="text-right">Hành động</th>
@@ -32,16 +32,16 @@
                             <?php $count = 1;?>
                             <?php foreach ($data['getCoupon'] as $item): ?>
                                 <tr>
-                                    <td width="5%"><?=$count++?></td>
-                                    <td width="5%"><?=$item["id"]?></td>
+                                    <td width="3%"><?=$count++?></td>
                                     <td width="10%"><?=$item["name"]?></td>
                                     <td width="10%"><?=$item['type'] == 1 ? '%' : 'bang tien'?></td>
-                                    <td width="10%"><?=$item["value"]?></td>
+                                    <td width="10%"><?=number_format($item["value"])?><?=$item['type'] == 1 ? '%' : 'đ'?></td>
+                                    <td width="10%"><?=number_format($item["min_order"])?>đ</td>
                                     <td width="10%"><?=$item["quantity"]?></td>
                                     <td width="10%"><?=$item["used"]?></td>
-                                    <td width="15%"><?=$item["created_at"]?></td>
-                                    <td width="15%"><?=$item["ended_at"]?></td>
-                                    <td width="20%" class="td-actions text-right">
+                                    <td width="12%"><?=dateVietnamese($item["created_at"])?></td>
+                                    <td width="12%"><?=dateVietnamese($item["ended_at"])?></td>
+                                    <td width="10%" class="td-actions text-right">
                                         <button type="button" rel="tooltip" class="btn btn-success update-coupon">
                                             <i class="material-icons">edit</i>
                                         </button>
