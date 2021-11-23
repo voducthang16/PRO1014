@@ -12,4 +12,11 @@
         $str = preg_replace('/([\s]+)/', '-', $str);
         return $str;
     }
+
+    function dateVietnamese($str) {
+        $day = substr($str, -2);
+        $month = substr($str, -5, 2);
+        $year = substr($str, 0, 4);
+        return $day.'-'.$month.'-'.$year;
+    }
 ?>

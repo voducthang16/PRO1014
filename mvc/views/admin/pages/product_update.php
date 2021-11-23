@@ -149,7 +149,7 @@
                 <?php endforeach;?>
             </div>
             <div class="card-body">
-                <form method="POST" action="" enctype="multipart/form-data">
+                <form method="POST" action="" enctype="multipart/form-data" id="form">
                     <input type="hidden" id="u-product-id" name="u-product-id" value="<?=$data['product']['id']?>">
                     <div class="form-group">
                         <label for="u-product-name">Tên sản phẩm</label>
@@ -251,7 +251,7 @@
                     </div>
                     <div class="form-group">
                         <label style="display: block;">Ảnh sản phẩm</label>
-                        <div id="list-images"></div>
+                        <div style="display: flex; flex-wrap: wrap" id="list-images"></div>
                     </div>
                     <div class="form-group">
                         <label for="product-description">Miêu tả sản phẩm</label>
@@ -286,6 +286,7 @@
 
 <script>
     $(document).ready(function() {
+        
         $("#u-product-name").change(function() {
             let productId = $("#u-product-id").val();
             let productName = $(this).val();
@@ -325,6 +326,9 @@
                     $("#list-images").html(data);
                 }
             })
+            // if (window.history.replaceState ) {
+            //     window.history.replaceState(null, null, window.location.href );
+            // }
         }
 
         loadImages();
@@ -341,6 +345,45 @@
                     reader.readAsDataURL(file);
                 } else {
                     preview.attr('src', 'http://localhost/PRO1014/public/assets/img/image_placeholder.jpg')
+                }
+            })
+        })
+
+        $(document).on('click', '#u-product-thumbnail', function(e) {
+            // e.preventDefault();
+            $(this).change(function() {
+                let file = $(this).prop('files')[0];
+                let fileType = file.type;
+                let fileSize = file.size;
+                let match = ['image/jpeg', 'image/png', 'image/jpg'];
+
+                if (!((fileType == match[0]) || (fileType == match[1]) || (fileType == match[2]))) {
+                    alert('Please select a file to upload');
+                    $("#u-product-thumbnail").val('');
+                    return false;
+                }
+
+                if (fileSize > 5000000) {
+                    alert('Sorry! File size exceeds');
+                    return false;
+                }
+            })
+        })
+
+        $(document).on('submit', function(e) {
+            // e.preventDefault();
+
+            let formData = new FormData(this);
+
+            $.ajax({
+                url: 'admin/updateThumbnail',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    console.log(data);
                 }
             })
         })

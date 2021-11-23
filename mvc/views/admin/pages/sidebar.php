@@ -1,3 +1,15 @@
+<?php
+    class sidebar extends database {
+        function numberOrder($id) {
+            $query = "SELECT COUNT(*) as 'count' FROM orders WHERE order_status = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$id]);
+            return $result->fetch()['count'];
+        }
+    }
+    $sidebar = new sidebar();
+?>
+
 <div class="sidebar" data-color="rose" data-background-color="black" data-image="<?=BASE_URL?>public/assets/img/sidebar-1.jpg">
     <div class="logo" style="text-align: center;">
         <a href="<?=BASE_URL?>admin" style="display: inline-block">
@@ -43,44 +55,52 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link orders" data-toggle="collapse" href="#formsExamples">
+                <a class="nav-link orders" data-toggle="collapse" href="#order">
                     <i class="material-icons">content_paste</i>
                     <p> Đơn hàng
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse dh-show" id="formsExamples">
+                <div class="collapse dh-show" id="order">
                     <ul class="nav">
                         <li class="nav-item ux">
-                            <a class="nav-link" href="?option=orders&status=0">
+                            <a class="nav-link" href="<?=BASE_URL?>admin/order/unprocessed">
                                 <!-- Unprocessed Xu Ly -->
                                 <span class="sidebar-mini"> UX </span>
                                 <span style="position: relative !important;" class="sidebar-normal"> Đơn hàng chưa xử lý
-                                    <span style="position: absolute !important; right: 0;"></span>
+                                    <span style="position: absolute !important; right: 0;">
+                                        <?=$sidebar->numberOrder('0');?>
+                                    </span>
                                 </span>
                             </a>
                         </li>
                         <li class="nav-item bx">
-                            <a class="nav-link" href="?option=orders&status=1">
+                            <a class="nav-link" href="<?=BASE_URL?>admin/order/processing">
                                 <span class="sidebar-mini"> BX </span>
                                 <span class="sidebar-normal"> Đơn hàng đang xử lý
-                                    <span style="position: absolute !important; right: 0;"></span>
+                                    <span style="position: absolute !important; right: 0;">
+                                        <?=$sidebar->numberOrder('1');?>
+                                    </span>
                                 </span>
                             </a>
                         </li>
                         <li class="nav-item dx">
-                            <a class="nav-link" href="?option=orders&status=2">
+                            <a class="nav-link" href="<?=BASE_URL?>admin/order/processed">
                                 <span class="sidebar-mini"> DX </span>
                                 <span class="sidebar-normal"> Đơn hàng đã xử lý
-                                    <span style="position: absolute !important; right: 0;"></span>
+                                    <span style="position: absolute !important; right: 0;">
+                                        <?=$sidebar->numberOrder('2');?>
+                                    </span>
                                 </span>
                             </a>
                         </li>
                         <li class="nav-item cx">
-                            <a class="nav-link" href="?option=orders&status=3">
+                            <a class="nav-link" href="<?=BASE_URL?>admin/order/cancelled">
                                 <span class="sidebar-mini"> CX </span>
                                 <span class="sidebar-normal"> Đơn hàng bị hủy
-                                    <span style="position: absolute !important; right: 0;"></span>
+                                    <span style="position: absolute !important; right: 0;">
+                                        <?=$sidebar->numberOrder('3');?>
+                                    </span>
                                 </span>
                             </a>
                         </li>
