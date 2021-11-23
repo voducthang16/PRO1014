@@ -7,7 +7,7 @@
             <a href="#!" class="error__content-link">Here are some helpful links instead:</a>
         </div>
     </div>
-    <div class="row">
+    <div class="row sm--center">
         <div class="col mb-16">
             <a class="card" href="#!">
                 <div class="card-body">
@@ -19,6 +19,16 @@
                 </div>
             </a>
         </div>
+        <div class="col mb-16"><a class="card" href="#!">
+                <div class="card-body">
+                    <i class="fal fa-life-ring"></i>
+                    <div class="card-body--info">
+                        <h5>Help &amp; Support</h5>
+                        <span>Visit our help center</span>
+                    </div>
+                </div>
+            </a>
+        </div>
         <div class="col mb-16">
             <a class="card" href="#!">
                 <div class="card-body">
@@ -26,16 +36,6 @@
                     <div class="card-body--info">
                         <h5>Search</h5>
                         <span>Find with advanced search</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col mb-16"><a class="card" href="#!">
-                <div class="card-body">
-                    <i class="fal fa-life-ring"></i>
-                    <div class="card-body--info">
-                        <h5>Help &amp; Support</h5>
-                        <span>Visit our help center</span>
                     </div>
                 </div>
             </a>
