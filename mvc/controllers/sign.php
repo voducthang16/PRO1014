@@ -26,7 +26,8 @@
                 "page" => "sign",
             ]);
         }
-        function signUp(){
+
+        function signUp() {
             if (isset($_POST["username"])) {
                 $username = $_POST["username"];
                 $email = $_POST["email"];
@@ -38,6 +39,12 @@
                 $_SESSION["member-username"] = $username;
                 echo 'Tao tk thanh cong';
             }
+        }
+
+        function forgotpassword() {
+            $this -> view("index", [
+                "page" => "forgotpassword",
+            ]);
         }
 
         function checkExistAttribute() {

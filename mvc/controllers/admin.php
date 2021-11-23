@@ -283,14 +283,13 @@
                 $result = $this->admin->getProductImages($product_id);
                 $output = "";
                 foreach ($result as $row) {
-                    $output .= '<div class="text-center">
-                        <span id="'.$row['id'].'" style="position: relative; top: -41px; right: -104px;" class="material-icons del-img">close</span>
-                        <img class="box-shadow-img" style="width: 10%; display: inline-block; margin-right: 20px; margin-bottom: 20px" 
+                    $output .= '<div class="col-md-4" style="position: relative;">
+                        <span id="'.$row['id'].'" style="position: absolute; top: 0; right: 15px;" class="material-icons del-img">close</span>
+                        <img class="box-shadow-img" style="width: 100%; vertical-align: middle" 
                         src="'.BASE_URL.'public/upload/'.$product_id.'/'.$row['image'].'" alt="Product Image">
-                        <input type="file" class="upload-multi" accept="image/*" name="product-list-images[]" multiple="">
                     </div>';
                 };
-                $output .= '<div class="text-center">
+                $output .= '<div style="margin-top: 20px" class="text-center">
                     <label>Them anh sản phẩm: </label>
                     <input type="file" class="upload-multi" accept="image/*" name="product-list-images[]" multiple="">
                 </div>';
@@ -312,12 +311,21 @@
                     <span class="btn btn-rose btn-round btn-file">
                         <span class="fileinput-new">Chọn ảnh bìa</span>
                         <span class="fileinput-exists">Thay đổi</span>
-                        <input style="z-index: 2 !important;" type="file" name="product-thumbnail" accept="image/*" />
+                        <input style="z-index: 2 !important;" type="file" name="product-thumbnail" id="u-product-thumbnail" accept="image/*" />
                     </span>
                     <a href="#delImg" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Xóa</a>
                     </div>
                 ';
                 echo $output;
+            }
+        }
+
+        function updateThumbnail() {
+            if (isset($_FILES['product-thumbnail']['name'])) {
+                $storage = 'public/upload/21/';
+                // $image = $_POST['image'];
+                
+                echo 'test';
             }
         }
 
@@ -366,6 +374,117 @@
             ]);
         }
 
+        // order
+        function order($param) {
+            $status = 0;
+            $title = "";
+            switch($param) {
+                case 'unprocessed': 
+                    $title = "Đơn hàng chưa xử lý";
+                    $status = 0;
+                    break;
+                case 'processing':
+                    $title = "Đơn hàng đang xử lý";
+                    $status = 1;
+                    break;
+                case 'processed':
+                    $title = "Đơn hàng đã xử lý";
+                    $status = 2;
+                    break;
+                case 'cancelled':
+                    $title = "Đơn hàng hủy bỏ";
+                    $status = 3;
+                    break;
+            }
+
+            if (isset($_POST['update-order-id'])) {
+                $orderId = $_POST['update-order-id'];
+                $orderStatus = $_POST['u-order-status'];
+                if ($orderStatus == '2') {
+                    $this->admin->updatePaymentStatus($orderId, $orderStatus);
+                } else {
+                    $this->admin->updateOrderStatus($orderId, $orderStatus);
+                }
+                echo '<script>alert("cap nhat tc.");</script>';
+                header("Refresh: 0");
+            }
+
+            $this -> view("admin/index", [
+                "page" => "order",
+                "getOrder" => $this->admin->getOrder($status),
+                "title" => $title,
+                "status" => $status,
+            ]);
+        }
+
+        function getOrderInfo() {
+            if (isset($_POST['orderId'])) {
+                $orderId = $_POST['orderId'];
+                $result = $this->admin->getOrderById($orderId);
+                $products = $this->admin->getProductsFromOrder($orderId);
+                $output = '<h6 class="text-center">Đơn hàng #'.$orderId.'</h6>';
+                $output .= '<div class="row">
+                <div class="col-6">
+                    <h3>Thông tin người đặt hàng</h3>
+                    <h5>Họ tên: '.$result['orderName'].'</h5>
+                    <h5>Số điện thoại: '.$result['orderPhone'].'</h5>
+                    <h5>Email: '.$result['orderEmail'].'</h5>
+                    <h5>Địa chỉ: '.$result['orderAddress'].'</h5>
+                    <h5>Phương thức thanh toán: '.$result['paymentMethod'].'</h5>
+                    <h5>Coupon: '.$result['couponName'].'</h5>
+                </div>
+                <div class="col-6 text-right">
+                    <h3>Thông tin người nhận hàng</h3>
+                    <h5>Họ tên: '.$result['receiverName'].'</h5>
+                    <h5>Số điện thoại: '.$result['receiverPhone'].'</h5>
+                    <h5>Email: '.$result['receiverEmail'].'</h5>
+                    <h5>Địa chỉ: '.$result['receiverAddress'].'</h5>
+                    <h5>Ghi chú: '.$result['receiverNote'].'</h5>
+                </div>
+                <div class="col-12">
+                    <h3 class="text-center">Các sản phẩm đặt mua</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col" class="text-center">Tên sản phẩm</th>
+                                    <th scope="col" class="text-center">Loại sản phẩm</th>
+                                    <th scope="col" class="text-center">Giá bán</th>
+                                    <th scope="col" class="text-center">Số lượng</th>
+                                    <th scope="col" class="text-right">Tổng cộng</th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+                $count = 1;
+                foreach($products as $item) {
+                    $output .= '
+                        <tr>
+                            <th width="5%" scope="row">'.$count++.'</th>
+                            <td width="25%" class="text-center">'.$item['name'].'</td>
+                            <td width="20%" class="text-center">
+                                <h4>Size: '.($this->admin->getProductAttributes($item['product_type_id'], "size")['value'] != "" ? $this->admin->getProductAttributes($item['product_type_id'], "size")['value'] : "Free Size").'</h4>
+                                <h4>Color: <span style="background-color: '.$this->admin->getProductAttributes($item['product_type_id'], "color")['value'].'" class="product-color-order-detail"></span></h4>
+                            </td>
+                            <td width="20%" class="text-center">'.number_format($item['price_sale']).'đ</td>
+                            <td width="15%" class="text-center">'.$item['quantity'].'</td>
+                            <td width="15%" class="text-right">'.number_format($item['quantity'] * $item['price_sale']).'đ</td>
+                        </tr>
+                    ';
+                }
+
+                $output .= '<tr style="font-weight: 600;">
+                                <td colspan="5" class="text-center">Tổng tiền:</td>
+                                <td class="text-right">
+                                    '.number_format($result['total']).'đ
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>';
+                echo $output;
+            }
+        }
 
         // admin login
         function login() {

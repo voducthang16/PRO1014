@@ -169,5 +169,54 @@
             $result = $this->connect->prepare($query);
             $result->execute();
         }
+        // test
+
+        function getOrder($id) {
+            $query = "SELECT orders.id, orders.member_id, orders.order_status, 
+            DATE(`orders`.`created_at`) as 'orderDate', members.name FROM orders INNER JOIN members ON orders.member_id = members.id  WHERE order_status = '$id'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function updateOrderStatus($id, $order) {
+            $query = "UPDATE orders SET order_status = $order WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function updatePaymentStatus($id, $order) {
+            $query = "UPDATE orders SET order_status = $order, payment_status = '1' WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function getOrderById($id) {
+            $query = "SELECT members.name as 'orderName', members.email as 'orderEmail', members.phone as 'orderPhone', 
+            members.address as 'orderAddress', orders.name as 'receiverName', orders.address as 'receiverAddress', 
+            orders.phone as 'receiverPhone', orders.email as 'receiverEmail', orders.note as 'receiverNote', 
+            orders_method.name as 'paymentMethod', coupon.name as 'couponName', orders.total FROM members INNER JOIN orders ON members.id = orders.member_id 
+            JOIN orders_method ON orders.order_method_id = orders_method.id INNER JOIN coupon ON coupon.id = orders.coupon_id WHERE orders.id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch();
+        }
+
+        function getProductsFromOrder($id) {
+            $query = "SELECT orders.id, orders_details.product_type_id, orders_details.quantity, orders_details.price_sale, 
+            products_type.product_id, products.name FROM orders_details INNER JOIN products_type 
+            ON products_type.id = orders_details.product_type_id INNER JOIN products ON products.id = products_type.product_id 
+            INNER JOIN orders ON orders.id = orders_details.order_id WHERE orders.id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function getProductAttributes($id, $attribute) {
+            $query = "SELECT products_attributes.value FROM products_attributes INNER JOIN products_type_attributes ON products_attributes.id = products_type_attributes.attributes_id WHERE products_type_attributes.product_type_id = $id AND products_attributes.name LIKE '%$attribute%'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch();
+        }
     } 
 ?>
