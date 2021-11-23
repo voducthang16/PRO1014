@@ -12,7 +12,7 @@
                 $password = $_POST["si-password"];
                 $check = $this->sign->checkLogin($username, $password);
                 if ($check == 0) {
-                    echo '<script>alert("TK KHONG CHINH XAC.");</>';
+                    echo '<script>alert("TK KHONG CHINH XAC.");</script>';
                 } else {
                     $_SESSION["member-login"] = "true";
                     $_SESSION["member-username"] = $username;
