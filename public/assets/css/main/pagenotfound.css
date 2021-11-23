@@ -34,10 +34,11 @@
 }
 
 .error__content-link {
+    display: block;
     color: var(--text-color);
     font-size: 1.5rem;
     line-height: 2.25rem;
-    margin: 0px 0px 24px;
+    margin-bottom: 16px;
 }
 
 .mb-16 {
