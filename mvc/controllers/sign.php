@@ -127,6 +127,7 @@
                                     },
                                     success:function(data) {
                                         alert(data);
+                                        location.reload();
                                     }
                                 })
                             }
