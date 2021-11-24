@@ -88,3 +88,18 @@
 .account-orders {
     margin-top: 100px;
 }
+
+
+/* account-wishlist */
+.account-wishlist {
+    margin-top: 40px;
+}
+
+.wishlist-title {
+    font-size: 1.8rem;
+    color: var(--white-color);
+}
+
+.wishlist-product-list {
+    margin-top: 60px;
+}
