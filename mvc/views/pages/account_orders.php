@@ -15,6 +15,7 @@
                     </li>
                 </ul>
             </nav>
+            <button class="btn btn--size-s account-sign-out"><i style="margin-right: 8px" class="fal fa-sign-out-alt"></i> Đăng xuất</button>
         </div>
     </div>
 </div>
@@ -30,3 +31,18 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.account-sign-out', function() {
+            $.ajax({
+                url: "account/signOut",
+                type: "POST",
+                success: function(data) {
+                    window.location.href = "";
+                }
+            })
+        })
+    })
+</script>

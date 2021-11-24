@@ -72,6 +72,18 @@
     color: var(--primary-color);
 }
 
+.page-wrapper {
+    position: relative;
+}
+
+.account-sign-out {
+    position: absolute;
+    bottom: -100%;
+    right: 0;
+
+    font-size: 1.4rem;
+}
+
 /* account-orders */
 .account-orders {
     margin-top: 100px;
