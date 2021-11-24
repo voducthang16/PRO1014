@@ -1,0 +1,91 @@
+/* MOBILE & TABLET */
+
+@media (max-width: 1023px) {
+
+    /* Footer */
+
+
+    /* Footer */
+}
+
+/* TABLET */
+
+@media (min-width: 740px) and (max-width:1023px) {
+
+    /* Footer */
+
+    /* Footer */
+}
+
+/* MOBILE */
+
+@media (max-width: 740px) {
+
+    /* Footer */
+    .sm--hide {
+        display: none;
+    }
+
+    .footer__services {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 48px;
+        padding: 0 15px;
+    }
+
+    .footer__services-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .footer__services-icon {
+        font-size: 3.6rem;
+    }
+
+    .footer__services-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .footer__box {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 15px;
+        margin-bottom: 48px;
+    }
+
+    .box-1 {
+        justify-content: center;
+    }
+
+    .footer__list-row {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .pay-icon-bar {
+        justify-content: center;
+    }
+
+    .copyright {
+        text-align: center;
+    }
+
+    /* Footer */
+    /* Page not Found */
+    .sm--center {
+        justify-content: center;
+    }
+
+    .card-body {
+        width: 300px;
+    }
+
+    /* Page not Found */
+
+}

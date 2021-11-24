@@ -9,6 +9,7 @@
 
 .footer__content {
     color: var(--white-color);
+    flex-wrap: nowrap;
 }
 
 .footer__heading {
@@ -61,6 +62,8 @@
 
 .input-group {
     position: relative;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .form-subscribe {
@@ -73,8 +76,9 @@
     font-size: 1.5rem;
     line-height: 2.25rem;
     margin: 0px 0px 0px -1px;
-    padding: 10px 16px 10px 40px;
+    padding: 1rem 1.6rem 1rem 4rem;
     outline: none;
+    width: 100%;
 }
 
 .form-control:focus {
@@ -87,11 +91,12 @@
     border-radius: 0px 5px 5px 0px;
     border: 1px solid #fe696a;
     color: #ffffff;
-    font-size: 15px;
-    line-height: 22.5px;
+    font-size: 1.5rem;
+    line-height: 2.25rem;
     margin: 0px 0px 0px -3px;
-    padding: 10px 22px;
+    padding: 1rem 2.2rem;
     text-align: center;
+    width: 50%;
 }
 
 .input-group__icon {
@@ -104,9 +109,12 @@
     z-index: 4;
 }
 
-.footer__box-bottom {
+.footer__box-bot {
     position: relative;
     display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .footer__app-download a {
@@ -129,18 +137,24 @@
 
 .footer__bottom hr {
     border-width: 0px;
-    border-top: 1px solid rgba(255,255,255,.12);
+    border-top: 1px solid rgba(255, 255, 255, .12);
+}
+
+.footer__services {
+    margin-bottom: 24px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
 .footer__services-item {
     display: flex;
-    align-items: center;
-    margin-bottom: 24px;
+    align-items: flex-start;
 }
 
-.footer__services-item div {
-    padding: 0px 0px 0px 16px;
+.footer__services-item i {
+    margin-right: 16px;
 }
+
 
 .footer__services-icon {
     font-size: 3rem;
@@ -153,11 +167,12 @@
     line-height: 1.6rem;
     color: var(--white-color);
     margin: 0px 0px 4px;
+    font-weight: 600;
 }
 
 .footer__services-text {
     font-size: 1.3rem;
-    line-height: 1.3rem;
+    line-height: 2.3rem;
     color: var(--white-color);
     opacity: 50%;
 }
