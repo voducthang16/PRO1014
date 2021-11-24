@@ -78,6 +78,7 @@
             $result->execute();
             return $result;
         }
+
         function getProductPrice($id){
             $query = "SELECT products.id, quantity.maxx , quantity.minn, quantity.min2, quantity.max2
             FROM products INNER JOIN (SELECT product_id, MAX(price_sale) as maxx, MIN(price_sale) as minn, 
@@ -87,6 +88,12 @@
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetch();
+        }
+
+        function updateProductView($id) {
+            $query = "UPDATE products SET view = view + 1 WHERE products.id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
         }
     }
 ?>

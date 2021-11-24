@@ -41,6 +41,7 @@
         function detail($slug) {
             $category_id = $this->product->getCategoryId($slug);
             $this->id = $this->product->getProductId($slug);
+            $this->product->updateProductView($this->id);
             $this -> view("index", [
                 "page" => "product",
                 "product" => $this->product->getProduct($slug),
