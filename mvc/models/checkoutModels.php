@@ -45,7 +45,7 @@
         }
 
         function checkCoupon($name) {
-            $query = "SELECT * FROM coupon WHERE coupon.name = ?  and coupon.ended_at > DATE(NOW())";
+            $query = "SELECT * FROM coupon WHERE coupon.name = ? AND coupon.quantity > 0 AND coupon.ended_at > DATE(NOW())";
             $result = $this->connect->prepare($query);
             $result->execute([$name]);
             return $result;

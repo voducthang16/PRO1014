@@ -134,6 +134,25 @@
             $result->execute();
         }
 
+        function updateCoupon($id, $name, $type, $value, $min_order, $quantity, $date_start, $date_end) {
+            $query = "UPDATE coupon SET name = ?, type = ?, value = ?, min_order = ?, quantity = ?, created_at = ?, ended_at = ? WHERE id = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$name, $type, $value, $min_order, $quantity, $date_start, $date_end, $id]);
+        }
+
+        function checkExistCoupon($id) {
+            $query = "SELECT * FROM orders WHERE orders.coupon_id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        function deleteCoupon($id) {
+            $query = "DELETE FROM coupon WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
         function getProductTypeIdById($product_id) {
             $query = "SELECT orders_details.product_type_id FROM orders_details 
             INNER JOIN products_type ON products_type.id = orders_details.product_type_id 
@@ -207,6 +226,13 @@
             products_type.product_id, products.name FROM orders_details INNER JOIN products_type 
             ON products_type.id = orders_details.product_type_id INNER JOIN products ON products.id = products_type.product_id 
             INNER JOIN orders ON orders.id = orders_details.order_id WHERE orders.id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function getProductTypeFromProductId($id) {
+            $query = "SELECT * FROM products_type WHERE products_type.product_id = $id";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
