@@ -18,6 +18,12 @@
             ]);
         }
 
+        function wishlist() {
+            $this -> view("index", [
+                "page" => "account_wishlist"
+            ]);
+        }
+
         function signOut() {
             unset($_SESSION['member-username']);
             unset($_SESSION['member-login']);

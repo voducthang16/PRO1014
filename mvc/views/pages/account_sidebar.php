@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li>
-                <a class="account-body-list-link" href="">
+                <a class="account-body-list-link" href="<?=BASE_URL?>account/wishlist">
                     <div class="">
                         <i class="fal fa-heart"></i>
                         <span>Wishlist</span>
