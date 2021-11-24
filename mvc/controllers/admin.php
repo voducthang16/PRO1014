@@ -178,8 +178,45 @@
         function productDetails() {
             if (isset($_POST['productId'])) {
                 $product_id = $_POST['productId'];
+                $result = $this->admin->getProductTypeFromProductId($product_id);
+                $output = '<h5 class="text-center">Thông tin sản phẩm #'.$product_id.'</h5>';
+                $output .= '
+                <div class="row>
+                    <div class="col l-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col" class="text-center">Loại sản phẩm</th>
+                                    <th scope="col" class="text-center">Giá gốc</th>
+                                    <th scope="col" class="text-center">Giá bán</th>
+                                    <th scope="col" class="text-center">Số lượng</th>
+                                    <th scope="col" class="text-center">Đã bán</th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+                $count = 1;
+                foreach ($result as $item) {
+                    $output .= '
+                    <tr>
+                        <th width="5%" scope="row">'.$count++.'</th>
+                        <td width="20%" class="text-center">
+                            <h4>Size: '.($this->admin->getProductAttributes($item['id'], "size")['value'] != "" ? $this->admin->getProductAttributes($item['id'], "size")['value'] : "Free Size").'</h4>
+                            <h4>Color: <span style="background-color: '.$this->admin->getProductAttributes($item['id'], "color")['value'].'" class="product-color-order-detail"></span></h4>
+                        </td>
+                        <td width="20%" class="text-center">'.number_format($item['price_origin']).'đ</td>
+                        <td width="20%" class="text-center">'.number_format($item['price_sale']).'đ</td>
+                        <td width="15%" class="text-center">'.$item['quantity'].'</td>
+                        <td width="15%" class="text-center">'.$item['purchases'].'</td>
+                    </tr>
+                    ';
+                }
+                $output .= '</tbody>
+                        </table>
+                    </div>
+                </div>';
             }
-            echo $product_id;
+            echo $output;
         }
 
         function product_update() {
@@ -365,6 +402,37 @@
                 $this->admin->insertCoupon($name, $type, $value, $min_order, $quantity, $note, $date_start, $date_end);
                 echo '<script>alert("Them tc.");</script>';
 
+                header("Refresh: 0");
+            }
+            if (isset($_POST['u-coupon-id'])) {
+                $id = $_POST['u-coupon-id'];
+                $name = $_POST['u-coupon-name'];
+                $type = $_POST['u-coupon-type'];
+                if ($type == 1) {
+                    $value = $_POST['u-coupon-value-percent'];
+                } else {
+                    $value = $_POST['u-coupon-value-money'];
+                }
+                $quantity = $_POST['u-coupon-quantity'];
+                // $note = $_POST['u-coupon-note'];
+                $date_start = $_POST['u-coupon-date-start'];
+                $date_end = $_POST['u-coupon-date-end'];
+                $min_order = $_POST['u-coupon-value-min-order'];
+                $this->admin->updateCoupon($id, $name, $type, $value, $min_order, $quantity, $date_start, $date_end);
+                echo '<script>alert("cn tc.");</script>';
+
+                header("Refresh: 0");
+            }
+
+            if (isset($_POST['delete-coupon-id'])) {
+                $id = $_POST['delete-coupon-id'];
+                $check = $this->admin->checkExistCoupon($id);
+                if ($check > 0) {
+                    echo '<script>alert("k xoa dc.");</script>';
+                } else {
+                    $this->admin->deleteCoupon($id);
+                    echo '<script>alert("xoa thanh cong.");</script>';
+                }
                 header("Refresh: 0");
             }
 
