@@ -19,5 +19,31 @@
             $result->execute([$username, $password]);
             return $result->rowCount();
         }
+
+        function checkEmail($email) {
+            $qr = "SELECT members.email FROM members WHERE members.email = '$email'";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+            return $result->rowCount();
+        }
+        
+        function updateCode($email, $code) {
+            $qr = "UPDATE `members` SET `code`= '$code' WHERE `email` = '$email'";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+        }
+
+        function checkCode($email, $code) {
+            $qr = "SELECT * FROM `members` WHERE `email` = '$email' and `code` = '$code'";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        function updatePassword($password,$email,$code) {
+            $qr = "UPDATE `members` SET `password`= '$password' WHERE `email` = '$email' and  `code` = '$code'";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+        }
     }
 ?>
