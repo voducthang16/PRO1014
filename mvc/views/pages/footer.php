@@ -2,7 +2,7 @@
     <div class="footer__top">
         <div class="container wide">
             <div class="footer__content row">
-                <div class="col l-4">
+                <div class="col l-4 sm--hide">
                     <h3 class="footer__heading">Shop departments</h3>
                     <ul class="footer__list">
                         <li class="footer__items"><a href="#!" class="footer__link">Sneakers & Athletic</a></li>
@@ -20,7 +20,7 @@
                         <li class="footer__items"><a href="#!" class="footer__link">Watches</a></li>
                     </ul>
                 </div>
-                <div class="col l-4">
+                <div class="col l-4 sm--hide">
                     <h3 class="footer__heading">Account & shipping info</h3>
                     <ul class="footer__list">
                         <li class="footer__items"><a href="#!" class="footer__link">Your account</a></li>
@@ -70,28 +70,28 @@
     <div class="footer__bottom">
         <div class="container wide">
             <div class="footer__services row">
-                <div class="col l-3 footer__services-item">
+                <div class="col footer__services-item">
                     <i class="fal fa-rocket-launch footer__services-icon"></i>
                     <div>
                         <h6 class="footer__services-heading">Fast and free delivery</h6>
                         <p class="footer__services-text">Free delivery for all orders over $200</p>
                     </div>
                 </div>
-                <div class="col l-3 footer__services-item">
+                <div class="col footer__services-item">
                     <i class="fal fa-hand-holding-usd footer__services-icon"></i>
                     <div>
                         <h6 class="footer__services-heading">Money back guarantee</h6>
                         <p class="footer__services-text">We return money within 30 days</p>
                     </div>
                 </div>
-                <div class="col l-3 footer__services-item">
+                <div class="col footer__services-item">
                     <i class="fal fa-headset footer__services-icon"></i>
                     <div>
                         <h6 class="footer__services-heading">24/7 customer support</h6>
                         <p class="footer__services-text">Friendly 24/7 customer support</p>
                     </div>
                 </div>
-                <div class="col l-3 footer__services-item">
+                <div class="col footer__services-item">
                     <i class="fal fa-credit-card footer__services-icon"></i>
                     <div>
                         <h6 class="footer__services-heading">Secure online payment</h6>
@@ -105,16 +105,16 @@
                     <div class="box-1">
                         <div class="navbar-logo footer-logo">
                             <a href="#" class="navbar-logo-link">
-                                <img width="100%" src="<?=BASE_URL?>public/assets/img/test.png" alt="LOGO">
+                                <img width="100%" src="<?= BASE_URL ?>public/assets/img/test.png" alt="LOGO">
                             </a>
                         </div>
                         <div class="currency-exchange">
-                            <img src="<?=BASE_URL?>public/assets/img/flags/US.png" alt="">
+                            <img src="<?= BASE_URL ?>public/assets/img/flags/US.png" alt="">
                             <span>Eng / $</span>
                             <i class="fad fa-caret-down"></i>
                         </div>
                     </div>
-                    <div class="box-2 l-9">
+                    <div class="box-2">
                         <ul class="footer__list-row">
                             <li class="footer__items"><a href="#!" class="footer__link">Outlets </a></li>
                             <li class="footer__items"><a href="#!" class="footer__link">Affiliates</a></li>
