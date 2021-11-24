@@ -31,6 +31,9 @@
             data: {
                 'email': email
             },
+            beforeSend: function() {
+                // code loading start
+            },
             success:function(data) {
                 let json = JSON.parse(data);
                 if (json.action == true && json.mailer == true) {
@@ -41,7 +44,10 @@
                 } else {
                     alert('Tài khoản không tồn tại trên hệ thống');
                 }
-            }
+            },
+            complete: function() {
+                // code loading close
+            },
         })
     })
 </script>

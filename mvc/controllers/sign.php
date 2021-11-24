@@ -76,6 +76,7 @@
                 $action = false;
                 $mailer = false;
                 $result = $this->sign->checkEmail($email);
+                $data = array();
                 if ($result == 1) {
 
                     $code = md5(random_int(0,9999));
@@ -127,7 +128,9 @@
                                     },
                                     success:function(data) {
                                         alert(data);
-                                        location.reload();
+                                        if (data == "đã update password thành công") {
+                                            location.reload();
+                                        }
                                     }
                                 })
                             }
