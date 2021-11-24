@@ -81,7 +81,7 @@
                     <i class="fal fa-hand-holding-usd footer__services-icon"></i>
                     <div>
                         <h6 class="footer__services-heading">Money back guarantee</h6>
-                        <p class="footer__services-text">We return money within 30 days</p>
+                        <p class="footer__services-text">We return money within 30 days :></p>
                     </div>
                 </div>
                 <div class="col footer__services-item">

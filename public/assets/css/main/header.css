@@ -16,7 +16,7 @@
 .order-tracking,
 .support {
     font-size: 1.4rem;
-    color: rgba(255,255,255, 0.45) !important;
+    color: rgba(255, 255, 255, 0.45) !important;
 }
 
 .order-tracking i,
@@ -33,7 +33,7 @@
     text-decoration: none;
     font-weight: 700;
 
-    color: rgba(255,255,255, 0.65) !important;
+    color: rgba(255, 255, 255, 0.65) !important;
 
     transition: all ease 0.4s;
     outline: none;
@@ -46,7 +46,7 @@
 
 .animate-text span {
     display: none;
-    color: rgba(255,255,255, 0.45) !important;
+    color: rgba(255, 255, 255, 0.45) !important;
 
     font-size: 1.4rem;
     line-height: 1.3;
@@ -62,7 +62,7 @@
 }
 
 .order-tracking {
-    text-align: right ;
+    text-align: right;
 }
 
 /* navbar */
@@ -87,6 +87,7 @@
         transform: translateY(-40px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -102,6 +103,43 @@
 }
 
 .navbar.sticky .navbar-menu.active {
+    display: block;
+}
+
+.navbar-submenu-list {
+    position: absolute;
+    top: calc(100% -14px);
+    list-style: none;
+    width: 150px;
+    padding-left: 0;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    display: none;
+    animation: fadeIn ease-in .3s;
+    z-index: 5;
+    background-color: var(--white-color);
+}
+
+.navbar-submenu-item {
+    padding: 8px;
+}
+
+.navbar-submenu-item:hover {
+    cursor: pointer;
+}
+
+.navbar-submenu-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    display: block;
+}
+
+.navbar-submenu-link:hover {
+    color: var(--primary-color);
+}
+
+.navbar-menu-item:hover .navbar-submenu-list {
     display: block;
 }
 
@@ -257,7 +295,7 @@
     height: 24px;
     width: 24px;
     border-radius: 50%;
-    
+
     text-align: center;
     line-height: 24px;
     font-size: 1.4rem;
@@ -382,7 +420,7 @@
     font-size: 1.4rem;
     font-weight: 600;
     text-decoration: none;
-    
+
     outline: none;
     overflow: hidden;
 
@@ -435,7 +473,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    
+
     font-size: 1.2rem;
 
     transition: all linear 0.2s;
@@ -484,7 +522,7 @@
     display: flex;
 }
 
-.navbar-menu-item + .navbar-menu-item {
+.navbar-menu-item+.navbar-menu-item {
     margin-left: 24px;
 }
 
@@ -522,6 +560,7 @@
         opacity: 0;
         transform: translateY(100%);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0%);
@@ -533,6 +572,7 @@
         opacity: 1;
         transform: translateY(0%);
     }
+
     100% {
         opacity: 0;
         transform: translateY(-100%);
@@ -540,6 +580,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+
     .order-tracking a:hover,
     .support a:hover {
         color: var(--white-color) !important;
@@ -559,7 +600,7 @@
     }
 
     .expand-btn:hover span,
-    .wishlist-link:hover > span {
+    .wishlist-link:hover>span {
         opacity: 1;
         transform: translateY(0%);
     }

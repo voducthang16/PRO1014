@@ -1,16 +1,18 @@
 <?php
-    ob_start();
-    class headerModel extends database {
-        function getCategories() {
-            $query = "SELECT * FROM `category` WHERE status = 1";
-            $result = $this->connect->prepare($query);
-            $result->execute();
-            return $result->fetchAll();
-        }
+ob_start();
+class headerModel extends database
+{
+    function getCategories()
+    {
+        $query = "SELECT * FROM `category` WHERE status = 1";
+        $result = $this->connect->prepare($query);
+        $result->execute();
+        return $result->fetchAll();
     }
-    $header = new headerModel();
+}
+$header = new headerModel();
 
-    $categories = $header->getCategories();
+$categories = $header->getCategories();
 ?>
 
 <header class="header">
@@ -43,14 +45,19 @@
     <div class="navbar">
         <div class="container wide">
             <div class="navbar-control row">
-                <div class="col l-2">
+                <div class="col l-2 sm--hide">
                     <div class="navbar-logo">
                         <a href="" class="navbar-logo-link">
                             <img width="100%" src="public/assets/img/test.png" alt="LOGO">
                         </a>
                     </div>
                 </div>
-                <div class="col l-6">
+                <!-- Begin: Menu Btn -->
+                <!-- <div class="col l-2 mobile-menu-btn" id="mobile-menu" style="font-size: 2.4rem; display: none;">
+                    <i class="fal fa-bars"></i>
+                </div> -->
+                <!-- End: Menu Btn -->
+                <div class="col l-6 search-width">
                     <div class="search">
                         <input class="search-control" type="text" name="search" id="search" placeholder="Search...." required>
                         <i class="fal fa-search search-icon"></i>
@@ -71,48 +78,48 @@
                             </a>
                         </div>
                         <div class="user">
-                            <a href="<?=isset($_SESSION["member-login"]) ? 'account' : 'sign'?>" class="user-link">
+                            <a href="<?= isset($_SESSION["member-login"]) ? 'account' : 'sign' ?>" class="user-link">
                                 <i class="fal fa-user"></i>
-                                <div class="user-action">
-                                    <?php if (!isset($_SESSION["member-login"])):?>
+                                <div class="user-action sm--hide">
+                                    <?php if (!isset($_SESSION["member-login"])) : ?>
                                         <span>Hello, Đăng nhập</span>
-                                    <?php endif;?>
-                                    <?php if (isset($_SESSION["member-login"])):?>
+                                    <?php endif; ?>
+                                    <?php if (isset($_SESSION["member-login"])) : ?>
                                         <span>My account</span>
-                                    <?php endif;?>
+                                    <?php endif; ?>
                                 </div>
                             </a>
                         </div>
                         <div class="cart">
-                            <a href="<?=BASE_URL?>cart" class="cart-link">
+                            <a href="<?= BASE_URL ?>cart" class="cart-link">
                                 <i class="fal fa-shopping-cart cart-icon">
                                     <span class="cart-quantity" id="cart-quantity-val">0</span>
                                 </i>
-                                <div class="cart-body">
+                                <div class="cart-body sm--hide">
                                     <span>My cart</span>
                                     <span id='cart-total-val-2'></span>
                                 </div>
                             </a>
                             <div class="cart-items">
                                 <!--  -->
-                                <?php if (empty($_SESSION["member-login"])):?>
+                                <?php if (empty($_SESSION["member-login"])) : ?>
                                     <div class="no-cart">
-                                        <img src="<?=BASE_URL?>public/assets/img/no_cart.png" alt="No Cart">
+                                        <img src="<?= BASE_URL ?>public/assets/img/no_cart.png" alt="No Cart">
                                         <span>Giỏ hàng trống</span>
                                     </div>
-                                <?php else:?>
+                                <?php else : ?>
                                     <div class="render-cart">
                                         <!-- container list product -->
-                                        
+
                                     </div>
                                     <div class='cart-footer'>
                                         <div class='cart-total'>
                                             <p>Tổng tiền: <span id='cart-total-val'></span></p>
-                                            <a href='<?=BASE_URL?>cart' class='cart-view btn btn--size-s'>Xem giỏ hàng <i class='fal fa-chevron-right'></i></a>
+                                            <a href='<?= BASE_URL ?>cart' class='cart-view btn btn--size-s'>Xem giỏ hàng <i class='fal fa-chevron-right'></i></a>
                                         </div>
                                         <a href='checkout' class='btn cart-checkout'><i class='fal fa-credit-card'></i> Thanh toán</a>
                                     </div>
-                                <?php endif;?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -121,15 +128,43 @@
             <div class="navbar-menu row">
                 <div class="col l-10 l-o-2">
                     <ul class="navbar-menu-list">
-                        <?php foreach ($categories as $category):?>
-                            <li class="navbar-menu-item">
-                                <a href="category/detail/<?=$category['slug']?>" class="navbar-menu-link">
-                                    <?=$category['name']?>
-                                </a>
-                            </li>
-                        <?php endforeach;?>
+                        <li class="navbar-menu-item">
+                            <a href="" class="navbar-menu-link">
+                                Trang chủ
+                            </a>
+                        </li>
+                        <li class="navbar-menu-item">
+                            <a href="" class="navbar-menu-link">
+                                Giới thiệu
+                            </a>
+                        </li>
+                        <li class="navbar-menu-item">
+                            <a href="" class="navbar-menu-link">
+                                Danh mục
+                            </a>
+                            <ul class="navbar-submenu-list">
+                                <?php foreach ($categories as $category) : ?>
+                                    <li class="navbar-submenu-item">
+                                        <a href="category/detail/<?= $category['slug'] ?>" class="navbar-submenu-link">
+                                            <?= $category['name'] ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </li>
+                        <li class="navbar-menu-item">
+                            <a href="" class="navbar-menu-link">
+                                Blog
+                            </a>
+                        </li>
+                        <li class="navbar-menu-item">
+                            <a href="" class="navbar-menu-link">
+                                Liên hệ
+                            </a>
+                        </li>
                     </ul>
                 </div>
+
             </div>
         </div>
     </div>
