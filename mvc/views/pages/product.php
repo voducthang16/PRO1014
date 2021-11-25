@@ -40,14 +40,13 @@
             </div>
             <div class="col l-5">
                 <div class="product-info">
+                    <form action="" method="POST" class="products-p products-s" name="products">
                     <div class="product-heart">
                         <div class="product-heart-wrapper">
                             <span>Add to wishlist</span>
-                            <i class="fal fa-heart"></i>
+                            <i class="fal fa-heart btn-add-to-wishlist"></i>
                         </div>  
                     </div>
-
-                    <form action="" method="POST" class="products-p products-s" name="products">
                     <div class="product-price">
                             <p class="product-price-sale price-sale-value"><?= number_format($data['priceProduct']['minn'])?>đ - <?=number_format(($data['priceProduct']['maxx']))?>đ</p>
                             <del class="product-price-origin price-origin-value"><?= number_format($data['priceProduct']['min2'])?>đ - <?=number_format(($data['priceProduct']['max2']))?>đ</del>

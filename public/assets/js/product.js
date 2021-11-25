@@ -81,6 +81,29 @@ $(document).ready(function() {
                 }
         });
     })
+
+    $('.btn-add-to-wishlist').click(function(e){
+        e.preventDefault();
+        let parent = $(this).parents('.products-s');
+        let id_product = parent.find('.products-id').val();
+        $.ajax({
+            url: "account/addWishList",
+                method: "POST",
+                data: {
+                    'action': 'addWishList',
+                    'id_product': id_product
+                },
+                success:function(data) {
+                    if (data == "sign") {
+                        window.location = "sign";
+                    } else {
+                        alert(data);
+                        get_data();
+                    }
+                }
+        });
+    })
+
 })
 
 function zoom(e) {

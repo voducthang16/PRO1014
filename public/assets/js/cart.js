@@ -42,14 +42,18 @@ $(document).ready(function() {
             success:function(data) {
                 document.getElementById('cart-quantity-val').innerHTML = data;
             }
-        })
+        });
+
+        // show product in checkout
         $.ajax({
             url: "checkout/showCheckout",
             method: "POST",
             success:function(data) {
                 $('.checkout-product-list').html(data)
             }
-        })
+        });
+
+        // show total product in checkout
         $.ajax({
             url: "checkout/totalCheckout",
             method: "POST",
@@ -57,7 +61,7 @@ $(document).ready(function() {
                 $('#checkout-subtotal-money').html(data)
                 $('#order-total-money').html(data)
             }
-        })
+        });
     }
 
     // run function
@@ -162,7 +166,7 @@ $(document).ready(function() {
                 get_data();
             }
         })
-    })
+    });
     $(document).on('click','.btn-change-quantity-minus',function(e){
         e.preventDefault();
         let parent = $(this).parents('.cart-items__product');
@@ -180,7 +184,7 @@ $(document).ready(function() {
                 get_data();
             }
         })
-    })
+    });
 
     function setCookie(name,value,days) {
         var expires = "";
@@ -195,7 +199,7 @@ $(document).ready(function() {
     $(document).on('blur', '#note', function(e) {
         e.preventDefault();
         setCookie('note', $(this).val(), 1);
-    })
+    });
     // delete product in cart
     $(document).on('click','.btn-delete-prd-cart',function(e){
         e.preventDefault();
@@ -224,7 +228,7 @@ $(document).ready(function() {
     // validated input quantity
     $(document).on('keypress','.product-quantity-value',function(e){
         return e.charCode >= 48 && e.charCode <= 57;
-    })
+    });
 
     // update quantity after input
     $(document).on('blur','.product-quantity-value-val',function(e) {
@@ -250,6 +254,6 @@ $(document).ready(function() {
             }
         })
         
-    })
+    });
     
 })
