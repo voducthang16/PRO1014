@@ -64,7 +64,11 @@
             } else {
                 $output .= 'bạn chưa có sản phẩm nào trong wish list';
             }
-            echo $output;
+            $data = array(
+                'output' => $output,
+                'count' => $check->rowCount()
+            );
+            echo json_encode($data);
         }
         function deleteWishList(){
             if(isset($_POST['id_product'])){

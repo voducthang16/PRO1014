@@ -47,7 +47,9 @@
                 url: "account/selectWishList",
                 method: "POST",
                 success: function(data) {
-                    $("#container-wish-list-prd").html(data);
+                    let json = JSON.parse(data)
+                    $("#container-wish-list-prd").html(json.output);
+                    $('#span-quantity-wishlist').html(json.count);
                 },
             });
         }

@@ -26,7 +26,7 @@
                         <i class="fal fa-heart"></i>
                         <span>Wishlist</span>
                     </div>
-                    <span>3</span>
+                    <span id="span-quantity-wishlist"></span>
                 </a>
             </li>
         </ul>
