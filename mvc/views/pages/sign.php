@@ -3,7 +3,6 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
     header("Location:" . BASE_URL);
 }
 ?>
-
 <div class="sign">
     <div class="container wide">
         <div class="row">
@@ -21,6 +20,9 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
                         </div>
                         <div class="form-group" style="text-align: right">
                             <a href="<?=BASE_URL?>sign/forgotpassword" class="forgot-pass">Quên mật khẩu ?</a>
+                        </div>
+                        <div class="form-group" style="text-align: left">
+                            <a href="<?=$data['url_login_fb']?>" class="forgot-pass">Đăng nhập bằng facebook</a>
                         </div>
                         <div style="text-align: right" class="form-group">
                             <button type="submit" class="btn btn-primary">Đăng nhập</button>

@@ -45,5 +45,9 @@
             $result = $this->connect->prepare($qr);
             $result->execute();
         }
+
+        function signWithFB($fbUser){
+
+        }
     }
 ?>
