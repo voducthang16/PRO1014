@@ -107,21 +107,21 @@
 }
 
 .navbar-submenu-list {
-    position: absolute;
-    top: calc(100% -14px);
-    list-style: none;
-    width: 150px;
-    padding-left: 0;
-    border-radius: 3px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     display: none;
+    position: absolute;
+    top: calc(100% -10px);
+    list-style: none;
+    min-width: 200px;
+    padding: 8px 0;
+    border-radius: 5px;
     animation: fadeIn ease-in .3s;
     z-index: 5;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     background-color: var(--white-color);
 }
 
 .navbar-submenu-item {
-    padding: 8px;
+    padding: 7px 31px 7px 21px;
 }
 
 .navbar-submenu-item:hover {
@@ -132,6 +132,7 @@
     text-decoration: none;
     color: var(--text-color);
     font-size: 1.4rem;
+    line-height: 2.1rem;
     display: block;
 }
 
@@ -144,7 +145,7 @@
 }
 
 .navbar-control {
-    padding: 12px 0;
+    padding: 12px 0px;
 }
 
 .navbar-logo-link,
@@ -528,11 +529,10 @@
 
 .navbar-menu-link {
     display: inline-block;
-    padding: 12px 0;
-
+    padding: 18px 0px 14px 18px;
     color: var(--text-color);
-
     font-size: 1.6rem;
+    /* font-weight: ; */
     text-decoration: none;
     transition: all ease 0.4s;
 }
