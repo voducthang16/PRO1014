@@ -83,8 +83,7 @@
                 $mailer = false;
                 $result = $this->sign->checkEmail($email);
                 $data = array();
-                if ($result == 1) {
-
+                if ($result === 1) {
                     $code = md5(random_int(0,9999));
                     $code = substr($code,0,8);
                     $this->sign->updateCode($email, $code);

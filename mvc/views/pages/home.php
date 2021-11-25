@@ -21,9 +21,9 @@
                 <div class="row">
                     <div class="col l-6">
                         <div class="slide-content">
-                            <h4 class="slide-sub-title">Slide sub title</h4>
-                            <h3 class="slide-title delay-1">Slide title</h3>
-                            <p class="slide-desc delay-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos iure ullam, culpa voluptates officia architecto animi cum sapiente inventore. Numquam amet libero ut aperiam perspiciatis, asperiores tenetur necessitatibus repellendus eos.</p>
+                            <h4 class="slide-sub-title">Has just arrived!</h4>
+                            <h3 class="slide-title delay-1">Huge Summer Collection</h3>
+                            <p class="slide-desc delay-2">Swimwear, Tops, Shorts, Sunglasses & much more...</p>
                             <div>
                                 <a href="#" class="btn btn--size-m slide-link delay-3">Shop now <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
                             </div>
@@ -42,9 +42,9 @@
                 <div class="row">
                     <div class="col l-6">
                         <div class="slide-content">
-                            <h4 class="slide-sub-title">Slide sub title</h4>
-                            <h3 class="slide-title delay-1">Slide title</h3>
-                            <p class="slide-desc delay-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos iure ullam, culpa voluptates officia architecto animi cum sapiente inventore. Numquam amet libero ut aperiam perspiciatis, asperiores tenetur necessitatibus repellendus eos.</p>
+                            <h4 class="slide-sub-title">Hurry up! Limited time offer.</h4>
+                            <h3 class="slide-title delay-1">Women Sportswear Sale</h3>
+                            <p class="slide-desc delay-2">Sneakers, Keds, Sweatshirts, Hoodies & much more...</p>
                             <div>
                                 <a href="#" class="btn btn--size-m slide-link delay-3">Shop now <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
                             </div>
@@ -63,9 +63,9 @@
                 <div class="row">
                     <div class="col l-6">
                         <div class="slide-content">
-                            <h4 class="slide-sub-title">Slide sub title</h4>
-                            <h3 class="slide-title delay-1">Slide title</h3>
-                            <p class="slide-desc delay-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos iure ullam, culpa voluptates officia architecto animi cum sapiente inventore. Numquam amet libero ut aperiam perspiciatis, asperiores tenetur necessitatibus repellendus eos.</p>
+                            <h4 class="slide-sub-title">Complete your look with</h4>
+                            <h3 class="slide-title delay-1">New Men's Accessories</h3>
+                            <p class="slide-desc delay-2">Hats & Caps, Sunglasses, Bags & much more...</p>
                             <div>
                                 <a href="#" class="btn btn--size-m slide-link delay-3">Shop now <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
                             </div>

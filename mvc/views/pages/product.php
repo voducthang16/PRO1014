@@ -192,6 +192,50 @@
             <div class="l-o-1"></div>
         </div>
     </div>
+
+    <div class="page-footer border-top">
+        <div class="container wide">
+            <div class="row product-comment-top">
+                
+            </div>
+
+            <div class="row product-comment-body">
+                <div class="col l-7">
+                    <div class="product-comment-list">
+                        <!-- <div class="comment">
+                            <h3>Ten</h3>
+                            <span>sao</span>
+                            <p>noi dung</p>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col l-5">
+                    <div class="product-comment-background">
+                        <h3 class="product-comment-title">Viet Binh Luan</h3>
+                        <form action="" method="POST" class="product-comment-form">
+                            <div class="form-group">
+                                <label for="content">Noi dung</label>
+                                <textarea class="form-textarea" name="content" id="content" rows="10"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="rate">Danh gia</label>
+                                <select class="form-control" name="rate" id="rate">
+                                    <option value="5">5 sao</option>
+                                    <option value="4">4 sao</option>
+                                    <option value="3">3 sao</option>
+                                    <option value="2">2 sao</option>
+                                    <option value="1">1 sao</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0px">
+                                <button type="submit" class="btn product-comment-submit">Binh luan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     const tabs = document.querySelectorAll(".tab-item");

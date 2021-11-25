@@ -12,7 +12,7 @@
         </div>
         <ul class="account-body-list">
             <li>
-                <a class="account-body-list-link" href="">
+                <a class="account-body-list-link" href="<?=BASE_URL?>account">
                     <div class="">
                         <i class="fal fa-shopping-bag"></i>
                         <span>Order</span>

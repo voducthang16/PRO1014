@@ -52,18 +52,13 @@ $categories = $header->getCategories();
                         </a>
                     </div>
                 </div>
-                <!-- Begin: Menu Btn -->
-                <!-- <div class="col l-2 mobile-menu-btn" id="mobile-menu" style="font-size: 2.4rem; display: none;">
-                    <i class="fal fa-bars"></i>
-                </div> -->
-                <!-- End: Menu Btn -->
                 <div class="col l-6 search-width">
                     <div class="search">
                         <input class="search-control" type="text" name="search" id="search" placeholder="Search...." required>
                         <i class="fal fa-search search-icon"></i>
                     </div>
                 </div>
-                <div class="col l-4">
+                <div class="col l-4 navbar-box">
                     <div class="toolbar">
                         <div class="expand">
                             <p class="expand-btn">
@@ -72,7 +67,7 @@ $categories = $header->getCategories();
                             </p>
                         </div>
                         <div class="wishlist">
-                            <a href="wishlist" class="wishlist-link">
+                            <a href="<?=BASE_URL?>account/wishlist" class="wishlist-link">
                                 <span>Wishlist</span>
                                 <i class="fal fa-heart"></i>
                             </a>
@@ -130,17 +125,17 @@ $categories = $header->getCategories();
                     <ul class="navbar-menu-list">
                         <li class="navbar-menu-item">
                             <a href="" class="navbar-menu-link">
-                                Trang chủ
+                                Home
                             </a>
                         </li>
                         <li class="navbar-menu-item">
                             <a href="" class="navbar-menu-link">
-                                Giới thiệu
+                                About Us
                             </a>
                         </li>
                         <li class="navbar-menu-item">
-                            <a href="" class="navbar-menu-link">
-                                Danh mục
+                            <a class="navbar-menu-link">
+                                Categories
                             </a>
                             <ul class="navbar-submenu-list">
                                 <?php foreach ($categories as $category) : ?>
@@ -159,7 +154,7 @@ $categories = $header->getCategories();
                         </li>
                         <li class="navbar-menu-item">
                             <a href="" class="navbar-menu-link">
-                                Liên hệ
+                                Contact
                             </a>
                         </li>
                     </ul>

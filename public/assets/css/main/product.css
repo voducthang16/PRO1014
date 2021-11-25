@@ -459,3 +459,47 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 .tab-pane.active {
     display: block;
 }
+
+.page-footer.border-top {
+    padding-top: 48px;
+    border-top: 1px solid #e3e9ef !important;
+}
+
+.product-comment-body {
+    padding: 24px 0;
+}
+
+.product-comment-background {
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #f6f9fc !important;
+}
+
+.form-textarea {
+    padding: 16px;
+    width: 100%;
+    height: 100px;
+    border: 1px solid #dae1e7;
+    color: var(--secondary-color);
+    border-radius: 8px;
+    transition: all ease 0.4s;
+    resize: none;
+}
+
+.product-comment-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 24px;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.product-comment-submit {
+    font-size: 1.6rem;
+    width: 100% !important;
+    box-shadow: 0 0.5rem 1.125rem -0.5rem rgb(254 105 106 / 90%);
+}
