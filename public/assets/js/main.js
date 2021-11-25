@@ -7,7 +7,15 @@ document.addEventListener('scroll', () => {
         const category = document.querySelector(".category");
         category.classList.toggle("sticky", window.scrollY > 200);
     }
-
+    if (document.querySelector(".wishlist-page")) {
+        const wishlist = document.querySelector(".wishlist-page");
+        wishlist.classList.toggle("sticky", window.scrollY > 200);
+    }
+    if (document.querySelector(".order-page")) {
+        const order = document.querySelector(".order-page");
+        order.classList.toggle("sticky", window.scrollY > 200);
+    }
+    
     if (document.querySelector(".checkout")) {
         const checkout = document.querySelector(".checkout");
         checkout.classList.toggle("sticky", window.scrollY > 200);

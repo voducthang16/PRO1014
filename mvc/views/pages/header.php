@@ -67,7 +67,7 @@ $categories = $header->getCategories();
                             </p>
                         </div>
                         <div class="wishlist">
-                            <a href="wishlist" class="wishlist-link">
+                            <a href="<?=BASE_URL?>account/wishlist" class="wishlist-link">
                                 <span>Wishlist</span>
                                 <i class="fal fa-heart"></i>
                             </a>

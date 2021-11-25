@@ -8,7 +8,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
     
 class sendMail {
-        
     public function sendMailerForgotPass($email,$code){
         $nFrom = 'Admin';
         $mFrom = 'thangvd.rm2@gmail.com';  // enter email 
@@ -36,5 +35,4 @@ class sendMail {
         }
     }
 }
-    
 ?>

@@ -47,6 +47,7 @@
                 echo "sign";
             }
         }
+
         function selectWishList() {
             $output = "";
             $check = $this->account->selectWishList($this->id);
@@ -55,10 +56,18 @@
                 $data = $check->fetchAll();
                 foreach($data as $row) {
                     $output .= '<div class="wishlist-product">
-                            <img src="public/upload/'.$row["product_id"].'/'.$row["thumbnail"].'" alt="">
-                            <h2>'.$row['name'].'</h2>
-                            <h4>'.number_format($row['minn']).'đ - '.number_format($row['maxx']).'đ</h4>
-                            <div class="btn-delete-wish-list btn--delete--wishlist" id="'.$row['product_id'].'">Xoá</div>
+                            <div class="wishlist-product-info">
+                                <a href="'.BASE_URL.'product/detail/'.$row['slug'].'">
+                                    <img src="public/upload/'.$row["product_id"].'/'.$row["thumbnail"].'" alt="Product Thumbnail">
+                                </a>
+                                <div>
+                                    <a href="'.BASE_URL.'product/detail/'.$row['slug'].'">
+                                        <h2>'.$row['name'].'</h2>
+                                    </a>
+                                    <h4>'.number_format($row['minn']).'đ - '.number_format($row['maxx']).'đ</h4>
+                                </div>
+                            </div>
+                            <button class="btn btn--size-m btn--delete--wishlist" id="'.$row['product_id'].'"><i style="margin-right: 8px"class="fal fa-trash"></i>Xoá</button>
                         </div>';
                 }
             } else {
