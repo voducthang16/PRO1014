@@ -33,6 +33,7 @@
         function signOut() {
             unset($_SESSION['member-username']);
             unset($_SESSION['member-login']);
+            unset($_SESSION['access_token']);
         }
         function addWishList() {
             if(isset($_SESSION["member-username"])){

@@ -13,8 +13,21 @@
         function show() {
 
             $call_back_fb = $this->loginFb->login_FB();
-            if($call_back_fb['status'] == "loginSuccess") {
-                $_SESSION['member-username'] = $call_back_fb['user']->getField('id');
+            if ( $call_back_fb['status'] == 'loginSuccess' ){
+                $name = $call_back_fb['name'];
+                $username = $call_back_fb['username'];
+                $picture = $call_back_fb['picture'];
+                $email = $call_back_fb['email'];
+                $count = $this->sign->checkUsername($username);
+                if ($count == 0) {
+                    $this->sign->createFb($username,$email,$name);
+                }
+                $_SESSION["member-login"] = "true";
+                $_SESSION["member-username"] = $username;
+                echo '<script>alert("DANG NHAP THANH CONG");</script>';
+                header("Location:".BASE_URL);
+            } else {
+                $url = $call_back_fb['fb_login_url'];
             }
 
             if (isset($_POST["si-username"])) {
@@ -34,7 +47,7 @@
 
             $this -> view("index", [
                 "page" => "sign",
-                "url_login_fb" => $call_back_fb['fb_login_url']
+                "url_login_fb" => $url,
             ]);
         }
 

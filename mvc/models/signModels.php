@@ -7,9 +7,22 @@
             return $result->rowCount();
         }
 
+        function checkUsername($username){
+            $qr = "SELECT * FROM `members` WHERE members.username = '$username'";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+            return $result->rowCount();
+        }
+
         function createAccount($username, $email, $name, $password) {
             $sql = "INSERT INTO members(username, email, name, password) VALUES('$username', '$email', '$name', '$password')";
             $result = $this->connect->prepare($sql);
+            $result->execute();
+        }
+
+        function createFb($username,$email,$name){
+            $qr = "INSERT INTO members(username, email, name) VALUES('$username', '$email', '$name')";
+            $result = $this->connect->prepare($qr);
             $result->execute();
         }
 
@@ -44,10 +57,6 @@
             $qr = "UPDATE `members` SET `password`= '$password' WHERE `email` = '$email' and  `code` = '$code'";
             $result = $this->connect->prepare($qr);
             $result->execute();
-        }
-
-        function signWithFB($fbUser){
-
         }
     }
 ?>
