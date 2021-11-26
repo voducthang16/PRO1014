@@ -52,7 +52,7 @@
                             <del class="product-price-origin price-origin-value"><?= number_format($data['priceProduct']['min2'])?>đ - <?=number_format(($data['priceProduct']['max2']))?>đ</del>
                             <span class="product-sale-label">Sale</span>
                     </div>
-                        <input type="hidden" class="products-id" name="products-id" id="product-id" value="<?= $data['product']['id'] ?>">
+                        <input type="hidden" class="products-id value-get-showComment" name="products-id" id="product-id" value="<?= $data['product']['id'] ?>">
                         <input type="hidden" class="products-category-id" name="products-category-id" id="product-category-id" value="<?= $data['product']['category_id'] ?>">
                         <div class="product-attribute">
                             <div class="products-size p">
@@ -213,13 +213,14 @@
                     <div class="product-comment-background">
                         <h3 class="product-comment-title">Viet Binh Luan</h3>
                         <form action="" method="POST" class="product-comment-form">
+                            <input type="hidden" class="products-id" name="products-id" id="product-id" value="<?= $data['product']['id'] ?>">
                             <div class="form-group">
                                 <label for="content">Noi dung</label>
-                                <textarea class="form-textarea" name="content" id="content" rows="10"></textarea>
+                                <textarea class="form-textarea form-text-comment" name="content" id="content" rows="10"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="rate">Danh gia</label>
-                                <select class="form-control" name="rate" id="rate">
+                                <select class="form-control rate-star" name="rate" id="rate">
                                     <option value="5">5 sao</option>
                                     <option value="4">4 sao</option>
                                     <option value="3">3 sao</option>
@@ -228,7 +229,7 @@
                                 </select>
                             </div>
                             <div class="form-group" style="margin-bottom: 0px">
-                                <button type="submit" class="btn product-comment-submit">Binh luan</button>
+                                <div class="btn product-comment-submit" style="text-align: center;">Bình luận</div>
                             </div>
                         </form>
                     </div>

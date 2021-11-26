@@ -4,21 +4,27 @@
         public $id;
         function __construct() {
             $this-> account = $this->model("accountModels");
+        }
+
+        function show() {
             if(isset($_SESSION["member-username"])){
                 $username = $_SESSION["member-username"];
                 $this->id = $this->account->getProfile($username);
             } else {
                 header("Location:".BASE_URL);
             }
-        }
-
-        function show() {
             $this -> view("index", [
                 "page" => "account_orders"
             ]);
         }
 
         function wishlist() {
+            if(isset($_SESSION["member-username"])){
+                $username = $_SESSION["member-username"];
+                $this->id = $this->account->getProfile($username);
+            } else {
+                header("Location:".BASE_URL);
+            }
             $this -> view("index", [
                 "page" => "account_wishlist"
             ]);
@@ -29,7 +35,9 @@
             unset($_SESSION['member-login']);
         }
         function addWishList() {
-            if (isset($_SESSION['member-username'])) {
+            if(isset($_SESSION["member-username"])){
+                $username = $_SESSION["member-username"];
+                $this->id = $this->account->getProfile($username);
                 if(isset($_POST['action'])){
                     $id_product = $_POST['id_product'];
                     $check = $this->account->checkPrdWishList($this->id,$id_product);
@@ -40,8 +48,10 @@
                             return;
                         }
                         echo "thêm sản phẩm thất bại"; 
+                    } else {
+                        $this -> deleteWishList($this->id, $id_product);
+                        echo "Đã xoá sản phẩm khỏi wish list";
                     }
-                    echo "thêm sản phẩm thất bại";
                 }
             } else {
                 echo "sign";
@@ -49,6 +59,12 @@
         }
 
         function selectWishList() {
+            if(isset($_SESSION["member-username"])){
+                $username = $_SESSION["member-username"];
+                $this->id = $this->account->getProfile($username);
+            } else {
+                header("Location:".BASE_URL);
+            }
             $output = "";
             $check = $this->account->selectWishList($this->id);
             if ($check->rowCount() > 0) {
@@ -80,6 +96,12 @@
             echo json_encode($data);
         }
         function deleteWishList(){
+            if(isset($_SESSION["member-username"])){
+                $username = $_SESSION["member-username"];
+                $this->id = $this->account->getProfile($username);
+            } else {
+                header("Location:".BASE_URL);
+            }
             if(isset($_POST['id_product'])){
                 $id_product = $_POST['id_product'];
 
