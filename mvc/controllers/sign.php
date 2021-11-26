@@ -2,13 +2,18 @@
     class sign extends controller {
         public $sign;
         public $phpMailer;
+        // public $loginFb;
 
         function __construct() {
             $this->sign = $this->model('signModels');
             $this->phpMailer = $this->model('sendMail');
+            // $this->loginFb = $this->model('login_FB');
         }
 
         function show() {
+
+            // $call_back_fb = $this->loginFb->login_FB();
+
             if (isset($_POST["si-username"])) {
                 $username = $_POST["si-username"];
                 $password = $_POST["si-password"];
@@ -26,6 +31,7 @@
 
             $this -> view("index", [
                 "page" => "sign",
+                // "url_login_fb" => $call_back_fb['fb_login_url']
             ]);
         }
 

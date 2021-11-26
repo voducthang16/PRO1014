@@ -104,6 +104,48 @@ $(document).ready(function() {
         });
     })
 
+    function fetch_comment(){
+        let id = $('.value-get-showComment').val();
+        $.ajax({
+            url: "product/showComment",
+            method: "POST",
+            data: {
+                'id' : id
+            },
+            success:function(data) {
+                let json = JSON.parse(data)
+                $('.product-comment-list').html(json.data);
+                // json.star
+            }
+        })
+    }
+    fetch_comment();
+
+    $('.product-comment-submit').click(function(e){
+        e.preventDefault();
+        let parent = $(this).parents('.product-comment-form');
+        let value_comment = parent.find('.form-text-comment').val();
+        let star = parent.find('.rate-star').val();
+        let id = parent.find('.products-id').val();
+        $.ajax({
+            url: "product/addComment",
+            method: "POST",
+            data: {
+                'addComment': 'action',
+                'id_product': id,
+                'star' : star,
+                'content' : value_comment
+            },
+            success:function(data) {
+                if( data == "sign") {
+                    window.location = "sign";
+                } else {
+                    alert(data);
+                    fetch_comment();
+                }
+            }
+        });
+    })
 })
 
 function zoom(e) {

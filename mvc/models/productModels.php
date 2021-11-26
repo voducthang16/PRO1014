@@ -1,5 +1,12 @@
 <?php
     class productModels extends database {
+        function getProfile($username) {
+            $qr = "SELECT id FROM members WHERE username = ?";
+            $result = $this->connect->prepare($qr);
+            $result->execute([$username]);
+            return $result->fetch()['id'];
+        }
+
         function getSlugs() {
             $query = "SELECT slug FROM `products`";
             $result = $this->connect->prepare($query);
@@ -93,6 +100,29 @@
         function updateProductView($id) {
             $query = "UPDATE products SET view = view + 1 WHERE products.id = $id";
             $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function insertComment($id_prd, $id_member, $star, $content) {
+            $qr = "INSERT INTO `comments`( `member_id`, `product_id`, `content`, `star`) VALUES ('$id_member','$id_prd','$content','$star')";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+        }
+        function showComment($product){
+            $qr = "SELECT * FROM `comments` WHERE product_id = '$product' and status = 1 ORDER BY id DESC";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+            return $result;
+        }
+        function getProfileById($id){
+            $qr = "SELECT members.name FROM `members` WHERE id=$id";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+            return $result->fetch()['name'];
+        }
+        function deleteComment($id_comment,$id_member){
+            $qr = "DELETE FROM `comments` WHERE id = '$id_comment' and member_id = '$id_member'";
+            $result = $this->connect->prepare($qr);
             $result->execute();
         }
     }
