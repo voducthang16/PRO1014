@@ -104,7 +104,7 @@ $(document).ready(function() {
         });
     })
 
-    function fetch_comment(){
+    function fetch_comment() {
         let id = $('.value-get-showComment').val();
         $.ajax({
             url: "product/showComment",
@@ -119,6 +119,7 @@ $(document).ready(function() {
             }
         })
     }
+
     fetch_comment();
 
     $('.product-comment-submit').click(function(e){

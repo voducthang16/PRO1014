@@ -201,12 +201,14 @@
     margin-left: auto;
 }
 
+.remove-comment-myself,
 .btn--delete--wishlist {
     background-color: var(--white-color);
     color: var(--primary-color);
     border-color: var(--primary-color);
 }
 
+.remove-comment-myself:hover,
 .btn--delete--wishlist:hover {
     color: var(--white-color);
 }
