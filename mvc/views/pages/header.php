@@ -73,7 +73,7 @@ $categories = $header->getCategories();
                             </a>
                         </div>
                         <div class="user">
-                            <a href="<?= isset($_SESSION["member-login"]) ? 'account' : 'sign' ?>" class="user-link">
+                            <a href="<?= isset($_SESSION["member-login"]) ? 'account/order' : 'sign' ?>" class="user-link">
                                 <i class="fal fa-user"></i>
                                 <div class="user-action sm--hide">
                                     <?php if (!isset($_SESSION["member-login"])) : ?>

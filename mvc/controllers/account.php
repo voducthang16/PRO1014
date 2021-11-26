@@ -4,17 +4,17 @@
         public $id;
         function __construct() {
             $this-> account = $this->model("accountModels");
-        }
-
-        function show() {
             if(isset($_SESSION["member-username"])){
                 $username = $_SESSION["member-username"];
                 $this->id = $this->account->getProfile($username);
             } else {
                 header("Location:".BASE_URL);
             }
+        }
+        function order() {
             $this -> view("index", [
-                "page" => "account_orders"
+                "page" => "account_orders",
+                "order" => $this ->account->getOrderByMemberId($this->id),
             ]);
         }
 

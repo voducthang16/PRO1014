@@ -27,13 +27,48 @@
             </div>
             <div class="col l-8">
                 <div class="account-orders">
-                    orderpage
+                    <table class="orders-table">
+                        <thead class="orders-table-head">
+                            <tr>
+                                <th>Order#</th>
+                                <th>Date Purchased</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="orders-table-body">
+                            <?php foreach ($data['order'] as $item): ?>
+                                <tr>
+                                    <td><span class="orders-table-detail">TH-O<?=$item['id']?></span></td>
+                                    <td><?=dateVietnamese($item['orderDate'])?></td>
+                                    <td>
+                                        <?php
+                                            switch ($item['order_status']) {
+                                                case '0':
+                                                    echo '<span style="background-color: rgb(254, 165, 105)" class="order-status-label">Delayed</span>';
+                                                    break;
+                                                case '1':
+                                                    echo '<span style="background-color: rgb(105, 179, 254)" class="order-status-label">In Progress</span>';
+                                                    break;
+                                                case '2':
+                                                    echo '<span style="background-color: rgb(66, 214, 151)" class="order-status-label">Delivered</span>';
+                                                    break;
+                                                case '3':
+                                                    echo '<span style="background-color: rgb(243, 71, 112)" class="order-status-label">Cancelled</span>';
+                                                    break;
+                                            }
+                                        ?>
+                                    </td>
+                                    <td><?=number_format($item['total'])?>đ</td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
             $(document).on('click', '.account-sign-out', function() {

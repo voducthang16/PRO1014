@@ -69,6 +69,10 @@
     transition: all ease 0.4s;
 }
 
+.account-body-list-link.active {
+    color: var(--primary-color);
+}
+
 .account-body-list-link i {
     margin-right: 8px;
 }
@@ -94,6 +98,46 @@
     margin-top: 100px;
 }
 
+.orders-table {
+    width: 100%;
+
+    background-color: var(--white-color);
+    color: var(--secondary-color);
+
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.orders-table-head th {
+    padding: 12px;
+    border-bottom:  1px solid #bccad9 !important;
+    text-align: unset;
+}
+
+.orders-table-body td {
+    border-bottom:  1px solid #e3e9ef !important;
+    padding: 16px 12px;
+    text-align: unset;
+}
+
+.orders-table-body tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: all ease-in-out 0.4s;
+}
+
+.orders-table-detail:hover {
+    color: var(--primary-color);
+    transition: all ease 0.4s;
+    cursor: pointer;
+}
+
+.order-status-label {
+    display: inline-block;
+    color: var(--white-color);
+    border-radius: 4px;
+    padding: 2px 4px;
+    line-height: 1.8rem;
+}
 
 /* account-wishlist */
 .account-wishlist {
