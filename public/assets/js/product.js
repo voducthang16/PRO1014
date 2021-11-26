@@ -146,23 +146,6 @@ $(document).ready(function() {
             }
         });
     })
-
-    $('.remove-comment-myself').click(function(e){
-        e.preventDefault();
-        let id_comment = $(this).attr('id');
-        $.ajax({
-            url: "product/deleteComment",
-            method: "POST",
-            data: {
-                'idComment': id_comment
-            },
-            success:function(data) {
-                alert(data);
-                fetch_comment();
-            }
-        })
-    })
-
 })
 
 function zoom(e) {
