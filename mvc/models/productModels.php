@@ -108,8 +108,9 @@
             $result = $this->connect->prepare($qr);
             $result->execute();
         }
-        function showComment($product){
-            $qr = "SELECT * FROM `comments` WHERE product_id = '$product' and status = 1 ORDER BY id DESC";
+        function showComment($product) {
+            $qr = "SELECT comments.id, comments.member_id, comments.product_id, comments.content, comments.star, comments.status, 
+            DATE(`comments`.`created_at`) as 'date' FROM `comments` WHERE comments.product_id = '$product' and status = 1 ORDER BY id DESC";
             $result = $this->connect->prepare($qr);
             $result->execute();
             return $result;

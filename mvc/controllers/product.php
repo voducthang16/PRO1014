@@ -60,7 +60,6 @@
         }
 
         function getProductTypeId() {
-            
             //handle fetch data count qtt product 
             if (isset($_POST['get_quantity'])) {
                 $id = $_POST['id_product'];
@@ -87,7 +86,7 @@
             }
         }
 
-        function addComment(){
+        function addComment() {
             if (isset($_SESSION['member-username'])){
                 $username = $_SESSION["member-username"];
                 $this->id = $this->product->getProfile($username);
@@ -104,8 +103,8 @@
             }
         }
 
-        function showComment(){
-            if(isset($_POST['id'])){
+        function showComment() {
+            if(isset($_POST['id'])) {
                 $id = $_POST['id'];
                 $comment = $this->product->showComment($id);
                 $output = "";
@@ -119,23 +118,33 @@
                     }
                     foreach ($comment->fetchAll() as $row) {
                         $star += $row['star'];
-                        $name = $this-> product ->getProfileById($row['member_id']);
-                        if($row['member_id'] == $this->id) {
-                            $output .= "<div class='comment'>
-                                        <h3>".$name."</h3>
-                                        <span>".$row['star']."</span>
-                                        <p>".$row['content']."</p>
-                                        <span>".$row['created_at']."</span>
-                                        <div class='remove-comment-myself' id='".$row['id']."'>xoá</div>
-                                    </div>";
-                        } else {
-                            $output .= "<div class='comment'>
-                                        <h3>".$name."</h3>
-                                        <span>".$row['star']."</span>
-                                        <p>".$row['content']."</p>
-                                        <span>".$row['created_at']."</span>
-                                    </div>";
-                        }
+                        $name = $this->product->getProfileById($row['member_id']);
+                        $output .=
+                        "<div class='comment'>
+                            <div class='comment-header'>
+                                <img src='".BASE_URL."public/assets/img/default-avatar.png' alt='User Avatar' class='comment-user-avatar'>
+                                <div>
+                                    <h3>".$name."</h3>
+                                    <span>".dateVietnamese($row['date'])."</span>
+                                </div>
+                                <div class='comment-star'>";
+                            for ($i = 0; $i < 5; $i++) {
+                                if ($i < $row['star']) {
+                                    $output .= "
+                                    <span><i class='comment-star-icon fas fa-star'></i></span>
+                                ";
+                                } else {
+                                    $output .= "
+                                        <span><i style='color: #aeb4be' class='fal fa-star'></i></span>
+                                    ";
+                                }
+                            };
+                        $output .="</div>
+                            </div>
+                            <p class='comment-content'>".$row['content']."</p>
+                            ".($row['member_id'] == $this->id ? '<div style="text-align: right"><button class="btn remove-comment-myself" id="'.$row['id'].'"><i style="margin-right: 8px" class="fal fa-trash"></i>Xoá</button></div>' : '')."
+                        </div>";
+                        
                     }
                     $output .= "
                         <script>
