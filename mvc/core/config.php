@@ -4,8 +4,8 @@
     define("DB_PASS", "");
     define("DB_NAME", "pro1014");
     define("BASE_URL", "http://localhost/PRO1014/");
-    // define('APP_ID', '1713881978801455');
-    // define('APP_SECRET', '57babbdc5a64c66bc8a6e1342e880ab3');
-    // define('API_VERSION', 'v3.0');
-    // define('FB_BASE_URL', 'http://localhost/PRO1014/');
+    define('APP_ID', '435794041268676');
+    define('APP_SECRET', '45f3fbe9d376c24081856c128262c8f4');
+    define('API_VERSION', 'v5.7');
+    define('FB_BASE_URL', 'https://huyoccho.tk/sign');
 ?>

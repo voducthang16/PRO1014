@@ -113,7 +113,7 @@ $(document).ready(function() {
                 'id' : id
             },
             success:function(data) {
-                let json = JSON.parse(data)
+                let json = JSON.parse(data);
                 $('.product-comment-list').html(json.data);
                 // json.star
             }
