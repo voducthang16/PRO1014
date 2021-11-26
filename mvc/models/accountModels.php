@@ -40,5 +40,14 @@
             $result = $this->connect->prepare($qr);
             $result->execute();
         }
+
+        function getOrderByMemberId($id) {
+            $query = "SELECT orders.id, orders.member_id, orders.order_status, orders.total,
+            DATE(`orders`.`created_at`) as 'orderDate', members.name FROM orders INNER JOIN members ON orders.member_id = members.id 
+            WHERE orders.member_id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
     }
 ?>

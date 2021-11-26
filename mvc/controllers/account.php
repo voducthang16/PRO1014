@@ -12,9 +12,10 @@
             }
         }
 
-        function show() {
+        function order() {
             $this -> view("index", [
-                "page" => "account_orders"
+                "page" => "account_orders",
+                "order" => $this ->account->getOrderByMemberId($this->id),
             ]);
         }
 
