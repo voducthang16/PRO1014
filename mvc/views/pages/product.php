@@ -196,17 +196,13 @@
     <div class="page-footer border-top">
         <div class="container wide">
             <div class="row product-comment-top">
-                
+                <!-- render comment data -->
             </div>
 
             <div class="row product-comment-body">
                 <div class="col l-7">
                     <div class="product-comment-list">
-                        <!-- <div class="comment">
-                            <h3>Ten</h3>
-                            <span>sao</span>
-                            <p>noi dung</p>
-                        </div> -->
+                        <!-- render comment -->
                     </div>
                 </div>
                 <div class="col l-5">

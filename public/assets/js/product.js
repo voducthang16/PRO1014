@@ -121,7 +121,16 @@ $(document).ready(function() {
                 let json = JSON.parse(data);
                 $('.product-comment-list').html(json.data);
                 $("#content").val('');
-                // json.star
+            }
+        })
+        $.ajax({
+            url: "product/showCommentData",
+            method: "POST",
+            data: {
+                'id' : id
+            },
+            success:function(data) {
+                $('.product-comment-top').html(data);
             }
         })
     }

@@ -19,4 +19,8 @@
         $year = substr($str, 0, 4);
         return $day.'-'.$month.'-'.$year;
     }
+
+    function toFixed($number, $decimals) {
+        return number_format($number, $decimals, '.', "");
+    }
 ?>

@@ -466,7 +466,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 }
 
 .product-comment-body {
-    padding: 24px 0;
+    padding: 48px 0;
 }
 
 .product-comment-background {
@@ -555,4 +555,56 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 
 .remove-comment-myself {
     padding: 6px 18px;
+}
+
+.no-comment span {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.product-comment-top {
+    padding-bottom: 48px;
+    border-bottom: 1px solid #e3e9ef !important;
+}
+
+.product-comment-quantity {
+    margin-bottom: 24px;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.star-percent {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+
+.star-percent + .star-percent {
+    margin-top: 16px;
+}
+
+.star-progress {
+    position: relative;
+    flex: 1;
+
+    margin: 0 16px;
+    height: 4px;
+    background-color: #f3f5f9;
+    border-radius: 4px;
+}
+
+.star-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    border-radius: 4px;
+}
+
+.comment-star-icon.average {
+    font-size: 1.6rem;
+    color: var(--third-color);
 }
