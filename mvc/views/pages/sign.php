@@ -24,20 +24,42 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
                         <div class="form-group" style="text-align: left">
                             <a href="https://www.facebook.com/v12.0/dialog/oauth?client_id=435794041268676&redirect_uri=<?php BASE_URL; ?>sign/loginFB&scope=public_profile" class="forgot-pass">Đăng nhập bằng facebook</a>
                         </div>
-                        <div class="form-group" style="text-align: right">
+                        <!-- <div class="form-group" style="text-align: right">
                             <a href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=<?= APP_ID_GOOGLE ?>&redirect_uri=<?=BASE_URL?>sign/loginGoogle&scope=https%3A%2F%2Fmail.google.com&approval_prompt=force" class="forgot-pass">Đăng nhập google</a>
-                        </div>
+                        </div> -->
+                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
                         <div style="text-align: right" class="form-group">
                             <button type="submit" class="btn btn-primary">Đăng nhập</button>
                         </div>
                     </form>
                     <script>
                         function onSignIn(googleUser) {
+                            // Useful data for your client-side scripts:
                             var profile = googleUser.getBasicProfile();
-                            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                            console.log('Name: ' + profile.getName());
-                            console.log('Image URL: ' + profile.getImageUrl());
-                            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                            console.log('Full Name: ' + profile.getName());
+                            console.log('Given Name: ' + profile.getGivenName());
+                            console.log('Family Name: ' + profile.getFamilyName());
+                            console.log("Image URL: " + profile.getImageUrl());
+                            console.log("Email: " + profile.getEmail());
+
+                            // The ID token you need to pass to your backend:
+                            var id_token = googleUser.getAuthResponse().id_token;
+                            console.log("ID Token: " + id_token);
+                            
+                            $.ajax({
+                                url: "sign/loginGoogle",
+                                    method: "POST",
+                                    data: {
+                                        username:profile.getId(),
+                                        name:profile.getName(),
+                                        email:profile.getEmail()
+                                    },
+                                    success:function(data) {
+                                        alert(data);
+                                        window.location = "home";
+                                    }
+                            });
                         }
                     </script>
                 </div>

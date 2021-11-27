@@ -25,6 +25,11 @@
             $result = $this->connect->prepare($qr);
             $result->execute();
         }
+        function createGoogle($username,$name,$email){
+            $qr = "INSERT INTO members(username, name,email) VALUES('$username', '$name','$email')";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+        }
 
         function checkLogin($username, $password) {
             $sql = "SELECT * FROM members WHERE username = ? AND password = ?";

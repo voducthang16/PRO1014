@@ -47,54 +47,61 @@
         }
 
         function loginGoogle() {
-            if (isset($_GET['code'])) {
-                $secret = APP_SECRET_GOOGLE;
-                $client_id = APP_ID_GOOGLE;
-                $redirect_url = BASE_URL . "sign/loginGoogle";
-                $code = $_GET['code'];
-
-                $url = 'https://www.googleapis.com/oauth2/v4/token';
-                $data = array('code' => $code, 'client_id' => $client_id, 'client_secret' => $secret, 'redirect_uri' => $redirect_url, 'grant_type' => 'authorization_code');
-                $data_string = http_build_query($data);
-
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch,CURLOPT_URL, $url);
-                curl_setopt($ch,CURLOPT_POST, true);
-                curl_setopt($ch,CURLOPT_POSTFIELDS, $data_string);
-                curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
-                $response = json_decode($response);
-                $token = $response->access_token;
-                curl_close($ch);
-
-                print_r($response);
-                echo $token;
-    
-                $url_get_info_user = "https://www.googleapis.com/oauth2/v1/userinfo";
-    
-                $call = curl_init($url_get_info_user);
-                curl_setopt($call, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-                curl_setopt($call, CURLOPT_SSL_VERIFYPEER, true);
-                curl_setopt($call, CURLOPT_RETURNTRANSFER, 1); 
-                $curlheader[0] = "Authorization: Bearer " . $token;
-                curl_setopt($call, CURLOPT_HTTPHEADER, $curlheader);
-    
-                $user_info = curl_exec($call);
-                curl_close($call);
-
-                $user_info = json_decode($user_info);
-                
-                print_r($user_info);
-                // $count = $this->sign->checkUsername($user_info->id);
-                // if($count == 0) {
-                //     $this->sign->createFb($user_info->id,$user_info->name);
-                // }
-                // $_SESSION["member-login"] = "true";
-                // $_SESSION["member-username"] = $user_info->id;
-                // echo '<script>alert("DANG NHAP THANH CONG");</script>';
-                // header("Location:".BASE_URL);
+            if(isset($_POST['username'])) {
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $name = $_POST['name'];
+                $count = $this->sign->checkUsername($username);
+                if($count == 0) {
+                    $this->sign->createGoogle($username,$name,$email);
+                }
+                $_SESSION["member-login"] = "true";
+                $_SESSION["member-username"] = $username;
+                echo "loginSusses";
             }
+            // if (isset($_GET['code'])) {
+            //     $secret = APP_SECRET_GOOGLE;
+            //     $client_id = APP_ID_GOOGLE;
+            //     $redirect_url = BASE_URL . "sign/loginGoogle";
+            //     $code = $_GET['code'];
+
+            //     $url = 'https://www.googleapis.com/oauth2/v4/token';
+            //     $data = array('code' => $code, 'client_id' => $client_id, 'client_secret' => $secret, 'redirect_uri' => $redirect_url, 'grant_type' => 'authorization_code');
+            //     $data_string = http_build_query($data);
+
+            //     $ch = curl_init();
+            //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            //     curl_setopt($ch,CURLOPT_URL, $url);
+            //     curl_setopt($ch,CURLOPT_POST, true);
+            //     curl_setopt($ch,CURLOPT_POSTFIELDS, $data_string);
+            //     curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+            //     $response = curl_exec($ch);
+            //     $response = json_decode($response);
+            //     $token = $response->access_token;
+            //     curl_close($ch);
+    
+            //     $url_get_info_user = "https://www.googleapis.com/oauth2/v1/userinfo";
+    
+            //     $call = curl_init($url_get_info_user);
+            //     curl_setopt($call, CURLOPT_URL, $url);
+            //     curl_setopt($call, CURLOPT_SSL_VERIFYPEER, true);
+            //     curl_setopt($call, CURLOPT_RETURNTRANSFER, 1); 
+            //     $curlheader[0] = "Authorization: Bearer " . $token;
+            //     curl_setopt($call, CURLOPT_HTTPHEADER, $curlheader);
+    
+            //     $user_info = curl_exec($call);
+            //     curl_close($call);
+
+            //     $user_info = json_decode($user_info);
+            //     $count = $this->sign->checkUsername($user_info->id);
+            //     if($count == 0) {
+            //         $this->sign->createFb($user_info->id,$user_info->name);
+            //     }
+            //     $_SESSION["member-login"] = "true";
+            //     $_SESSION["member-username"] = $user_info->id;
+            //     echo '<script>alert("DANG NHAP THANH CONG");</script>';
+            //     header("Location:".BASE_URL);
+            // }
         }
 
         function show() {
@@ -253,4 +260,3 @@
             echo $check;
         }
     }
-?>

@@ -39,6 +39,9 @@
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.theme.default.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="<?= APP_ID_GOOGLE ?>">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <!-- <link rel="stylesheet" href="public/assets/css/main/home.css">
         <link rel="stylesheet" href="public/assets/css/main/home-block.css">
         <link rel="stylesheet" href="public/assets/css/main/menu.css">
