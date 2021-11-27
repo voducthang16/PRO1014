@@ -104,6 +104,11 @@ $(document).ready(function() {
         });
     })
 
+    let url = window.location.href;
+    if (url.indexOf('product') > 1) {
+        fetch_comment();
+    }
+    // fetch comment
     function fetch_comment() {
         let id = $('.value-get-showComment').val();
         $.ajax({
@@ -115,14 +120,14 @@ $(document).ready(function() {
             success:function(data) {
                 let json = JSON.parse(data);
                 $('.product-comment-list').html(json.data);
+                $("#content").val('');
                 // json.star
             }
         })
     }
 
-    fetch_comment();
-
-    $('.product-comment-submit').click(function(e){
+    // add comment
+    $('.product-comment-submit').click(function(e) {
         e.preventDefault();
         let parent = $(this).parents('.product-comment-form');
         let value_comment = parent.find('.form-text-comment').val();
@@ -146,6 +151,22 @@ $(document).ready(function() {
                 }
             }
         });
+    })
+
+    // delete comment
+    $(document).on('click', '.remove-comment-myself', function() {
+        let id_comment = $(this).attr('id');
+        $.ajax({
+            url: 'product/deleteComment',
+            method: 'POST',
+            data: {
+                'idComment': id_comment
+            },
+            success:function(data) {
+                alert(data);
+                fetch_comment();
+            }
+        })
     })
 })
 
