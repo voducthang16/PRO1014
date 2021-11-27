@@ -108,12 +108,20 @@
             $result = $this->connect->prepare($qr);
             $result->execute();
         }
+
         function showComment($product) {
             $qr = "SELECT comments.id, comments.member_id, comments.product_id, comments.content, comments.star, comments.status, 
             DATE(`comments`.`created_at`) as 'date' FROM `comments` WHERE comments.product_id = '$product' and status = 1 ORDER BY id DESC";
             $result = $this->connect->prepare($qr);
             $result->execute();
             return $result;
+        }
+
+        function quantityStar($id) {
+            $query = "SELECT COUNT(comments.star) as 'count', comments.star FROM comments WHERE comments.product_id = $id and status = 1 GROUP BY comments.star";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
         }
         function getProfileById($id){
             $qr = "SELECT members.name FROM `members` WHERE id=$id";

@@ -88,7 +88,7 @@
                         </div>';
                 }
             } else {
-                $output .= 'bạn chưa có sản phẩm nào trong wish list';
+                $output .= '<h3 class="no-product-wishlist">Bạn chưa có sản phẩm nào trong wishlist.</h3>';
             }
             $data = array(
                 'output' => $output,
