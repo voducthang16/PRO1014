@@ -20,8 +20,8 @@
             $result->execute();
         }
 
-        function createFb($username,$email,$name){
-            $qr = "INSERT INTO members(username, email, name) VALUES('$username', '$email', '$name')";
+        function createFb($username,$name){
+            $qr = "INSERT INTO members(username, name) VALUES('$username', '$name')";
             $result = $this->connect->prepare($qr);
             $result->execute();
         }

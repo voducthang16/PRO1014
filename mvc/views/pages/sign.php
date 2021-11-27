@@ -22,7 +22,7 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
                             <a href="<?=BASE_URL?>sign/forgotpassword" class="forgot-pass">Quên mật khẩu ?</a>
                         </div>
                         <div class="form-group" style="text-align: left">
-                            <a href="<?=$data['url_login_fb']?>" class="forgot-pass">Đăng nhập bằng facebook</a>
+                            <a href="https://www.facebook.com/v12.0/dialog/oauth?client_id=435794041268676&redirect_uri=<?php echo BASE_URL; ?>/sign/loginFB&scope=public_profile" class="forgot-pass">Đăng nhập bằng facebook</a>
                         </div>
                         <div style="text-align: right" class="form-group">
                             <button type="submit" class="btn btn-primary">Đăng nhập</button>

@@ -2,33 +2,51 @@
     class sign extends controller {
         public $sign;
         public $phpMailer;
-        public $loginFb;
 
         function __construct() {
             $this->sign = $this->model('signModels');
             $this->phpMailer = $this->model('sendMail');
-            $this->loginFb = $this->model('login_FB');
+        }
+
+        function loginFB() {
+            if (isset($_GET['code'])) {
+                $secret = APP_SECRET;
+                $client_id = APP_ID;
+                $redirect_url = BASE_URL . "sign/loginFB";
+                $code = $_GET['code'];
+                $facebook_access_token_url = "https://graph.facebook.com/v12.0/oauth/access_token?client_id=$client_id&redirect_uri=$redirect_url&client_secret=$secret&code=$code";
+                $call = curl_init();
+                curl_setopt($call, CURLOPT_URL, $facebook_access_token_url);
+                curl_setopt($call, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($call, CURLOPT_SSL_VERIFYPEER, false);
+                $response = curl_exec($call);
+                $response = json_decode($response);
+                $response = $response->access_token;
+                curl_close($call);
+    
+                $url_get_info_user = "https://graph.facebook.com/me?access_token=$response";
+    
+                $call = curl_init();
+                curl_setopt($call, CURLOPT_URL, $url_get_info_user);
+                curl_setopt($call, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($call, CURLOPT_SSL_VERIFYPEER, false);
+    
+                $user_info = curl_exec($call);
+                curl_close($call);
+
+                $user_info = json_decode($user_info);
+                $count = $this->sign->checkUsername($user_info->id);
+                if($count == 0) {
+                    $this->sign->createFb($user_info->id,$user_info->name);
+                }
+                $_SESSION["member-login"] = "true";
+                $_SESSION["member-username"] = $user_info->id;
+                echo '<script>alert("DANG NHAP THANH CONG");</script>';
+                header("Location:".BASE_URL);
+            }
         }
 
         function show() {
-
-            $call_back_fb = $this->loginFb->login_FB();
-            if ( $call_back_fb['status'] == 'loginSuccess' ){
-                $name = $call_back_fb['name'];
-                $username = $call_back_fb['username'];
-                $picture = $call_back_fb['picture'];
-                $email = $call_back_fb['email'];
-                $count = $this->sign->checkUsername($username);
-                if ($count == 0) {
-                    $this->sign->createFb($username,$email,$name);
-                }
-                $_SESSION["member-login"] = "true";
-                $_SESSION["member-username"] = $username;
-                echo '<script>alert("DANG NHAP THANH CONG");</script>';
-                header("Location:".BASE_URL);
-            } else {
-                $url = $call_back_fb['fb_login_url'];
-            }
 
             if (isset($_POST["si-username"])) {
                 $username = $_POST["si-username"];
@@ -47,7 +65,6 @@
 
             $this -> view("index", [
                 "page" => "sign",
-                "url_login_fb" => $url,
             ]);
         }
 
