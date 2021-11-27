@@ -146,39 +146,6 @@
                         </div>";
                         
                     }
-                    $output .= "
-                        <script>
-                            function fetch_comment(){
-                                let id = $('.value-get-showComment').val();
-                                $.ajax({
-                                    url: 'product/showComment',
-                                    method: 'POST',
-                                    data: {
-                                        'id' : id
-                                    },
-                                    success:function(data) {
-                                        let json = JSON.parse(data)
-                                        $('.product-comment-list').html(json.data);
-                                        // json.star
-                                    }
-                                })
-                            }
-                            $('.remove-comment-myself').click(function(e){
-                                e.preventDefault();
-                                let id_comment = $(this).attr('id');
-                                $.ajax({
-                                    url: 'product/deleteComment',
-                                    method: 'POST',
-                                    data: {
-                                        'idComment': id_comment
-                                    },
-                                    success:function(data) {
-                                        alert(data);
-                                        fetch_comment();
-                                    }
-                                })
-                            })
-                        </script>";
                     $product_star = $star / $comment->rowCount();
                 } else {
                     $output .= "<div class='comment'>
