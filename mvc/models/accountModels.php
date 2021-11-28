@@ -36,7 +36,7 @@
             return $result->rowCount();
         }
         function deleteWishList($id_member,$id_product) {
-            $qr = "DELETE FROM `products_wishlist` WHERE `member_id` = $id_member AND `product_id` = $id_product";
+            $qr = "DELETE FROM `products_wishlist` WHERE `member_id` = '$id_member' AND `product_id` = '$id_product'";
             $result = $this->connect->prepare($qr);
             $result->execute();
         }

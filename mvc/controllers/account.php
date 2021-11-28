@@ -57,35 +57,7 @@
             unset($_SESSION['access_token']);
         }
 
-        function addWishList() {
-            if(isset($_SESSION["member-username"])) {
-                if(isset($_POST['action'])) {
-                    $id_product = $_POST['id_product'];
-                    $check = $this->account->checkPrdWishList($this->id,$id_product);
-                    if ($check == 0) {
-                        $result = $this-> account->addWishList($this->id,$id_product);
-                        if ($result == true) {
-                            echo "đã thêm sản phẩm vào wish list";
-                            return;
-                        }
-                        echo "thêm sản phẩm thất bại"; 
-                    } else {
-                        $this -> deleteWishList($this->id, $id_product);
-                        echo "Đã xoá sản phẩm khỏi wish list";
-                    }
-                }
-            } else {
-                echo "sign";
-            }
-        }
-
         function selectWishList() {
-            if(isset($_SESSION["member-username"])){
-                $username = $_SESSION["member-username"];
-                $this->id = $this->account->getProfile($username)['id'];
-            } else {
-                header("Location:".BASE_URL);
-            }
             $output = "";
             $check = $this->account->selectWishList($this->id);
             if ($check->rowCount() > 0) {
@@ -118,12 +90,6 @@
         }
 
         function deleteWishList(){
-            if(isset($_SESSION["member-username"])){
-                $username = $_SESSION["member-username"];
-                $this->id = $this->account->getProfile($username);
-            } else {
-                header("Location:".BASE_URL);
-            }
             if(isset($_POST['id_product'])){
                 $id_product = $_POST['id_product'];
 
