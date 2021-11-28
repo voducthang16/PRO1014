@@ -39,8 +39,8 @@
         }
 
         function addWishList() {
-            if(isset($_SESSION["member-username"])){
-                if(isset($_POST['action'])){
+            if(isset($_SESSION["member-username"])) {
+                if(isset($_POST['action'])) {
                     $id_product = $_POST['id_product'];
                     $check = $this->account->checkPrdWishList($this->id,$id_product);
                     if ($check == 0) {
@@ -63,7 +63,7 @@
         function selectWishList() {
             if(isset($_SESSION["member-username"])){
                 $username = $_SESSION["member-username"];
-                $this->id = $this->account->getProfile($username);
+                $this->id = $this->account->getProfile($username)['id'];
             } else {
                 header("Location:".BASE_URL);
             }

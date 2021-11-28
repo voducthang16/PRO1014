@@ -107,8 +107,8 @@
             if(isset($_SESSION["member-username"])){
                 $account = $this->model('accountModels');
                 $username = $_SESSION["member-username"];
-                $this->id = $account->getProfile($username);
-                if(isset($_POST['action'])){
+                $this->id = $account->getProfile($username)['id'];
+                if(isset($_POST['action'])) {
                     $id_product = $_POST['id_product'];
                     $check = $account->checkPrdWishList($this->id,$id_product);
                     if ($check == 0) {
@@ -120,6 +120,7 @@
                         echo "thêm sản phẩm thất bại"; 
                     } else {
                         $account->deleteWishList($this->id, $id_product);
+                        echo 'da xoa san pham';
                     }
                 }
             } else {

@@ -143,7 +143,7 @@ $(document).ready(function() {
         let value_comment = parent.find('.form-text-comment').val();
         let star = parent.find('.rate-star').val();
         let id = parent.find('.products-id').val();
-        if (value_comment == "") {
+        if (value_comment.trim() == "") {
             alert('vui lòng nhập bình luận');
             return;
         }
@@ -157,8 +157,7 @@ $(document).ready(function() {
                 'content' : value_comment
             },
             success:function(data) {
-                alert(data);
-                if( data == "sign") {
+                if(data == "sign") {
                     window.location = "sign";
                 } else {
                     alert(data);

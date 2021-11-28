@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                                 <div class="col l-6">
-                                    <div class="form-group">
+                                    <div style="background-color: #f6f9fc;" class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control" id="email" name="email" value="<?=$data['profile']['email']?>" disabled>
                                     </div>
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div style="text-align: right; width: 100%">
-                                    <button type="submit" class="btn">Update Profile</button>
+                                    <button type="submit" class="btn btn--size-s">Update Profile</button>
                                 </div>
                             </div>
                         </form>
@@ -70,3 +70,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).on('click', '.account-sign-out', function() {
+        $.ajax({
+            url: "account/signOut",
+            type: "POST",
+            success: function(data) {
+                window.location.href = "";
+            }
+        })
+    })
+</script>
