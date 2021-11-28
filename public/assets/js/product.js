@@ -121,6 +121,7 @@ $(document).ready(function() {
                 let json = JSON.parse(data);
                 $('.product-comment-list').html(json.data);
                 $("#content").val('');
+                $("#rate").val('5');
             }
         })
         $.ajax({

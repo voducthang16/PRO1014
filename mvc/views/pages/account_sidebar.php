@@ -65,7 +65,7 @@
         </div>
         <ul class="account-body-list">
             <li>
-                <a class="account-body-list-link" href="">
+                <a class="account-body-list-link <?=isset($_GET['url']) && $_GET['url'] == 'account/profile' ? 'active' : ''?>" href="account/profile">
                     <div class="">
                         <i class="fal fa-user"></i>
                         <span>Profile info</span>

@@ -21,7 +21,7 @@
         </div>
     </div>
     <div style="margin-top: -80px" class="container wide">
-        <div class="row">
+        <div style="padding-bottom: 40px" class="row">
             <div class="col l-4">
                 <?php require_once __DIR__ . "/account_sidebar.php";?>
             </div>

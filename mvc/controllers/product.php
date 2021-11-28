@@ -228,14 +228,21 @@
                     <div class="col l-4">
                         <h3 class="product-comment-quantity">'.$commentQuantity.' Bình luận</h3>
                         <div>';
+                $averageLoop = $average;
+                if (strpos($average, '.5') !== false) {
+                    $averageLoop = intval($average);
+                }
                 for ($i = 0; $i < 5; $i++) {
-                    if ($i < round($average)) {
+                    if ($i < round($averageLoop)) {
                         $output .= "<span><i class='comment-star-icon average fas fa-star'></i></span>";
+                    } else if (strpos($average, '.5') !== false) {
+                        $output .= "<span><i class='comment-star-icon average fad fa-star-half-alt'></i></span>";
+                        $average = intval($average);
                     } else {
                         $output .= "<span><i style='color: #aeb4be; font-size: 1.6rem' class='fal fa-star'></i></span>";
                     }
                 };
-                $output .='<span style="margin-left: 8px; font-size: 1.6rem">'.toFixed($average, 1).'</span></div>
+                $output .='<span style="margin-left: 8px; font-size: 1.6rem">'.toFixed($totalStar / $commentQuantity, 1).'</span></div>
                     </div>
                     <div class="col l-8">
                         <div class="star-percent">
