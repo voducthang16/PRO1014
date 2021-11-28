@@ -243,6 +243,9 @@
                         $output .= "<span><i style='color: #aeb4be; font-size: 1.6rem' class='fal fa-star'></i></span>";
                     }
                 };
+                if ($commentQuantity == 0) {
+                    $commentQuantity = 1;
+                }
                 $output .='<span style="margin-left: 8px; font-size: 1.6rem">'.toFixed($totalStar / $commentQuantity, 1).'</span></div>
                     </div>
                     <div class="col l-8">
