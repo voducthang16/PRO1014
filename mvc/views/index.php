@@ -72,6 +72,6 @@
     <script src="<?=BASE_URL?>public/assets/js/owl.carousel.min.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/main.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/product.js"></script>
-    <script src="<?=BASE_URL?>public/assets/js/checkout.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/search.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/cart.js"></script>
 </html>

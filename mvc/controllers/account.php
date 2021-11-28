@@ -20,6 +20,25 @@
         }
 
         function profile() {
+            if(isset($_POST['btn-change-password'])){
+                $password = filter_var($_POST['password']);
+                $new_password = filter_var($_POST['new-password']);
+                $re_new_password = filter_var($_POST['new-password-re']);
+                $check = $this->account->checkPassword($password,$this->id);
+                if($check->rowCount() == 0){
+                    echo "<script>alert('password sai !!');<script>";
+                    return;
+                } else {
+                    if($new_password != $re_new_password){
+                        echo "<script>alert('2 password ko giống nhau !!');<script>";
+                        return;
+                    } else {
+                        $this->account->UpdatePassword($new_password,$this->id);
+                        echo "<script>alert('update password thành công <3');<script>";
+                        return;
+                    }
+                }
+            }
             $this -> view("index", [
                 "page" => "account_profile",
                 "profile" => $this ->account->getProfile($_SESSION["member-username"]),
@@ -111,6 +130,22 @@
                 $this->account->deleteWishList($this->id,$id_product);
                 echo "đã xoá thành công mã sản phẩm " .$id_product." khỏi wishList";
             }
+        }
+
+        function UpdateProfile() {
+            if(isset($_POST['email'])) {
+                $email = filter_var($_POST['email']);
+                $address = filter_var($_POST['address']);
+                $full_name = filter_var($_POST['full_name']);
+                $phone = filter_var($_POST['phone']);
+            }
+            $result = $this->account->CheckEmail($email);
+            if ($result->rowCount() > 0 && $result->fetch()['id'] != $this->id) {
+                echo "EMAIL của bạn nhập đã tồn tại trên hệ thống vui lòng kiểm tra lại !!";
+                return;
+            }
+            $this->account->UpdateProfile($email,$phone,$address,$full_name,$this->id);
+            echo "update thành công profile";
         }
     }
 ?>

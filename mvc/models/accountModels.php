@@ -49,5 +49,31 @@
             $result->execute();
             return $result->fetchAll();
         }
+
+        function CheckEmail($email) {
+            $qr = "SELECT * FROM `members` WHERE email = '$email'";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+            return $result;
+        }
+
+        function UpdateProfile($email,$phone,$address,$full_name,$id) {
+            $qr = "UPDATE `members` SET `name`='$full_name',`phone`='$phone',`address`='$address',`email`='$email' WHERE `id` = '$id'";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+        }
+
+        function checkPassword($password,$id){
+            $qr = "SELECT * FROM `members` WHERE password = '$password' and `id` = '$id'";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+            return $result;
+        }
+
+        function UpdatePassword($password,$id){
+            $qr = "UPDATE `members` SET `password`='$password' WHERE `id` = '$id'";
+            $result = $this->connect->prepare($qr);
+            $result->execute();
+        }
     }
 ?>

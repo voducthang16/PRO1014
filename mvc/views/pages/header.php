@@ -54,7 +54,7 @@ $categories = $header->getCategories();
                 </div>
                 <div class="col l-6 search-width">
                     <div class="search">
-                        <input class="search-control" type="text" name="search" id="search" placeholder="Search...." required>
+                        <input class="search-control ze-t51-search" type="text" name="search" id="search" placeholder="Search...." required>
                         <i class="fal fa-search search-icon"></i>
                     </div>
                 </div>

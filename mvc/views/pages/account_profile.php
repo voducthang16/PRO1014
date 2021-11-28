@@ -29,38 +29,53 @@
                 <div class="account-wishlist">
                     <h2 class="wishlist-title">Update you profile details below:</h2>
                     <div class="wishlist-product-list">
-                        <form action="" method="post">
-                            <div class="row">
+                        <form>
+                            <div class="row form-update-profile">
                                 <div class="col l-6">
                                     <div class="form-group">
                                         <label for="full_name">Full Name</label>
-                                        <input type="text" class="form-control" id="full_name" name="full_name" value="<?=$data['profile']['name']?>">
+                                        <input type="text" class="form-control" id="full_name" name="full_name" value="<?=$data['profile']['name']?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone Number</label>
-                                        <input type="number" class="form-control" id="phone" name="phone" value="<?=$data['profile']['phone']?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">New Password</label>
-                                        <input type="password" class="form-control" id="password" name="password">
+                                        <input type="number" class="form-control" id="phone" name="phone" value="<?=$data['profile']['phone']?>" required>
                                     </div>
                                 </div>
                                 <div class="col l-6">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input style="background-color: #f6f9fc;" type="email" class="form-control" id="email" name="email" value="<?=$data['profile']['email']?>" disabled>
+                                        <input style="background-color: #f6f9fc;" type="email" class="form-control" id="email" name="email" value="<?=$data['profile']['email']?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="address">Address</label>
-                                        <input type="text" class="form-control" id="address" name="address" value="<?=$data['profile']['address']?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="new_password">Confirm Password</label>
-                                        <input type="password" class="form-control" id="new_password" name="new_password">
+                                        <input type="text" class="form-control" id="address" name="address" value="<?=$data['profile']['address']?>" required>
                                     </div>
                                 </div>
                                 <div style="text-align: right; width: 100%">
-                                    <button style="margin-right: 12px" type="submit" class="btn btn--size-s">Update Profile</button>
+                                    <div style="margin-right: 12px; font-size:13.2px;" type="submit" class="btn btn--size-s btn-submit-update-profile">Update Profile</div>
+                                </div>
+                            </div>
+                        </form>
+                        <form method="POST">
+                            <div class="row">
+                                <div class="col l-6">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" required>
+                                    </div>
+                                </div>
+                                <div class="col l-6">
+                                    <div class="form-group">
+                                        <label for="password">New Password</label>
+                                        <input type="password" class="form-control" id="new-password" name="new-password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new_password">Confirm New Password</label>
+                                        <input type="password" class="form-control" id="new-password-re" name="new-password-re" required>
+                                    </div>
+                                </div>
+                                <div style="text-align: right; width: 100%">
+                                    <button style="margin-right: 12px" type="submit" class="btn btn--size-s" name="btn-change-password">Update Password</button>
                                 </div>
                             </div>
                         </form>
@@ -80,5 +95,47 @@
                 window.location.href = "";
             }
         })
+    })
+    $(document).on('click','.btn-submit-update-profile',function() {
+        let parent = $(this).parents('.form-update-profile');
+        let full_name = parent.find('#full_name').val();
+        let email = parent.find('#email').val();
+        let address = parent.find('#address').val();
+        let phone = parent.find('#phone').val();
+        const mailFormat = /^\w+([\.-]?\w+)*@(gmail.com)+$/;
+
+        if (email.match(mailFormat)) {
+                email = email;
+            } else {
+                if (email.length > 0){
+                    alert('Bạn cần nhập mail chính xác !!');
+                    return;
+                }
+            }
+        if (full_name == "" || email == "" || address == "" || phone == "") {
+            alert('Bạn cần cập nhật đầy đủ thông tin');
+            return;
+        }
+        if (phone.length > 12) {
+            alert('Bạn cần nhập số điện thoại chính xác !!');
+            return;
+        }
+        $.ajax({
+            url: "account/UpdateProfile",
+            type: "POST",
+            data: {
+                email:email,
+                phone:phone,
+                address:address,
+                full_name:full_name
+            },  
+            success: function(data) {
+                alert(data);
+                if (data != "update thành công profile") {
+                    location.reload();
+                }
+            }
+        })
+
     })
 </script>
