@@ -40,8 +40,6 @@
 
         function addWishList() {
             if(isset($_SESSION["member-username"])){
-                $username = $_SESSION["member-username"];
-                $this->id = $this->account->getProfile($username);
                 if(isset($_POST['action'])){
                     $id_product = $_POST['id_product'];
                     $check = $this->account->checkPrdWishList($this->id,$id_product);
