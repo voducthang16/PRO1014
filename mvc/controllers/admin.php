@@ -78,6 +78,20 @@
                 if ($check == 1) {
                     echo '<script>alert("Ten san pham da tồn tại.");</script>';
                 } else {
+                    $format = array("JPG", "JPEG", "PNG", "GIF", "BMP", "jpg", "jpeg", "png", "gif", "bmp");
+
+                    foreach ($_FILES["product-list-images"]['tmp_name'] as $key => $value) {
+                        $filename = $_FILES['product-list-images']['name'][$key];
+                        $filename_tmp = $_FILES['product-list-images']['tmp_name'][$key];
+                        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+                        $filename = time().'_'.$filename;
+                        if (!in_array($ext, $format)) {
+                            echo '<script>alert("File khong dung dinh dang. Anh Con");</script>';
+                            header("Refresh: 0");
+                            return;
+                        }
+                    }
+
                     $product_slug = to_slug($product_name);
                     $product_category = $_POST['product-category'];
                     
@@ -102,14 +116,12 @@
 
                     $length = count($product_quantity);
 
-                    $format = array("JPG", "JPEG", "PNG", "GIF", "BMP", "jpg", "jpeg", "png", "gif", "bmp");
-
                     $product_thumbnail = $_FILES["product-thumbnail"]['name'];
                     $product_thumbnail_tmp = $_FILES["product-thumbnail"]['tmp_name'];
                     $exp3 = substr($product_thumbnail, strlen($product_thumbnail) - 3);
                     $exp4 = substr($product_thumbnail, strlen($product_thumbnail) - 4);
                     $product_thumbnail = time()."_".$product_thumbnail;
-
+                    
                     if (in_array($exp3, $format) || in_array($exp4, $format)) {
                         $result = $this->admin->addProduct($product_category, $product_name, $product_slug, $product_thumbnail, $product_description, $product_parameters, $product_status);
                         if ($result == true) {
@@ -140,24 +152,21 @@
                             $storage = "public/upload/$product_id/";
                             move_uploaded_file($product_thumbnail_tmp, $storage . $product_thumbnail);
     
-                            if (isset($_FILES["product-list-images"])) {
-                                foreach ($_FILES["product-list-images"]['tmp_name'] as $key => $value) {
-                                    $filename = $_FILES['product-list-images']['name'][$key];
-                                    $filename_tmp = $_FILES['product-list-images']['tmp_name'][$key];
-                                    $ext = pathinfo($filename, PATHINFO_EXTENSION);
-    
-                                    $filename = time().'_'.$filename;
-                                    if (in_array($ext, $format)) {
-                                        move_uploaded_file($filename_tmp, $storage . $filename);
-                                        $this->admin->addProductImages($product_id, $filename);
-                                    } else {
-                                        echo '<script>alert("File khong dung dinh dang.");</script>';
-                                    }
+                            foreach ($_FILES["product-list-images"]['tmp_name'] as $key => $value) {
+                                $filename = $_FILES['product-list-images']['name'][$key];
+                                $filename_tmp = $_FILES['product-list-images']['tmp_name'][$key];
+                                $ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+                                $filename = time().'_'.$filename;
+                                if (in_array($ext, $format)) {
+                                    move_uploaded_file($filename_tmp, $storage . $filename);
+                                    $this->admin->addProductImages($product_id, $filename);
                                 }
                             }
-    
                             echo '<script>alert("Thêm thành công.");</script>';
                         }
+                    } else {
+                        echo '<script>alert("File khong dung dinh dang. Anh thumbnail");</script>';
                     }
 
                 }

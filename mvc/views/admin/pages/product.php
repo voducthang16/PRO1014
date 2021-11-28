@@ -306,7 +306,7 @@
                             <span class="btn btn-rose btn-round btn-file">
                                 <span class="fileinput-new">Chọn ảnh bìa</span>
                                 <span class="fileinput-exists">Thay đổi</span>
-                                <input style="z-index: 2 !important;" type="file" name="product-thumbnail"  />
+                                <input style="z-index: 2 !important;" type="file" name="product-thumbnail" required>
                             </span>
                             <a href="#delImg" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Xóa</a>
                             </div>
@@ -314,7 +314,7 @@
                     </div>
                     <div class="form-group">
                         <label>Ảnh sản phẩm</label>
-                        <input type="file" class="upload-multi" name="product-list-images[]" multiple="">
+                        <input type="file" class="upload-multi" name="product-list-images[]" multiple="" required>
                     </div>
                     <div class="form-group">
                         <label for="product-description">Miêu tả sản phẩm</label>
