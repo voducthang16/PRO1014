@@ -22,9 +22,11 @@
         }
 
         function addCategory($name, $slug, $status) {
-            $query = "INSERT INTO category(name, slug, status) 
-            VALUES ('$name', '$slug','$status')";
+            $query = "INSERT INTO category(name, slug, status) VALUES (:name, :slug,:status)";
             $result = $this->connect->prepare($query);
+            $result->bindValue(':name', $name, PDO::PARAM_STR);
+            $result->bindValue(':slug', $slug, PDO::PARAM_STR);
+            $result->bindValue(':status', $status, PDO::PARAM_INT);
             $result->execute();
         }
 
