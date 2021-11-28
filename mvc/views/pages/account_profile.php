@@ -44,7 +44,7 @@
                                 <div class="col l-6">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input style="background-color: #f6f9fc;" type="email" class="form-control" id="email" name="email" value="<?=$data['profile']['email']?>" required>
+                                        <input type="email" class="form-control" id="email" name="email" value="<?=$data['profile']['email']?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="address">Address</label>
