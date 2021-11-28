@@ -236,10 +236,12 @@
                 for ($i = 0; $i < 5; $i++) {
                     if ($i < round($averageLoop)) {
                         $output .= "<span><i class='comment-star-icon average fas fa-star'></i></span>";
-                    } else if (strpos($average, '.5') !== false) {
+                    }
+                    else if (strpos(toFixed($average, 1), '.5') !== false) {
                         $output .= "<span><i class='comment-star-icon average fad fa-star-half-alt'></i></span>";
                         $average = intval($average);
-                    } else {
+                    } 
+                    else {
                         $output .= "<span><i style='color: #aeb4be; font-size: 1.6rem' class='fal fa-star'></i></span>";
                     }
                 };
