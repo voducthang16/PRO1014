@@ -46,9 +46,9 @@
                                     </div>
                                 </div>
                                 <div class="col l-6">
-                                    <div style="background-color: #f6f9fc;" class="form-group">
+                                    <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" value="<?=$data['profile']['email']?>" disabled>
+                                        <input style="background-color: #f6f9fc;" type="email" class="form-control" id="email" name="email" value="<?=$data['profile']['email']?>" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="address">Address</label>
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div style="text-align: right; width: 100%">
-                                    <button type="submit" class="btn btn--size-s">Update Profile</button>
+                                    <button style="margin-right: 12px" type="submit" class="btn btn--size-s">Update Profile</button>
                                 </div>
                             </div>
                         </form>
