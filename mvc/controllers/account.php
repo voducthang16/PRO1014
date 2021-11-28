@@ -6,11 +6,12 @@
             $this-> account = $this->model("accountModels");
             if(isset($_SESSION["member-username"])){
                 $username = $_SESSION["member-username"];
-                $this->id = $this->account->getProfile($username);
+                $this->id = $this->account->getProfile($username)['id'];
             } else {
                 header("Location:".BASE_URL);
             }
         }
+
         function order() {
             $this -> view("index", [
                 "page" => "account_orders",
@@ -18,13 +19,14 @@
             ]);
         }
 
+        function profile() {
+            $this -> view("index", [
+                "page" => "account_profile",
+                "profile" => $this ->account->getProfile($_SESSION["member-username"]),
+            ]);
+        }
+
         function wishlist() {
-            if(isset($_SESSION["member-username"])){
-                $username = $_SESSION["member-username"];
-                $this->id = $this->account->getProfile($username);
-            } else {
-                header("Location:".BASE_URL);
-            }
             $this -> view("index", [
                 "page" => "account_wishlist"
             ]);
@@ -35,6 +37,7 @@
             unset($_SESSION['member-login']);
             unset($_SESSION['access_token']);
         }
+
         function addWishList() {
             if(isset($_SESSION["member-username"])){
                 $username = $_SESSION["member-username"];
@@ -96,6 +99,7 @@
             );
             echo json_encode($data);
         }
+
         function deleteWishList(){
             if(isset($_SESSION["member-username"])){
                 $username = $_SESSION["member-username"];

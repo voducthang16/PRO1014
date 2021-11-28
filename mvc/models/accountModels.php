@@ -1,10 +1,10 @@
 <?php
     class accountModels extends database {
         function getProfile($username) {
-            $qr = "SELECT id FROM members WHERE username = ?";
+            $qr = "SELECT * FROM members WHERE username = ?";
             $result = $this->connect->prepare($qr);
             $result->execute([$username]);
-            return $result->fetch()['id'];
+            return $result->fetch();
         }
         
         function addWishList($id_member,$id_product){
