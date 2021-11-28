@@ -11,7 +11,7 @@
     // define("DB_NAME", "fpolyga_nhom1");
     // define("BASE_URL", "https://huyoccho.tk/");
     define('APP_ID', '435794041268676');
-    define('APP_LINK__FB', 'https://www.facebook.com/v12.0/dialog/oauth');
+    define('APP_LINK__FB', 'https://www.facebook.com/v12.0/dialog/oauth');  
     define('APP_SECRET', '45f3fbe9d376c24081856c128262c8f4');
     define('REDIRECT__FB','https://huyoccho.tk/sign/loginFB');
     define('GET_FB_TOKEN','https://graph.facebook.com/v12.0/oauth/access_token');

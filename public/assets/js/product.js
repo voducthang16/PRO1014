@@ -87,7 +87,7 @@ $(document).ready(function() {
         let parent = $(this).parents('.products-s');
         let id_product = parent.find('.products-id').val();
         $.ajax({
-            url: "account/addWishList",
+            url: "product/addWishList",
                 method: "POST",
                 data: {
                     'action': 'addWishList',
@@ -95,7 +95,7 @@ $(document).ready(function() {
                 },
                 success:function(data) {
                     if (data == "sign") {
-                        window.location = "sign";
+                        document.location.href = "sign";
                     } else {
                         alert(data);
                         get_data();
@@ -142,6 +142,10 @@ $(document).ready(function() {
         let value_comment = parent.find('.form-text-comment').val();
         let star = parent.find('.rate-star').val();
         let id = parent.find('.products-id').val();
+        if (value_comment == "") {
+            alert('vui lòng nhập bình luận');
+            return;
+        }
         $.ajax({
             url: "product/addComment",
             method: "POST",
@@ -152,6 +156,7 @@ $(document).ready(function() {
                 'content' : value_comment
             },
             success:function(data) {
+                alert(data);
                 if( data == "sign") {
                     window.location = "sign";
                 } else {

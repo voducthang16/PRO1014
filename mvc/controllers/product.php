@@ -15,7 +15,8 @@
                 !strstr($_GET['url'], 'getProductTypeId') && 
                 !strstr($_GET['url'], 'addComment') &&
                 !strstr($_GET['url'], 'showComment') &&
-                !strstr($_GET['url'], 'deleteComment')) {
+                !strstr($_GET['url'], 'deleteComment') &&
+                !strstr($_GET['url'], 'addWishList')) {
                 header("Location:".BASE_URL."pagenotfound");
                 exit();
             }
@@ -96,6 +97,30 @@
 
                     $this->product->insertComment($id_prd, $this->id, $star, $content);
                     echo "đã thêm bình luận";
+                }
+            } else {
+                echo "sign";
+            }
+        }
+
+        function addWishList() {
+            if(isset($_SESSION["member-username"])){
+                $account = $this->model('accountModels');
+                $username = $_SESSION["member-username"];
+                $this->id = $account->getProfile($username);
+                if(isset($_POST['action'])){
+                    $id_product = $_POST['id_product'];
+                    $check = $account->checkPrdWishList($this->id,$id_product);
+                    if ($check == 0) {
+                        $result = $account->addWishList($this->id,$id_product);
+                        if ($result == true) {
+                            echo "đã thêm sản phẩm vào wish list";
+                            return;
+                        }
+                        echo "thêm sản phẩm thất bại"; 
+                    } else {
+                        $account->deleteWishList($this->id, $id_product);
+                    }
                 }
             } else {
                 echo "sign";
