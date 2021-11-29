@@ -153,7 +153,7 @@ $categories = $header->getCategories();
                             </a>
                         </li>
                         <li class="navbar-menu-item">
-                            <a href="" class="navbar-menu-link">
+                            <a href="<?=BASE_URL?>contacts" class="navbar-menu-link">
                                 Liên hệ
                             </a>
                         </li>

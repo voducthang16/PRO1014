@@ -38,7 +38,7 @@
     </div>
     <div class="account-body">
         <div class="account-body-title">
-            <h2>Bản điều khiển</h2>
+            <h2>Bảng điều khiển</h2>
         </div>
         <ul class="account-body-list">
             <li>
