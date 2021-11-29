@@ -2,17 +2,17 @@
     <div class="page-header">
         <div class="container wide">
             <div class="page-wrapper">
-                <h2 class="page-title">My Wishlist</h2>
+                <h2 class="page-title">Sản phẩm yêu thích</h2>
                 <nav class="page-navbar">
                     <ul class="page-list">
                         <li class="page-item">
                             <a href="<?= BASE_URL ?>" class="page-link"><i class="fal fa-home"></i>Trang chủ<i class="fal fa-chevron-right"></i></a>
                         </li>
                         <li class="page-item">
-                            <a href="<?= BASE_URL ?>account" class="page-link">Account<i class="fal fa-chevron-right"></i></a>
+                            <a href="<?= BASE_URL ?>account" class="page-link">Tài khoản<i class="fal fa-chevron-right"></i></a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link">Wishlist</a>
+                            <a class="page-link">Yêu thích</a>
                         </li>
                     </ul>
                 </nav>
@@ -27,7 +27,7 @@
             </div>
             <div class="col l-8">
                 <div class="account-wishlist">
-                    <h2 class="wishlist-title">List of items you added to wishlist:</h2>
+                    <h2 class="wishlist-title">Danh sách các sản phẩm bạn đã thêm vào yêu thích:</h2>
                     <div class="wishlist-product-list" id="container-wish-list-prd">
                         <div class="wishlist-product">
                             <!-- <img src="public/upload/'.$row[" product_id"].'/'.$row["thumbnail"].'" alt="">

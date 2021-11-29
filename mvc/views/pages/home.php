@@ -121,7 +121,7 @@
 <!-- Home Product -->
 <div class="home-product">
     <div class="container wide">
-        <h3 class="home-product-title">Trending Product</h3>
+        <h3 class="home-product-title">Sản phẩm thịnh hành</h3>
         <div class="row home-product-wrapper">
             <?php 
                 foreach ($data["getProducts"] as $item):
@@ -131,7 +131,7 @@
                         <input type="hidden" name="product-id" class="products-id" value="<?=$item["id"]?>">
                         <input type="hidden" name="product-category-id" class="products-category-id" value="<?=$item["category_id"]?>">
                         <div class="products-heart">
-                            <span>Add to wishlist</span>
+                            <span>Thêm vào wishlist</span>
                             <i class="fal fa-heart btn-add-to-wishlist"></i>
                         </div>
                         <a href="product/detail/<?=$item["slug"]?>" class="products-link">
@@ -170,7 +170,7 @@
                                     <span id="type_quantity" style="display: block;">
                             </span> sản phẩm có sẵn</span>
                             <div class="products-btn">
-                                <button class="btn btn--size-s btn-add-cart">Add to cart</button>
+                                <button class="btn btn--size-s btn-add-cart">Thêm vào giỏ</button>
                             </div>
                         </div>
                     </form>
@@ -180,7 +180,7 @@
             ?>
         </div>
         <div class="home-product-btn">
-            <a href="#" class="btn home-product-all">More Product<i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
+            <a href="#" class="btn home-product-all">Xem thêm<i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
         </div>
     </div>
 </div>
@@ -194,10 +194,10 @@
                     <div class="row">
                         <div class="col l-6">
                             <div class="banner-ads-img__content">
-                                <h3>Hurry up! Limited time offer</h3>
+                                <h3>Nhanh lên! Ưu đãi trong thời gian có hạn</h3>
                                 <h2>Converse All Star on Sale</h2>
                                 <div>
-                                    <a href="#" class="btn box-shadow btn--size-s">Shop Now</a>
+                                    <a href="#" class="btn box-shadow btn--size-s">Mua ngay</a>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +266,7 @@
 <!-- Home Brands -->
 <div class="home-brands">
     <div class="container wide">
-        <h3 class="home-brands-title">Shop by brand</h3>
+        <h3 class="home-brands-title">Mua theo nhãn hiệu</h3>
         <div class="row">
             <div class="col l-3">
                 <div class="home-brands-wrapper">

@@ -38,14 +38,14 @@
     </div>
     <div class="account-body">
         <div class="account-body-title">
-            <h2>Dashboard</h2>
+            <h2>Bản điều khiển</h2>
         </div>
         <ul class="account-body-list">
             <li>
                 <a class="account-body-list-link <?=isset($_GET['url']) && $_GET['url'] == 'account/order' ? 'active' : ''?>" href="account/order">
                     <div class="">
                         <i class="fal fa-shopping-bag"></i>
-                        <span>Order</span>
+                        <span>Đơn hàng</span>
                     </div>
                     <span style="color: var(--text-color) !important"><?=$order_quantity?></span>
                 </a>
@@ -54,21 +54,21 @@
                 <a class="account-body-list-link <?=isset($_GET['url']) && $_GET['url'] == 'account/wishlist' ? 'active' : ''?>" href="account/wishlist">
                     <div class="">
                         <i class="fal fa-heart"></i>
-                        <span>Wishlist</span>
+                        <span>Yêu thích</span>
                     </div>
                     <span style="color: var(--text-color) !important" id="span-quantity-wishlist"><?=$wishlist_product_quantity?></span>
                 </a>
             </li>
         </ul>
         <div class="account-body-title">
-            <h2>Account settings</h2>
+            <h2>Chỉnh sửa hồ sơ</h2>
         </div>
         <ul class="account-body-list">
             <li>
                 <a class="account-body-list-link <?=isset($_GET['url']) && $_GET['url'] == 'account/profile' ? 'active' : ''?>" href="account/profile">
                     <div class="">
                         <i class="fal fa-user"></i>
-                        <span>Profile info</span>
+                        <span>Thông tin khách hàng</span>
                     </div>
                 </a>
             </li>
@@ -76,7 +76,7 @@
                 <a class="account-body-list-link" href="">
                     <div class="">
                         <i class="fal fa-map-marker-alt"></i>
-                        <span>Address</span>
+                        <span>Địa chỉ</span>
                     </div>
                 </a>
             </li>

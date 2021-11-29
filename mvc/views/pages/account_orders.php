@@ -2,17 +2,17 @@
     <div class="page-header">
         <div class="container wide">
             <div class="page-wrapper">
-                <h2 class="page-title">My order</h2>
+                <h2 class="page-title">Đơn hàng của tôi</h2>
                 <nav class="page-navbar">
                     <ul class="page-list">
                         <li class="page-item">
                             <a href="<?=BASE_URL?>" class="page-link"><i class="fal fa-home"></i>Trang chủ<i class="fal fa-chevron-right"></i></a>
                         </li>
                         <li class="page-item">
-                            <a href="<?=BASE_URL?>account" class="page-link">Account<i class="fal fa-chevron-right"></i></a>
+                            <a href="<?=BASE_URL?>account" class="page-link">Tài khoản<i class="fal fa-chevron-right"></i></a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link">Order history</a>
+                            <a class="page-link">Lịch sử đặt hàng</a>
                         </li>
                     </ul>
                 </nav>
@@ -30,10 +30,10 @@
                     <table class="orders-table">
                         <thead class="orders-table-head">
                             <tr>
-                                <th>Order#</th>
-                                <th>Date Purchased</th>
-                                <th>Status</th>
-                                <th>Total</th>
+                                <th>Đơn hàng#</th>
+                                <th>Ngày đặt hàng</th>
+                                <th>Trạng thái</th>
+                                <th>Tổng cộng</th>
                             </tr>
                         </thead>
                         <tbody class="orders-table-body">
