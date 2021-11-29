@@ -27,15 +27,15 @@ $categories = $header->getCategories();
                 <div class="col l-3">
                     <div class="topbar-text">
                         <p class="animate-text">
-                            <span>Free shipping for order over $200</span>
-                            <span>Friendly 24/7 customer support</span>
-                            <span>We return money within 30 days</span>
+                            <span>Free shiping cho đơn hàng trên $200</span>
+                            <span>Hỗ trợ khách hàng thân thiện 24/7</span>
+                            <span>Hoàn tiền trong vòng 30 ngày</span>
                         </p>
                     </div>
                 </div>
                 <div class="col l-3">
                     <p class="order-tracking">
-                        <i class="fal fa-map-marker"></i><a href="#">Order Tracking</a>
+                        <i class="fal fa-map-marker"></i><a href="#">Theo dõi đơn hàng</a>
                     </p>
                 </div>
             </div>
@@ -54,7 +54,7 @@ $categories = $header->getCategories();
                 </div>
                 <div class="col l-6 search-width">
                     <div class="search">
-                        <input class="search-control ze-t51-search" type="text" name="search" id="search" placeholder="Search...." required>
+                        <input class="search-control ze-t51-search" type="text" name="search" id="search" placeholder="Tìm kiếm..." required>
                         <i class="fal fa-search search-icon"></i>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ $categories = $header->getCategories();
                             </p>
                         </div>
                         <div class="wishlist">
-                            <a href="<?=BASE_URL?>account/wishlist" class="wishlist-link">
+                            <a href="<?= BASE_URL ?>account/wishlist" class="wishlist-link">
                                 <span>Wishlist</span>
                                 <i class="fal fa-heart"></i>
                             </a>
@@ -91,7 +91,7 @@ $categories = $header->getCategories();
                                     <span class="cart-quantity" id="cart-quantity-val">0</span>
                                 </i>
                                 <div class="cart-body sm--hide">
-                                    <span>My cart</span>
+                                    <span>Giỏ hàng</span>
                                     <span id='cart-total-val-2'></span>
                                 </div>
                             </a>
@@ -125,17 +125,12 @@ $categories = $header->getCategories();
                     <ul class="navbar-menu-list">
                         <li class="navbar-menu-item">
                             <a href="" class="navbar-menu-link">
-                                Home
-                            </a>
-                        </li>
-                        <li class="navbar-menu-item">
-                            <a href="" class="navbar-menu-link">
-                                About Us
+                                Trang chủ
                             </a>
                         </li>
                         <li class="navbar-menu-item">
                             <a class="navbar-menu-link">
-                                Categories
+                                Danh mục
                             </a>
                             <ul class="navbar-submenu-list">
                                 <?php foreach ($categories as $category) : ?>
@@ -149,12 +144,17 @@ $categories = $header->getCategories();
                         </li>
                         <li class="navbar-menu-item">
                             <a href="" class="navbar-menu-link">
+                                Về chúng tôi
+                            </a>
+                        </li>
+                        <li class="navbar-menu-item">
+                            <a href="" class="navbar-menu-link">
                                 Blog
                             </a>
                         </li>
                         <li class="navbar-menu-item">
                             <a href="" class="navbar-menu-link">
-                                Contact
+                                Liên hệ
                             </a>
                         </li>
                     </ul>

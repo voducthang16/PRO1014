@@ -21,11 +21,11 @@
                 <div class="row">
                     <div class="col l-6">
                         <div class="slide-content">
-                            <h4 class="slide-sub-title">Has just arrived!</h4>
-                            <h3 class="slide-title delay-1">Huge Summer Collection</h3>
-                            <p class="slide-desc delay-2">Swimwear, Tops, Shorts, Sunglasses & much more...</p>
+                            <h4 class="slide-sub-title">Vừa ra mắt!</h4>
+                            <h3 class="slide-title delay-1">Bộ sưu tập mùa hè khổng lồ</h3>
+                            <p class="slide-desc delay-2">Đồ bơi, Áo khoác ngoài, Quần đùi, Kính râm và nhiều hơn thế nữa ...</p>
                             <div>
-                                <a href="#" class="btn btn--size-m slide-link delay-3">Shop now <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
+                                <a href="#" class="btn btn--size-m slide-link delay-3">Mua ngay <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -42,11 +42,11 @@
                 <div class="row">
                     <div class="col l-6">
                         <div class="slide-content">
-                            <h4 class="slide-sub-title">Hurry up! Limited time offer.</h4>
-                            <h3 class="slide-title delay-1">Women Sportswear Sale</h3>
-                            <p class="slide-desc delay-2">Sneakers, Keds, Sweatshirts, Hoodies & much more...</p>
+                            <h4 class="slide-sub-title">Nhanh lên nào! Ưu đãi có hạn.</h4>
+                            <h3 class="slide-title delay-1">Giảm giá quần áo thể thao cho nữ</h3>
+                            <p class="slide-desc delay-2">Giày thể thao, Keds, Áo khoác nỉ, Áo hoodie và nhiều hơn nữa...</p>
                             <div>
-                                <a href="#" class="btn btn--size-m slide-link delay-3">Shop now <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
+                                <a href="#" class="btn btn--size-m slide-link delay-3">Mua ngay <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -63,11 +63,11 @@
                 <div class="row">
                     <div class="col l-6">
                         <div class="slide-content">
-                            <h4 class="slide-sub-title">Complete your look with</h4>
-                            <h3 class="slide-title delay-1">New Men's Accessories</h3>
-                            <p class="slide-desc delay-2">Hats & Caps, Sunglasses, Bags & much more...</p>
+                            <h4 class="slide-sub-title">Hoàn thiện ngoại hình của bạn với</h4>
+                            <h3 class="slide-title delay-1">Phụ kiện nam mới</h3>
+                            <p class="slide-desc delay-2">Mũ & Mũ lưỡi trai, Kính râm, Túi xách và nhiều hơn nữa...</p>
                             <div>
-                                <a href="#" class="btn btn--size-m slide-link delay-3">Shop now <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
+                                <a href="#" class="btn btn--size-m slide-link delay-3">Mua ngay <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                         <div class="block-wrapper">
                             <a href="#" class="block-category-link">
                                 <img src="public/assets/img/cat-sm01.jpg" alt="Men">
-                                <h3>Men</h3>
+                                <h3>Nam</h3>
                             </a>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                         <div class="block-wrapper">
                             <a href="#" class="block-category-link">
                                 <img src="public/assets/img/cat-sm02.jpg" alt="Men">
-                                <h3>Women</h3>
+                                <h3>Nữ</h3>
                             </a>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                         <div class="block-wrapper">
                             <a href="#" class="block-category-link">
                                 <img src="public/assets/img/cat-sm03.jpg" alt="Men">
-                                <h3>Kid</h3>
+                                <h3>Trẻ em</h3>
                             </a>
                         </div>
                     </div>
