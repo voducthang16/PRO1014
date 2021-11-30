@@ -184,14 +184,6 @@
             $result->execute();
         }
 
-        // test
-        function updateNameProduct($name, $id) {
-            $query = "UPDATE products SET name = '$name' WHERE id = $id";
-            $result = $this->connect->prepare($query);
-            $result->execute();
-        }
-        // test
-
         function getOrder($id) {
             $query = "SELECT orders.id, orders.member_id, orders.order_status, 
             DATE(`orders`.`created_at`) as 'orderDate', members.name FROM orders INNER JOIN members ON orders.member_id = members.id  WHERE order_status = '$id'";
@@ -241,10 +233,84 @@
         }
 
         function getProductAttributes($id, $attribute) {
-            $query = "SELECT products_attributes.value FROM products_attributes INNER JOIN products_type_attributes ON products_attributes.id = products_type_attributes.attributes_id WHERE products_type_attributes.product_type_id = $id AND products_attributes.name LIKE '%$attribute%'";
+            $query = "SELECT products_attributes.value FROM products_attributes 
+            INNER JOIN products_type_attributes ON products_attributes.id = products_type_attributes.attributes_id 
+            WHERE products_type_attributes.product_type_id = $id AND products_attributes.name LIKE '%$attribute%'";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetch();
+        }
+
+        function getComments() {
+            $query = "SELECT comments.id, comments.member_id, comments.product_id, comments.content, comments.star, comments.star, comments.status, 
+            DATE(comments.created_at) as 'date', members.name FROM `comments` INNER JOIN members ON members.id = comments.member_id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function updateComment($id,$status) {
+            $query = "UPDATE comments SET status = ? WHERE id = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$status, $id]);
+        }
+
+        function deleteComment($id) {
+            $query = "DELETE FROM comments WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+        // update product
+        function updateNameProduct($name, $id) {
+            $query = "UPDATE products SET name = '$name' WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function updateProduct($name, $slug, $thumbnail, $description, $parameters, $status, $id) {
+            $query = "UPDATE products SET name = :name, slug = '$slug', thumbnail = '$thumbnail', 
+            description = :description, parameters = :parameters, status = '$status' WHERE id = '$id'";
+            $result = $this->connect->prepare($query);
+            $result->bindValue(':name', $name, PDO::PARAM_STR);
+            $result->bindValue(':description', $description, PDO::PARAM_STR);
+            $result->bindValue(':parameters', $parameters, PDO::PARAM_STR);
+            $result->execute();
+        }
+
+        function getProductTypeIds($id) {
+            $query = "SELECT id FROM products_type WHERE products_type.product_id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function get_type_id($id_product,$color,$size,$row) {
+            $query = "SELECT product_type_id FROM products_type_attributes 
+            INNER JOIN products_type ON product_type_id = products_type.id 
+            INNER JOIN products ON products_type.product_id = products.id 
+            WHERE products.id = ? AND attributes_id IN (?,?) 
+            GROUP BY product_type_id HAVING COUNT(1) = ?";
+            $result = $this->connect->prepare($query);
+            $result->execute([$id_product,$color, $size,$row]);
+            return $result->fetch()['product_type_id'];
+        }
+
+        function updateProductType($id, $price_origin, $price_sale, $quantity) {
+            $query = "UPDATE products_type SET price_origin = '$price_origin', price_sale = '$price_sale', quantity = '$quantity' WHERE id = '$id'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function deleteProductTypeAttribute($id) {
+            $query = "DELETE FROM products_type_attributes WHERE products_type_attributes.product_type_id IN ($id)";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function deleteProductType($id) {
+            $query = "DELETE FROM products_type WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
         }
     } 
 ?>

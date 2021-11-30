@@ -53,10 +53,11 @@ $categories = $header->getCategories();
                     </div>
                 </div>
                 <div class="col l-6 search-width">
-                    <div class="search">
-                        <input class="search-control ze-t51-search" type="text" name="search" id="search" placeholder="Search...." required>
-                        <i class="fal fa-search search-icon"></i>
-                    </div>
+                    <form action="search" class="search" id="search-form">
+                        <input class="search-control" type="text" name="keyword" id="search" placeholder="Search...." required>
+                        <input type="submit" style="display: none">
+                        <i class="search-btn fal fa-search search-icon"></i>
+                    </form>
                 </div>
                 <div class="col l-4 navbar-box">
                     <div class="toolbar">
