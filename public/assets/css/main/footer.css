@@ -147,16 +147,14 @@
 }
 
 .footer__services-item {
-    display: flex;
+    display: flex !important;
     align-items: flex-start;
+    flex-wrap: nowrap;
 }
-
-.footer__services-item i {
-    margin-right: 16px;
-}
-
 
 .footer__services-icon {
+    margin-right: 16px;
+    margin-top: 6px;
     font-size: 3rem;
     line-height: 3rem;
     color: var(--primary-color);
@@ -164,7 +162,7 @@
 
 .footer__services-heading {
     font-size: 1.6rem;
-    line-height: 1.6rem;
+    line-height: 2.6rem;
     color: var(--white-color);
     margin: 0px 0px 4px;
     font-weight: 600;
