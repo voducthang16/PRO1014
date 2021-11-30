@@ -151,13 +151,14 @@
             <div class="card-body">
                 <form method="POST" action="" enctype="multipart/form-data" id="form">
                     <input type="hidden" id="u-product-id" name="u-product-id" value="<?=$data['product']['id']?>">
+                    <input type="hidden" name="u-product-category" value="<?=$data['product']['category_id']?>">
                     <div class="form-group">
                         <label for="u-product-name">Tên sản phẩm</label>
                         <input type="text" class="form-control" id="u-product-name" name="u-product-name" placeholder="Nhập tên sản phẩm" value="<?=$data['product']['name']?>">
                     </div>
                     <div class="form-group">
                         <label for="product-category">Danh mục sản phẩm</label>
-                        <select class="custom-select" id="product-category" name="product-category" >
+                        <select class="custom-select" id="product-category" name="product-category" disabled>
                             <?php foreach ($data['getCategories'] as $item): ?>
                                 <option value="<?=$item['id']?>" <?=$data['product']['category_id'] == $item['id'] ? ' selected' : ''?>><?=$item['name']?></option>
                             <?php endforeach; ?>
@@ -235,7 +236,7 @@
                     <div class="form-group">
                         <h6><label style="text-transform: none;">Ảnh bìa sản phẩm</label></h6>
                         <div class="fileinput fileinput-new text-center load-thumbnail-product" style="width: 100%" data-provides="fileinput">
-                            <!-- <div class="fileinput-new thumbnail">
+                            <div class="fileinput-new thumbnail">
                                 <img src="<?=BASE_URL?>public/upload/<?=$data['product']['id']?>/<?=$data['product']['thumbnail']?>" alt="Product Image">
                             </div>
                             <div class="fileinput-preview fileinput-exists thumbnail"></div>
@@ -243,10 +244,10 @@
                             <span class="btn btn-rose btn-round btn-file">
                                 <span class="fileinput-new">Chọn ảnh bìa</span>
                                 <span class="fileinput-exists">Thay đổi</span>
-                                <input style="z-index: 2 !important;" type="file" name="product-thumbnail" accept="image/*" />
+                                <input style="z-index: 2 !important;" type="file" name="product-thumbnail" id="u-product-thumbnail" accept="image/*" />
                             </span>
                             <a href="#delImg" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Xóa</a>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -255,11 +256,11 @@
                     </div>
                     <div class="form-group">
                         <label for="product-description">Miêu tả sản phẩm</label>
-                        <textarea class="form-control" name="product-description" rows="3" placeholder="Nhập miêu tả sản phẩm"><?=$data['product']['description']?></textarea>
+                        <textarea class="form-control" name="u-product-description" rows="3" placeholder="Nhập miêu tả sản phẩm"><?=$data['product']['description']?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="product-description">Thông sản phẩm</label>
-                        <textarea class="form-control" name="product-parameters" rows="3" placeholder="Nhập thông số sản phẩm"><?=$data['product']['parameters']?></textarea>
+                        <textarea class="form-control" name="u-product-parameters" rows="3" placeholder="Nhập thông số sản phẩm"><?=$data['product']['parameters']?></textarea>
                     </div>
                     <div class="form-check">
                         <label>Trạng thái sản phẩm</label> <br>
@@ -286,7 +287,6 @@
 
 <script>
     $(document).ready(function() {
-        
         $("#u-product-name").change(function() {
             let productId = $("#u-product-id").val();
             let productName = $(this).val();
@@ -307,16 +307,6 @@
         
         function loadImages() {
             $.ajax({
-                url: 'admin/getProductThumbnail',
-                type: 'POST',
-                data: {
-                    productId: $("#u-product-id").val(),
-                },
-                success: function(data) {
-                    $(".load-thumbnail-product").html(data);
-                }
-            })
-            $.ajax({
                 url: 'admin/getProductImages',
                 type: 'POST',
                 data: {
@@ -326,6 +316,7 @@
                     $("#list-images").html(data);
                 }
             })
+            
             // if (window.history.replaceState ) {
             //     window.history.replaceState(null, null, window.location.href );
             // }
@@ -333,21 +324,21 @@
 
         loadImages();
 
-        $(document).on('click', '.upload-multi', function(event) {
-            $(this).change(function() {
-                let preview = $(this).prev();
-                let file = $(this).prop('files')[0]
-                let reader = new FileReader();
-                reader.onloadend = function () {
-                    preview.attr('src', reader.result);
-                }
-                if (file) {
-                    reader.readAsDataURL(file);
-                } else {
-                    preview.attr('src', 'http://localhost/PRO1014/public/assets/img/image_placeholder.jpg')
-                }
-            })
-        })
+        // $(document).on('click', '.upload-multi', function(event) {
+        //     $(this).change(function() {
+        //         let preview = $(this).prev();
+        //         let file = $(this).prop('files')[0]
+        //         let reader = new FileReader();
+        //         reader.onloadend = function () {
+        //             preview.attr('src', reader.result);
+        //         }
+        //         if (file) {
+        //             reader.readAsDataURL(file);
+        //         } else {
+        //             preview.attr('src', 'http://localhost/PRO1014/public/assets/img/image_placeholder.jpg')
+        //         }
+        //     })
+        // })
 
         $(document).on('click', '#u-product-thumbnail', function(e) {
             // e.preventDefault();
@@ -370,20 +361,23 @@
             })
         })
 
-        $(document).on('submit', function(e) {
+        $(document).on('click', '.upload-multi', function(e) {
             // e.preventDefault();
+            $(this).change(function() {
+                let file = $(this).prop('files')[0];
+                let fileType = file.type;
+                let fileSize = file.size;
+                let match = ['image/jpeg', 'image/png', 'image/jpg'];
 
-            let formData = new FormData(this);
+                if (!((fileType == match[0]) || (fileType == match[1]) || (fileType == match[2]))) {
+                    alert('Please select a file to upload');
+                    $(".upload-multi").val('');
+                    return false;
+                }
 
-            $.ajax({
-                url: 'admin/updateThumbnail',
-                type: 'POST',
-                data: formData,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function(data) {
-                    console.log(data);
+                if (fileSize > 5000000) {
+                    alert('Sorry! File size exceeds');
+                    return false;
                 }
             })
         })

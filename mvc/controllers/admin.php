@@ -244,58 +244,114 @@
                 if (isset($_POST["product-color"])) {
                     $product_color = $_POST["product-color"];
                 }
+                $product_id = $_POST["u-product-id"];
                 $product_name = $_POST['u-product-name'];
                 $product_slug = to_slug($product_name);
-                $product_category = $_POST['product-category'];
                 
-                $product_description = $_POST["product-description"];
-                $product_parameters = $_POST["product-parameters"];
+                $product_description = $_POST["u-product-description"];
+                $product_parameters = $_POST["u-product-parameters"];
                 $product_status = $_POST["product-status"];
 
                 $product_price_origin = $_POST["product-price-origin"];
                 $product_price_sale = $_POST["product-price-sale"];
                 $product_quantity = $_POST["product-quantity"];
+                
+                $format = array("JPG", "JPEG", "PNG", "GIF", "BMP", "jpg", "jpeg", "png", "gif", "bmp");
+                $storage = 'public/upload/'.$product_id.'/';
+
+                if (!empty($_FILES['u-product-list-images'])) {
+                    foreach ($_FILES["u-product-list-images"]['tmp_name'] as $key => $value) {
+                        $filename = $_FILES['u-product-list-images']['name'][$key];
+                        $filename_tmp = $_FILES['u-product-list-images']['tmp_name'][$key];
+                        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+                        $filename = time().'_'.$filename;
+                        if (in_array($ext, $format)) {
+                            move_uploaded_file($filename_tmp, $storage . $filename);
+                            $this->admin->addProductImages($product_id, $filename);
+                        }
+                    }
+                }
 
                 $product_thumbnail_origin = $this->admin->getProductById($_POST['u-product-id'])['thumbnail'];
+                if (isset($_FILES["product-thumbnail"]) && strlen($_FILES["product-thumbnail"]['name']) > 0) {
+                    $product_thumbnail = $_FILES["product-thumbnail"]['name'];
+                    $product_thumbnail_tmp = $_FILES["product-thumbnail"]['tmp_name'];
+    
+                    $exp3 = substr($product_thumbnail, strlen($product_thumbnail) - 3);
+                    $exp4 = substr($product_thumbnail, strlen($product_thumbnail) - 4);
 
-                $product_thumbnail = $_FILES["product-thumbnail"]['name'];
-                $product_thumbnail_tmp = $_FILES["product-thumbnail"]['tmp_name'];
-
-                $exp3 = substr($product_thumbnail, strlen($product_thumbnail) - 3);
-                $exp4 = substr($product_thumbnail, strlen($product_thumbnail) - 4);
-
-                $format = array("JPG", "JPEG", "PNG", "GIF", "BMP", "jpg", "jpeg", "png", "gif", "bmp");
-                $storage = 'public/upload/'.$_POST['u-product-id'].'/';
-
-                if (strlen($product_thumbnail) > 0) {
                     if (in_array($exp3, $format) || in_array($exp4, $format)) {
                         $product_thumbnail = time()."_".$product_thumbnail;
                         move_uploaded_file($product_thumbnail_tmp, $storage . $product_thumbnail);
                         unlink($storage.$product_thumbnail_origin);
-                    } else {
-                        echo '<script>alert("File khong dung dinh dang.");</script>';
                     }
-                }
-
-                if (strlen($product_thumbnail) == 0) {
+                } else {
                     $product_thumbnail = $product_thumbnail_origin;
                 }
+                // update product parent
+                $this->admin->updateProduct($product_name, $product_slug, $product_thumbnail, $product_description, $product_parameters, $product_status, $product_id);
+                $product_type_ids = $this->admin->getProductTypeIds($product_id);
                 
-                var_dump($product_thumbnail); echo "<br>";
-                var_dump($product_size); echo "<br>";
-                var_dump($product_color); echo "<br>";
-                var_dump($product_price_origin); echo "<br>";
-                var_dump($product_price_sale); echo "<br>";
-                var_dump($product_quantity); echo "<br>";
-                var_dump($storage); echo "<br>";
-                var_dump($product_quantity); echo "<br>";
-                var_dump($product_name); echo "<br>";
-                var_dump($product_slug); echo "<br>";
-                var_dump($product_category); echo "<br>";
-                var_dump($product_description); echo "<br>";
-                var_dump($product_parameters); echo "<br>";
-                var_dump($product_status); echo "<br>";
-                // $this->admin->updateNameProduct($_POST['u-product-name'], $_POST['u-product-id']);
+                // product type id
+                $product_type_ids_array = array();
+                foreach ($product_type_ids as $id) {
+                    array_push($product_type_ids_array, $id['id']);
+                }
+
+                $row = 0;
+                // category_id
+                $category_id = $_POST['u-product-category'];
+                if ($category_id == 5) {
+                    $row = 1;
+                } else {
+                    $row = 2;
+                }
+
+                // length for loop
+                $length = count($product_quantity);
+                echo "length: ".$length."<br>";
+                echo "array: ";var_dump($product_type_ids_array); echo "<br>";
+                $j = 0;
+                $k = 0;
+                for ($i = 0; $i < $length; $i++) {
+                    if ($k == count($product_color)) {
+                        $j++;
+                        $k = 0;
+                    }
+                    if (count($product_size) > 0) {
+                        $check_product_type = $this->admin->get_type_id($product_id, $product_size[$j], $product_color[$k], $row);
+                        echo $check_product_type."<br>";
+                        if (in_array($check_product_type, $product_type_ids_array)) {
+                            $this->admin->updateProductType($check_product_type, $product_price_origin[$i], $product_price_sale[$i], $product_quantity[$i]);
+                            $product_type_ids_array = array_diff($product_type_ids_array, [$check_product_type]);
+                        } else {
+                            $this->admin->addProductType($product_id, $product_price_origin[$i], $product_price_sale[$i], $product_quantity[$i]);
+                            $product_type_id = $this->admin->getProductTypeId();
+                            $this->admin->addProductTypeAttribute($product_type_id, $product_size[$j]);
+                            $this->admin->addProductTypeAttribute($product_type_id, $product_color[$k]);
+                        }
+                    } else {
+                        $check_product_type = $this->admin->get_type_id($product_id, $product_color[$k], $product_color[$k], $row);
+                        echo $check_product_type."<br>";
+                        if (in_array($check_product_type, $product_type_ids_array)) {
+                            $this->admin->updateProductType($check_product_type, $product_price_origin[$i], $product_price_sale[$i], $product_quantity[$i]);
+                            $product_type_ids_array = array_diff($product_type_ids_array, [$check_product_type]);
+                        } else {
+                            $this->admin->addProductType($product_id, $product_price_origin[$i], $product_price_sale[$i], $product_quantity[$i]);
+                            $product_type_id = $this->admin->getProductTypeId();
+                            $this->admin->addProductTypeAttribute($product_type_id, $product_color[$k]);
+                        }
+                    }
+                    $k++;
+                }
+                echo "length: ".count($product_type_ids_array)."<br>";
+                foreach ($product_type_ids_array as $key=>$value) {
+                    $this->admin->deleteProductTypeAttribute($product_type_ids_array[$key]);
+                    $this->admin->deleteProductType($product_type_ids_array[$key]);
+                }
+                
+                echo "array: ";var_dump($product_type_ids_array); echo "<br>";
             }
 
             $this-> view("admin/index", [
@@ -337,7 +393,7 @@
                 };
                 $output .= '<div style="margin-top: 20px" class="text-center">
                     <label>Them anh sản phẩm: </label>
-                    <input type="file" class="upload-multi" accept="image/*" name="product-list-images[]" multiple="">
+                    <input type="file" class="upload-multi" accept="image/*" name="u-product-list-images[]" multiple="">
                 </div>';
             }
             echo $output;
@@ -365,7 +421,6 @@
                 echo $output;
             }
         }
-
         function updateThumbnail() {
             if (isset($_FILES['product-thumbnail']['name'])) {
                 $storage = 'public/upload/21/';
@@ -561,6 +616,29 @@
                 </div>';
                 echo $output;
             }
+        }
+
+        function comments() {
+            // update status comment
+            if (isset($_POST['u-comment-status'])) {
+                $id = $_POST['u-comment-id'];
+                $status = $_POST['u-comment-status'];
+                $this->admin->updateComment($id, $status);
+                echo '<script>alert("cap nhat tc.");</script>';
+                header("Refresh: 0");
+            }
+
+            if (isset($_POST['delete-comment-id'])) {
+                $id = $_POST['delete-comment-id'];
+                $this->admin->deleteComment($id);
+                echo '<script>alert("xoa tc.");</script>';
+                header("Refresh: 0");
+            }
+
+            $this -> view("admin/index", [
+                "page" => "comments",
+                "getComments" =>$this->admin->getComments(),
+            ]);
         }
 
         // admin login

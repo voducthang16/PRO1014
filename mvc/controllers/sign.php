@@ -97,11 +97,11 @@
                 $password = $_POST["si-password"];
                 $check = $this->sign->checkLogin($username, $password);
                 if ($check == 0) {
-                    echo '<script>alert("TK KHONG CHINH XAC.");</script>';
+                    echo '<script>alert("Tài khoản hoặc mật khẩu không chính xác.");</script>';
                 } else {
                     $_SESSION["member-login"] = "true";
                     $_SESSION["member-username"] = $username;
-                    echo '<script>alert("DANG NHAP THANH CONG");</script>';
+                    echo '<script>alert("Đăng nhập thành công");</script>';
                     header("Location:".BASE_URL);
                 }
                 header("Refresh: 0");
