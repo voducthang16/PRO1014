@@ -108,7 +108,7 @@
                 </div>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="?option=comments">
+                <a class="nav-link" href="<?=BASE_URL?>admin/comments">
                     <i class="material-icons">chat</i>
                     <p> Bình luận
                     </p>

@@ -9,10 +9,7 @@
 </form>
 
 <?php
-    $num = -1;
-    if (!filter_var($num, FILTER_VALIDATE_INT)) {
-        echo "k phai so nguyen";
-    } else {
-        echo "so nguyen";
-    }
+    $array = array(22, 33, 44, 55, 66);
+    $array = array_diff($array, [55]);
+    var_dump($array);
 ?>

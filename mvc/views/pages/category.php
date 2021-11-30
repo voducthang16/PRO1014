@@ -61,7 +61,7 @@
                                 <input type="hidden" name="product-category-id" class="products-category-id" value="<?=$product["category_id"]?>">
                                 <div class="products-heart">
                                     <span>Add to wishlist</span>
-                                    <i class="fal fa-heart"></i>
+                                    <i class="btn-add-to-wishlist fal fa-heart"></i>
                                 </div>
                                 <a href="product/detail/<?=$product["slug"]?>" class="products-link">
                                     <img src="public/upload/<?=$product["id"]?>/<?=$product["thumbnail"]?>" alt="Product Image" class="products-img">
