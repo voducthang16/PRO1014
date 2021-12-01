@@ -31,8 +31,12 @@
 
     text-align: center;
 
+}
+
+.contact__info--card-body {
+    border: 1px solid #EAEAEA;
+
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
 .card-body h3 {
@@ -52,7 +56,7 @@
 
     font-size: 1.4rem;
     font-weight: 600;
-    line-height: 2.1rem;    
+    line-height: 2.1rem;
 }
 
 .card-body li {
@@ -94,4 +98,142 @@
 
 .nav-link-style:hover {
     color: var(--primary-color);
+}
+
+.partner-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    margin: 24px 196px 48px;
+    padding: 24px 15px 0px;
+}
+
+.partner-section--content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 24px;
+}
+
+.partner-setion--heading {
+    font-size: 2.8rem;
+    line-height: 3.36rem;
+    font-weight: 600;
+
+    color: var(--secondary-color);
+
+    margin: 0px 0px 16px;
+    text-align: center;
+}
+
+
+.card-img-top {
+    width: 100%;
+    display: block;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.partner-section--card {
+    margin: 0px 15px;
+    margin-bottom: 30px;
+
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.partner-section--item {
+    display: flex !important;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+
+    padding-bottom: 16px;
+    border-bottom: 1px solid #EAEAEA;
+    margin-bottom: 6.4px;
+}
+
+.partner-section--item i {
+    margin-right: 16px;
+
+    font-size: 2rem;
+}
+
+.partner-section--item div {
+    display: flex;
+    flex-direction: column;
+
+    text-align: left;
+}
+
+.partner-section--item div a {
+    text-decoration: none;
+    font-size: 1.4rem;
+
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.partner-section--item div span {
+    font-size: 1.3rem;
+}
+
+.contact-footer {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #EAEAEA;
+margin-top: 16px;
+}
+
+.contact-form {
+    padding: 0px  48px;
+}
+
+.contact-form--heading {
+    font-size: 2.4rem;
+    font-weight: 600;
+
+    color: var(--secondary-color);
+    margin-bottom: 24px;
+}
+
+.contact-form form {
+    margin-bottom: 16px;
+}
+
+.contact-form--item {
+    padding: 0px 8px;
+    margin-top: 16px;
+}
+
+.contact-form--item input {
+    width: 100%;
+
+    margin-top: 6px;
+}
+
+.contact-form--item textarea {
+    width: 100%;
+
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+
+.contact-form--item .form-label {
+    font-size: 1.4rem;
+
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.text-danger {
+    color: var(--primary-color);
+}
+
+
+.map-section img {
+    width: 100%;
 }

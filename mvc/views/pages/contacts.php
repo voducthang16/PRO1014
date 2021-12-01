@@ -16,20 +16,27 @@
             </div>
         </div>
     </div>
+    <!-- Working Time -->
     <div class="row contact__info col">
         <div class="l-3 contact__info-item">
-            <a class="card" href="#map" data-scroll="">
-                <div class="card-body">
+            <div class="card">
+                <div class="card-body contact__info--card-body">
                     <i class="fal fa-map-marker-alt"></i>
                     <h3>Main store address</h3>
-                    <p>396 Lillian Blvd, Holbrook, NY 11741, USA</p>
-                    <div class="contact__info-map">Click to see map<i class="fal fa-chevron-right"></i></div>
+                    <ul class="list-unstyled">
+                        <li>396 Lillian Blvd, Holbrook, NY 11741, USA</li>
+                        <li>
+                            <a href="#contact" style="text-decoration: none;">
+                                <div class="contact__info-map">Click to see map<i class="fal fa-chevron-right"></i></div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-            </a>
+            </div>
         </div>
         <div class="l-3 contact__info-item">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body contact__info--card-body">
                     <i class="fal fa-clock"></i>
                     <h3>Working hours</h3>
                     <ul class="list-unstyled">
@@ -41,7 +48,7 @@
         </div>
         <div class="l-3 contact__info-item">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body contact__info--card-body">
                     <i class="fal fa-phone-alt"></i>
                     <h3>Phone numbers</h3>
                     <ul class="list-unstyled">
@@ -59,7 +66,7 @@
         </div>
         <div class="l-3 contact__info-item">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body contact__info--card-body">
                     <i class="fal fa-envelope"></i>
                     <h3>Email addresses</h3>
                     <ul class="list-unstyled mb-0">
@@ -76,5 +83,139 @@
             </div>
         </div>
     </div>
+    <!-- Partner Section -->
+    <section class="partner-section container wide row col">
+        <h2 class="partner-setion--heading">Partner outlet stores</h2>
+        <div class="partner-section--content row">
+            <div class="partner-section--box l-4">
+                <div class="card partner-section--card">
+                    <img class="card-img-top" src="<?= BASE_URL ?>/public/assets/img/orlando.png" alt="Orlando">
+                    <div class="card-body">
+                        <h3>Orlando, USA</h3>
+                        <ul class="list-unstyled partner-section--list">
+                            <li class="partner-section--item">
+                                <i class="fal fa-map-marker-alt"></i>
+                                <div class="">
+                                    <span class="">Find us</span>
+                                    <a class="" href="#">514 S. Magnolia St. Orlando, FL 32806, USA</a>
+                                </div>
+                            </li>
+                            <li class="partner-section--item">
+                                <i class="fal fa-phone-alt"></i>
+                                <div class="">
+                                    <span class="">Call us</span>
+                                    <a class="" href="tel:+178632256040">+1 (786) 322 560 40</a>
+                                </div>
+                            </li>
+                            <li class="partner-section--item">
+                                <i class="fal fa-envelope"></i>
+                                <div class="">
+                                    <span class="">Write us</span>
+                                    <a class="" href="mailto:orlando@example.com">orlando@example.com</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="partner-section--box l-4">
+                <div class="card partner-section--card">
+                    <img class="card-img-top" src="<?= BASE_URL ?>/public/assets/img/chicago.png" alt="Chicago">
+                    <div class="card-body">
+                        <h3>Chicago, USA</h3>
+                        <ul class="list-unstyled partner-section--list">
+                            <li class="partner-section--item">
+                                <i class="fal fa-map-marker-alt"></i>
+                                <div class="">
+                                    <span class="">Find us</span>
+                                    <a class="" href="#">769, Industrial, West Chicago, IL 60185, USA</a>
+                                </div>
+                            </li>
+                            <li class="partner-section--item">
+                                <i class="fal fa-phone-alt"></i>
+                                <div class="">
+                                    <span class="">Call us</span>
+                                    <a class="" href="tel:+184725276533">+1 (847) 252 765 33</a>
+                                </div>
+                            </li>
+                            <li class="partner-section--item">
+                                <i class="fal fa-envelope"></i>
+                                <div class="">
+                                    <span class="">Write us</span>
+                                    <a class="" href="mailto:chicago@example.com">chicago@example.com</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="partner-section--box l-4">
+                <div class="card partner-section--card">
+                    <img class="card-img-top" src="<?= BASE_URL ?>/public/assets/img/newyork.png" alt="New York">
+                    <div class="card-body">
+                        <h3>New York, USA</h3>
+                        <ul class="list-unstyled partner-section--list">
+                            <li class="partner-section--item">
+                                <i class="fal fa-map-marker-alt"></i>
+                                <div class="">
+                                    <span class="">Find us</span>
+                                    <a class="" href="#">396 Lillian Blvd, Holbrook, NY 11741, USA</a>
+                                </div>
+                            </li>
+                            <li class="partner-section--item">
+                                <i class="fal fa-phone-alt"></i>
+                                <div class="">
+                                    <span class="">Call us</span>
+                                    <a class="" href="tel:+1212477690000">+1 (212) 477 690 000</a>
+                                </div>
+                            </li>
+                            <li class="partner-section--item">
+                                <i class="fal fa-envelope"></i>
+                                <div class="">
+                                    <span class="">Write us</span>
+                                    <a class="" href="mailto:newyork@example.com">newyork@example.com</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <div class="contact-footer" id="contact">
+        <div class="map-section l-6">
+            <img src="<?= BASE_URL ?>/public/assets/img/map.jpg" alt="map">
+        </div>
+        <div class="contact-form l-6">
+            <h2 class="contact-form--heading">Drop us a line</h2>
+            <form class="needs-validation">
+                <div class="row">
+                    <div class="contact-form--item l-6">
+                        <label class="form-label" for="cf-name">Your name:&nbsp;<span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" id="cf-name" placeholder="John Doe" required>
+                    </div>
+                    <div class="contact-form--item l-6">
+                        <label class="form-label" for="cf-email">Email address:&nbsp;<span class="text-danger">*</span></label>
+                        <input class="form-control" type="email" id="cf-email" placeholder="johndoe@email.com" required>
+                    </div>
+                    <div class="contact-form--item l-6">
+                        <label class="form-label" for="cf-phone">Your phone:&nbsp;<span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" id="cf-phone" placeholder="+1 (212) 00 000 000" required>
+                    </div>
+                    <div class="contact-form--item l-6">
+                        <label class="form-label" for="cf-subject">Subject:</label>
+                        <input class="form-control" type="text" id="cf-subject" placeholder="Provide short title of your request">
+                    </div>
+                    <div class="contact-form--item l-12">
+                        <label class="form-label" for="cf-message">Message:&nbsp;<span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="cf-message" rows="6" placeholder="Please describe in detail your request" required></textarea>
+                        <button class="btn btn-primary" type="submit">Send message</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- End Contact Section -->
+
+    </div>
 </div>
