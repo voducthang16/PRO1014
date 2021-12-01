@@ -25,15 +25,15 @@
                 <div class="row">
                     <div class="col l-2">
                         <div class="product-slide">
-                            <img class="product-slide-image active" src="public/upload/<?= $data['product']['id'] ?>/<?= $data['product']['thumbnail'] ?>" alt="Product Image Slide">
+                            <img class="product-slide-image active" src="public/upload/<?=$data['product']['id']?>/<?=$data['product']['thumbnail']?>" alt="Product Image Slide">
                             <?php foreach ($data['productImages'] as $image) : ?>
-                                <img class="product-slide-image" src="public/upload/<?= $data['product']['id'] ?>/<?= $image["image"] ?>" alt="Product Image Slide">
+                                <img class="product-slide-image" src="public/upload/<?=$data['product']['id']?>/<?=$image["image"]?>" alt="Product Image Slide">
                             <?php endforeach; ?>
                         </div>
                     </div>
                     <div class="col l-10">
-                        <div class="product-thumbnail background-zoom" style="background-image: url('public/upload/<?= $data['product']['id'] ?>/<?= $data['product']['thumbnail'] ?>');" onmousemove="zoom(event)">
-                            <img id="product-thumbnail" src="public/upload/<?= $data['product']['id'] ?>/<?= $data['product']['thumbnail'] ?>" alt="Product Thumbnail">
+                        <div class="product-thumbnail background-zoom" style="background-image: url('public/upload/<?=$data['product']['id']?>/<?=$data['product']['thumbnail']?>');" onmousemove="zoom(event)">
+                            <img id="product-thumbnail" src="public/upload/<?=$data['product']['id']?>/<?=$data['product']['thumbnail']?>" alt="Product Thumbnail">
                         </div>
                     </div>
                 </div>

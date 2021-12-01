@@ -4,7 +4,8 @@
             $query = "SELECT DISTINCT products_attributes.id, products_attributes.value FROM products_attributes INNER JOIN products_type_attributes 
             ON products_attributes.id = products_type_attributes.attributes_id 
             WHERE products_type_attributes.product_type_id 
-            IN (SELECT products_type.id FROM products_type WHERE products_type.product_id = $id) AND products_attributes.name LIKE '%$attribute%'";
+            IN (SELECT products_type.id FROM products_type WHERE products_type.product_id = $id AND products_type.status = 1) 
+            AND products_attributes.name LIKE '%$attribute%'";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();

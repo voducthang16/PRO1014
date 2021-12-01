@@ -24,7 +24,7 @@
         function getProduct($slug) {
             $query = "SELECT products.id, category_id, name, slug, thumbnail, description, parameters, products_type.price_origin, products_type.price_sale 
             FROM `products` INNER JOIN products_type ON products.id = products_type.product_id 
-            WHERE slug = '$slug' and status = 1 GROUP BY products_type.price_origin, products_type.price_sale";
+            WHERE slug = '$slug' and products.status = 1 GROUP BY products_type.price_origin, products_type.price_sale";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetch();
