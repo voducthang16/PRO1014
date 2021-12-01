@@ -78,8 +78,11 @@
 
         function addProduct($category_id, $name, $slug, $thumbnail, $description, $parameters, $status) {
             $query = "INSERT INTO products(category_id, name, slug, thumbnail, description, parameters, status) 
-            VALUES ('$category_id', '$name', '$slug', '$thumbnail', '$description', '$parameters', '$status')";
+            VALUES ('$category_id', :name, '$slug', '$thumbnail', :description, :parameters, '$status')";
             $result = $this->connect->prepare($query);
+            $result->bindValue(':name', $name, PDO::PARAM_STR);
+            $result->bindValue(':description', $description, PDO::PARAM_STR);
+            $result->bindValue(':parameters', $parameters, PDO::PARAM_STR);
             $kq = false;
             if ($result->execute()) {
                 $kq = true;
@@ -155,12 +158,31 @@
             $result->execute();
         }
 
+        // get product type id from order details
         function getProductTypeIdById($product_id) {
             $query = "SELECT orders_details.product_type_id FROM orders_details 
             INNER JOIN products_type ON products_type.id = orders_details.product_type_id 
             INNER JOIN products ON products.id = products_type.product_id WHERE products.id = ? GROUP BY orders_details.product_type_id";
             $result = $this->connect->prepare($query);
             $result->execute([$product_id]);
+            return $result->fetchAll();
+        }
+
+        // get product type id from cart temporary
+        function getProductTypeIdFromCartTemporary($product_id) {
+            $query = "SELECT DISTINCT cart_temporary.product_type_id FROM cart_temporary 
+            INNER JOIN products_type ON products_type.id = cart_temporary.product_type_id 
+            WHERE products_type.product_id = $product_id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        // get product type status = 0
+        function getProductTypeIdInactive($product_id) {
+            $query = "SELECT products_type.id FROM products_type WHERE products_type.product_id = $product_id AND products_type.status = 0";
+            $result = $this->connect->prepare($query);
+            $result->execute();
             return $result->fetchAll();
         }
 
@@ -296,7 +318,7 @@
         }
 
         function updateProductType($id, $price_origin, $price_sale, $quantity) {
-            $query = "UPDATE products_type SET price_origin = '$price_origin', price_sale = '$price_sale', quantity = '$quantity' WHERE id = '$id'";
+            $query = "UPDATE products_type SET price_origin = '$price_origin', price_sale = '$price_sale', quantity = '$quantity', status = 1 WHERE id = '$id'";
             $result = $this->connect->prepare($query);
             $result->execute();
         }
@@ -309,6 +331,28 @@
 
         function deleteProductType($id) {
             $query = "DELETE FROM products_type WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function getProductAttributeId($value) {
+            $query = "SELECT id FROM products_attributes WHERE value = '$value'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch()['id'];
+        }
+
+        function getProductTypeIdByAttributeId($product_id, $attribute_id) {
+            $query = "SELECT products_type_attributes.product_type_id FROM products_type_attributes INNER JOIN products_type 
+            ON products_type.id = products_type_attributes.product_type_id WHERE products_type.product_id = $product_id 
+            AND products_type_attributes.attributes_id = $attribute_id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function updateProductTypeStatus($id) {
+            $query = "UPDATE `products_type` SET `status` = '0' WHERE `products_type`.`id` = $id";
             $result = $this->connect->prepare($query);
             $result->execute();
         }

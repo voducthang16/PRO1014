@@ -230,7 +230,7 @@
 
         function product_update() {
             if (empty($_POST['update-product-by-id'])) {
-                // header("Location:".BASE_URL."admin/product");
+                header("Location:".BASE_URL."admin/product");
             }
 
             if (isset($_POST['u-product-id'])) {
@@ -345,12 +345,17 @@
                     }
                     $k++;
                 }
+                $product_type_ids_inactive = $this->admin->getProductTypeIdInactive($product_id);
+                var_dump($product_type_ids_array); echo "<br>";
                 echo "length: ".count($product_type_ids_array)."<br>";
+                foreach ($product_type_ids_inactive as $key=>$value) {
+                    $product_type_ids_array = array_diff($product_type_ids_array, [$value['id']]);
+                }
+                echo "array: ";var_dump($product_type_ids_array); echo "<br>";
                 foreach ($product_type_ids_array as $key=>$value) {
                     $this->admin->deleteProductTypeAttribute($product_type_ids_array[$key]);
                     $this->admin->deleteProductType($product_type_ids_array[$key]);
                 }
-                
                 echo "array: ";var_dump($product_type_ids_array); echo "<br>";
             }
 
@@ -362,7 +367,21 @@
                 "getNumberSizes" => $this->admin->getAttributes("number_size"),
                 "getColors" => $this->admin->getAttributes("color"),
                 "getProductTypeIdById" => $this->admin->getProductTypeIdById($_POST['update-product-by-id']),
+                "getProductTypeFromCartTemporary" => $this->admin->getProductTypeIdFromCartTemporary($_POST['update-product-by-id']),
             ]);
+        }
+
+        function updateProductTypeStatus() {
+            if (isset($_POST['productId'])) {
+                $product_id = $_POST['productId'];
+                $value = $_POST['value'];
+                $product_attribute_id = $this->admin->getProductAttributeId($value);
+                $product_type_id_array = $this->admin->getProductTypeIdByAttributeId($product_id, $product_attribute_id);
+                foreach ($product_type_id_array as $item) {
+                    $this->admin->updateProductTypeStatus($item['product_type_id']);
+                }
+                echo "update status thanh cong";
+            }
         }
 
         function checkExistName() {

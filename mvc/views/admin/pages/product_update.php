@@ -3,7 +3,8 @@
         function checkAttributeId($attribute, $id, $attributes_id) {
             $query = "SELECT DISTINCT products_attributes.value FROM products_attributes 
             INNER JOIN products_type_attributes ON products_attributes.id = products_type_attributes.attributes_id 
-            WHERE products_type_attributes.product_type_id IN (SELECT products_type.id FROM products_type WHERE products_type.product_id = $id) 
+            WHERE products_type_attributes.product_type_id IN (SELECT products_type.id FROM products_type 
+            WHERE products_type.product_id = $id AND products_type.status = 1) 
             AND products_attributes.name LIKE '%$attribute%' AND products_attributes.id = $attributes_id";
             $result = $this->connect->prepare($query);
             $result->execute();
@@ -13,7 +14,9 @@
         function getAttributes($product_type_id, $attribute) {
             $query = "SELECT products_attributes.value FROM products_attributes 
             INNER JOIN products_type_attributes ON products_type_attributes.attributes_id = products_attributes.id 
-            WHERE products_type_attributes.product_type_id = $product_type_id AND products_attributes.name LIKE '%$attribute%'";
+            INNER JOIN products_type ON products_type.id = products_type_attributes.product_type_id
+            WHERE products_type_attributes.product_type_id = $product_type_id AND products_attributes.name LIKE '%$attribute%' 
+            AND products_type.status = 1";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
@@ -145,6 +148,14 @@
                     <?php endforeach;?>
                     <?php foreach ($product_update->getAttributes($type['product_type_id'], 'color') as $attr): ?>
                         <span class="color-order d-none"><?=$attr['value']?></span>
+                    <?php endforeach;?>
+                <?php endforeach;?>
+                <?php foreach($data['getProductTypeFromCartTemporary'] as $ids):?>
+                    <?php foreach ($product_update->getAttributes($ids['product_type_id'], 'size') as $attr): ?>
+                        <span class="size-cart-temporary d-none"><?=$attr['value']?></span>
+                    <?php endforeach;?>
+                    <?php foreach ($product_update->getAttributes($ids['product_type_id'], 'color') as $attr): ?>
+                        <span class="color-cart-temporary d-none"><?=$attr['value']?></span>
                     <?php endforeach;?>
                 <?php endforeach;?>
             </div>
@@ -398,26 +409,28 @@
             })
         })
 
-        // Code here
-
-
-
-
-
-
-
-
-
-
-
-
-
         // =============================================
         let letterSizesArray = [];
         let numberSizesArray = [];
         let colorArray = [];
         let sizeFromOrder = [];
         let colorFromOrder = [];
+        let sizeFromCart = [];
+        let colorFromCart = [];
+
+        let sizeCart = document.querySelectorAll(".size-cart-temporary")
+        sizeCart.forEach(e => {
+            if (!sizeFromCart.includes(e.textContent)) {
+                sizeFromCart.push(e.textContent);
+            }
+        })
+
+        let colorCart = document.querySelectorAll(".color-cart-temporary")
+        colorCart.forEach(e => {
+            if (!colorFromCart.includes(e.textContent)) {
+                colorFromCart.push(e.textContent);
+            }
+        })
 
         let sizeOrder = document.querySelectorAll(".size-order");
         sizeOrder.forEach(e => {
@@ -432,10 +445,6 @@
                 colorFromOrder.push(e.textContent);
             }
         })
-
-        // console.log(sizeFromOrder);
-        // console.log(colorFromOrder);
-
         let numberSizesArray2 = document.querySelectorAll(".products-attribute-input.number");
         numberSizesArray2.forEach(e => {
             if (e.checked) {
@@ -458,7 +467,6 @@
         })
 
         let tableBody = document.querySelector('.table-body');
-
         function letterSizes() {
             let letterSizes = document.querySelectorAll(".products-attribute-input.letter");
             letterSizes.forEach(e => {
@@ -473,12 +481,26 @@
                         }
                     }
                     let difference = sizeFromOrder.filter(x => !letterSizesArray.includes(x));
-                    if (difference.length > 0) {
+                    let difference2 = sizeFromCart.filter(x => !letterSizesArray.includes(x));
+                    if (difference2.length > 0) {
                         e.checked = true
-                        alert('khong duoc bo chon: ' + difference[0])
-                        letterSizesArray.push(difference[0])
-                        difference = [];
+                        alert('khong duoc bo chon: ' + difference2[0] + '. Vi loai san pham nay dang co trong gio hang');
+                        letterSizesArray.push(difference2[0])
+                        difference2 = [];
                         letterSizesArray.sort();
+                    } else if (difference.length > 0 && difference.includes(e.id)) {
+                        alert('khong duoc bo chon: ' + difference[0] + '. Vi loai san pham nay da co trong order');
+                        $.ajax({
+                            url: 'admin/updateProductTypeStatus',
+                            type: 'POST',
+                            data: {
+                                value: difference[0],
+                                productId : $("#u-product-id").val(),
+                            },
+                            success: function(data) {
+                                alert(data);
+                            }
+                        })
                     }
                 }
             })
@@ -498,13 +520,32 @@
                         }
                     }
                     let difference = sizeFromOrder.filter(x => !numberSizesArray.includes(x));
-                    if (difference.length > 0) {
+                    let difference2 = sizeFromCart.filter(x => !numberSizesArray.includes(x));
+                    console.log('difference: ' + difference);
+                    console.log('size render: ' + numberSizesArray);
+                    if (difference2.length > 0) {
                         e.checked = true
-                        alert('khong duoc bo chon: ' + difference[0])
-                        numberSizesArray.push(difference[0])
+                        alert('khong duoc bo chon: ' + difference2[0] + '. Vi loai san pham nay dang co trong gio hang');
+                        numberSizesArray.push(difference2[0])
+                        difference2 = [];
+                        numberSizesArray.sort();
+                    } else if (difference.length > 0 && difference.includes(e.id)) {
+                        alert('khong duoc bo chon: ' + difference[0] + '. Vi loai san pham nay da co trong order');
+                        $.ajax({
+                            url: 'admin/updateProductTypeStatus',
+                            type: 'POST',
+                            data: {
+                                value: difference[0],
+                                productId : $("#u-product-id").val(),
+                            },
+                            success: function(data) {
+                                alert(data);
+                            }
+                        })
                         difference = [];
                         numberSizesArray.sort();
                     }
+                    console.log(difference)
                 }
             })
         }
@@ -522,12 +563,27 @@
                     }
                 }
                 let difference = colorFromOrder.filter(x => !colorArray.includes(x));
-                if (difference.length > 0) {
+                let difference2 = colorFromCart.filter(x => !colorArray.includes(x));
+                if (difference2.length > 0) {
                     e.checked = true
-                    alert('khong duoc bo chon: ' + difference[0])
-                    colorArray.push(difference[0])
-                    difference = [];
+                    alert('khong duoc bo chon: ' + difference2[0] + '. Vi loai san pham nay dang co trong gio hang');
+                    colorArray.push(difference2[0])
+                    difference2 = [];
                     colorArray.sort();
+                } else if (difference.length > 0 && difference.includes(e.id)) {
+                    alert('khong duoc bo chon: ' + difference[0] + '. Vi loai san pham nay da co trong order');
+                    $.ajax({
+                        url: 'admin/updateProductTypeStatus',
+                        type: 'POST',
+                        data: {
+                            value: difference[0],
+                            productId : $("#u-product-id").val(),
+                        },
+                        success: function(data) {
+                            alert(data);
+                        }
+                    })
+                    difference = [];
                 }
             }
         })
