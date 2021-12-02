@@ -116,7 +116,7 @@
                             $urlPagination .= $url[$key] .= "/";
                         };
                     ?>
-                    <div class="col l-12">
+                    <div class="col l-12 c-12">
                         <div class="pagination">
                             <?php for ($i = 1; $i <= $data['totalPages']; $i++):?>
                                 <a class="pagination-item <?=((count($url2) == 3 && $i == 1) || ($url2[3] == $i)) ? 'active' : ''?>" href="<?=$urlPagination?><?=$i?>">
