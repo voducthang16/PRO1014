@@ -30,3 +30,29 @@
 .mt-80 {
     margin-top: 100px !important;
 }
+
+.pagination {
+    padding: 24px 0;
+    text-align: center;
+}
+
+.pagination-item {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 4px;
+
+    background-color: var(--white-color);
+    color: var(--secondary-color);
+
+    font-size: 1.6rem;
+    text-decoration: none;
+}
+
+.pagination-item:hover {
+    background-color: #f3f5f9;
+}
+
+.pagination-item.active {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}

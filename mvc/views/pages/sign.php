@@ -6,8 +6,8 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
 <div class="sign">
     <div class="container wide">
         <div class="row">
-            <div class="col l-6">
-                <div class="sign-in">
+            <div class="col l-6 c-12">
+                <div class="sign-in mlr-12">
                     <h2 class="sign-title">Đăng nhập</h2>
                     <form action="" class="sign-in-form" method="POST">
                         <div class="form-group">
@@ -33,8 +33,8 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
                     </form>
                 </div>
             </div>
-            <div class="col l-6">
-                <div class="sign-up">
+            <div class="col l-6 c-12">
+                <div class="sign-up mlr-12">
                     <h2 class="sign-title">Đăng ký</h2>
                     <form class="sign-up-form">
                         <div class="form-group">

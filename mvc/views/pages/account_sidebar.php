@@ -28,7 +28,7 @@
     $order_quantity = $account_sidebar->countOrderMember($id);
     // echo $id;
 ?>
-<div class="account_sidebar">
+<div class="account_sidebar mlr-12">
     <div class="account-header">
         <img class="account-avatar" src="<?=BASE_URL?>public/assets/img/default-avatar.png" alt="Avatar Images">
         <div class="account-header-info">
@@ -77,6 +77,14 @@
                     <div class="">
                         <i class="fal fa-map-marker-alt"></i>
                         <span>Địa chỉ</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a class="account-body-list-link mobile account-sign-out" href="">
+                    <div class="">
+                        <i class="fal fa-sign-out-alt"></i>
+                        <span>Đăng xuất</span>
                     </div>
                 </a>
             </li>

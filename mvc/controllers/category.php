@@ -62,6 +62,7 @@
                 "categories" => $this->category->getCategories(),
                 "categoryName" => $slug == "all" ? "Tất cả sản phẩm" : $this->category->getCategoryName($slug),
                 "getProducts" => $slug == "all" ? $this->category->getAllProducts($from, $ppp) : $this->category->getProducts($this->id, $from, $ppp),
+                "totalPages" => $totalPages
             ]);
         }
     }

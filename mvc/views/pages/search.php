@@ -14,7 +14,7 @@
 ?>
 
 <div class="category">
-    <div class="page-header">
+    <div class="page-header se">
         <div class="container wide">
             <div class="page-wrapper">
                 <h2 class="page-title">Kết quả tìm kiếm: <?=isset($_GET["keyword"]) ? $_GET["keyword"] : ''?></h2>
@@ -33,7 +33,7 @@
     </div>
     <div class="page-body container wide">
         <div class="row">
-            <div class="col l-3">
+            <div class="col l-3 c-0">
                 <div class="page-sidebar">
                     <div class="category-list">
                         <h3>Danh mục</h3>
@@ -49,11 +49,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col l-9">
+            <div style="padding-bottom: 48px" class="col l-9 c-12">
                 <div class="row mt-80 container-product-search">
                     <?php if (isset($_GET['keyword'])):?>
                         <?php foreach ($data['getProducts'] as $key=>$product): ?>
-                            <div class="col l-4">
+                            <div class="col l-4 c-12">
                                 <form class="products products-s products-p" id="<?=$product["id"]?>" method="POST">
                                     <input type="hidden" name="product-id" class="products-id" value="<?=$product["id"]?>">
                                     <input type="hidden" name="product-category-id" class="products-category-id" value="<?=$product["category_id"]?>">

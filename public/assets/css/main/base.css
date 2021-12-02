@@ -23,6 +23,10 @@ html {
     box-sizing: inherit;
 }
 
+.app {
+    overflow: hidden;
+}
+
 /* Button */
 .btn {
     display: inline-block;
