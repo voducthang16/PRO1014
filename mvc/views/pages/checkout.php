@@ -1,5 +1,5 @@
 <div class="checkout">
-    <div class="page-header">
+    <div class="page-header co">
         <div class="container wide">
             <div class="page-wrapper">
                 <h2 class="page-title">Checkout</h2>
@@ -18,11 +18,11 @@
     </div>
     <div class="page-body">
         <div class="container wide">
-            <form class="row" method="POST">
-                <div class="col l-8 form-wrapper">
+            <form class="row mlr-12" method="POST">
+                <div class="col l-8 c-12 form-wrapper">
                     <h3 class="checkout-title">Shipping address</h3>
                     <div class="row">
-                        <div class="col l-6">
+                        <div class="col l-6 c-12">
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
                                 <input type="text" class="form-control" id="first_name" name="first_name">
@@ -42,7 +42,7 @@
                                 <input type="hidden" id="ward_selected" name="ward_selected">
                             </div>
                         </div>
-                        <div class="col l-6">
+                        <div class="col l-6 c-12">
                             <div class="form-group">
                                 <label for="last_name">Last Name</label>
                                 <input type="text" class="form-control" id="last_name" name="last_name">
@@ -72,12 +72,12 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="form-footer">
+                    <div class="form-footer sm--hide">
                         <a href="cart" class="btn"><i style="font-size: 1.6rem; margin-right: 8px" class="fal fa-chevron-left"></i>Back to cart</a>
                         <button type="submit" class="btn">Đặt hàng<i style="font-size: 1.6rem; margin-left: 8px" class="fal fa-chevron-right"></i></button>
                     </div>
                 </div>
-                <div class="col l-4">
+                <div class="col l-4 c-12">
                     <div class="order-summary">
                         <h4>Order Summary</h4>
 
@@ -113,6 +113,10 @@
                             <!-- add class active-->
                             <span class="order-coupon-error ">Please provide promo code.</span>
                             <button class="btn order-coupon-submit">Apply promo code</button>
+                        </div>
+                        <div class="form-footer pc">
+                            <a href="cart" class="btn"><i style="font-size: 1.6rem; margin-right: 8px" class="fal fa-chevron-left"></i>Back to cart</a>
+                            <button type="submit" class="btn">Đặt hàng<i style="font-size: 1.6rem; margin-left: 8px" class="fal fa-chevron-right"></i></button>
                         </div>
                     </div>
                 </div>

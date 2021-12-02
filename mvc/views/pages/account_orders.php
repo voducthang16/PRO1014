@@ -16,16 +16,16 @@
                         </li>
                     </ul>
                 </nav>
-                <button class="btn btn--size-s account-sign-out"><i style="margin-right: 8px" class="fal fa-sign-out-alt"></i> Đăng xuất</button>
+                <button class="btn btn--size-s account-sign-out sm--hide"><i style="margin-right: 8px" class="fal fa-sign-out-alt"></i> Đăng xuất</button>
             </div>
         </div>
     </div>
     <div style="margin-top: -80px" class="container wide">
         <div style="padding-bottom: 40px" class="row">
-            <div class="col l-4">
+            <div class="col l-4 c-12">
                 <?php require_once __DIR__ . "/account_sidebar.php";?>
             </div>
-            <div class="col l-8">
+            <div class="col l-8 c-12">
                 <div class="account-orders">
                     <table class="orders-table">
                         <thead class="orders-table-head">

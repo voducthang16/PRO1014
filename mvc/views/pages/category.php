@@ -14,7 +14,7 @@
 ?>
 
 <div class="category">
-    <div class="page-header">
+    <div class="page-header cate">
         <div class="container wide">
             <div class="page-wrapper">
                 <h2 class="page-title"><?=$data['categoryName']?></h2>
@@ -36,7 +36,7 @@
     </div>
     <div class="page-body container wide">
         <div class="row">
-            <div class="col l-3">
+            <div class="col l-3 c-0">
                 <div class="page-sidebar">
                     <div class="category-list">
                         <h3>Danh mục</h3>
@@ -52,10 +52,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col l-9">
+            <div class="col l-9 c-12">
                 <div class="row mt-80">
                     <?php foreach ($data['getProducts'] as $key=>$product): ?>
-                        <div class="col l-4">
+                        <div class="col l-4 c-12">
                             <form class="products products-s products-p" id="<?=$product["id"]?>" method="POST">
                                 <input type="hidden" name="product-id" class="products-id" value="<?=$product["id"]?>">
                                 <input type="hidden" name="product-category-id" class="products-category-id" value="<?=$product["category_id"]?>">
@@ -105,6 +105,26 @@
                             </form>
                         </div>
                     <?php endforeach;?>
+                    <?php 
+                        $url = explode("/", filter_var(trim($_GET["url"], "/")));
+                        $url2 = explode("/", filter_var(trim($_GET["url"], "/")));
+                        if (count($url) > 3) {
+                            $url = array_diff($url, [$url[3]]);
+                        }
+                        $urlPagination = "";
+                        foreach ($url as $key=>$value) {
+                            $urlPagination .= $url[$key] .= "/";
+                        };
+                    ?>
+                    <div class="col l-12">
+                        <div class="pagination">
+                            <?php for ($i = 1; $i <= $data['totalPages']; $i++):?>
+                                <a class="pagination-item <?=((count($url2) == 3 && $i == 1) || ($url2[3] == $i)) ? 'active' : ''?>" href="<?=$urlPagination?><?=$i?>">
+                                    <?=$i?>
+                                </a>
+                            <?php endfor;?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

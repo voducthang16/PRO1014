@@ -9,9 +9,9 @@
                             <a href="<?= BASE_URL ?>" class="page-link"><i class="fal fa-home"></i>Trang chủ<i class="fal fa-chevron-right"></i></a>
                         </li>
                         <li class="page-item">
-                            <a href="<?= BASE_URL ?>category/detail/<?= $data['category']['slug'] ?>" class="page-link"><?= $data['category']['name'] ?><i class="fal fa-chevron-right"></i></a>
+                            <a href="<?= BASE_URL ?>category/detail/<?= $data['category']['slug'] ?>" class="page-link"><?= $data['category']['name'] ?><i class="fal fa-chevron-right sm--hide"></i></a>
                         </li>
-                        <li class="page-item">
+                        <li class="page-item sm--hide">
                             <a class="page-link"><?= $data['product']['name'] ?></a>
                         </li>
                     </ul>
@@ -21,24 +21,28 @@
     </div>
     <div class="page-body container wide">
         <div class="product-wrapper row">
-            <div class="col l-7">
-                <div class="row">
-                    <div class="col l-2">
+            <div class="col l-7 c-12">
+                <div class="row product-slide-mobile">
+                    <div class="col l-2 c-12">
                         <div class="product-slide">
-                            <img class="product-slide-image active" src="public/upload/<?=$data['product']['id']?>/<?=$data['product']['thumbnail']?>" alt="Product Image Slide">
+                            <div class="col l-12 c-3">
+                                <img class="product-slide-image active" src="public/upload/<?=$data['product']['id']?>/<?=$data['product']['thumbnail']?>" alt="Product Image Slide">
+                            </div>
                             <?php foreach ($data['productImages'] as $image) : ?>
-                                <img class="product-slide-image" src="public/upload/<?=$data['product']['id']?>/<?=$image["image"]?>" alt="Product Image Slide">
+                                <div class="col l-12 c-3">
+                                    <img class="product-slide-image" src="public/upload/<?=$data['product']['id']?>/<?=$image["image"]?>" alt="Product Image Slide">
+                                </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <div class="col l-10">
+                    <div class="col l-10 c-12">
                         <div class="product-thumbnail background-zoom" style="background-image: url('public/upload/<?=$data['product']['id']?>/<?=$data['product']['thumbnail']?>');" onmousemove="zoom(event)">
                             <img id="product-thumbnail" src="public/upload/<?=$data['product']['id']?>/<?=$data['product']['thumbnail']?>" alt="Product Thumbnail">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col l-5">
+            <div class="col l-5 c-12">
                 <div class="product-info">
                     <form action="" method="POST" class="products-p products-s" name="products">
                     <div class="product-heart">
@@ -64,7 +68,7 @@
                                     </div>
                                 <?php endforeach; ?>
                             </div>
-                            <div class="products-color p mt-24">
+                            <div class="products-color p mt-24 mt-16">
                                 <?php echo count($data['productColor']) > 0 ? "<span class='color-title'>Màu:</span>" : ""; ?>
                                 <?php foreach ($data['productColor'] as $color) : ?>
                                     <div class="products-attribute-item">
@@ -105,9 +109,9 @@
             </div>
         </div>
 
-        <div class="product-description row">
-            <div class="l-o-1"></div>
-            <div class="col l-5">
+        <div class="product-description mlr-12 row">
+            <div class="l-o-1 c-0"></div>
+            <div class="col l-5 c-12">
                 <div class="product-description-content">
                     <h3 class="product-description-title">High quality materials</h3>
                     <h6 class="product-description-sub-title"><?= $data['product']['description'] ?></h6>
@@ -155,18 +159,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col l-5">
+            <div class="col l-5 c-12">
                 <img class="product-description-img" src="https://cartzilla.createx.studio/img/shop/single/prod-img.jpg" alt="Image">
             </div>
-            <div class="l-o-1"></div>
+            <div class="l-o-1 c-0"></div>
         </div>
 
-        <div class="product-origin row">
-            <div class="l-o-1"></div>
-            <div class="col l-5">
+        <div class="product-origin mlr-12 row">
+            <div class="l-o-1 c-0"></div>
+            <div class="col l-5 c-12">
                 <img class="product-origin-img" src="https://cartzilla.createx.studio/img/shop/single/prod-map.png" alt="Image">
             </div>
-            <div class="col l-5">
+            <div class="col l-5 c-12">
                 <div class="product-origin-content">
                     <h3 class="product-description-title mb-24 pb-8">Where is it made?</h3>
                     <h6 class="mb-16">Apparel Manufacturer, Ltd.</h6>
@@ -189,7 +193,7 @@
                     <p class="mb-16 pb-8">&ZeroWidthSpace;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
                 </div>
             </div>
-            <div class="l-o-1"></div>
+            <div class="l-o-1 c-0"></div>
         </div>
     </div>
 
@@ -200,13 +204,13 @@
             </div>
 
             <div class="row product-comment-body">
-                <div class="col l-7">
+                <div class="col l-7 c-12">
                     <div class="product-comment-list">
                         <!-- render comment -->
                     </div>
                 </div>
-                <div class="col l-5">
-                    <div class="product-comment-background">
+                <div class="col l-5 c-12">
+                    <div class="product-comment-background mlr-12">
                         <h3 class="product-comment-title">Viet Binh Luan</h3>
                         <form action="" method="POST" class="product-comment-form">
                             <input type="hidden" class="products-id" name="products-id" id="product-id" value="<?= $data['product']['id'] ?>">

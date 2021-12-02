@@ -16,22 +16,22 @@
                         </li>
                     </ul>
                 </nav>
-                <button class="btn btn--size-s account-sign-out"><i style="margin-right: 8px" class="fal fa-sign-out-alt"></i> Đăng xuất</button>
+                <button class="btn btn--size-s account-sign-out sm--hide"><i style="margin-right: 8px" class="fal fa-sign-out-alt"></i> Đăng xuất</button>
             </div>
         </div>
     </div>
     <div style="margin-top: -80px" class="container wide">
         <div style="padding-bottom: 40px" class="row">
-            <div class="col l-4">
+            <div class="col l-4 c-12">
                 <?php require_once __DIR__ . "/account_sidebar.php"; ?>
             </div>
-            <div class="col l-8">
+            <div class="col l-8 c-12">
                 <div class="account-wishlist">
-                    <h2 class="wishlist-title">Cập nhật thông tin chi tiết của bạn bên dưới:</h2>
+                    <h2 class="wishlist-title sm--hide">Cập nhật thông tin chi tiết của bạn bên dưới:</h2>
                     <div class="wishlist-product-list">
                         <form>
                             <div class="row form-update-profile">
-                                <div class="col l-6">
+                                <div class="col l-6 c-12">
                                     <div class="form-group">
                                         <label for="full_name">Họ & Tên</label>
                                         <input type="text" class="form-control" id="full_name" name="full_name" value="<?=$data['profile']['name']?>" required>
@@ -41,7 +41,7 @@
                                         <input type="number" class="form-control" id="phone" name="phone" value="<?=$data['profile']['phone']?>" required>
                                     </div>
                                 </div>
-                                <div class="col l-6">
+                                <div class="col l-6 c-12">
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control" id="email" name="email" value="<?=$data['profile']['email']?>" required>

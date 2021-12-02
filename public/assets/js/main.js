@@ -109,7 +109,7 @@ $(document).ready(function(){
         // autoplay: true,
         autoplaySpeed: 1000,
         smartSpeed: 500,
-        autoplayHoverPause: true
+        autoplayHoverPause: true,
     });
     // $(".home-hoodie-slide").owlCarousel({
     //     items: 3,

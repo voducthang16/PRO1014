@@ -19,12 +19,12 @@ $categories = $header->getCategories();
     <div class="topbar">
         <div class="container wide">
             <div class="topbar-wrapper row">
-                <div class="col l-3">
-                    <p class="support">
+                <div class="col l-3 m-4 c-6">
+                    <p class="support ml-8">
                         <i class="fal fa-headset"></i>Hỗ trợ <a href="tel:0123456789">0123456789</a>
                     </p>
                 </div>
-                <div class="col l-3">
+                <div class="col l-3 m-4 c-0">
                     <div class="topbar-text">
                         <p class="animate-text">
                             <span>Free shiping cho đơn hàng trên $200</span>
@@ -33,8 +33,8 @@ $categories = $header->getCategories();
                         </p>
                     </div>
                 </div>
-                <div class="col l-3">
-                    <p class="order-tracking">
+                <div class="col l-3 m-4 c-6">
+                    <p class="order-tracking mr-8">
                         <i class="fal fa-map-marker"></i><a href="#">Theo dõi đơn hàng</a>
                     </p>
                 </div>
@@ -45,29 +45,34 @@ $categories = $header->getCategories();
     <div class="navbar">
         <div class="container wide">
             <div class="navbar-control row">
-                <div class="col l-2 sm--hide">
+                <div class="col l-2 c-6">
                     <div class="navbar-logo">
-                        <a href="" class="navbar-logo-link">
+                        <a href="" class="navbar-logo-link ml-8">
                             <img width="100%" src="public/assets/img/test.png" alt="LOGO">
                         </a>
                     </div>
                 </div>
-                <div class="col l-6 search-width">
+                <div class="col l-6 c-0 search-width">
                     <form action="search" class="search" id="search-form">
                         <input class="search-control" type="text" name="keyword" id="search" placeholder="Tìm kiếm..." required>
                         <input type="submit" style="display: none">
                         <i class="search-btn fal fa-search search-icon"></i>
                     </form>
                 </div>
-                <div class="col l-4 navbar-box">
+                <div class="col l-4 c-6 navbar-box">
                     <div class="toolbar">
-                        <div class="expand">
+                        <div class="expand sm--hide">
                             <p class="expand-btn">
                                 <span style="width: 86px">Expand Menu</span>
                                 <i class="fal fa-bars"></i>
                             </p>
                         </div>
-                        <div class="wishlist">
+                        <label for="nav-responsive" class="expand-mobile l-0">
+                            <p class="expand-btn">
+                                <i class="fal fa-bars"></i>
+                            </p>
+                        </label>
+                        <div class="wishlist c-0">
                             <a href="<?= BASE_URL ?>account/wishlist" class="wishlist-link">
                                 <span>Wishlist</span>
                                 <i class="fal fa-heart"></i>
@@ -121,7 +126,57 @@ $categories = $header->getCategories();
                     </div>
                 </div>
             </div>
-            <div class="navbar-menu row">
+            <input style="display: none" type="checkbox" id="nav-responsive">
+            <!-- NAV MOBILE -->
+            <div class="nav-mobile">
+                <label class="nav-close" for="nav-responsive"><i class="fal fa-times"></i></label>
+                <div class="search-form-mobile">
+                    <form action="search" class="search" id="search-form">
+                        <input class="search-control" type="text" name="keyword" id="search" placeholder="Tìm kiếm..." required>
+                        <input type="submit" style="display: none">
+                        <i class="search-btn fal fa-search search-icon"></i>
+                    </form>
+                </div>
+                <ul class="navbar-menu-list">
+                    <li class="navbar-menu-item">
+                        <a href="" class="navbar-menu-link">
+                            Trang chủ
+                        </a>
+                    </li>
+                    <li class="navbar-menu-item">
+                        <a class="navbar-menu-link">
+                            Danh mục
+                        </a>
+                        <ul class="navbar-submenu-list">
+                            <?php foreach ($categories as $category) : ?>
+                                <li class="navbar-submenu-item">
+                                    <a href="category/detail/<?= $category['slug'] ?>" class="navbar-submenu-link">
+                                        <?= $category['name'] ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </li>
+                    <li class="navbar-menu-item">
+                        <a href="" class="navbar-menu-link">
+                            Về chúng tôi
+                        </a>
+                    </li>
+                    <li class="navbar-menu-item">
+                        <a href="" class="navbar-menu-link">
+                            Blog
+                        </a>
+                    </li>
+                    <li class="navbar-menu-item">
+                        <a href="<?=BASE_URL?>contacts" class="navbar-menu-link">
+                            Liên hệ
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- NAV PC -->
+            <div class="navbar-menu row sm--hide">
                 <div class="col l-10 l-o-2">
                     <ul class="navbar-menu-list">
                         <li class="navbar-menu-item">

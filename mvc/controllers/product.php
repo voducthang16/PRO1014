@@ -143,7 +143,7 @@
                     foreach ($comment->fetchAll() as $row) {
                         $name = $this->product->getProfileById($row['member_id']);
                         $output .=
-                        "<div class='comment'>
+                        "<div class='comment mlr-12'>
                             <div class='comment-header'>
                                 <img src='".BASE_URL."public/assets/img/default-avatar.png' alt='User Avatar' class='comment-user-avatar'>
                                 <div>
@@ -226,7 +226,7 @@
                 }
                 $output = "";
                 $output .= '
-                    <div class="col l-4">
+                    <div class="col l-4 c-12 mb-15">
                         <h3 class="product-comment-quantity">'.$commentQuantity.' Bình luận</h3>
                         <div>';
                 $averageLoop = $average;
@@ -250,7 +250,7 @@
                 }
                 $output .='<span style="margin-left: 8px; font-size: 1.6rem">'.toFixed($totalStar / $commentQuantity, 1).'</span></div>
                     </div>
-                    <div class="col l-8">
+                    <div class="col l-8 c-12">
                         <div class="star-percent">
                             <span>5<i style="margin-left: 4px" class="fas fa-star"></i></span>
                             <div class="star-progress">

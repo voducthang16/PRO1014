@@ -19,7 +19,7 @@
     <div class="owl-carousel owl-theme owl-banner home-slide">
         <div class="slide-wrapper slide-wrapper-1">
             <div class="container wide">
-                <div class="row">
+                <div class="row slider-mobile">
                     <div class="col l-6">
                         <div class="slide-content">
                             <h4 class="slide-sub-title">Vừa ra mắt!</h4>
@@ -40,7 +40,7 @@
         </div>
         <div class="slide-wrapper slide-wrapper-2">
             <div class="container wide">
-                <div class="row">
+                <div class="row slider-mobile">
                     <div class="col l-6">
                         <div class="slide-content">
                             <h4 class="slide-sub-title">Nhanh lên nào! Ưu đãi có hạn.</h4>
@@ -61,7 +61,7 @@
         </div>
         <div class="slide-wrapper slide-wrapper-3">
             <div class="container wide">
-                <div class="row">
+                <div class="row slider-mobile">
                     <div class="col l-6">
                         <div class="slide-content">
                             <h4 class="slide-sub-title">Hoàn thiện ngoại hình của bạn với</h4>
@@ -89,7 +89,7 @@
         <div class="row">
             <div class="col l-8">
                 <div class="block-category-wrapper row">
-                    <div class="col l-4">
+                    <div class="col l-4 c-12">
                         <div class="block-wrapper">
                             <a href="#" class="block-category-link">
                                 <img src="public/assets/img/cat-sm01.jpg" alt="Men">
@@ -97,7 +97,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col l-4">
+                    <div class="col l-4 c-12">
                         <div class="block-wrapper">
                             <a href="#" class="block-category-link">
                                 <img src="public/assets/img/cat-sm02.jpg" alt="Men">
@@ -105,7 +105,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col l-4">
+                    <div class="col l-4 c-12">
                         <div class="block-wrapper">
                             <a href="#" class="block-category-link">
                                 <img src="public/assets/img/cat-sm03.jpg" alt="Men">
@@ -127,7 +127,7 @@
             <?php 
                 foreach ($data["getProducts"] as $item):
             ?>
-                <div class="col l-3">
+                <div class="col l-3 c-12">
                     <form class="products products-s products-p" id="<?=$item["id"]?>" method="POST">
                         <input type="hidden" name="product-id" class="products-id" value="<?=$item["id"]?>">
                         <input type="hidden" name="product-category-id" class="products-category-id" value="<?=$item["category_id"]?>">
@@ -190,10 +190,10 @@
 <div class="home-banner-ads">
     <div class="container wide">
         <div class="row">
-            <div class="col l-8">
+            <div class="col l-8 c-12">
                 <div class="banner-ads-img">
                     <div class="row">
-                        <div class="col l-6">
+                        <div class="col l-6 c-12">
                             <div class="banner-ads-img__content">
                                 <h3>Nhanh lên! Ưu đãi trong thời gian có hạn</h3>
                                 <h2>Converse All Star on Sale</h2>
@@ -202,7 +202,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col l-6">
+                        <div class="col l-6 c-12">
                             <div>
                                 <img class="banner-ads-img__thumbnail" src="public/assets/img/banner.jpg" alt="Banner Image">
                             </div>
@@ -210,7 +210,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col l-4">
+            <div class="col l-4 c-12">
                 <div class="banner-ads-text">
                     <h2>Your Ads Banner Here</h2>
                     <h3>Hurry up to reserve your spot</h3>
@@ -228,23 +228,23 @@
 <div class="home-hoodie">
     <div class="container wide">
         <div class="row">
-            <div class="col l-5">
+            <div class="col l-5 c-12">
                 <div class="home-hoodie-thumbnail">
                     <div class="hoodie-thumbnail-header">
                         <h2>Hoodie Day</h2>
                         <a href="#">Ao Hoodie <i class="fal fa-chevron-right"></i></a>
                     </div>
-                    <a class="hoodie-thumbnail-img">
+                    <a class="hoodie-thumbnail-img sm--hide">
                         <img src="public/assets/img/hoodie.jpg" alt="Hoodie Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-7">
+            <div class="col l-7 c-12">
                 <div class="row home-hoodie-slide">
                     <?php foreach ($data['getHoodiesProducts'] as $hoodie): ?>
-                        <div class="col l-4">
+                        <div class="col l-4 c-6">
                             <div class="home-hoodie-item">
-                                <div class="products-heart">
+                                <div class="products-heart hoodie">
                                     <span>Add to wishlist</span>
                                     <i class="fal fa-heart"></i>
                                 </div>
@@ -268,85 +268,85 @@
 <div class="home-brands">
     <div class="container wide">
         <h3 class="home-brands-title">Mua theo nhãn hiệu</h3>
-        <div class="row">
-            <div class="col l-3">
+        <div class="row ml-8 mr-8">
+            <div class="col l-3 c-6">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/01.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3">
+            <div class="col l-3 c-6">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/02.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3">
+            <div class="col l-3 c-6">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/03.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3">
+            <div class="col l-3 c-6">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/04.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3 mt-24">
+            <div class="col l-3 c-6 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/05.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3 mt-24">
+            <div class="col l-3 c-6 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/06.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3 mt-24">
+            <div class="col l-3 c-6 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/07.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3 mt-24">
+            <div class="col l-3 c-6 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/08.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3 mt-24">
+            <div class="col l-3 c-6 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/09.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3 mt-24">
+            <div class="col l-3 c-6 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/10.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3 mt-24">
+            <div class="col l-3 c-6 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/11.png" alt="Brand Thumbnail">
                     </a>
                 </div>
             </div>
-            <div class="col l-3 mt-24">
+            <div class="col l-3 c-6 mt-24">
                 <div class="home-brands-wrapper">
                     <a href="#" class="home-brands-link">
                         <img class="home-brands-img" src="public/assets/img/brands/12.png" alt="Brand Thumbnail">

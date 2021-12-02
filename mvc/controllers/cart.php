@@ -47,12 +47,12 @@
                 }
                 if ($result->rowCount() > 0){
                     $output .= '<form class="row" method="POST">
-                                    <div class="col l-8">
+                                    <div class="col l-8 c-12">
                                     <div class="cart-page-header">
                                         <h3>Sản phẩm</h3>
                                         <a href="'.BASE_URL.'" class="btn btn--size-s"><i style="margin-right: 8px" class="fal fa-chevron-left"></i>Tiếp tục mua hàng</a>
                                     </div>
-                                    <div class="order-product-wrapper">';
+                                    <div class="order-product-wrapper mlr-12">';
                     foreach ($result as $row) {
                         $output .= ' <div class="order-products cart-items__product">
                         <div class="order-products-info cart-product__link" name="'.$row['product_type_id'].'">
@@ -80,8 +80,8 @@
                     }
                     $output .='</div>
                                 </div>
-                                <div class="col l-4">
-                                    <div class="cart-page-sub-total">
+                                <div class="col l-4 c-12">
+                                    <div class="cart-page-sub-total mlr-12">
                                         <h4>Subtotal</h4>
                                         <h3 id="sub-total-money">'.number_format($total).' đ</h3>
                                         <div class="order-note">

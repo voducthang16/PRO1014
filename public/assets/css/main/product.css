@@ -12,15 +12,13 @@
 
 .product-slide-image {
     width: 100%;
+    margin-bottom: 16px;
     border: 1px solid #e3e9ef;
     border-radius: 8px;
     vertical-align: middle;
     transition: all ease 0.4s;
 }
 
-.product-slide-image+.product-slide-image {
-    margin-top: 24px;
-}
 
 .product-slide-image.active {
     border: 1px solid var(--primary-color);
@@ -52,6 +50,7 @@
 }
 
 .product-price {
+    position: relative;
     padding-top: 3px;
     display: grid;
     grid-template-areas:
@@ -74,6 +73,9 @@
 }
 
 .product-sale-label {
+    position: absolute;
+    top: 4px;
+    right: 0;
     grid-area: div3;
     width: 40px;
     height: 20px;
@@ -607,4 +609,9 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 .comment-star-icon.average {
     font-size: 1.6rem;
     color: var(--third-color);
+}
+
+.product-slide {
+    display: flex;
+    flex-direction: column;
 }
