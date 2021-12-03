@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col l-o-3 l-6">
                 <h2>Forgot your password?</h2>
-                <h3>Change your password in three easy steps. This helps to keep your new password secure.</h3>
+                <p>Change your password in three easy steps. This helps to keep your new password secure.</p>
                 <form action="" method="post" class="form-forgotPassword">
                     <div class="form-group">
                         <label for="email">Enter your email</label>

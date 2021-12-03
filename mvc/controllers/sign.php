@@ -101,7 +101,7 @@
                 } else {
                     $_SESSION["member-login"] = "true";
                     $_SESSION["member-username"] = $username;
-                    echo '<script>alert("Đăng nhập thành công");</script>';
+                    echo '<script>alert("Đăng nhập thành công!");</script>';
                     header("Location:".BASE_URL);
                 }
                 header("Refresh: 0");
@@ -124,7 +124,7 @@
                 $this->sign->createAccount($username, $email, $name, $password);
                 $_SESSION["member-login"] = "true";
                 $_SESSION["member-username"] = $username;
-                echo 'Tao tk thanh cong';
+                echo 'Tạo tài khoản thành công!';
             }
         }
 
@@ -146,9 +146,9 @@
                     $codeNew = md5(random_int(0,9999));
                     $codeNew = substr($codeNew,0,8);
                     $this->sign->updateCode($email, $codeNew);
-                    echo 'đã update password thành công';
+                    echo 'Đã Update password thành công!';
                 } else {
-                    echo 'bạn cần nhập code chính xác trước khi bị khoá';
+                    echo 'Bạn cần nhập code xác minh chính xác để đổi mật khẩu';
                 }
             }
         }
@@ -196,11 +196,11 @@
                             const rePassword = $(".input-value-re-new-password").val();
                     
                             if (rePassword != password) {
-                                alert("password không trùng nhau");
+                                alert("Password không trùng nhau");
                                 return;
                             }        
                             if (code == "" || password == "" || email == "") {
-                                alert("bạn còn 2 lần nhập trước khi bị khoá tài khoản !!");
+                                alert("Bạn còn 2 lần nhập trước khi bị khoá tài khoản !!");
                             } else {
                                 $.ajax({
                                     url:"sign/GetPassword",
@@ -212,7 +212,7 @@
                                     },
                                     success:function(data) {
                                         alert(data);
-                                        if (data == "đã update password thành công") {
+                                        if (data == "Đã Update password thành công!") {
                                             location.reload();
                                         }
                                     }

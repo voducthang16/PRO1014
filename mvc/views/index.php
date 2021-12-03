@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/responsive.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/contacts.css">
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/aboutus.css">
+        <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/forgotpassword.css">
 
 
         <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/carousel/owl.carousel.min.css">
