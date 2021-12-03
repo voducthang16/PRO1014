@@ -345,10 +345,46 @@
     </div>
 </div>
 
+<!-- Delete -->
+<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="deleteProductLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteProductLabel">Xóa Thực Đơn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="">
+                <div class="modal-body">
+                    <input type="hidden" name="delete-product-id" id="delete-product-id">
+                    <div class="form-group">
+                        <h3 class="text-center">Bạn có muốn xóa sản phẩm này không?</h3>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="<?=BASE_URL?>public/assets/js/plugins/jasny-bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
+        $(".delete-product").on("click", function() {
+            $("#deleteProduct").modal("show");
+            $tr = $(this).closest('tr');
+            let data2 = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+            let productId = data2[1];
+            $("#delete-product-id").val(productId);
+        });
+
         let letterSizesArray = [];
         let numberSizesArray = [];
         let colorArray = [];

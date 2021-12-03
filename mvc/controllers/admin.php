@@ -172,6 +172,37 @@
                 }
                 header("Refresh: 0");
             }
+
+            // delete product
+            if (isset($_POST['delete-product-id'])) {
+                $id = $_POST['delete-product-id'];
+                $checkOrder = $this->admin->checkProductTypeInOrder($id);
+                $checkCart = $this->admin->checkProductTypeInCartTemporary($id);
+
+                if ($checkCart > 0) {
+                    echo '<script>alert("k xoa duoc. vi san pham dang co trong gio hang");</script>';
+                } else if ($checkOrder > 0) {
+                    echo '<script>alert("k xoa duoc. vi san pham dang co trong order");</script>';
+                    $this->admin->updateStatusProductWhenDelete($id);
+                    echo '<script>alert("da update stt thanh cong");</script>';
+                } else {
+                    $product_type_ids = $this->admin->getProductTypeFromProductId($id);
+                    foreach ($product_type_ids as $key=>$value) {
+                        $this->admin->deleteProductTypeAttribute($value['id']);
+                        $this->admin->deleteProductType($value['id']);
+                    }
+                    $storage = 'public/upload/'.$id.'/';
+                    $product_images = $this->admin->getProductImages($id);
+                    foreach ($product_images as $key=>$value) {
+                        $this->admin->deleteProductImage($value['image']);
+                        unlink($storage.$value['image']);
+                    }
+                    $this->admin->deleteProduct($id);
+                    echo '<script>alert("xoa thanh cong");</script>';
+                }
+
+                header("Refresh: 0");
+            }
             // load view
             $this -> view("admin/index", [
                 "page" => "product",
@@ -228,6 +259,7 @@
             echo $output;
         }
 
+        // update product
         function product_update() {
             if (empty($_POST['update-product-by-id'])) {
                 header("Location:".BASE_URL."admin/product");
@@ -553,6 +585,10 @@
                 $orderStatus = $_POST['u-order-status'];
                 if ($orderStatus == '2') {
                     $this->admin->updatePaymentStatus($orderId, $orderStatus);
+                    $product_type_ids = $this->admin->getProductTypeIdFromOrder($orderId);
+                    foreach ($product_type_ids as $value) {
+                        $this->admin->updateProductTypeQuantity($value['product_type_id'], $value['quantity']);
+                    }
                 } else {
                     $this->admin->updateOrderStatus($orderId, $orderStatus);
                 }

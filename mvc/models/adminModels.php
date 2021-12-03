@@ -356,5 +356,51 @@
             $result = $this->connect->prepare($query);
             $result->execute();
         }
+
+        function checkProductTypeInOrder($id) {
+            $query = "SELECT orders_details.product_type_id FROM `orders_details` INNER JOIN products_type ON products_type.id = orders_details.product_type_id WHERE products_type.product_id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        function checkProductTypeInCartTemporary($id) {
+            $query = "SELECT cart_temporary.product_type_id FROM cart_temporary INNER JOIN products_type 
+            ON products_type.id = cart_temporary.product_type_id WHERE products_type.product_id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        function updateStatusProductWhenDelete($id) {
+            $query = "UPDATE `products` SET `status` = '0' WHERE `products`.`id` = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function deleteProduct($id) {
+            $query = "DELETE FROM products WHERE id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function deleteProductImage($name) {
+            $query = "DELETE FROM products_images WHERE image = '$name'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function getProductTypeIdFromOrder($order) {
+            $query = "SELECT * FROM `orders_details` WHERE orders_details.order_id = $order";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function updateProductTypeQuantity($id, $quantity) {
+            $query = "UPDATE `products_type` SET `quantity` = `quantity` - $quantity, `purchases` = `purchases` + $quantity WHERE `products_type`.`id` = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
     } 
 ?>
