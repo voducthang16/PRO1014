@@ -145,7 +145,7 @@ $categories = $header->getCategories();
                         </li>
                         <li class="navbar-menu-item">
                             <a href="" class="navbar-menu-link">
-                                Về chúng tôi
+                                Giới thiệu
                             </a>
                         </li>
                         <li class="navbar-menu-item">
