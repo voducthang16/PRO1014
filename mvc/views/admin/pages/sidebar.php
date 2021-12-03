@@ -13,7 +13,7 @@
 <div class="sidebar" data-color="rose" data-background-color="black" data-image="<?=BASE_URL?>public/assets/img/sidebar-1.jpg">
     <div class="logo" style="text-align: center;">
         <a href="<?=BASE_URL?>admin" style="display: inline-block">
-            <img width="80%" src="<?=BASE_URL?>public/assets/img/logo-white.png" alt="Image Logo">
+            <img width="80%" src="<?=BASE_URL?>public/assets/img/logo-admin.png" alt="Image Logo">
         </a>
     </div>
     <div class="sidebar-wrapper">
