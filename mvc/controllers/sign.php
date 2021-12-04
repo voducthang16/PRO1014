@@ -97,11 +97,11 @@
                 $password = $_POST["si-password"];
                 $check = $this->sign->checkLogin($username, $password);
                 if ($check == 0) {
-                    echo '<script>alert("Tài khoản hoặc mật khẩu không chính xác.");</script>';
+                    echo '<script>notification("danger","Tài khoản mật khẩu không chính xác");</script>';
                 } else {
                     $_SESSION["member-login"] = "true";
                     $_SESSION["member-username"] = $username;
-                    echo '<script>alert("Đăng nhập thành công!");</script>';
+                    echo '<script>notification("success","Đăng nhập thành công");</script>';
                     header("Location:".BASE_URL);
                 }
                 header("Refresh: 0");
@@ -124,7 +124,7 @@
                 $this->sign->createAccount($username, $email, $name, $password);
                 $_SESSION["member-login"] = "true";
                 $_SESSION["member-username"] = $username;
-                echo 'Tạo tài khoản thành công!';
+                echo 'Tạo tài khoản thành công !';
             }
         }
 
@@ -196,11 +196,11 @@
                             const rePassword = $(".input-value-re-new-password").val();
                     
                             if (rePassword != password) {
-                                alert("Password không trùng nhau");
+                                notification("danger","Vui lòng kiểm tra lại password");
                                 return;
                             }        
                             if (code == "" || password == "" || email == "") {
-                                alert("Bạn còn 2 lần nhập trước khi bị khoá tài khoản !!");
+                                notification("danger","Vui lòng nhập chính xác không spam để tránh bị khoá tài khoản !!");
                             } else {
                                 $.ajax({
                                     url:"sign/GetPassword",
@@ -211,9 +211,11 @@
                                         "password": password
                                     },
                                     success:function(data) {
-                                        alert(data);
+                                        notification("success",data);
                                         if (data == "Đã Update password thành công!") {
-                                            location.reload();
+                                            setTimeout(function(){
+                                                location.reload();
+                                            }, 1000);
                                         }
                                     }
                                 })

@@ -74,7 +74,7 @@
                         id_product: id_product
                     },
                     success: function(data) {
-                        alert(data);
+                        notification('success',data);
                         fetch_wishlist();
                     }
                 })

@@ -94,12 +94,16 @@ $(document).ready(function() {
                     'id_product': id_product
                 },
                 success:function(data) {
-                    if (data == "sign") {
+                    if(data == 1){
+                        notification('success','Đã thêm sản phẩm vào wish list');
+                    }else if(data == 2){
+                        notification('danger','Đã xoá sản phẩm');
+                    }else if(data == 3){
+                        notification('danger','Thêm sản phẩm thất bại');
+                    }else{
                         document.location.href = "sign";
-                    } else {
-                        alert(data);
-                        get_data();
                     }
+                    get_data();
                 }
         });
     })
@@ -144,7 +148,7 @@ $(document).ready(function() {
         let star = parent.find('.rate-star').val();
         let id = parent.find('.products-id').val();
         if (value_comment.trim() == "") {
-            alert('vui lòng nhập bình luận');
+            notification('danger','Vui lòng nhập bình luận');
             return;
         }
         $.ajax({
@@ -157,12 +161,12 @@ $(document).ready(function() {
                 'content' : value_comment
             },
             success:function(data) {
-                if(data == "sign") {
-                    window.location = "sign";
+                if(data == 1){
+                    notification('success','Đã thêm bình luận');
                 } else {
-                    alert(data);
-                    fetch_comment();
+                    window.location = "sign";
                 }
+                fetch_comment();
             }
         });
     })
@@ -177,7 +181,7 @@ $(document).ready(function() {
                 'idComment': id_comment
             },
             success:function(data) {
-                alert(data);
+                notification('danger','Đã xoá bình luận !!');
                 fetch_comment();
             }
         })

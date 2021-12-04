@@ -169,7 +169,7 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
             let password = $('#su-password').val();
             
             if (fullName == "" || username == "" || email == "" || password == ""){
-                alert('vui long nhập đầy đủ');
+                notification('danger','Vui lòng nhập thông tin đầy đủ');
                 return;
             }
 
@@ -185,12 +185,12 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
                         'password': password
                     },
                     success: function(data) {
-                        alert(data);
+                        notification('success',data);
                         window.location ="home";
                     }
                 })
             } else {
-                alert('vui lòng kiểm tra lại thông tin !!');
+                notification('danger','Vui lòng kiểm tra lại thông tin');
             }
 
         });

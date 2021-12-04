@@ -119,16 +119,16 @@
                 }
 
                 if ($qtt > $valQtTy){
-                    echo "k update duoc";
+                    echo 1;
                     return;
                 }
 
                 $updateCart = $this-> cart->updateQtt($qtt,$this->id_member,$id_type);
 
                 if($updateCart==true){
-                    echo 'đã cập nhật số lượng';
+                    echo 3;
                 } else {
-                    echo 'cập nhật số lượng thất bại';
+                    echo 2;
                 }
             }
         }
@@ -142,26 +142,26 @@
                 if($action == 'plus') {
                     $quantity = $check_id_type->fetch()['quantity'] + 1;
                     if ($quantity >  $valQtt){
-                        echo "k update duoc";
+                        echo 1;
                         return;
                     }
                 } else {
                     if ($this->cart->getQuantity($id_type, $this->id_member) > 1) {
                         $quantity = $check_id_type->fetch()['quantity'] - 1;
                     } else {
-                        echo "k update duoc";
+                        echo 1;
                         return;
                     }
                 }
                 $updateCart = $this-> cart->updateQtt($quantity,$this->id_member,$id_type);
                 if ($updateCart == true) {
                     if($action == 'plus') {
-                        echo 'Đã update +1 trong giỏ hàng';
+                        echo 3;
                     } else{
-                        echo 'Đã update -1 trong giỏ hàng';
+                        echo 3;
                     }
                 } else {
-                    echo 'Vui lòng thực hiện lại !!';
+                    echo 2;
                 }
             }
         }
@@ -272,9 +272,9 @@
                     if ($num == 0){
                             $insert = $this-> cart->insertCart($this->id_member,$id_type,$qtt);
                         if ($insert == true){
-                            echo 'Thêm Thành Công';
+                            echo 1;
                         } else{
-                            echo 'Thêm Thất Bại';
+                            echo 2;
                         }
                     } else {
                         $quantity = $check_id_type->fetch()['quantity'] + $qtt;
@@ -283,7 +283,7 @@
                         if ($updateCart == true){
                             echo 'Đã update +'.$qtt.' trong giỏ hàng';
                         } else {
-                            echo 'Vui lòng thực hiện lại !!';
+                            echo 3;
                         }
                     }
                 }
@@ -297,9 +297,9 @@
                 $id_type = $_POST['id_type'];
                 $kq_delete = $this-> cart->deleteCart($this->id_member,$id_type);
                 if ($kq_delete == true){
-                    $kqDl = 'Delete Thành Công';
+                    $kqDl = 1;
                 } else{
-                    $kqDl = 'Delete Thất Bại';
+                    $kqDl = 2;
                 }
                 $check = $this-> cart->getCart($this->id_member);
                 if ($check->rowCount()==0){

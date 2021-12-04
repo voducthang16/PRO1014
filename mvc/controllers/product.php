@@ -96,7 +96,7 @@
                     $content = $_POST['content'];
 
                     $this->product->insertComment($id_prd, $this->id, $star, $content);
-                    echo "đã thêm bình luận";
+                    echo 1;
                 }
             } else {
                 echo "sign";
@@ -114,10 +114,10 @@
                     if ($check == 0) {
                         $result = $account->addWishList($this->id,$id_product);
                         if ($result == true) {
-                            echo "đã thêm sản phẩm vào wish list";
+                            echo 1;
                             return;
                         }
-                        echo "thêm sản phẩm thất bại"; 
+                        echo 3;
                     } else {
                         $account->deleteWishList($this->id, $id_product);
                         echo 'da xoa san pham';

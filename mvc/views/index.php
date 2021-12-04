@@ -55,7 +55,7 @@
         <link rel="stylesheet" href="public/assets/css/main/carousel/owl.theme.default.min.css"> -->
     </head>
     <body>
-        <div class="app">
+        <div class="app container-app-user">
             <base href="<?=BASE_URL?>">
             <button class="scroll-to-top btn">
                 <i class="fal fa-arrow-up"></i>
@@ -77,4 +77,5 @@
     <script src="<?=BASE_URL?>public/assets/js/product.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/search.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/cart.js"></script>
+    <script src="<?=BASE_URL?>public/assets/js/notification.js"></script>
 </html>

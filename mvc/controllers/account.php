@@ -26,15 +26,15 @@
                 $re_new_password = filter_var($_POST['new-password-re']);
                 $check = $this->account->checkPassword($password,$this->id);
                 if($check->rowCount() == 0){
-                    echo "<script>alert('password sai !!');<script>";
+                    echo "<script>notification('danger','Password sai, Vui lòng kiểm tra lại');<script>";
                     return;
                 } else {
                     if($new_password != $re_new_password){
-                        echo "<script>alert('2 password ko giống nhau !!');<script>";
+                        echo "<script>notification('danger','Vui lòng kiểm tra lại 2 mật khẩu mới');<script>";
                         return;
                     } else {
                         $this->account->UpdatePassword($new_password,$this->id);
-                        echo "<script>alert('update password thành công <3');<script>";
+                        echo "<script>notification('success','Update password thành công');<script>";
                         return;
                     }
                 }

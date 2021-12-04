@@ -82,7 +82,7 @@ $(document).ready(function() {
         }
 
         if(quantity == 0){
-            alert('vui lòng nhập số lượng');
+            notification('danger','Vui lòng nhập số lượng');
             return;
         }
         
@@ -106,12 +106,12 @@ $(document).ready(function() {
         // check category - if =5 => bag no size
         if (id_category != 5) {
             if (attributes_color == null || attributes_size == null) {
-                alert('vui lòng chọn size và color đầy đủ');
+                notification('danger','Vui lòng chọn size và color đầy đủ');
                 return
             }
         } else {
             if (attributes_color == null) {
-                alert('vui lòng chọn color đầy đủ');
+                notification('danger','Vui lòng chọn color đầy đủ');
                 return
             }
         }
@@ -121,7 +121,7 @@ $(document).ready(function() {
         }
 
         if(Number(quantity) > Number(maxQtt)){
-            alert('nếu bạn muốn đặt đơn hàng sll vui lòng ib fanpage đễ được hỗ trợ');
+            notification('danger','Nếu bạn muốn đặt đơn hàng sll Vui lòng ibox fanpage đễ được hỗ trợ');
             return;
         }
 
@@ -141,7 +141,15 @@ $(document).ready(function() {
                     if (data == 'sign') {
                         window.location = "sign";
                     } else {
-                        alert(data);
+                        if(data == 1){
+                            notification('success','Thêm sản phẩm thành công');
+                        }else if(data == 2){
+                            notification('danger','Thêm sản phẩm thất bại');
+                        }else if(data == 3){
+                            notification('danger','Vui lòng thực hiện lại !!');
+                        }else{
+                            notification('success',data);
+                        }
                         get_data();
                     }
                 }
@@ -162,7 +170,13 @@ $(document).ready(function() {
                 id_type: id_type
             },
             success:function(data){
-                alert (data);
+                if (data == 1) {
+                    notification('danger','Không update đươc');
+                } else if (data == 2) {
+                    notification('danger','Vui lòng thực hiện lại !!');
+                } else {
+                    notification('success','Đã update +1 trong giỏ hàng <3');
+                }
                 get_data();
             }
         })
@@ -180,7 +194,13 @@ $(document).ready(function() {
                 id_type: id_type
             },
             success:function(data){
-                alert (data);
+                if (data == 1) {
+                    notification('danger','Không update đươc');
+                } else if (data == 2) {
+                    notification('danger','Vui lòng thực hiện lại !!');
+                } else {
+                    notification('success','Đã update +1 trong giỏ hàng <3');
+                }
                 get_data();
             }
         })
@@ -216,7 +236,11 @@ $(document).ready(function() {
                 success:function(data){
                     let json = JSON.parse(data);
                     if(json.Load == false){
-                        alert (json.ketQua);
+                        if(json.ketQua == 1) {
+                            notification('success','Delete sản phẩm thành công');
+                        } else {
+                            notification('danger','Delete sản phẩm thất bại');
+                        }
                     }else{
                         window.location='home';
                     }
@@ -249,7 +273,13 @@ $(document).ready(function() {
                 id_type: id_type
             },
             success:function(data) {
-                alert (data);
+                if(data == 1){
+                    notification('danger','Không update được');
+                }else if(data == 2){
+                    notification('danger','Cập nhật số lượng thất bại');
+                }else{
+                    notification('success','Cập nhật số lượng thành công');
+                }
                 get_data();
             }
         })

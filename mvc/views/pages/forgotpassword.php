@@ -22,7 +22,7 @@
         e.preventDefault();
         const email = $('.input-value-email-forgot').val();
         if (email == "") {
-            alert('chưa nhập email');
+            notification('danger','Bạn chưa nhập email !! Vui lòng thực hiện lại');
             return;
         }
         $.ajax({
@@ -38,11 +38,11 @@
                 let json = JSON.parse(data);
                 if (json.action == true && json.mailer == true) {
                     $('.form-forgotPassword').html(json.output);
-                    alert('Nhập mã code dc gửi trong mail để lấy lại mk');
+                    notification('success','Nhập mã code dc gửi trong mail để lấy lại mật khẩu');
                 } else if (json.action == true && json.mailer == false) {
-                    alert('Lỗi khi gửi mail bạn vui lòng thực hiện lại để lấy code');
+                    notification('danger','Lỗi khi gửi mail bạn vui lòng thực hiện lại để lấy code');
                 } else {
-                    alert('Tài khoản không tồn tại trên hệ thống');
+                    notification('danger','Tài khoản không tồn tại trên hệ thống');
                 }
             },
             complete: function() {

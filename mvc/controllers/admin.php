@@ -18,7 +18,7 @@
             // add category
             if (isset($_POST['category-name'])) {
                 $name = $_POST['category-name'];
-                $name = mb_convert_case($name, MB_CASE_TITLE, "UTF-8");
+                // $name = mb_convert_case($name, MB_CASE_TITLE, "UTF-8");
                 $slug = to_slug($name);
                 $status = $_POST['category-status'];
                 $check = $this->admin->checkExistName('category', $name);
@@ -73,7 +73,7 @@
             // add product
             if (isset($_POST['product-name'])) {
                 $product_name = $_POST['product-name'];
-                $product_name = mb_convert_case($product_name, MB_CASE_TITLE, "UTF-8");
+                // $product_name = mb_convert_case($product_name, MB_CASE_TITLE, "UTF-8");
                 $check = $this->admin->checkExistName('products', $product_name);
                 if ($check == 1) {
                     echo '<script>alert("Ten san pham da tồn tại.");</script>';

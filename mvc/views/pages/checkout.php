@@ -269,6 +269,7 @@
                     if (data == 'coupon not found') {
                         $("#coupon").addClass('error-coupon');
                         $(".order-coupon-error").addClass('active');
+                        notification('danger','Coupon not found');
                     } else {
                         const subtotal = $('#checkout-subtotal-money').text().replace('đ','').split(',').join('');
                         let json = JSON.parse(data);

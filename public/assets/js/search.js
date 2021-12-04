@@ -4,7 +4,7 @@ $(document).ready(function() {
         if ($("#search").val().trim() != "") {
             $("#search-form").submit();
         } else {
-            alert("Vui long nhap tu khoa");
+            notification('danger','Vui lòng nhập từ khoá');
         }
     })
 });
