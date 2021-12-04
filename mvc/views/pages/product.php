@@ -110,7 +110,7 @@
         </div>
 
         <div class="product-description mlr-12 row">
-            <div class="l-o-1 c-0"></div>
+            <div class="l-o-1 sm--hide"></div>
             <div class="col l-5 c-12">
                 <div class="product-description-content">
                     <h3 class="product-description-title">High quality materials</h3>
@@ -162,11 +162,11 @@
             <div class="col l-5 c-12">
                 <img class="product-description-img" src="https://cartzilla.createx.studio/img/shop/single/prod-img.jpg" alt="Image">
             </div>
-            <div class="l-o-1 c-0"></div>
+            <div class="l-o-1 sm--hide"></div>
         </div>
 
         <div class="product-origin mlr-12 row">
-            <div class="l-o-1 c-0"></div>
+            <div class="l-o-1 sm--hide"></div>
             <div class="col l-5 c-12">
                 <img class="product-origin-img" src="https://cartzilla.createx.studio/img/shop/single/prod-map.png" alt="Image">
             </div>
@@ -193,7 +193,7 @@
                     <p class="mb-16 pb-8">&ZeroWidthSpace;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
                 </div>
             </div>
-            <div class="l-o-1 c-0"></div>
+            <div class="l-o-1 sm--hide"></div>
         </div>
     </div>
 

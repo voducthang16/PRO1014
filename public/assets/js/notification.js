@@ -20,10 +20,10 @@ function notification({
             }
 
             const icons = {
-                success: 'fas fa-check',
-                info: 'fas fa-info',
-                warning: 'fas fa-exclamation',
-                error: 'fas fa-exclamation-triangle'
+                success: 'fal fa-check',
+                info: 'fal fa-info',
+                warning: 'fal fa-exclamation',
+                error: 'fal fa-exclamation-triangle'
             };
 
             const icon = icons[type];
