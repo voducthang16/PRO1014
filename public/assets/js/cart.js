@@ -133,7 +133,7 @@ $(document).ready(function() {
             notification({  title: 'Thông báo',
                             message: 'Nếu bạn mua đặt đơn hàng số lượng lớn vui lòng ibox fanpage đễ được hỗ trợ !!',
                             type: 'info',
-                            duration: 3000});
+                            duration: 10000});
             return;
         }
 
@@ -320,10 +320,10 @@ $(document).ready(function() {
             },
             success:function(data) {
                 if(data == 1){
-                    notification({  title : 'Warning',
-                                    message : 'Không update được',
-                                    type : 'warning',
-                                    duration : 3000});
+                    notification({  title: 'Thông báo',
+                            message: 'Nếu bạn mua đặt đơn hàng số lượng lớn vui lòng ibox fanpage đễ được hỗ trợ !!',
+                            type: 'info',
+                            duration: 10000});
                 }else if(data == 2){
                     notification({  title : 'Error',
                                     message : 'Cập nhật số lượng thất bại',
