@@ -17,7 +17,7 @@
         </div>
     </div>
     <!-- Working Time -->
-    <div class="row contact__info col">
+    <div class="row contact__info container no-gutters">
         <div class="l-3 contact__info-item">
             <div class="card">
                 <div class="card-body contact__info--card-body">
@@ -183,7 +183,7 @@
         </div>
     </section>
 
-    <div class="contact-footer" id="contact">
+    <div class="contact-footer container row no-gutters" id="contact">
         <div class="map-section l-6">
             <img src="<?= BASE_URL ?>/public/assets/img/map.jpg" alt="map">
         </div>

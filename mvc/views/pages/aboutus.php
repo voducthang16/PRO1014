@@ -17,9 +17,9 @@
         </div>
     </div>
 
-    <div class="row aboutus-box-1">
+    <div class="container row no-gutters aboutus-box-1">
         <div class="l-6">
-            <img class="" src="<?= BASE_URL ?>/public/assets/img/aboutus/01.jpg" alt="01-aboutus">
+            <img class="aboutus__content-img" src="<?= BASE_URL ?>/public/assets/img/aboutus/01.jpg" alt="01-aboutus">
         </div>
         <div class="l-6 aboutus__content">
             <div class="aboutus__content-box">
@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="row aboutus-box-2">
+    <div class="container row no-gutters aboutus-box-2">
         <div class="l-6 aboutus__content">
             <div class="aboutus__content-box">
                 <h2>Fast delivery worldwide</h2>
@@ -38,12 +38,12 @@
             </div>
         </div>
         <div class="l-6">
-            <img class="" src="<?= BASE_URL ?>/public/assets/img/aboutus/02.jpg" alt="02-aboutus">
+            <img class="aboutus__content-img" src="<?= BASE_URL ?>/public/assets/img/aboutus/02.jpg" alt="02-aboutus">
         </div>
     </div>
-    <div class="row aboutus-box-3">
+    <div class="container row no-gutters aboutus-box-3">
         <div class="l-6">
-            <img class="" src="<?= BASE_URL ?>/public/assets/img/aboutus/03.jpg" alt="03-aboutus">
+            <img class="aboutus__content-img" src="<?= BASE_URL ?>/public/assets/img/aboutus/03.jpg" alt="03-aboutus">
         </div>
         <div class="l-6 aboutus__content">
             <div class="aboutus__content-box">
@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="row aboutus-box-4" style="border-bottom: 1px solid #EAEAEA;">
+    <div class="container row no-gutters aboutus-box-4" style="border-bottom: 1px solid #EAEAEA;">
         <div class="l-6 aboutus__content">
             <div class="aboutus__content-box">
                 <h2>Shop offline. Cozy outlet stores</h2>
@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="l-6">
-            <img class="" src="<?= BASE_URL ?>/public/assets/img/aboutus/04.jpg" alt="04-aboutus">
+            <img class="aboutus__content-img" src="<?= BASE_URL ?>/public/assets/img/aboutus/04.jpg" alt="04-aboutus">
         </div>
     </div>
     <div class="container core-team wide aboutus-box-5">
@@ -146,7 +146,7 @@
 
         </div>
     </div>
-    <div class="row aboutus-box-6" style="border-top: 1px solid #EAEAEA;">
+    <div class="container row no-gutters aboutus-box-6" style="border-top: 1px solid #EAEAEA;">
         <div class="l-6 aboutus__content-form">
             <div class="aboutus-form">
                 <h2>We are hiring new talents</h2>
@@ -171,7 +171,7 @@
             </div>
         </div>
         <div class="l-6">
-            <img class="" src="<?= BASE_URL ?>/public/assets/img/aboutus/05.jpg" alt="05-aboutus">
+            <img class="aboutus__content-img" src="<?= BASE_URL ?>/public/assets/img/aboutus/05.jpg" alt="05-aboutus">
         </div>
     </div>
 </div>

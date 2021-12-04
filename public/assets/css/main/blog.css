@@ -1,0 +1,139 @@
+/* .blog {} */
+
+.page-header__blog {
+    background-color: #f6f9fc;
+
+    padding: 24px 0;
+}
+
+.page-title__blog {
+    color: var(--secondary-color);
+}
+
+.page-link__blog {
+    color: var(--secondary-color);
+
+}
+
+.blog-slider {
+    padding-top: 48px;
+}
+
+.blog-slider--item {
+    padding-right: 10px;
+}
+
+.blog-slider--item a {
+    text-decoration: none;
+}
+
+.blog-entry-thumb {
+    margin-bottom: 16px;
+}
+
+.blog-entry-thumb img {
+    border-radius: 5px;
+}
+
+.blog-entry-meta-label {
+    position: absolute;
+    top: 16px;
+    right: 32px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, .8);
+    color: var(--secondary-color);
+    text-decoration: none !important;
+    z-index: 5;
+
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+}
+
+.blog-entry-heading {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+    padding-top: 4px;
+}
+
+.blog-entry-title a {
+    color: var(--secondary-color);
+
+    font-size: 2rem;
+    line-height: 2.4rem;
+    font-weight: 600;
+}
+
+.blog-entry-title a:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+.blog-entry-meta-link {
+    display: inline-block;
+
+
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    font-weight: 600;
+
+    color: #7d879c;
+    white-space: nowrap !important;
+    cursor: pointer;
+}
+
+.blog-entry-meta-link:hover {
+    color: var(--text-color);
+}
+
+.blog-entry-meta-quantity {
+    padding-top: 4px;
+    margin-left: 16px;
+}
+
+.blog-entry-meta-quantity i {
+    line-height: 1.4rem;
+
+    margin: -1px 6px 0px 0px;
+}
+
+.blog-entry-author {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+}
+
+.blog-entry-author-ava {
+    display: inline-block;
+    width: 3.2rem !important;
+    height: 3.2rem !important;
+    margin-right: 8px;
+    padding: 2px;
+    border: 1px solid #e3e9ef;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.blog-entry-author-ava>img {
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.blog-entry-meta-divider {
+    display: inline-block;
+    width: 1px;
+    height: 1.6rem;
+    margin: 0 1.6rem;
+    background-color: #d9e1e9;
+    vertical-align: middle;
+}
+
+.text-muted {
+    color: #7d879c !important;
+}
