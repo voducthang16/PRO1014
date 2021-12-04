@@ -108,16 +108,25 @@
                 email = email;
             } else {
                 if (email.length > 0){
-                    alert('Bạn cần nhập mail chính xác !!');
+                    notification({  title: 'Warning',
+                                            message: 'Bạn cần nhập mail chính xác !!',
+                                            type: 'warning',
+                                            duration: 3000});
                     return;
                 }
             }
         if (full_name == "" || email == "" || address == "" || phone == "") {
-            alert('Bạn cần cập nhật đầy đủ thông tin');
+            notification({  title: 'Warning',
+                                            message: 'Bạn cần cập nhật đầy đủ thông tin',
+                                            type: 'warning',
+                                            duration: 3000});
             return;
         }
         if (phone.length > 12) {
-            alert('Bạn cần nhập số điện thoại chính xác !!');
+            notification({  title: 'Warning',
+                                            message: 'Bạn cần nhập số điện thoại chính xác !!',
+                                            type: 'warning',
+                                            duration: 3000});
             return;
         }
         $.ajax({
@@ -130,7 +139,10 @@
                 full_name:full_name
             },  
             success: function(data) {
-                alert(data);
+                notification({  title: 'Success',
+                                            message: data,
+                                            type: 'success',
+                                            duration: 3000});
                 if (data != "update thành công profile") {
                     location.reload();
                 }

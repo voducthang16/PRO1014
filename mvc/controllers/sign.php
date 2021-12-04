@@ -97,11 +97,18 @@
                 $password = $_POST["si-password"];
                 $check = $this->sign->checkLogin($username, $password);
                 if ($check == 0) {
-                    echo '<script>notification("danger","Tài khoản mật khẩu không chính xác");</script>';
+                    echo '<script>notification({  title: "Error",
+                        message: "Tài khoản mật khẩu không chính xác",
+                        type: "error",
+                        duration: 3000});</script>';
                 } else {
                     $_SESSION["member-login"] = "true";
                     $_SESSION["member-username"] = $username;
-                    echo '<script>notification("success","Đăng nhập thành công");</script>';
+                    echo '<script>notification({  title: "Success",
+                        message: "Đăng nhập thành công",
+                        type: "success",
+                        duration: 3000})</script>';
+                    sleep(1);
                     header("Location:".BASE_URL);
                 }
                 header("Refresh: 0");
@@ -200,7 +207,10 @@
                                 return;
                             }        
                             if (code == "" || password == "" || email == "") {
-                                notification("danger","Vui lòng nhập chính xác không spam để tránh bị khoá tài khoản !!");
+                                notification({  title: "Warning",
+                                    message: "Vui lòng nhập chính xác không spam để tránh bị khoá tài khoản !!",
+                                    type: "warning",
+                                    duration: 3000});
                             } else {
                                 $.ajax({
                                     url:"sign/GetPassword",
@@ -211,7 +221,10 @@
                                         "password": password
                                     },
                                     success:function(data) {
-                                        notification("success",data);
+                                        notification({  title: "Success",
+                                            message: data,
+                                            type: "success",
+                                            duration: 3000});
                                         if (data == "Đã Update password thành công!") {
                                             setTimeout(function(){
                                                 location.reload();

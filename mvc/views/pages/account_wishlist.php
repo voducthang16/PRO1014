@@ -74,7 +74,10 @@
                         id_product: id_product
                     },
                     success: function(data) {
-                        notification('success',data);
+                        notification({  title: 'Success',
+                                        message: data,
+                                        type: 'success',
+                                        duration: 3000});
                         fetch_wishlist();
                     }
                 })

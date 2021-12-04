@@ -95,11 +95,20 @@ $(document).ready(function() {
                 },
                 success:function(data) {
                     if(data == 1){
-                        notification('success','Đã thêm sản phẩm vào wish list');
+                        notification({  title: 'Success',
+                                            message: 'Đã thêm sản phẩm vào wish list',
+                                            type: 'success',
+                                            duration: 3000});
                     }else if(data == 2){
-                        notification('danger','Đã xoá sản phẩm');
+                        notification({  title: 'Success',
+                                            message: 'Đã xoá sản phẩm khỏi wish list',
+                                            type: 'success',
+                                            duration: 3000});
                     }else if(data == 3){
-                        notification('danger','Thêm sản phẩm thất bại');
+                        notification({  title: 'Error',
+                                            message: 'Thêm sản phẩm thất bại',
+                                            type: 'error',
+                                            duration: 3000});
                     }else if(data == 'sign'){
                         document.location.href = "sign";
                     }
@@ -148,7 +157,10 @@ $(document).ready(function() {
         let star = parent.find('.rate-star').val();
         let id = parent.find('.products-id').val();
         if (value_comment.trim() == "") {
-            notification('danger','Vui lòng nhập bình luận');
+            notification({  title: 'Warning',
+                                            message: 'Vui lòng nhập bình luận',
+                                            type: 'warning',
+                                            duration: 3000});
             return;
         }
         $.ajax({
@@ -162,7 +174,10 @@ $(document).ready(function() {
             },
             success:function(data) {
                 if(data == 1){
-                    notification('success','Đã thêm bình luận');
+                    notification({  title: 'Success',
+                                            message: 'Đã thêm bình luận',
+                                            type: 'success',
+                                            duration: 3000});
                 } else {
                     window.location = "sign";
                 }
@@ -181,7 +196,10 @@ $(document).ready(function() {
                 'idComment': id_comment
             },
             success:function(data) {
-                notification('danger','Đã xoá bình luận !!');
+                notification({  title: 'Error',
+                                message: 'Đã xoá bình luận !!',
+                                type: 'error',
+                                duration: 3000});
                 fetch_comment();
             }
         })

@@ -22,7 +22,10 @@
         e.preventDefault();
         const email = $('.input-value-email-forgot').val();
         if (email == "") {
-            notification('danger','Bạn chưa nhập email !! Vui lòng thực hiện lại');
+            notification({  title: 'Warning',
+                                            message: 'Bạn chưa nhập email !! Vui lòng thực hiện lại',
+                                            type: 'warning',
+                                            duration: 3000});
             return;
         }
         $.ajax({
@@ -38,11 +41,20 @@
                 let json = JSON.parse(data);
                 if (json.action == true && json.mailer == true) {
                     $('.form-forgotPassword').html(json.output);
-                    notification('success','Nhập mã code dc gửi trong mail để lấy lại mật khẩu');
+                    notification({  title: 'Success',
+                                            message: 'Nhập mã code dc gửi trong mail để lấy lại mật khẩu',
+                                            type: 'success',
+                                            duration: 3000});
                 } else if (json.action == true && json.mailer == false) {
-                    notification('danger','Lỗi khi gửi mail bạn vui lòng thực hiện lại để lấy code');
+                    notification({  title: 'Error',
+                                            message: 'Lỗi khi gửi mail bạn vui lòng thực hiện lại để lấy code',
+                                            type: 'error',
+                                            duration: 3000});
                 } else {
-                    notification('danger','Tài khoản không tồn tại trên hệ thống');
+                    notification({  title: 'Error',
+                                            message: 'Tài khoản không tồn tại trên hệ thống',
+                                            type: 'error',
+                                            duration: 3000});
                 }
             },
             complete: function() {

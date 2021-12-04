@@ -82,7 +82,10 @@ $(document).ready(function() {
         }
 
         if(quantity == 0){
-            notification('danger','Vui lòng nhập số lượng');
+            notification({  title: 'Warning',
+                                message: 'Vui lòng chọn nhập số lượng',
+                                type: 'warning',
+                                duration: 3000});
             return;
         }
         
@@ -106,12 +109,18 @@ $(document).ready(function() {
         // check category - if =5 => bag no size
         if (id_category != 5) {
             if (attributes_color == null || attributes_size == null) {
-                notification('danger','Vui lòng chọn size và color đầy đủ');
+                notification({  title: 'Warning',
+                                message: 'Vui lòng chọn size và color đầy đủ',
+                                type: 'warning',
+                                duration: 3000});
                 return
             }
         } else {
             if (attributes_color == null) {
-                notification('danger','Vui lòng chọn color đầy đủ');
+                notification({  title: 'Warning',
+                                message: 'Vui lòng chọn color đầy đủ',
+                                type: 'warning',
+                                duration: 3000});
                 return
             }
         }
@@ -121,7 +130,10 @@ $(document).ready(function() {
         }
 
         if(Number(quantity) > Number(maxQtt)){
-            notification('danger','Nếu bạn muốn đặt đơn hàng sll Vui lòng ibox fanpage đễ được hỗ trợ');
+            notification({  title: 'Thông báo',
+                            message: 'Nếu bạn mua đặt đơn hàng số lượng lớn vui lòng ibox fanpage đễ được hỗ trợ !!',
+                            type: 'info',
+                            duration: 3000});
             return;
         }
 
@@ -138,20 +150,30 @@ $(document).ready(function() {
                     quantity: quantity
                 },
                 success:function(data) {
-                    if (data == 'sign') {
-                        window.location = "sign";
-                    } else {
                         if(data == 1){
-                            notification('success','Thêm sản phẩm thành công');
+                            notification({  title: 'Success',
+                                            message: 'Thêm sản phẩm thành công',
+                                            type: 'success',
+                                            duration: 3000});
                         }else if(data == 2){
-                            notification('danger','Thêm sản phẩm thất bại');
+                            notification({  title: 'Error',
+                                            message: 'Thêm sản phẩm thất bại',
+                                            type: 'error',
+                                            duration: 3000});
                         }else if(data == 3){
-                            notification('danger','Vui lòng thực hiện lại !!');
+                            notification({  title: 'Warning',
+                                            message: 'Vui lòng thực hiện lại',
+                                            type: 'warning',
+                                            duration: 3000});
+                        }else if(data == 'sign'){
+                            window.location='sign';
                         }else{
-                            notification('success',data);
+                            notification({  title: 'Success',
+                                            message: data,
+                                            type: 'success',
+                                            duration: 3000});
                         }
                         get_data();
-                    }
                 }
         });
     });
@@ -171,11 +193,20 @@ $(document).ready(function() {
             },
             success:function(data){
                 if (data == 1) {
-                    notification('danger','Không update đươc');
+                    notification({  title: 'Warning',
+                                    message: 'Không update được',
+                                    type: 'warning',
+                                    duration: 3000});
                 } else if (data == 2) {
-                    notification('danger','Vui lòng thực hiện lại !!');
+                    notification({  title: 'Warning',
+                                    message: 'Vui lòng thực hiện lại',
+                                    type: 'warning',
+                                    duration: 3000});
                 } else {
-                    notification('success','Đã update +1 trong giỏ hàng <3');
+                    notification({  title: 'Success',
+                                    message: 'Đã update +1 trong giỏ hàng',
+                                    type: 'success',
+                                    duration: 3000});
                 }
                 get_data();
             }
@@ -195,11 +226,20 @@ $(document).ready(function() {
             },
             success:function(data){
                 if (data == 1) {
-                    notification('danger','Không update đươc');
+                    notification({  title: 'Warning',
+                                    message: 'Không update được',
+                                    type: 'warning',
+                                    duration: 3000});
                 } else if (data == 2) {
-                    notification('danger','Vui lòng thực hiện lại !!');
+                    notification({  title: 'Warning',
+                                    message: 'Vui lòng thực hiện lại',
+                                    type: 'warning',
+                                    duration: 3000});
                 } else {
-                    notification('success','Đã update +1 trong giỏ hàng <3');
+                    notification({  title: 'Success',
+                                    message: 'Đã update -1 trong giỏ hàng',
+                                    type: 'success',
+                                    duration: 3000});
                 }
                 get_data();
             }
@@ -237,9 +277,15 @@ $(document).ready(function() {
                     let json = JSON.parse(data);
                     if(json.Load == false){
                         if(json.ketQua == 1) {
-                            notification('success','Delete sản phẩm thành công');
+                            notification({  title : 'Success',
+                                            message : 'Delete sản phẩm thành công',
+                                            type : 'success',
+                                            duration : 3000});
                         } else {
-                            notification('danger','Delete sản phẩm thất bại');
+                            notification({  title : 'Error',
+                                            message : 'Delete sản phẩm thất bại',
+                                            type : 'error',
+                                            duration : 3000});
                         }
                     }else{
                         window.location='home';
@@ -274,11 +320,20 @@ $(document).ready(function() {
             },
             success:function(data) {
                 if(data == 1){
-                    notification('danger','Không update được');
+                    notification({  title : 'Warning',
+                                    message : 'Không update được',
+                                    type : 'warning',
+                                    duration : 3000});
                 }else if(data == 2){
-                    notification('danger','Cập nhật số lượng thất bại');
+                    notification({  title : 'Error',
+                                    message : 'Cập nhật số lượng thất bại',
+                                    type : 'error',
+                                    duration : 3000});
                 }else{
-                    notification('success','Cập nhật số lượng thành công');
+                    notification({  title : 'Success',
+                                    message : 'Cập nhật số lượng thành công',
+                                    type : 'success',
+                                    duration : 3000});
                 }
                 get_data();
             }

@@ -4,7 +4,10 @@ $(document).ready(function() {
         if ($("#search").val().trim() != "") {
             $("#search-form").submit();
         } else {
-            notification('danger','Vui lòng nhập từ khoá');
+            notification({  title : 'Warning',
+                                    message : 'Vui lòng nhập từ khoá',
+                                    type : 'warning',
+                                    duration : 3000});
         }
     })
 });

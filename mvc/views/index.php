@@ -55,7 +55,7 @@
         <link rel="stylesheet" href="public/assets/css/main/carousel/owl.theme.default.min.css"> -->
     </head>
     <body>
-        <div class="app container-app-user">
+        <div class="app">
             <base href="<?=BASE_URL?>">
             <button class="scroll-to-top btn">
                 <i class="fal fa-arrow-up"></i>
@@ -70,6 +70,7 @@
             <?php require_once __DIR__ . '/pages/footer.php'; ?>
             <!-- End Footer -->
         </div>
+        <div id="toast"></div>
     </body>
     <script src="<?=BASE_URL?>public/assets/js/jquery.min.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/owl.carousel.min.js"></script>
