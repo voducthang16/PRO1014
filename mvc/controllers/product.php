@@ -120,7 +120,7 @@
                         echo 3;
                     } else {
                         $account->deleteWishList($this->id, $id_product);
-                        echo 'da xoa san pham';
+                        echo 2;
                     }
                 }
             } else {

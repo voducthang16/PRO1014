@@ -100,7 +100,7 @@ $(document).ready(function() {
                         notification('danger','Đã xoá sản phẩm');
                     }else if(data == 3){
                         notification('danger','Thêm sản phẩm thất bại');
-                    }else{
+                    }else if(data == 'sign'){
                         document.location.href = "sign";
                     }
                     get_data();
