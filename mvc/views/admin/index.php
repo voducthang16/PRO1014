@@ -43,6 +43,7 @@
             <!-- Footer -->
             <?php require_once __DIR__ . "/pages/footer.php";?>
         </div>
+        <div id="toast"></div>
     </div>
     
     <base href="<?=BASE_URL?>">
@@ -53,6 +54,55 @@
     <script src="<?=BASE_URL?>public/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <script src="<?=BASE_URL?>public/assets/js/material-dashboard.minf066.js?v=2.1.0" type="text/javascript"></script>
 
+    <script>
+            <?php 
+                if(isset($_SESSION['toast_start'])) {
+            ?>
+            const main = document.getElementById('toast');
+                if (main) {
+                    const toast = document.createElement('div');
+                    const disappear = (<?= $_SESSION['toast_start']['duration'] ?> + 1000).toFixed(2)
+                    const autoRemoveId = setTimeout(function() {
+                        main.removeChild(toast);
+                    }, disappear)
+
+                    toast.onclick = e => {
+                        if (e.target.closest('.toast__close')) {
+                            main.removeChild(toast);
+                            clearTimeout(autoRemoveId);
+                        }
+                    }
+
+                    const icons = {
+                        success: 'fal fa-check',
+                        info: 'fal fa-info',
+                        warning: 'fal fa-exclamation',
+                        error: 'fal fa-exclamation-triangle'
+                    };
+
+                    const icon = icons['<?= $_SESSION['toast_start']['type'] ?>'];
+                    const delay = (<?= $_SESSION['toast_start']['duration'] ?> / 1000).toFixed(2);
+                    toast.classList.add('toast', `toast--<?= $_SESSION['toast_start']['type'] ?>`);
+                    toast.style.animation = `animation: slideInLeft ease 0.3s, fadeOut linear 1s ${delay}s forwards;`;
+                    toast.innerHTML = `
+                        <div class="toast__icon">
+                            <i class="${icon}"></i>
+                        </div>
+                        <div class="toast__body">
+                            <h3 class="toast__title"><?= $_SESSION['toast_start']['title'] ?></h3>
+                            <p class="toast__msg"><?= $_SESSION['toast_start']['message'] ?></p>
+                        </div>
+                        <div class="toast__close">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    `;
+                    main.appendChild(toast);    
+                }
+            <?php
+                unset($_SESSION['toast_start']);
+            }
+            ?>
+        </script>
     
     <script>
         $(document).ready(function() {
@@ -225,6 +275,6 @@
             });
         });
     </script>
-    <script src="<?=BASE_URL?>public/assets/js/notification.js"></script>
+    <script></script>
 </body>
 </html>

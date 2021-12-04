@@ -23,12 +23,23 @@
                 $status = $_POST['category-status'];
                 $check = $this->admin->checkExistName('category', $name);
                 if ($check == 1) {
-                    echo '<script>alert("Ten danh muc da tồn tại.");</script>';
+                    $toast = array(
+                        'title' => 'Warning',
+                        'message' => "Tên danh mục đã tồn tại",
+                        'type' => "warning",
+                        'duration' => 3000
+                    );
                 } else {
                     $this->admin->addCategory($name, $slug, $status);
-                    echo '<script>alert("Thêm thành công.");</script>';
+                    $toast = array(
+                        'title' => 'Success',
+                        'message' => "Thêm danh mục thành công",
+                        'type' => "success",
+                        'duration' => 3000
+                    );
                 }
-                header("Refresh: 0");
+                $_SESSION['toast_start'] = $toast;
+                // header("Refresh: 0");
             }
 
             // update category
@@ -38,12 +49,22 @@
                 $status = $_POST['u-category-status'];
                 $check = $this->admin->checkExistName('category', $name, $id);
                 if ($check == 1) {
-                    echo '<script>alert("Ten danh muc da tồn tại.");</script>';
+                    $toast = array(
+                        'title' => 'Warning',
+                        'message' => "Tên danh mục đã tồn tại",
+                        'type' => "warning",
+                        'duration' => 3000
+                    );
                 } else {
                     $this->admin->updateCategory($id, $name, $status);
-                    echo '<script>alert("cap nhat tc.");</script>';
+                    $toast = array(
+                        'title' => 'Success',
+                        'message' => "Cập nhật danh mục thành công",
+                        'type' => "success",
+                        'duration' => 3000
+                    );
                 }
-                header("Refresh: 0");
+                $_SESSION['toast_start'] = $toast;
             }
 
             // delete category
@@ -51,14 +72,23 @@
                 $category_id = $_POST['delete-category-id'];
                 $count = $this->admin->countProductsByCategory($category_id);
                 if ($count > 0) {
-                    echo '<script>alert("k xoa duoc.");</script>';
+                    $toast = array(
+                        'title' => 'Warning',
+                        'message' => "Không thể xoá được danh mục này",
+                        'type' => "warning",
+                        'duration' => 3000
+                    );
                     $this->admin->updateCategoryStatus($category_id);
                 } else {
                     $this->admin->deleteCategory($category_id);
-                    echo '<script>alert("da xoa.");</script>';
+                    $toast = array(
+                        'title' => 'Success',
+                        'message' => "Đã xoá danh mục thành công",
+                        'type' => "success",
+                        'duration' => 3000
+                    );
                 }
-
-                header("Refresh: 0");
+                $_SESSION['toast_start'] = $toast;
             }
 
             // load view
@@ -76,7 +106,12 @@
                 // $product_name = mb_convert_case($product_name, MB_CASE_TITLE, "UTF-8");
                 $check = $this->admin->checkExistName('products', $product_name);
                 if ($check == 1) {
-                    echo '<script>alert("Ten san pham da tồn tại.");</script>';
+                    $toast = array(
+                        'title' => 'Warning',
+                        'message' => "Tên sản phẩm đã tồn tại",
+                        'type' => "warning",
+                        'duration' => 3000
+                    );
                 } else {
                     $format = array("JPG", "JPEG", "PNG", "GIF", "BMP", "jpg", "jpeg", "png", "gif", "bmp");
 
@@ -86,8 +121,13 @@
                         $ext = pathinfo($filename, PATHINFO_EXTENSION);
                         $filename = time().'_'.$filename;
                         if (!in_array($ext, $format)) {
-                            echo '<script>alert("File khong dung dinh dang. Anh Con");</script>';
-                            header("Refresh: 0");
+                            $toast = array(
+                                'title' => 'Warning',
+                                'message' => "File không đúng định dạng",
+                                'type' => "warning",
+                                'duration' => 3000
+                            );
+                            $_SESSION['toast_start'] = $toast;
                             return;
                         }
                     }
@@ -163,14 +203,24 @@
                                     $this->admin->addProductImages($product_id, $filename);
                                 }
                             }
-                            echo '<script>alert("Thêm thành công.");</script>';
+                            $toast = array(
+                                'title' => 'Success',
+                                'message' => "Thêm sản phẩm thành công",
+                                'type' => "success",
+                                'duration' => 3000
+                            );
                         }
                     } else {
-                        echo '<script>alert("File khong dung dinh dang. Anh thumbnail");</script>';
+                        $toast = array(
+                            'title' => 'Warning',
+                            'message' => "File không đúng định dạng",
+                            'type' => "warning",
+                            'duration' => 3000
+                        );
                     }
 
                 }
-                header("Refresh: 0");
+                $_SESSION['toast_start'] = $toast;
             }
 
             // delete product
@@ -180,11 +230,20 @@
                 $checkCart = $this->admin->checkProductTypeInCartTemporary($id);
 
                 if ($checkCart > 0) {
-                    echo '<script>alert("k xoa duoc. vi san pham dang co trong gio hang");</script>';
+                    $toast = array(
+                        'title' => 'Warning',
+                        'message' => "Không xoá được vì sản phẩm đã tồn tại trong giỏ hàng",
+                        'type' => "warning",
+                        'duration' => 3000
+                    );
                 } else if ($checkOrder > 0) {
-                    echo '<script>alert("k xoa duoc. vi san pham dang co trong order");</script>';
+                    $toast = array(
+                        'title' => 'Warning',
+                        'message' => "Không xoá được vì sản phẩm đã tồn tại trong order",
+                        'type' => "warning",
+                        'duration' => 3000
+                    );
                     $this->admin->updateStatusProductWhenDelete($id);
-                    echo '<script>alert("da update stt thanh cong");</script>';
                 } else {
                     $product_type_ids = $this->admin->getProductTypeFromProductId($id);
                     foreach ($product_type_ids as $key=>$value) {
@@ -198,10 +257,14 @@
                         unlink($storage.$value['image']);
                     }
                     $this->admin->deleteProduct($id);
-                    echo '<script>alert("xoa thanh cong");</script>';
+                    $toast = array(
+                        'title' => 'Success',
+                        'message' => "Xoá sản phẩm thành công",
+                        'type' => "success",
+                        'duration' => 3000
+                    );
                 }
-
-                header("Refresh: 0");
+                $_SESSION['toast_start'] = $toast;
             }
             // load view
             $this -> view("admin/index", [
@@ -412,7 +475,13 @@
                 foreach ($product_type_id_array as $item) {
                     $this->admin->updateProductTypeStatus($item['product_type_id']);
                 }
-                echo "update status thanh cong";
+                $toast = array(
+                    'title' => 'Success',
+                    'message' => "Update status thành công",
+                    'type' => "success",
+                    'duration' => 3000
+                );
+                $_SESSION['toast_start'] = $toast;
             }
         }
 
@@ -423,7 +492,13 @@
                 $product_name = trim($product_name);
                 $check = $this->admin->checkExistName('products', $product_name, $product_id);
                 if ($check == 1) {
-                    echo "ten san pham da ton tai";
+                    $toast = array(
+                        'title' => 'Warning',
+                        'message' => "Tên sản phẩm đã tồn tại",
+                        'type' => "warning",
+                        'duration' => 3000
+                    );
+                    $_SESSION['toast_start'] = $toast;
                 } else {
                     return;
                 }
@@ -472,14 +547,6 @@
                 echo $output;
             }
         }
-        function updateThumbnail() {
-            if (isset($_FILES['product-thumbnail']['name'])) {
-                $storage = 'public/upload/21/';
-                // $image = $_POST['image'];
-                
-                echo 'test';
-            }
-        }
 
         function deleteImage() {
             if (isset($_POST['id'])) {
@@ -515,9 +582,13 @@
                     $min_order = $_POST['coupon-value-min-order'];
                 }
                 $this->admin->insertCoupon($name, $type, $value, $min_order, $quantity, $note, $date_start, $date_end);
-                echo '<script>alert("Them tc.");</script>';
-
-                header("Refresh: 0");
+                $toast = array(
+                    'title' => 'Success',
+                    'message' => "Thêm coupon thành công",
+                    'type' => "success",
+                    'duration' => 3000
+                );
+                $_SESSION['toast_start'] = $toast;
             }
             if (isset($_POST['u-coupon-id'])) {
                 $id = $_POST['u-coupon-id'];
@@ -534,21 +605,35 @@
                 $date_end = $_POST['u-coupon-date-end'];
                 $min_order = $_POST['u-coupon-value-min-order'];
                 $this->admin->updateCoupon($id, $name, $type, $value, $min_order, $quantity, $date_start, $date_end);
-                echo '<script>alert("cn tc.");</script>';
-
-                header("Refresh: 0");
+                $toast = array(
+                    'title' => 'Success',
+                    'message' => "Cập nhật coupon thành công",
+                    'type' => "success",
+                    'duration' => 3000
+                );
+                $_SESSION['toast_start'] = $toast;
             }
 
             if (isset($_POST['delete-coupon-id'])) {
                 $id = $_POST['delete-coupon-id'];
                 $check = $this->admin->checkExistCoupon($id);
                 if ($check > 0) {
-                    echo '<script>alert("k xoa dc.");</script>';
+                    $toast = array(
+                        'title' => 'Warning',
+                        'message' => "Không thể thực hiện được với coupon đã được dùng",
+                        'type' => "warning",
+                        'duration' => 3000
+                    );
                 } else {
                     $this->admin->deleteCoupon($id);
-                    echo '<script>alert("xoa thanh cong.");</script>';
+                    $toast = array(
+                        'title' => 'Success',
+                        'message' => "Xoá coupon thành công",
+                        'type' => "success",
+                        'duration' => 3000
+                    );
                 }
-                header("Refresh: 0");
+                $_SESSION['toast_start'] = $toast;
             }
 
             $this -> view("admin/index", [
@@ -592,8 +677,13 @@
                 } else {
                     $this->admin->updateOrderStatus($orderId, $orderStatus);
                 }
-                echo '<script>alert("cap nhat tc.");</script>';
-                header("Refresh: 0");
+                $toast = array(
+                    'title' => 'Success',
+                    'message' => "Cập nhật thành công",
+                    'type' => "success",
+                    'duration' => 3000
+                );
+                $_SESSION['toast_start'] = $toast;
             }
 
             $this -> view("admin/index", [
@@ -679,15 +769,25 @@
                 $id = $_POST['u-comment-id'];
                 $status = $_POST['u-comment-status'];
                 $this->admin->updateComment($id, $status);
-                echo '<script>alert("cap nhat tc.");</script>';
-                header("Refresh: 0");
+                $toast = array(
+                    'title' => 'Success',
+                    'message' => "Cập nhật thành công",
+                    'type' => "success",
+                    'duration' => 3000
+                );
+                $_SESSION['toast_start'] = $toast;
             }
 
             if (isset($_POST['delete-comment-id'])) {
                 $id = $_POST['delete-comment-id'];
                 $this->admin->deleteComment($id);
-                echo '<script>alert("xoa tc.");</script>';
-                header("Refresh: 0");
+                $toast = array(
+                    'title' => 'Success',
+                    'message' => "Đã xoá comment",
+                    'type' => "success",
+                    'duration' => 3000
+                );
+                $_SESSION['toast_start'] = $toast;
             }
 
             $this -> view("admin/index", [
@@ -705,7 +805,13 @@
                 $check =  $this->admin->checkLogin($username, $password);
 
                 if ($check == 0) {
-                    echo '<script>alert("Tên đăng nhập không tồn tại.");</script>';
+                    $toast = array(
+                        'title' => 'Error',
+                        'message' => "Tên đăng nhập không tồn tại !! vui lòng kiểm tra lại",
+                        'type' => "error",
+                        'duration' => 3000
+                    );
+                    $_SESSION['toast_start'] = $toast;
                 } else {
                     $_SESSION['admin-login'] = true;
                     $_SESSION['admin-username'] = $username;

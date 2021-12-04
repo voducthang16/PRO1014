@@ -97,21 +97,25 @@
                 $password = $_POST["si-password"];
                 $check = $this->sign->checkLogin($username, $password);
                 if ($check == 0) {
-                    echo '<script>notification({  title: "Error",
-                        message: "Tài khoản mật khẩu không chính xác",
-                        type: "error",
-                        duration: 3000});</script>';
+                    $toast = array(
+                        'title' => 'Error',
+                        'message' => "Tài khoản mật khẩu không chính xác",
+                        'type' => "error",
+                        'duration' => 3000
+                    );
                 } else {
                     $_SESSION["member-login"] = "true";
                     $_SESSION["member-username"] = $username;
-                    echo '<script>notification({  title: "Success",
-                        message: "Đăng nhập thành công",
-                        type: "success",
-                        duration: 3000})</script>';
-                    sleep(1);
+                    $toast = array(
+                        'title' => 'Success',
+                        'message' => "Đăng nhập thành công",
+                        'type' => "success",
+                        'duration' => 3000
+                    );
                     header("Location:".BASE_URL);
                 }
-                header("Refresh: 0");
+                $_SESSION['toast_start'] = $toast;
+                // header("Refresh: 0");
             }
 
             $this -> view("index", [
