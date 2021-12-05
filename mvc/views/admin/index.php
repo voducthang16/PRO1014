@@ -17,6 +17,8 @@
     <link rel="icon" type="image/png" href="<?=BASE_URL?>public/assets/img/favicon.png">
     <link rel="apple-touch-icon" sizes="76x76" href="<?=BASE_URL?>public/assets/img/apple-icon.png">
 
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css">
+
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/font-awesome.min.css">

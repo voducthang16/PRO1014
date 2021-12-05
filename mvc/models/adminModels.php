@@ -402,5 +402,38 @@
             $result = $this->connect->prepare($query);
             $result->execute();
         }
+
+
+        function getAttributesUpdate($name) {
+            $query = "SELECT * FROM `products_attributes` WHERE name = ? AND status = 1";
+            $result = $this->connect->prepare($query);
+            $result->execute([$name]);
+            return $result->fetchAll();
+        }
+
+        function addProductAttribute($name, $value) {
+            $query = "INSERT INTO `products_attributes` (`name`, `value`, `status`) VALUES ('$name', '$value', '1')";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function checkExistAttribute($attribute) {
+            $query = "SELECT * FROM products_attributes WHERE value = '$attribute'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        function updateAttributeStatus($attribute) {
+            $query = "UPDATE `products_attributes` SET `status` = '1' WHERE `products_attributes`.`value` = '$attribute'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
+        function updateAttributeStatusZero($attribute) {
+            $query = "UPDATE `products_attributes` SET `status` = '0' WHERE `products_attributes`.`value` = '$attribute'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
     } 
 ?>

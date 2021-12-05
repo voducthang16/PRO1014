@@ -579,8 +579,8 @@
     align-items: center;
     background-color: #fff;
     border-radius: 2px;
-    min-width: 400px;
-    max-width: 450px;
+    min-width: 400px !important;
+    max-width: 450px !important;
     border-left: 4px solid;
     padding: 20px 0;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);

@@ -4,24 +4,6 @@
         display: inline-block;
     }
 
-    .products-attribute-hidden {
-        position: absolute;
-        left: 0;
-        top: 100%;
-
-        width: 100%;
-        padding: 20px;
-        border-radius: 8px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-top: 1px solid #fff;
-
-        background-color: #fff;
-
-        opacity: 0;
-        visibility: hidden;
-        z-index: 1;
-    }
     .products-size {
         text-align: center;
     }
@@ -31,6 +13,8 @@
     }
 
     .products-attribute-input {
+        width: 0;
+        height: 0;
         border: 0;
         vertical-align: top;
         background: none;
@@ -44,6 +28,8 @@
         height: 32px;
         border: 1px solid #e3e9ef;
         border-radius: 4px;
+        font-size: unset !important;
+        font-weight: normal !important;
 
         line-height: 32px;
         text-align: center;
@@ -125,6 +111,15 @@
         padding: 2px;
         border: 1px solid #e3e9ef;
         border-radius: 50%;
+    }
+
+    .products-color {
+        margin-top: unset;
+    }
+
+    .product-render-color {
+        display: flex;
+        align-items: center;
     }
 </style>
 
@@ -233,43 +228,26 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <!-- Size -->
                     <div class="form-group size d-none">
                         <label>Size sản phẩm</label><br>
-                        <label class="apply-size">Áp dụng</label>
+                        <!-- <label class="apply-size">Áp dụng</label> -->
+                        <!-- Letter Size -->
                         <div class="product-letter-size d-none">
-                            <?php foreach ($data['getLetterSizes'] as $item):?>
-                                <div class="products-size letter">
-                                    <div class="products-attribute-item">
-                                        <input class="products-attribute-input letter" type="checkbox" name="product_size[]" id="<?=$item["value"]?>" value="<?=$item["id"]?>">
-                                        <label class="products-attribute-option" for="<?=$item["value"]?>"><?=$item["value"]?></label>
-                                    </div>
-                                </div>
-                            <?php endforeach;?>
+                            
                         </div>
+                        <!-- Number Size -->
                         <div class="product-number-size d-none">
-                            <?php foreach ($data['getNumberSizes'] as $item):?>
-                                <div class="products-size number">
-                                    <div class="products-attribute-item">
-                                        <input class="products-attribute-input number" type="checkbox" name="product_size[]" id="<?=$item["value"]?>" value="<?=$item["id"]?>">
-                                        <label class="products-attribute-option" for="<?=$item["value"]?>"><?=$item["value"]?></label>
-                                    </div>
-                                </div>
-                            <?php endforeach;?>
+                            
                         </div>
                     </div>
+                    <!-- Color -->
                     <div class="form-group color d-none">
                         <label>Màu sản phẩm</label><br>
-                        <label class="apply-color">Áp dụng</label>
-                        <?php foreach ($data['getColors'] as $item): ?>
-                            <div class="products-color">
-                                <div class="products-attribute-item">
-                                    <input class="products-attribute-input color" type="checkbox" name="product-color[]" id="<?=$item["value"]?>" value="<?=$item["id"]?>">
-                                    <label class="products-attribute-option color" for="<?=$item["value"]?>">
-                                        <span style="background-color: <?=$item["value"]?>" class="products-attribute-color"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        <?php endforeach;?>
+                        <!-- <label class="apply-color">Áp dụng</label> -->
+                        <div class="product-render-color">
+
+                        </div>
                     </div>
                     <div class="form-group set-up-classify d-none">
                         <label for="">Thiết lập phân loại sản phẩm</label><br>
@@ -390,152 +368,6 @@
         let colorArray = [];
         let tableBody = document.querySelector('.table-body');
 
-        function letterSizes() {
-            let letterSizes = document.querySelectorAll(".products-attribute-input.letter");
-            letterSizes.forEach(e => {
-                e.onclick = () => {
-                    if (e.checked) {
-                        if (!letterSizesArray.includes(e.id)) {
-                            letterSizesArray.push(e.id);
-                        }
-                    } else {
-                        if (letterSizesArray.includes(e.id)) {
-                            letterSizesArray.splice(letterSizesArray.indexOf(e.id), 1);
-                        }
-                    }
-                }
-            })
-        }
-
-        function numberSizes() {
-            let numberSizes = document.querySelectorAll(".products-attribute-input.number");
-            numberSizes.forEach(e => {
-                e.onclick = () => {
-                    if (e.checked) {
-                        if (!numberSizesArray.includes(e.id)) {
-                            numberSizesArray.push(e.id);
-                        }
-                    } else {
-                        if (numberSizesArray.includes(e.id)) {
-                            numberSizesArray.splice(numberSizesArray.indexOf(e.id), 1);
-                        }
-                    }
-                }
-            })
-        }
-
-        let colors = document.querySelectorAll(".products-attribute-input.color");
-        colors.forEach(e => {
-            e.onclick = () => {
-                if (e.checked) {
-                    if (!colorArray.includes(e.id)) {
-                        colorArray.push(e.id);
-                    }
-                } else {
-                    if (colorArray.includes(e.id)) {
-                        colorArray.splice(colorArray.indexOf(e.id), 1);
-                    }
-                }
-            }
-        })
-
-        let applySizeElement = document.querySelector(".apply-size");
-        let applyColorElement = document.querySelector(".apply-color");
-
-        function applyColor(e) {
-            if (e == 1 || e == 2 || e == 3 || e == 4) { 
-                applyColorElement.onclick = function() {
-                    let sizeWColor = document.querySelectorAll(".size-w-color");
-                    let sizeWPriceOrigin = document.querySelectorAll(".size-w-price-origin");
-                    let sizeWPriceSale = document.querySelectorAll(".size-w-price-sale");
-                    let sizeWQuantity = document.querySelectorAll(".size-w-quantity");
-                    let color = "";
-                    let priceOrigin = "";
-                    let priceSale = "";
-                    let quantity = "";
-                    sizeWColor.forEach(e => {
-                        for (let i = 0; i < colorArray.length; i++) {
-                            color += `<div>
-                                ${colorArray[i]}
-                            </div>`;
-                        }
-                        e.innerHTML = color;
-                        color = "";
-                    });
-                    sizeWPriceOrigin.forEach(e => {
-                        for (let i = 0; i < colorArray.length; i++) {
-                            priceOrigin += `<div>
-                                <input type="number" name="product-price-origin[]" class="form-control-custom">
-                            </div>`;
-                        }
-                        e.innerHTML = priceOrigin;
-                        priceOrigin = "";
-                    });
-                    sizeWPriceSale.forEach(e => {
-                        for (let i = 0; i < colorArray.length; i++) {
-                            priceSale += `<div>
-                                <input type="number" name="product-price-sale[]" class="form-control-custom">
-                            </div>`;
-                        }
-                        e.innerHTML = priceSale;
-                        priceSale = "";
-                    });
-                    sizeWQuantity.forEach(e => {
-                        for (let i = 0; i < colorArray.length; i++) {
-                            quantity += `<div>
-                                <input type="number" name="product-quantity[]" class="form-control-custom">
-                            </div>`;
-                        }
-                        e.innerHTML = quantity;
-                        quantity = "";
-                    });
-                }
-            } else {
-                applyColorElement.onclick = function() {
-                    let color = "";
-                    colorArray.forEach(e => {
-                        color += `<tr>
-                                    <td>${e}</td>
-                                    <td><input type="number" name="product-price-origin[]" class="form-control-custom"></td>
-                                    <td><input type="number" name="product-price-sale[]" class="form-control-custom"></td>
-                                    <td><input type="number" name="product-quantity[]" class="form-control-custom"></td>
-                                </tr>`
-                    })
-                    tableBody.innerHTML = color;
-                }
-            }
-        }
-        
-
-        function applySize(e) {
-            applySizeElement.onclick = () => {
-                tableBody.innerHTML = "";
-                let size = "";
-                if (e == 1 || e == 2 || e == 3) {
-                    for (let i = 0; i < letterSizesArray.length; i++) {
-                        size += `<tr class='text-center'>
-                                    <td>${letterSizesArray[i]}</td>
-                                    <td class="size-w-color"></td>
-                                    <td class="size-w-price-origin"></td>
-                                    <td class="size-w-price-sale"></td>
-                                    <td class="size-w-quantity"></td>
-                                </tr>`;
-                    }
-                } else {
-                    for (let i = 0; i < numberSizesArray.length; i++) {
-                        size += `<tr class='text-center'>
-                                    <td>${numberSizesArray[i]}</td>
-                                    <td class="size-w-color"></td>
-                                    <td class="size-w-price-origin"></td>
-                                    <td class="size-w-price-sale"></td>
-                                    <td class="size-w-quantity"></td>
-                                </tr>`;
-                    }
-                }
-                tableBody.innerHTML = size;
-            }
-        }
-
         let applyAll = document.querySelector(".apply-all");
         applyAll.onclick = () => {
             let priceOriginAll = document.querySelector(".form-control-custom.price-origin").value;
@@ -558,30 +390,293 @@
                 tableBody.innerHTML = "";
                 $(".form-group.size").removeClass("d-none");
                 $(".col-size").removeClass("d-none");
+
+                $.ajax({
+                    url: "admin/updateColorStatus",
+                    type: "POST",
+                    data: {value: "color"},
+                    success: function(data) {
+                        colorArray = [];
+                    }
+                })
+                getColor("color");
             } else {
+                $.ajax({
+                    url: "admin/updateColorStatus",
+                    type: "POST",
+                    data: {value: "color"},
+                    success: function(data) {
+                        colorArray = [];
+                    }
+                })
+                getColor("color");
                 $(".form-group.size").addClass("d-none");
                 $(".col-size").addClass("d-none");
                 tableBody.innerHTML = "";
             }
+
             if (idCategory == "1" || idCategory == "2" || idCategory == "3") {
                 $(".product-letter-size").removeClass("d-none");
-                letterSizes();
+                $.ajax({
+                    url: "admin/updateLetterSizeStatus",
+                    type: "POST",
+                    data: {value: "letter_size"},
+                    success: function(data) {
+                        letterSizesArray = [];
+                    }
+                })
+                getLetterSize("letter_size");
             } else {
                 $(".product-letter-size").addClass("d-none");
             }
 
             if (idCategory == "4") {
                 $(".product-number-size").removeClass("d-none");
-                numberSizes();
+                $.ajax({
+                    url: "admin/updateNumberSizeStatus",
+                    type: "POST",
+                    data: {value: "number_size"},
+                    success: function(data) {
+                        numberSizesArray = [];
+                    }
+                })
+                getNumberSize("number_size");
             } else {
                 $(".product-number-size").addClass("d-none");
             }
-
             $(".form-group.color").removeClass("d-none");
             $(".form-group.set-up-classify").removeClass("d-none");
             $(".form-group.classify").removeClass("d-none");
-            applySize(this.value);
-            applyColor(this.value);
+        })
+
+        function getLetterSize(value) {
+            $.ajax({
+                url: "admin/getLetterSize",
+                type: "POST",
+                data: {value: value},
+                success: function (data) {
+                    $(".product-letter-size").html(data);
+                }
+            })
+        }
+
+        function getNumberSize(value) {
+            $.ajax({
+                url: "admin/getNumberSize",
+                type: "POST",
+                data: {value: value},
+                success: function (data) {
+                    $(".product-number-size").html(data);
+                }
+            })
+        }
+
+        function getColor(value) {
+            $.ajax({
+                url: "admin/getColor",
+                type: "POST",
+                data: {value: value},
+                success: function (data) {
+                    $(".product-render-color").html(data);
+                }
+            })
+        }
+
+        // Add Letter Size
+        $(document).on('click', '.add-size-l', function() {
+            let category = $("#product-category").find(":selected").val();
+
+            if (($(".add-letter-size-input").val()).trim() == "") {
+                alert('vui long nhap size');
+            } else {
+                if (letterSizesArray.includes($(".add-letter-size-input").val())) {
+                    alert('da co size nay');
+                    $(".add-letter-size-input").val("");
+                } else {
+                    $.ajax({
+                        url: "admin/addLetterSize",
+                        type: "POST",
+                        data: {value: $(".add-letter-size-input").val()},
+                        success: function(data) {
+                            getLetterSize("letter_size");
+                            letterSizesArray.push(data);
+                            renderTableSizeColor(category);
+                        }
+                    })
+                }
+            }
+        })
+
+        // Add Number Size
+        $(document).on('click', '.add-size-n', function() {
+            let category = $("#product-category").find(":selected").val();
+            if ($(".add-number-size-input").val().trim() == "") {
+                alert('vui long nhap size');
+            } else {
+                if (numberSizesArray.includes($(".add-number-size-input").val())) {
+                    alert('da co size nay');
+                    $(".add-number-size-input").val("");
+                } else {
+                    $.ajax({
+                        url: "admin/addNumberSize",
+                        type: "POST",
+                        data: {value: $(".add-number-size-input").val()},
+                        success: function(data) {
+                            getNumberSize("number_size");
+                            numberSizesArray.push(data);
+                            renderTableSizeColor(category);
+                        }
+                    })
+                }
+            }
+        })
+
+        // Add Color
+        $(document).on('click', '.add-color', function() {
+            let category = $("#product-category").find(":selected").val();
+            if (colorArray.includes($("#add-color").val())) {
+                alert('da co mau nay');
+            } else {
+                $.ajax({
+                    url: "admin/addColor",
+                    type: "POST",
+                    data: {value: $("#add-color").val()},
+                    success: function(data) {
+                        getColor("color");
+                        colorArray.push(data);
+                        renderTableSizeColor(category);
+                    }
+                })
+            }
+        })
+
+        function renderTableSizeColor(category) {
+            tableBody.innerHTML = "";
+            let size = "";
+            if (category == 1 || category == 2 || category == 3) {
+                for (let i = 0; i < letterSizesArray.length; i++) {
+                    size += `<tr class='text-center'>
+                                <td>${letterSizesArray[i]}</td>
+                                <td class="size-w-color"></td>
+                                <td class="size-w-price-origin"></td>
+                                <td class="size-w-price-sale"></td>
+                                <td class="size-w-quantity"></td>
+                            </tr>`;
+                }
+            } else {
+                for (let i = 0; i < numberSizesArray.length; i++) {
+                    size += `<tr class='text-center'>
+                                <td>${numberSizesArray[i]}</td>
+                                <td class="size-w-color"></td>
+                                <td class="size-w-price-origin"></td>
+                                <td class="size-w-price-sale"></td>
+                                <td class="size-w-quantity"></td>
+                            </tr>`;
+                }
+            }
+            tableBody.innerHTML = size;
+            if (category == 1 || category == 2 || category == 3 || category == 4) { 
+                let sizeWColor = document.querySelectorAll(".size-w-color");
+                let sizeWPriceOrigin = document.querySelectorAll(".size-w-price-origin");
+                let sizeWPriceSale = document.querySelectorAll(".size-w-price-sale");
+                let sizeWQuantity = document.querySelectorAll(".size-w-quantity");
+                let color = "";
+                let priceOrigin = "";
+                let priceSale = "";
+                let quantity = "";
+                sizeWColor.forEach(e => {
+                    for (let i = 0; i < colorArray.length; i++) {
+                        color += `<div>
+                            ${colorArray[i]}
+                        </div>`;
+                    }
+                    e.innerHTML = color;
+                    color = "";
+                });
+                sizeWPriceOrigin.forEach(e => {
+                    for (let i = 0; i < colorArray.length; i++) {
+                        priceOrigin += `<div>
+                            <input type="number" name="product-price-origin[]" class="form-control-custom">
+                        </div>`;
+                    }
+                    e.innerHTML = priceOrigin;
+                    priceOrigin = "";
+                });
+                sizeWPriceSale.forEach(e => {
+                    for (let i = 0; i < colorArray.length; i++) {
+                        priceSale += `<div>
+                            <input type="number" name="product-price-sale[]" class="form-control-custom">
+                        </div>`;
+                    }
+                    e.innerHTML = priceSale;
+                    priceSale = "";
+                });
+                sizeWQuantity.forEach(e => {
+                    for (let i = 0; i < colorArray.length; i++) {
+                        quantity += `<div>
+                            <input type="number" name="product-quantity[]" class="form-control-custom">
+                        </div>`;
+                    }
+                    e.innerHTML = quantity;
+                    quantity = "";
+                });
+            } else {
+                let color = "";
+                colorArray.forEach(e => {
+                    color += `<tr>
+                                <td>${e}</td>
+                                <td><input type="number" name="product-price-origin[]" class="form-control-custom"></td>
+                                <td><input type="number" name="product-price-sale[]" class="form-control-custom"></td>
+                                <td><input type="number" name="product-quantity[]" class="form-control-custom"></td>
+                            </tr>`
+                })
+                tableBody.innerHTML = color;
+            }
+        }
+
+        $(document).on('click', '.products-attribute-input.letter', function() {
+            let category = $("#product-category").find(":selected").val();
+            let value = $(this).attr('id')
+            letterSizesArray.splice(letterSizesArray.indexOf(value), 1);
+            $.ajax({
+                url: "admin/updateRemoveAttribute",
+                type: "POST",
+                data: {value: value},
+                success: function (data) {
+                    getLetterSize("letter_size");
+                    renderTableSizeColor(category);
+                }
+            })
+        })
+
+        $(document).on('click', '.products-attribute-input.number', function() {
+            let category = $("#product-category").find(":selected").val();
+            let value = $(this).attr('id')
+            numberSizesArray.splice(numberSizesArray.indexOf(value), 1);
+            $.ajax({
+                url: "admin/updateRemoveAttribute",
+                type: "POST",
+                data: {value: value},
+                success: function (data) {
+                    getNumberSize("number_size");
+                    renderTableSizeColor(category);
+                }
+            })
+        })
+
+        $(document).on('click', '.products-attribute-input.color', function() {
+            let category = $("#product-category").find(":selected").val();
+            let value = $(this).attr('id')
+            colorArray.splice(colorArray.indexOf(value), 1);
+            $.ajax({
+                url: "admin/updateRemoveAttribute",
+                type: "POST",
+                data: {value: value},
+                success: function (data) {
+                    getColor("color");
+                    renderTableSizeColor(category);
+                }
+            })
         })
 
         // product information
