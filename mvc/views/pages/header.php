@@ -199,12 +199,12 @@ $categories = $header->getCategories();
                             </ul>
                         </li>
                         <li class="navbar-menu-item">
-                            <a href="" class="navbar-menu-link">
+                            <a href="<?=BASE_URL?>aboutus" class="navbar-menu-link">
                                 Giới thiệu
                             </a>
                         </li>
                         <li class="navbar-menu-item">
-                            <a href="" class="navbar-menu-link">
+                            <a href="<?=BASE_URL?>blog" class="navbar-menu-link">
                                 Blog
                             </a>
                         </li>
