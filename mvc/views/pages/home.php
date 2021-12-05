@@ -47,7 +47,7 @@
                             <h3 class="slide-title delay-1">Giảm giá quần áo thể thao cho nữ</h3>
                             <p class="slide-desc delay-2">Giày thể thao, Keds, Áo khoác nỉ, Áo hoodie và nhiều hơn nữa...</p>
                             <div>
-                                <a href="#" class="btn btn--size-m slide-link delay-3">Mua ngay <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
+                                <a href="<?=BASE_URL?>category/detail/all" class="btn btn--size-m slide-link delay-3">Mua ngay <i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>

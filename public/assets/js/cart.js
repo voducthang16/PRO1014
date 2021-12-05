@@ -329,6 +329,8 @@ $(document).ready(function() {
                                     message : 'Cập nhật số lượng thất bại',
                                     type : 'error',
                                     duration : 3000});
+                }else if(data == ""){
+                    
                 }else{
                     notification({  title : 'Success',
                                     message : 'Cập nhật số lượng thành công',

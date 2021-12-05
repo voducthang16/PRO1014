@@ -39,7 +39,6 @@
                     );
                 }
                 $_SESSION['toast_start'] = $toast;
-                // header("Refresh: 0");
             }
 
             // update category
@@ -1011,7 +1010,7 @@
             }
 
             // load view
-            $this -> view("admin/pages/login", []);
+            $this -> view("admin/pages/login");
         }
     }
 ?>

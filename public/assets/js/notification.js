@@ -44,4 +44,7 @@ function notification({
             `;
             main.appendChild(toast);    
         }
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
     }

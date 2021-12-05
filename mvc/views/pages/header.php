@@ -144,7 +144,7 @@ $categories = $header->getCategories();
                         </a>
                     </li>
                     <li class="navbar-menu-item">
-                        <a class="navbar-menu-link">
+                        <a href="<?=BASE_URL?>category/detail/all" class="navbar-menu-link" style="cursor: pointer;">
                             Danh mục
                         </a>
                         <ul class="navbar-submenu-list">
@@ -158,12 +158,12 @@ $categories = $header->getCategories();
                         </ul>
                     </li>
                     <li class="navbar-menu-item">
-                        <a href="" class="navbar-menu-link">
+                        <a href="<?=BASE_URL?>aboutus" class="navbar-menu-link">
                             Về chúng tôi
                         </a>
                     </li>
                     <li class="navbar-menu-item">
-                        <a href="" class="navbar-menu-link">
+                        <a href="<?=BASE_URL?>blog" class="navbar-menu-link">
                             Blog
                         </a>
                     </li>
@@ -185,7 +185,7 @@ $categories = $header->getCategories();
                             </a>
                         </li>
                         <li class="navbar-menu-item">
-                            <a class="navbar-menu-link">
+                            <a href="<?=BASE_URL?>category/detail/all" class="navbar-menu-link" style="cursor: pointer;">
                                 Danh mục
                             </a>
                             <ul class="navbar-submenu-list">
