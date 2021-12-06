@@ -25,6 +25,7 @@
     <!-- CSS Files -->
     <link href="<?=BASE_URL?>public/assets/css/material-dashboard.minf066.css?v=2.1.0" rel="stylesheet" />
     <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/home.css">
+    <link rel="stylesheet" href="<?=BASE_URL?>public/assets/css/main/admin.css">
 </head>
 <body class="">
     <div class="wrapper">
