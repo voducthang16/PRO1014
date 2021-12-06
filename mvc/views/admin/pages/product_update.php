@@ -27,6 +27,10 @@
 ?>
 
 <style>
+    .product-render-color {
+        display: flex;
+        align-items: center;
+    }
     .products-color,
     .products-size {
         display: inline-block;
@@ -162,7 +166,7 @@
             <div class="card-body">
                 <form method="POST" action="" enctype="multipart/form-data" id="form">
                     <input type="hidden" id="u-product-id" name="u-product-id" value="<?=$data['product']['id']?>">
-                    <input type="hidden" name="u-product-category" value="<?=$data['product']['category_id']?>">
+                    <input type="hidden" id="u-product-category" name="u-product-category" value="<?=$data['product']['category_id']?>">
                     <div class="form-group">
                         <label for="u-product-name">Tên sản phẩm</label>
                         <input type="text" class="form-control" id="u-product-name" name="u-product-name" placeholder="Nhập tên sản phẩm" value="<?=$data['product']['name']?>">
@@ -177,48 +181,18 @@
                     </div>
                     <div class="form-group size <?=$data['product']['category_id'] == '5' ? 'd-none' : ''?>">
                         <label>Size sản phẩm</label><br>
-                        <label class="apply-size">Áp dụng</label>
+                        <!-- <label class="apply-size">Áp dụng</label> -->
                         <div class="product-letter-size <?=$data['product']['category_id'] != '4' ? '' : 'd-none'?>">
-                            <?php foreach ($data['getLetterSizes'] as $item):?>
-                                <div class="products-size letter">
-                                    <div class="products-attribute-item">
-                                        <input class="products-attribute-input letter" type="checkbox" name="product_size[]" 
-                                        id="<?=$item["value"]?>" value="<?=$item["id"]?>" 
-                                        <?=$product_update->checkAttributeId('size', $data['product']['id'], $item["id"]) == $item["value"] ? 'checked' : ''?>
-                                        >
-                                        <label class="products-attribute-option" for="<?=$item["value"]?>"><?=$item["value"]?></label>
-                                    </div>
-                                </div>
-                            <?php endforeach;?>
+                            
                         </div>
                         <div class="product-number-size <?=$data['product']['category_id'] == '4' ? '' : 'd-none'?>">
-                            <?php foreach ($data['getNumberSizes'] as $item):?>
-                                <div class="products-size number">
-                                    <div class="products-attribute-item">
-                                        <input class="products-attribute-input number" type="checkbox" name="product_size[]" id="<?=$item["value"]?>" value="<?=$item["id"]?>"
-                                        <?=$product_update->checkAttributeId('size', $data['product']['id'], $item["id"]) == $item["value"] ? 'checked' : ''?>
-                                        >
-                                        <label class="products-attribute-option" for="<?=$item["value"]?>"><?=$item["value"]?></label>
-                                    </div>
-                                </div>
-                            <?php endforeach;?>
+                            
                         </div>
                     </div>
                     <div class="form-group color">
                         <label>Màu sản phẩm</label><br>
-                        <label class="apply-color">Áp dụng</label>
-                        <?php foreach ($data['getColors'] as $item): ?>
-                            <div class="products-color">
-                                <div class="products-attribute-item">
-                                    <input class="products-attribute-input color" type="checkbox" name="product-color[]" id="<?=$item["value"]?>" value="<?=$item["id"]?>"
-                                    <?=$product_update->checkAttributeId('color', $data['product']['id'], $item["id"]) == $item["value"] ? 'checked' : ''?>
-                                    >
-                                    <label class="products-attribute-option color" for="<?=$item["value"]?>">
-                                        <span style="background-color: <?=$item["value"]?>" class="products-attribute-color"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        <?php endforeach;?>
+                        <!-- <label class="apply-color">Áp dụng</label> -->
+                        <div class="product-render-color"></div>
                     </div>
                     <div class="form-group">
                         <label for="">Thiết lập phân loại sản phẩm</label><br>
@@ -270,7 +244,7 @@
                         <textarea class="form-control" name="u-product-description" rows="3" placeholder="Nhập miêu tả sản phẩm"><?=$data['product']['description']?></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="product-description">Thông sản phẩm</label>
+                        <label for="product-description">Thông số sản phẩm</label>
                         <textarea class="form-control" name="u-product-parameters" rows="3" placeholder="Nhập thông số sản phẩm"><?=$data['product']['parameters']?></textarea>
                     </div>
                     <div class="form-check">
@@ -407,6 +381,85 @@
                     loadImages();
                 }
             })
+        })
+
+        function getLetterSize(value) {
+            $.ajax({
+                url: "admin/getLetterSizeUpdate",
+                type: "POST",
+                data: {
+                    value: value,
+                    id: $("#u-product-id").val()
+                },
+                success: function(data) {
+                    $(".product-letter-size").html(data);
+                }
+            })
+        }
+
+        function getNumberSize(value) {
+            $.ajax({
+                url: "admin/getNumberSizeUpdate",
+                type: "POST",
+                data: {
+                    value: value,
+                    id: $("#u-product-id").val()
+                },
+                success: function(data) {
+                    $(".product-number-size").html(data);
+                }
+            })
+        }
+
+        function getColor(value) {
+            $.ajax({
+                url: "admin/getColorUpdate",
+                type: "POST",
+                data: {
+                    value: value,
+                    id: $("#u-product-id").val()
+                },
+                success: function(data) {
+                    $(".product-render-color").html(data);
+                }
+            })
+        }
+
+
+        let category = $("#u-product-category").val();
+        if (category == 1 || category == 2 || category == 3) {
+            getLetterSize("letter_size");
+        }
+        if (category == 4) {
+            getNumberSize("number_size");
+        }
+
+        if (category == 1 || category == 2 || category == 3 || category == 4) {
+            getColor("color")
+        } else {
+            getColor("color")
+        }
+
+        $(document).on('click', '.add-size-l', function() {
+            if (($(".add-letter-size-input").val()).trim() == "") {
+                alert('vui long nhap size');
+            } else {
+                if (letterSizesArray.includes($(".add-letter-size-input").val())) {
+                    alert('da co size nay');
+                    $(".add-letter-size-input").val("");
+                } else {
+                    $.ajax({
+                        url: "admin/addLetterSize",
+                        type: "POST",
+                        data: {value: $(".add-letter-size-input").val()},
+                        success: function(data) {
+                            getLetterSize("letter_size");
+                            letterSizesArray.push(data);
+                            renderTableSizeColor(category);
+                        }
+                    })
+                }
+            }
         })
 
         // =============================================
@@ -732,9 +785,5 @@
             applySize(this.value);
             applyColor(this.value);
         });
-        letterSizes();
-        numberSizes();
-        applySize($("#product-category").val());
-        applyColor($("#product-category").val());
     })
 </script>
