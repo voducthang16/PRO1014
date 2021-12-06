@@ -487,6 +487,33 @@
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
+        
+        function getOrderToday() {
+            $query = "SELECT * FROM orders WHERE DATE(orders.created_at) = CURDATE()";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        function getOrderSuccessToday() {
+            $query = "SELECT * FROM orders WHERE DATE(orders.created_at) = CURDATE() AND order_status = 2";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        function getTotalSuccessToday() {
+            $query = "SELECT SUM(orders.total) as total FROM orders WHERE DATE(orders.created_at) = CURDATE() AND order_status = 2";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch()['total'];
+        }
+
+        function getViewPrd() {
+            $query = "SELECT SUM(products.view) as view FROM products";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch()['view'];
         }
     } 
 ?>

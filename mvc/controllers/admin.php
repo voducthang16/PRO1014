@@ -16,7 +16,11 @@
                 "totalComments" => $this->admin->getAllComments(),
                 "top5ProductsSale" => $this->admin->getTop5ProductsPurchases(),
                 "moneyCategory" => $this->admin->getMoneyCategory(),
-                "totalMoney" => $this->admin->getTotalMoney()
+                "totalMoney" => $this->admin->getTotalMoney(),
+                "countOrder" => $this->admin->getOrderToday(),
+                "countOrderSuccess" => $this->admin->getOrderSuccessToday(),
+                "totalMoneyToday" => $this->admin->getTotalSuccessToday(),
+                "countView" => $this->admin->getViewPrd(),
             ]);
         }
 
