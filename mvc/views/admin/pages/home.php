@@ -48,7 +48,7 @@
                     <div class="info-web">
                         <div>
                             <p>Hoá đơn hôm nay :</p>
-                            <h2><?=($data['totalComments'])?></h2>
+                            <h2><?=number_format($data['countOrder'])?></h2>
                         </div>
                         <span class="material-icons">
                             chat
@@ -57,7 +57,7 @@
                     <div class="info-web">
                         <div>
                             <p>Đã xử lý thành công:</p>
-                            <h2>1.014</h2>
+                            <h2><?=($data['countOrderSuccess'])?></h2>
                         </div>
                         <span class="material-icons">
                             done_outline
@@ -66,7 +66,7 @@
                     <div class="info-web">
                         <div>
                             <p>Doanh thu hôm nay :</p>
-                            <h2><?=($data['totalComments'])?></h2>
+                            <h2><?= (($data['totalMoneyToday']) == null) ? 0 : number_format($data['getTotalSuccessToday']); ?></h2>
                         </div>
                         <span class="material-icons">
                             auto_graph
@@ -75,7 +75,7 @@
                     <div class="info-web">
                         <div>
                             <p>Tổng lượt xem :</p>
-                            <h2>1.014.000</h2>
+                            <h2><?=(number_format($data['countView']))?></h2>
                         </div>
                         <span class="material-icons">
                             view_day
