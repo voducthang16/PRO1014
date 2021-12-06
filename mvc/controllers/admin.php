@@ -9,7 +9,14 @@
         // admin homepage
         function show() {
             $this -> view("admin/index", [
-                "page" => "home"
+                "page" => "home",
+                "totalProducts" => $this->admin->getProducts(),
+                "totalUsers" => $this->admin->getUsers(),
+                "totalOrders" => $this->admin->getAllOrder(),
+                "totalComments" => $this->admin->getAllComments(),
+                "top5ProductsSale" => $this->admin->getTop5ProductsPurchases(),
+                "moneyCategory" => $this->admin->getMoneyCategory(),
+                "totalMoney" => $this->admin->getTotalMoney()
             ]);
         }
 

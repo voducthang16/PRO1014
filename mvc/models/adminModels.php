@@ -435,5 +435,47 @@
             $result = $this->connect->prepare($query);
             $result->execute();
         }
+
+        function getUsers() {
+            $query = "SELECT * FROM `members`";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        function getAllOrder() {
+            $query = "SELECT * FROM `orders`";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        function getAllComments() {
+            $query = "SELECT * FROM `comments`";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        function getTop5ProductsPurchases() {
+            $query = "SELECT products_type.product_id, SUM(products_type.purchases) as 'sum', products.name, products.thumbnail FROM products_type INNER JOIN products ON products.id = products_type.product_id GROUP BY products_type.product_id ORDER BY sum DESC LIMIT 5";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function getMoneyCategory() {
+            $query = "SELECT category.name, SUM(orders_details.price_sale * orders_details.quantity) as price FROM category JOIN products ON category.id = products.category_id JOIN products_type ON products_type.product_id IN (products.id) JOIN orders_details ON products_type.id = orders_details.product_type_id JOIN orders ON orders_details.order_id = orders.id WHERE orders.order_status = 2 AND orders.payment_status = 1 GROUP BY category.name";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function getTotalMoney() {
+            $query = "SELECT SUM(orders.total) as 'total' FROM orders WHERE orders.order_status = 2 AND orders.payment_status = 1";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch()['total'];
+        }
     } 
 ?>
