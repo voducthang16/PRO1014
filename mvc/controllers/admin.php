@@ -478,6 +478,95 @@
             }
         }
 
+        function getLetterSizeUpdate() {
+            if (isset($_POST['value'])) {
+                $value = $_POST['value'];
+                $id = $_POST['id'];
+                $output = "";
+                $result = $this->admin->getProductAttributeUpdate($value, $id);
+                foreach ($result as $item) {
+                    $output .= '
+                        <div class="products-size letter">
+                            <div class="products-attribute-item">
+                                <input class="products-attribute-input letter" type="checkbox" name="product_size[]" id="'.$item["value"].'" value="'.$item["id"].'" checked>
+                                <label class="products-attribute-option" for="'.$item["value"].'">'.$item["value"].'</label>
+                            </div>
+                        </div>
+                    ';
+                }
+
+                $output .= '
+                    <div style="margin-left: 16px" class="products-size letter">
+                        <div class="products-attribute-item">
+                            <input style="width: 48px;" type="text" id="add-size" class="add-letter-size-input" name="add_size">
+                            <label class="add-size-l">Thêm Size</label>
+                        </div>
+                    </div>
+                ';
+                echo $output;
+            }
+        }
+
+        function getNumberSizeUpdate() {
+            if (isset($_POST['value'])) {
+                $value = $_POST['value'];
+                $id = $_POST['id'];
+                $output = "";
+                $result = $this->admin->getProductAttributeUpdate($value, $id);
+                foreach ($result as $item) {
+                    $output .= '
+                    <div class="products-size number">
+                        <div class="products-attribute-item">
+                            <input class="products-attribute-input number" type="checkbox" name="product_size[]" id="'.$item["value"].'" value="'.$item["id"].'" checked>
+                            <label class="products-attribute-option" for="'.$item["value"].'">'.$item["value"].'</label>
+                        </div>
+                    </div>
+                    ';
+                }
+
+                $output .= '
+                <div style="margin-left: 16px" class="products-size number">
+                    <div class="products-attribute-item">
+                        <input style="width: 48px;" type="number" class="add-number-size-input" id="add-size-n" name="add_size" min="1">
+                        <label class="add-size-n">Thêm Size</label>
+                    </div>
+                </div>
+                ';
+                echo $output;
+            }
+        }
+
+        function getColorUpdate() {
+            if (isset($_POST['value'])) {
+                $value = $_POST['value'];
+                $id = $_POST['id'];
+                $output = "";
+                $result = $this->admin->getProductAttributeUpdate($value, $id);
+                foreach ($result as $item) {
+                    $output .= '
+                    <div class="products-color">
+                        <div class="products-attribute-item">
+                            <input class="products-attribute-input color" type="checkbox" name="product-color[]" id="'.$item["value"].'" value="'.$item["id"].'" checked>
+                            <label class="products-attribute-option color" for="'.$item["value"].'">
+                                <span style="background-color: '.$item["value"].'" class="products-attribute-color"></span>
+                            </label>
+                        </div>
+                    </div>
+                    ';
+                }
+
+                $output .= '
+                <div style="margin-left: 16px" class="products-color">
+                    <div class="products-attribute-item">
+                        <input type="color" id="add-color" class="add-color-input" name="add_color">
+                        <label class="add-color">Thêm Màu</label>
+                    </div>
+                </div>
+                ';
+                echo $output;
+            }
+        }
+
         // product details
         function productDetails() {
             if (isset($_POST['productId'])) {

@@ -84,7 +84,7 @@
                 </div>
                 <div class="row btn-bd-thongKe">
                     <div>
-                        <h3 class="container-title-thongKe">TOP 5 SẢN PHẨM BÁN CHẠY :</h3>
+                        <h3 class="text-center container-title-thongKe">TOP 5 SẢN PHẨM BÁN CHẠY :</h3>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -107,10 +107,10 @@
                         </table>
                     </div>
                     <div>
-                        <h3 class="container-title-thongKe">THỐNG KÊ SẢN PHẨM :</h3>
+                        <h3 class="text-center container-title-thongKe">THỐNG KÊ DOANH THU :</h3>
                         <div style="position: relative;" class="BieuDo__thongKe">
                             <canvas id="myChart"></canvas>
-                            <h6 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, 50%)">Tổng danh thu: <?=number_format($data['totalMoney'])?>đ</h6>
+                            <h6 style="position: absolute; top: 47%; left: 57%; transform: translate(-50%, 50%)">Tổng danh thu: <?=number_format($data['totalMoney'])?>đ</h6>
                         </div>
                     </div>
                 </div>
