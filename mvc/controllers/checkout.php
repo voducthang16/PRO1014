@@ -87,7 +87,8 @@
                         <div class="order-summary-list">
                             <a href="product/detail/'.$item['slug'].'" class="order-summary-list-name">'.$item['name'].'</a>
                             <p class="order-summary-attribute">
-                                <span>Size</span> - Color: <span style="background-color: #ccc; top: 3px; left: 3px" class="order-summary-color"></span>
+                                <span>Size: '.($this->checkout->getAttributes($item['product_type_id'], "size")['value'] != "" ? $this->checkout->getAttributes($item['product_type_id'], "size")['value'] : "Free Size").'
+                                </span> - Color: <span style="background-color: '.$this->checkout->getAttributes($item['product_type_id'], "color")['value'].'"; top: 3px; left: 3px" class="order-summary-color"></span>
                             </p>
                             <p class="order-summary-money">
                                 <span class="price">'.number_format($item['price_sale']).'đ</span>
