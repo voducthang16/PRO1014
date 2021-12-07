@@ -376,6 +376,18 @@
             let priceOriginAll = document.querySelector(".form-control-custom.price-origin").value;
             let priceSaleAll = document.querySelector(".form-control-custom.price-sale").value;
             let quantityAll = document.querySelector(".form-control-custom.quantity").value;
+            if (priceOriginAll.trim() == "") {
+                alert("Vui long nhập giá gốc")
+                return;
+            }
+            if (priceSaleAll.trim() == "") {
+                alert("Vui long nhập giá giảm giá")
+                return;
+            }
+            if (quantityAll.trim() == "") {
+                alert("Vui long nhập số lượng")
+                return;
+            }
             document.querySelectorAll("input[name='product-price-origin[]']").forEach(e => {
                 e.value = priceOriginAll;
             })
@@ -554,6 +566,14 @@
         })
 
         function renderTableSizeColor(category) {
+            let priceOriginAll = document.querySelector(".form-control-custom.price-origin").value;
+            let priceSaleAll = document.querySelector(".form-control-custom.price-sale").value;
+            let quantityAll = document.querySelector(".form-control-custom.quantity").value;
+            // if (priceOriginAll.trim() == "") {
+            //     priceOriginAll;
+            //     priceSaleAll;
+            //     quantityAll;
+            // }
             tableBody.innerHTML = "";
             let size = "";
             if (category == 1 || category == 2 || category == 3) {
@@ -599,7 +619,7 @@
                 sizeWPriceOrigin.forEach(e => {
                     for (let i = 0; i < colorArray.length; i++) {
                         priceOrigin += `<div>
-                            <input type="number" name="product-price-origin[]" class="form-control-custom">
+                            <input type="number" name="product-price-origin[]" class="form-control-custom" value="${priceOriginAll}">
                         </div>`;
                     }
                     e.innerHTML = priceOrigin;
@@ -608,7 +628,7 @@
                 sizeWPriceSale.forEach(e => {
                     for (let i = 0; i < colorArray.length; i++) {
                         priceSale += `<div>
-                            <input type="number" name="product-price-sale[]" class="form-control-custom">
+                            <input type="number" name="product-price-sale[]" class="form-control-custom" value="${priceSaleAll}">
                         </div>`;
                     }
                     e.innerHTML = priceSale;
@@ -617,7 +637,7 @@
                 sizeWQuantity.forEach(e => {
                     for (let i = 0; i < colorArray.length; i++) {
                         quantity += `<div>
-                            <input type="number" name="product-quantity[]" class="form-control-custom">
+                            <input type="number" name="product-quantity[]" class="form-control-custom" value="${quantityAll}">
                         </div>`;
                     }
                     e.innerHTML = quantity;
