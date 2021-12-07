@@ -7,6 +7,116 @@
         height: 20px;
         border: solid 1px black;
     }
+    .product-render-color {
+        display: flex;
+        align-items: center;
+    }
+    .products-color,
+    .products-size {
+        display: inline-block;
+    }
+
+    .products-attribute-hidden {
+        position: absolute;
+        left: 0;
+        top: 100%;
+
+        width: 100%;
+        padding: 20px;
+        border-radius: 8px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-top: 1px solid #fff;
+
+        background-color: #fff;
+
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1;
+    }
+    .products-size {
+        text-align: center;
+    }
+
+    .products-attribute-item {
+        display: inline-block;
+    }
+
+    .products-attribute-input {
+        border: 0;
+        vertical-align: top;
+        background: none;
+        appearance: none;
+    }
+
+    .products-attribute-option {
+        position: relative;
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border: 1px solid #e3e9ef;
+        border-radius: 4px;
+
+        line-height: 32px;
+        text-align: center;
+
+        background-color: #fff;
+        color: #aaa;
+        transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    }
+
+    .products-attribute-option.color {
+        border-radius: 50%;
+    }
+
+    .products-attribute-input:checked ~ .products-attribute-option {
+        color: #9c27b0;
+        border-color: #9c27b0;
+    }
+
+    .products-attribute-color {
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        
+        display: block;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+    }
+
+    .products-attribute-option:hover {
+        cursor: pointer;
+    }
+
+    .products-attribute-input:checked ~ .products-attribute-option {
+        color: #9c27b0;
+        border-color: #9c27b0;
+    }
+
+    .apply-size {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translateY(-15%);
+    }
+
+    .apply-color {
+        position: absolute;
+        top: 47%;
+        right: 37%;
+        transform: translateY(-15%);
+    }
+
+    .upload-multi {
+        opacity: 1 !important;
+        position: unset !important;
+        width: unset !important;
+    }
+
+    .box-shadow-img {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    }
 </style>
 <div class="row">
     <div class="col-md-12">
@@ -35,21 +145,20 @@
                         <label>Size sản phẩm</label><br>
                         <!-- <label class="apply-size">Áp dụng</label> -->
                         <div class="product-letter-size <?=$data['product']['category_id'] != '4' ? '' : 'd-none'?>">
-                            <input style="width: 48px;" type="text" id="add-size" class="add-letter-size-input" name="add_size">
+                            <!-- <input style="width: 48px;" type="text" id="add-size" class="add-letter-size-input" name="add_size"> -->
                         </div>
                         <div class="product-number-size <?=$data['product']['category_id'] == '4' ? '' : 'd-none'?>">
-                            <input style="width: 48px;" type="text" id="add-size" class="add-letter-size-input" name="add_size">
+                            <!-- <input style="width: 48px;" type="text" id="add-size" class="add-letter-size-input" name="add_size"> -->
                         </div>
                     </div>
                     <div class="form-group color">
                         <label>Màu sản phẩm</label><br>
                         <!-- <label class="apply-color">Áp dụng</label> -->
-                        <input type="color" id="add-color" class="add-color-input" name="add_color">
-                        <div class="product-render-color"></div>
+                        <div class="product-render-color">
+                            <!-- <input type="color" id="add-color" class="add-color-input" name="add_color"> -->
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="apply-color-size" style="cursor: pointer;">Thêm size màu</label>
-                    </div>
+                   
                     <div class="form-group">
                         <label for="">Thiết lập phân loại sản phẩm</label><br>
                         <input type="number" class="form-control-custom price-origin" placeholder="Giá gốc" min="1" >
@@ -62,7 +171,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="text-center col-size <?=$data['product']['category_id'] == '5' ? 'd-none' : ''?>">Size</th>
+                                    <th class="text-center col-size">Size</th>
                                     <th class="text-center">Màu</th>
                                     <th class="text-center">Giá gốc</th>
                                     <th class="text-center">Giá bán</th>
@@ -147,13 +256,148 @@
                 url: 'admin/getProductImages',
                 type: 'POST',
                 data: {
-                    productId: $("#u-product-id").val(),
+                    productId: <?=$data['product']['id']?>,
                 },
                 success: function(data) {
                     $("#list-images").html(data);
                 }
             })
         }
+        function getLetterSize(value) {
+            $.ajax({
+                url: "admin/getLetterSizeUpdate",
+                type: "POST",
+                data: {
+                    value: value,
+                    id: <?=$data['product']['id']?>
+                },
+                success: function(data) {
+                    $(".product-letter-size").html(data);
+                }
+            })
+        }
+
+        function getNumberSize(value) {
+            $.ajax({
+                url: "admin/getNumberSizeUpdate",
+                type: "POST",
+                data: {
+                    value: value,
+                    id: <?=$data['product']['id']?>
+                },
+                success: function(data) {
+                    $(".product-number-size").html(data);
+                }
+            })
+        }
+
+        function getColor(value) {
+            $.ajax({
+                url: "admin/getColorUpdate",
+                type: "POST",
+                data: {
+                    value: value,
+                    id: <?=$data['product']['id']?>
+                },
+                success: function(data) {
+                    $(".product-render-color").html(data);
+                }
+            })
+        }
+
+        if (<?=$data['product']['category_id']?>== 1 ||<?=$data['product']['category_id']?> == 2 ||<?=$data['product']['category_id']?> == 3) {
+            getLetterSize("letter_size");
+        }
+        if (<?=$data['product']['category_id']?> == 4) {
+            getNumberSize("number_size");
+        }
+
+        if (<?=$data['product']['category_id']?> == 1 || <?=$data['product']['category_id']?> == 2 || <?=$data['product']['category_id']?> == 3 || <?=$data['product']['category_id']?> == 4) {
+            getColor("color")
+        } else {
+            getColor("color")
+        }
+
+        $(document).on('click','.add-size-n',function() {
+            const numberSize = $('.add-number-size-input').val();
+            $.ajax({
+                url: "admin/addNumberSizeById",
+                type: "POST",
+                data: {
+                    attributes: "number_size",
+                    id: <?=$data['product']['id']?>,
+                    numberSize : numberSize
+                },
+                success: function(data) {
+                    alert(data);
+                    fetch_data();
+                    getNumberSize("number_size");
+                }
+            });
+        })
+        $(document).on('click','.add-size-l',function() {
+            const numberSize = $('.add-letter-size-input').val();
+            $.ajax({
+                url: "admin/addNumberSizeById",
+                type: "POST",
+                data: {
+                    attributes: "letter_size",
+                    id: <?=$data['product']['id']?>,
+                    numberSize : numberSize
+                },
+                success: function(data) {
+                    alert(data);
+                    fetch_data();
+                    getLetterSize("letter_size");
+                }
+            });
+        })
+
+        $(document).on('click','.add-color',function() {
+            const ColorSize = $('.add-color-input').val();
+            $.ajax({
+                url: "admin/addColorById",
+                type: "POST",
+                data: {
+                    attributes: "color",
+                    category: <?=$data['product']['category_id']?>,
+                    id: <?=$data['product']['id']?>,
+                    color : ColorSize
+                },
+                success: function(data) {
+                    alert(data);
+                    fetch_data();
+                    getColor("color");
+                }
+            });
+        })
+
+        $(document).on('click','.products-attribute-input',function() {
+            const value = $(this).val();
+            // alert(value);
+            $.ajax({
+                url: "admin/updateStatusType",
+                type: "POST",
+                data: {
+                    category: <?=$data['product']['category_id']?>,
+                    id: <?=$data['product']['id']?>,
+                    value : value
+                },
+                success: function(data) {
+                    alert(data);
+                    fetch_data();
+                    getColor("color");
+                    getLetterSize("letter_size");
+                    getNumberSize("number_size");
+                }
+            });
+        })
+
+        $(document).on('blur','.change-value-attribute',function(){
+            const type_id = $(this).attr('data-typeId');
+            const type = $(this).attr('data-type');
+            alert(type_id +" "+type);
+        })
         
     })
 </script>

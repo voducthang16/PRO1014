@@ -458,6 +458,87 @@
             echo $value;
         }
 
+        function addNumberSizeById() {
+            if(isset($_POST['attributes'])){
+                $check = $this->admin->checkExistAttributeById($_POST['id'], $_POST['attributes'], $_POST['numberSize']);
+                if ($check > 0) {
+                    echo "lỗi";
+                } else {
+                    $result = $this->admin->getProductAttributeUpdate("color", $_POST['id']);
+                    $checkSize = $this->admin->checkExistAttributes($_POST['numberSize']);
+                    if($checkSize->rowCount() == 1) {
+                        $id_attribute = $checkSize->fetch()['id'];
+                    } else {
+                        $this->admin->addProductAttribute($_POST['attributes'],$_POST['numberSize']);
+                        $checkSizeN = $this->admin->checkExistAttributes($_POST['numberSize']);
+                        $id_attribute = $checkSizeN->fetch()['id'];
+                    }
+                    foreach($result as $item){
+                        $this->admin->addProductType($_POST['id'], 0, 0, 0);
+                        $product_type_id = $this->admin->getProductTypeId();
+                        $this->admin->addProductTypeAttribute($product_type_id, $id_attribute);
+                        $this->admin->addProductTypeAttribute($product_type_id, $item['id']);
+                    }
+                    echo "thành công";
+                }
+            }   
+        }
+
+        function addColorById() {
+            if(isset($_POST['attributes'])){
+                $check = $this->admin->checkExistAttributeById($_POST['id'], $_POST['attributes'], $_POST['color']);
+                if ($check > 0) {
+                    echo "lỗi";
+                } else {
+                    if($_POST['category'] != 5){
+                        $attributes = "size";
+                        $result = $this->admin->getProductAttributeUpdate($attributes, $_POST['id']);
+                        $checkSize = $this->admin->checkExistAttributes($_POST['color']);
+                        if($checkSize->rowCount() == 1) {
+                            $id_attribute = $checkSize->fetch()['id'];
+                        } else {
+                            $this->admin->addProductAttribute($_POST['attributes'],$_POST['color']);
+                            $checkSizeN = $this->admin->checkExistAttributes($_POST['color']);
+                            $id_attribute = $checkSizeN->fetch()['id'];
+                        }
+                        foreach($result as $item){
+                            $this->admin->addProductType($_POST['id'], 0, 0, 0);
+                            $product_type_id = $this->admin->getProductTypeId();
+                            $this->admin->addProductTypeAttribute($product_type_id, $id_attribute);
+                            $this->admin->addProductTypeAttribute($product_type_id, $item['id']);
+                        }
+                        echo "thành công";
+                    } else {
+                        $checkSize = $this->admin->checkExistAttributes($_POST['color']);
+                        if($checkSize->rowCount() == 1) {
+                            $id_attribute = $checkSize->fetch()['id'];
+                        } else {
+                            $this->admin->addProductAttribute($_POST['attributes'],$_POST['color']);
+                            $checkSizeN = $this->admin->checkExistAttributes($_POST['color']);
+                            $id_attribute = $checkSizeN->fetch()['id'];
+                        }
+                        $this->admin->addProductType($_POST['id'], 0, 0, 0);
+                        $product_type_id = $this->admin->getProductTypeId();
+                        $this->admin->addProductTypeAttribute($product_type_id, $id_attribute);
+                        echo "thành công";
+                    }
+                }
+            }  
+        }
+
+        function updateStatusType() {
+
+            if(isset($_POST['value'])){
+                $result = $this->admin->getProductTypeIdByAttributeId($_POST['id'], $_POST['value']);
+                // var_dump($result);
+                foreach($result as $row) {
+                    $this->admin->updateProductTypeStatus($row['product_type_id']);
+                }
+                echo "thành công";
+            }
+
+        }
+
         function updateNumberSizeStatus() {
             if (isset($_POST['value'])) {
                 $value = $_POST['value'];
@@ -489,7 +570,7 @@
                         <div class="products-size letter">
                             <div class="products-attribute-item">
                                 <input class="products-attribute-input letter" type="checkbox" name="product_size[]" id="'.$item["value"].'" value="'.$item["id"].'" checked>
-                                <label class="products-attribute-option" for="'.$item["value"].'">'.$item["value"].'</label>
+                                <label class="products-attribute-option" data-value="letter_size" for="'.$item["value"].'">'.$item["value"].'</label>
                             </div>
                         </div>
                     ';
@@ -518,7 +599,7 @@
                     <div class="products-size number">
                         <div class="products-attribute-item">
                             <input class="products-attribute-input number" type="checkbox" name="product_size[]" id="'.$item["value"].'" value="'.$item["id"].'" checked>
-                            <label class="products-attribute-option" for="'.$item["value"].'">'.$item["value"].'</label>
+                            <label class="products-attribute-option" data-value="number_size" for="'.$item["value"].'">'.$item["value"].'</label>
                         </div>
                     </div>
                     ';
@@ -547,7 +628,7 @@
                     <div class="products-color">
                         <div class="products-attribute-item">
                             <input class="products-attribute-input color" type="checkbox" name="product-color[]" id="'.$item["value"].'" value="'.$item["id"].'" checked>
-                            <label class="products-attribute-option color" for="'.$item["value"].'">
+                            <label class="products-attribute-option color" data-value="color" for="'.$item["value"].'">
                                 <span style="background-color: '.$item["value"].'" class="products-attribute-color"></span>
                             </label>
                         </div>
@@ -779,9 +860,9 @@
                         <td class="size-w-color">
                             <div class="color-value" style="background-color: '.$color['value'].'"></div>
                         </td>
-                        <td class="size-w-price-origin">'.number_format($row['price_origin']).'</td>
-                        <td class="size-w-price-sale">'.number_format($row['price_sale']).'</td>
-                        <td class="size-w-quantity">'.number_format($row['quantity']).'</td>
+                        <td contenteditable class="size-w-price-origin change-value-attribute" data-typeId="'.$row['id'].'" data-type="priceOrigin">'.number_format($row['price_origin']).'</td>
+                        <td contenteditable class="size-w-price-sale change-value-attribute" data-typeId="'.$row['id'].'" data-type="priceSale">'.number_format($row['price_sale']).'</td>
+                        <td contenteditable class="size-w-quantity change-value-attribute" data-typeId="'.$row['id'].'" data-type="Quantity">'.number_format($row['quantity']).'</td>
                     </tr>';
             }
             echo $output;

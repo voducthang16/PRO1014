@@ -126,14 +126,17 @@
         }
 
         function getProductDetails($id) {
-            $query = "SELECT products.id, products.category_id, products_type.* FROM products_type INNER JOIN products on products_type.product_id = products.id WHERE products.id = $id";
+            $query = "SELECT products.id, products.category_id, products_type.* FROM products_type 
+            INNER JOIN products on products_type.product_id = products.id WHERE products.id = $id and products_type.status = 1";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
         }
 
         function getAttributesByTypeId($id, $attribute) {
-            $query = "SELECT products_attributes.name, products_attributes.value FROM products_attributes INNER JOIN products_type_attributes on products_attributes.id = products_type_attributes.attributes_id WHERE products_type_attributes.product_type_id = $id AND products_attributes.name LIKE '%$attribute%'";
+            $query = "SELECT products_attributes.name, products_attributes.value FROM products_attributes 
+            INNER JOIN products_type_attributes on products_attributes.id = products_type_attributes.attributes_id 
+            WHERE products_type_attributes.product_type_id = $id AND products_attributes.name LIKE '%$attribute%'";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetch();
@@ -437,6 +440,33 @@
             $result->execute();
             return $result->rowCount();
         }
+        function checkExistAttributes($attribute) {
+            $query = "SELECT * FROM products_attributes WHERE value = '$attribute'";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result;
+        }
+
+        function checkExistAttributeById($id, $attribute, $value) {
+            $query = "SELECT DISTINCT products_attributes.id, products_attributes.value FROM products_attributes 
+            INNER JOIN products_type_attributes ON products_attributes.id = products_type_attributes.attributes_id 
+            WHERE products_type_attributes.product_type_id IN (SELECT products_type.id 
+            FROM products_type WHERE products_type.product_id = $id AND products_type.status = 1) 
+            AND products_attributes.name LIKE '%$attribute%' AND products_attributes.value = $value";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+
+        // function getTypeIdByAttribute($id, $attribute_id){
+        //     $query = "SELECT * FROM products_type INNER JOIN products_type_attributes
+        //     ON products_type.id = products_type_attributes.product_type_id 
+        //     WHERE products_type_attributes.attributes_id = $attribute_id
+        //     AND products_type.product_id = $id";
+        //     $result = $this->connect->prepare($query);
+        //     $result->execute();
+        //     return $result->fetchAll();
+        // }
 
         function updateAttributeStatus($attribute) {
             $query = "UPDATE `products_attributes` SET `status` = '1' WHERE `products_attributes`.`value` = '$attribute'";
