@@ -756,6 +756,37 @@
             ]);
         }
 
+        function updatePrd($id){
+
+            $this-> view("admin/index", [
+                "page" => "prd_update",
+                "product" => $this->admin->getProductById($id),
+            ]);
+        }
+
+        function getDataPrd($id){
+            $output = "";
+            $info = $this->admin->getProductDetails($id);
+            foreach($info as $row){
+                $size = $this->admin->getAttributesByTypeId($row['id'],"size");
+                $color = $this->admin->getAttributesByTypeId($row['id'],"color");
+                if($row['category_id'] == 5){
+                    $size['value'] = "Free Size";
+                }
+                $output .= '
+                    <tr class="text-center">
+                        <td class="size-w-size">'.$size['value'].'</td>
+                        <td class="size-w-color">
+                            <div class="color-value" style="background-color: '.$color['value'].'"></div>
+                        </td>
+                        <td class="size-w-price-origin">'.number_format($row['price_origin']).'</td>
+                        <td class="size-w-price-sale">'.number_format($row['price_sale']).'</td>
+                        <td class="size-w-quantity">'.number_format($row['quantity']).'</td>
+                    </tr>';
+            }
+            echo $output;
+        }
+
         function updateProductTypeStatus() {
             if (isset($_POST['productId'])) {
                 $product_id = $_POST['productId'];

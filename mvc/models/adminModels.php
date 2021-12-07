@@ -119,7 +119,21 @@
         }
 
         function getProductById($id) {
-            $query = "SELECT * FROM products WHERE id = $id";
+            $query = "SELECT products.*,category.name as nameCategory FROM products INNER JOIN category ON products.category_id = category.id WHERE products.id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetch();
+        }
+
+        function getProductDetails($id) {
+            $query = "SELECT products.id, products.category_id, products_type.* FROM products_type INNER JOIN products on products_type.product_id = products.id WHERE products.id = $id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function getAttributesByTypeId($id, $attribute) {
+            $query = "SELECT products_attributes.name, products_attributes.value FROM products_attributes INNER JOIN products_type_attributes on products_attributes.id = products_type_attributes.attributes_id WHERE products_type_attributes.product_type_id = $id AND products_attributes.name LIKE '%$attribute%'";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetch();
@@ -487,6 +501,7 @@
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
+        }
         
         function getOrderToday() {
             $query = "SELECT * FROM orders WHERE DATE(orders.created_at) = CURDATE()";

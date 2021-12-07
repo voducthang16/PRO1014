@@ -162,12 +162,15 @@
                                         <button type="button" rel="tooltip" class="btn btn-info info-product">
                                             <i class="material-icons">person</i>
                                         </button>
-                                        <form style="display: inline-block;" target="_blank" action="<?=BASE_URL?>admin/product_update" method="POST">
+                                        <!-- <form style="display: inline-block;" target="_blank" action="<?=BASE_URL?>admin/product_update" method="POST">
                                             <input type="hidden" name="update-product-by-id" value="<?=$item["id"]?>">
                                             <button type="submit" rel="tooltip" class="btn btn-success update-product">
                                                 <i class="material-icons">edit</i>
                                             </button>
-                                        </form>
+                                        </form> -->
+                                        <a href="<?=BASE_URL?>admin/updatePrd/<?=$item['id']?>" type="submit" rel="tooltip" class="btn btn-success update-product">
+                                                <i class="material-icons">edit</i>
+                                        </a>
                                         <button type="button" rel="tooltip" class="btn btn-danger delete-product">
                                             <i class="material-icons">close</i>
                                         </button>
