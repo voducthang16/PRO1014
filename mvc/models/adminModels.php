@@ -458,6 +458,12 @@
             return $result->rowCount();
         }
 
+        function updateColumn($prd_id,$type_id,$column,$value){
+            $query = "UPDATE `products_type` SET $column=$value WHERE product_id = $prd_id and id = $type_id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
         // function getTypeIdByAttribute($id, $attribute_id){
         //     $query = "SELECT * FROM products_type INNER JOIN products_type_attributes
         //     ON products_type.id = products_type_attributes.product_type_id 

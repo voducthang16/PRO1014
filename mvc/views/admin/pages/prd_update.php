@@ -396,7 +396,20 @@
         $(document).on('blur','.change-value-attribute',function(){
             const type_id = $(this).attr('data-typeId');
             const type = $(this).attr('data-type');
-            alert(type_id +" "+type);
+            const value = ($(this).text()).split(',').join('');
+            $.ajax({
+                url: "admin/updateAttribute_type",
+                type: "POST",
+                data: {
+                    id: <?=$data['product']['id']?>,
+                    column: type,
+                    type_id: type_id,
+                    value: value
+                },
+                success: function(data) {
+                    fetch_data();
+                }
+            });
         })
         
     })

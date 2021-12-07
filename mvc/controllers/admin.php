@@ -860,12 +860,18 @@
                         <td class="size-w-color">
                             <div class="color-value" style="background-color: '.$color['value'].'"></div>
                         </td>
-                        <td contenteditable class="size-w-price-origin change-value-attribute" data-typeId="'.$row['id'].'" data-type="priceOrigin">'.number_format($row['price_origin']).'</td>
-                        <td contenteditable class="size-w-price-sale change-value-attribute" data-typeId="'.$row['id'].'" data-type="priceSale">'.number_format($row['price_sale']).'</td>
-                        <td contenteditable class="size-w-quantity change-value-attribute" data-typeId="'.$row['id'].'" data-type="Quantity">'.number_format($row['quantity']).'</td>
+                        <td contenteditable class="size-w-price-origin change-value-attribute" data-typeId="'.$row['id'].'" data-type="price_origin">'.number_format($row['price_origin']).'</td>
+                        <td contenteditable class="size-w-price-sale change-value-attribute" data-typeId="'.$row['id'].'" data-type="price_sale">'.number_format($row['price_sale']).'</td>
+                        <td contenteditable class="size-w-quantity change-value-attribute" data-typeId="'.$row['id'].'" data-type="quantity">'.number_format($row['quantity']).'</td>
                     </tr>';
             }
             echo $output;
+        }
+        
+        function updateAttribute_type(){
+            if(isset($_POST['id'])){
+                $this->admin->updateColumn($_POST['id'],$_POST['type_id'],$_POST['column'],$_POST['value']);
+            }
         }
 
         function updateProductTypeStatus() {
