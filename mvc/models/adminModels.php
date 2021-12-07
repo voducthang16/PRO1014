@@ -265,7 +265,7 @@
         }
 
         function getProductTypeFromProductId($id) {
-            $query = "SELECT * FROM products_type WHERE products_type.product_id = $id";
+            $query = "SELECT * FROM products_type WHERE products_type.product_id = $id AND products_type.status = 1";
             $result = $this->connect->prepare($query);
             $result->execute();
             return $result->fetchAll();
