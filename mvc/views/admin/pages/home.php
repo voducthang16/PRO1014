@@ -110,7 +110,7 @@
                         <h3 class="container-title-thongKe">THỐNG KÊ DOANH THU :</h3>
                         <div style="position: relative;" class="BieuDo__thongKe">
                             <canvas id="myChart"></canvas>
-                            <h6 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, 50%)">Tổng danh thu: <?=number_format($data['totalMoney'])?>đ</h6>
+                            <h6 style="position: absolute; top: 47%; left: 57%; transform: translate(-50%, 50%)">Tổng danh thu: <?=number_format($data['totalMoney'])?>đ</h6>
                         </div>
                     </div>
                 </div>
