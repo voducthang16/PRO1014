@@ -874,6 +874,15 @@
             }
         }
 
+        function updateAttribute_typeAll(){
+            if(isset($_POST['id'])){
+                $result = $this->admin->selectPrdTypeById($_POST['id']);
+                foreach($result as $row) {
+                    $this->admin->updateColumnAll($_POST['id'],$row['id'],$_POST['price_origin'],$_POST['price_sale'],$_POST['quantity']);
+                }
+            }
+        }
+
         function updateProductTypeStatus() {
             if (isset($_POST['productId'])) {
                 $product_id = $_POST['productId'];

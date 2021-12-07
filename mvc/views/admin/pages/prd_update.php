@@ -161,10 +161,10 @@
                    
                     <div class="form-group">
                         <label for="">Thiết lập phân loại sản phẩm</label><br>
-                        <input type="number" class="form-control-custom price-origin" placeholder="Giá gốc" min="1" >
-                        <input type="number" class="form-control-custom price-sale" placeholder="Giá bán" min="1" >
-                        <input type="number" class="form-control-custom quantity" placeholder="Số lượng sản phẩm" min="1" >
-                        <span class="apply-all">Áp dụng cho tất cả</span>
+                        <input type="number" class="form-control-custom price-origin apply-price-origin-all" placeholder="Giá gốc" min="1" >
+                        <input type="number" class="form-control-custom price-sale apply-price-sale-all" placeholder="Giá bán" min="1" >
+                        <input type="number" class="form-control-custom quantity apply-price-quantity" placeholder="Số lượng sản phẩm" min="1" >
+                        <span class="apply-all apply-all-attribute">Áp dụng cho tất cả</span>
                     </div>
                     <div class="form-group">
                         <label for="">Phân loại sản phẩm</label><br>
@@ -320,6 +320,10 @@
 
         $(document).on('click','.add-size-n',function() {
             const numberSize = $('.add-number-size-input').val();
+            if(numberSize == ""){
+                alert('vui lòng nhập size');
+                return;
+            }
             $.ajax({
                 url: "admin/addNumberSizeById",
                 type: "POST",
@@ -337,6 +341,10 @@
         })
         $(document).on('click','.add-size-l',function() {
             const numberSize = $('.add-letter-size-input').val();
+            if(numberSize == ""){
+                alert('vui lòng nhập size');
+                return;
+            }
             $.ajax({
                 url: "admin/addNumberSizeById",
                 type: "POST",
@@ -355,6 +363,10 @@
 
         $(document).on('click','.add-color',function() {
             const ColorSize = $('.add-color-input').val();
+            if(ColorSize == ""){
+                alert('vui lòng nhập color');
+                return;
+            }
             $.ajax({
                 url: "admin/addColorById",
                 type: "POST",
@@ -405,6 +417,25 @@
                     column: type,
                     type_id: type_id,
                     value: value
+                },
+                success: function(data) {
+                    fetch_data();
+                }
+            });
+        })
+
+        $(document).on('click','.apply-all-attribute',function(){
+            const value1 = $('.apply-price-origin-all').val();
+            const value2 = $('.apply-price-sale-all').val();
+            const value3 = $('.apply-price-quantity').val();
+            $.ajax({
+                url: "admin/updateAttribute_typeAll",
+                type: "POST",
+                data: {
+                    id: <?=$data['product']['id']?>,
+                    price_origin: value1,
+                    price_sale: value2,
+                    quantity: value3
                 },
                 success: function(data) {
                     fetch_data();

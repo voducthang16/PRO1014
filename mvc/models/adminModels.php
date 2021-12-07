@@ -474,6 +474,19 @@
         //     return $result->fetchAll();
         // }
 
+        function selectPrdTypeById($id){
+            $query = "SELECT * FROM `products_type` WHERE products_type.product_id = $id AND products_type.status = 1";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->fetchAll();
+        }
+
+        function updateColumnAll($prd_id,$type_id,$price_origin,$price_sale,$quantity){
+            $query = "UPDATE `products_type` SET price_origin = $price_origin, price_sale = $price_sale, quantity = $quantity WHERE product_id = $prd_id and id = $type_id";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+        }
+
         function updateAttributeStatus($attribute) {
             $query = "UPDATE `products_attributes` SET `status` = '1' WHERE `products_attributes`.`value` = '$attribute'";
             $result = $this->connect->prepare($query);
