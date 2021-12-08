@@ -128,7 +128,7 @@
                                 <i class="fal fa-map-marker-alt"></i>
                                 <div class="">
                                     <span class="">Find us</span>
-                                    <a class="" href="#">769, Quang Trung, HCM, VN</a>
+                                    <a class="" href="#">769, QuangTrung, HCM, VN</a>
                                 </div>
                             </li>
                             <li class="partner-section--item">
@@ -159,7 +159,7 @@
                                 <i class="fal fa-map-marker-alt"></i>
                                 <div class="">
                                     <span class="">Find us</span>
-                                    <a class="" href="#">396 Hàm Nghi, LamDong, VN</a>
+                                    <a class="" href="#">396 HamNghi, LamDong, VN</a>
                                 </div>
                             </li>
                             <li class="partner-section--item">

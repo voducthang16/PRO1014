@@ -1,5 +1,15 @@
 /* PC medium resolution > */
+<<<<<<< Updated upstream
 @media (min-width: 1113px) {}
+=======
+@media (min-width: 1113px) {
+
+    .account-body-list-link.mobile,
+    .form-footer.pc {
+        display: none;
+    }
+}
+>>>>>>> Stashed changes
 
 /* > PC low resolution */
 @media (min-width: 1024px) and (max-width: 1239px) {}
@@ -22,6 +32,10 @@
 
 @media (min-width: 740px) and (max-width:1023px) {
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     /* Common */
     .sm--hide {
         display: none;
@@ -112,6 +126,16 @@
 /* MOBILE */
 
 @media (max-width: 740px) {
+<<<<<<< Updated upstream
+=======
+    .ml-8 {
+        margin-left: 8px;
+    }
+
+    .mr-8 {
+        margin-right: 8px;
+    }
+>>>>>>> Stashed changes
 
     /* Common */
     .sm--hide {
@@ -119,6 +143,40 @@
     }
 
     /* Common */
+<<<<<<< Updated upstream
+=======
+    .profile-page.sticky, .order-page.sticky, .wishlist-page.sticky,
+    .sign.sticky,
+    .checkout.sticky,
+    .cart-page.sticky,
+    .product.sticky,
+    .category.sticky,
+    .slide.sticky {
+        margin-top: 66px;
+    }
+
+    .sign-up {
+        margin-top: 24px;
+    }
+
+    .no-cart-wrapper {
+        padding-bottom: unset;
+    }
+
+    .no-cart-wrapper h3 {
+        font-size: 2rem;
+        margin-top: 32px;
+    }
+
+    .account-sign-out {
+        position: unset;
+
+    }
+
+    .account-orders {
+        margin: 20px 12px 0 12px;
+    }
+>>>>>>> Stashed changes
 
 
     /* Header */
@@ -163,7 +221,90 @@
 
     .navbar-menu-link {
         display: block;
+<<<<<<< Updated upstream
         padding: 10px 20px;
+=======
+    }
+
+    .navbar-menu-item+.navbar-menu-item {
+        margin-left: unset;
+    }
+
+    .slider-mobile {
+        flex-direction: column-reverse;
+    }
+
+    .slide-img img {
+        width: 100% !important;
+    }
+
+    .slide-content {
+        text-align: center;
+        padding: 16px 8px;
+    }
+
+    .slide-sub-title {
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
+
+    .slide-title {
+        font-size: 2rem;
+        line-height: 2.8rem;
+    }
+
+    .block-category {
+        position: unset;
+        margin-top: unset;
+    }
+
+    .slide-desc {
+        margin-bottom: unset;
+        line-height: 2.4rem;
+    }
+
+    .banner-ads-text,
+    .banner-ads-img {
+        margin: 0 16px;
+    }
+
+    .banner-ads-img__content {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .banner-ads-img__content h2 {
+        margin-bottom: 16px;
+        font-size: 2.6rem;
+    }
+
+    .banner-ads-img__content h3 {
+        font-size: 1.6rem;
+    }
+
+    .banner-ads-text {
+        margin-top: 16px;
+        padding: 20px;
+    }
+
+    .home-hoodie-slide,
+    .home-hoodie-thumbnail {
+        margin: 0 16px;
+    }
+
+    .hoodie-thumbnail-header {
+        padding: 20px;
+    }
+
+    .home-hoodie-item {
+        margin-bottom: 8px;
+    }
+
+    .products-heart.hoodie {
+        top: 4px;
+        right: 4px;
+    }
+>>>>>>> Stashed changes
 
     }
 
@@ -175,7 +316,55 @@
         width: 100%;
     }
 
+<<<<<<< Updated upstream
+=======
+    .page-body {
+        padding-bottom: 48px;
+    }
+
+    .order-number-li {
+        font-size: 1.4rem;
+    }
+
+    .form-footer {
+        margin-top: 16px;
+        margin-bottom: unset;
+    }
+
+    .form-footer button,
+    .form-footer a {
+        padding: 8px 12px;
+        font-size: 1.6rem;
+    }
+
+    .order-summary {
+        margin-bottom: unset;
+    }
+
+>>>>>>> Stashed changes
     /* Header */
+    /* Blog */
+    .flex-auto-9 {
+        width: 100% !important;
+    }
+
+    .blog-list {
+        flex-wrap: wrap;
+    }
+
+    .blog-start-column {
+        padding-right: 0px !important;
+    }
+
+    .blog-end-column {
+        padding-left: 0px !important;
+    }
+
+    .pagination-menu {
+        display: none !important;
+    }
+
+    /* Blog */
 
     /* Footer */
 

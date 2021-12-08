@@ -22,10 +22,10 @@ if (isset($_SESSION["member-login"]) && $_SESSION["member-login"] == "true") {
                             <a href="<?=BASE_URL?>sign/forgotpassword" class="forgot-pass">Quên mật khẩu ?</a>
                         </div>
                         <div class="form-group" style="text-align: left">
-                            <a href="<?=$data['FACEBOOK']?>" class="forgot-pass">Đăng nhập bằng facebook</a>
+                            <a href="<?=$data['FACEBOOK']?>" class="forgot-pass">Đăng nhập bằng Facebook <i class="fab fa-facebook"></i></a>
                         </div>
-                        <div class="form-group" style="text-align: right">
-                            <a href="<?=$data['GOOGLE']?>" class="forgot-pass">Đăng nhập google</a>
+                        <div class="form-group" style="text-align: left">
+                            <a href="<?=$data['GOOGLE']?>" class="forgot-pass">Đăng nhập Google <i class="fab fa-google"></i></a>
                         </div>
                         <div style="text-align: right" class="form-group">
                             <button type="submit" class="btn btn-primary">Đăng nhập</button>

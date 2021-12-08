@@ -275,12 +275,12 @@
                 </div>
             </article>
             <!-- Pagination-->
-            <div class="pagination-menu c-0">
+            <div class="pagination-menu">
                 <ul class="pagination">
                     <li class="blog-page-item"><a class="blog-page-link"><i class="fal fa-chevron-left"></i>Prev</a></li>
                 </ul>
                 <ul class="pagination">
-                    <li class="blog-page-item pag-active"><a class="blog-page-link">1</a></li>
+                    <li class="pag-active"><a class="blog-page-link">1</a></li>
                     <li class="blog-page-item"><a class="blog-page-link">2</a></li>
                     <li class="blog-page-item"><a class="blog-page-link">3</a></li>
                     <li class="blog-page-item"><a class="blog-page-link">4</a></li>
