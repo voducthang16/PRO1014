@@ -158,7 +158,6 @@
                             <!-- <input type="color" id="add-color" class="add-color-input" name="add_color"> -->
                         </div>
                     </div>
-                   
                     <div class="form-group">
                         <label for="">Thiết lập phân loại sản phẩm</label><br>
                         <input type="number" class="form-control-custom price-origin apply-price-origin-all" placeholder="Giá gốc" min="1" >
@@ -237,7 +236,63 @@
 
 <script>
     $(document).ready(function(){
+        $(document).on('click', '#u-product-thumbnail', function(e) {
+            // e.preventDefault();
+            $(this).change(function() {
+                let file = $(this).prop('files')[0];
+                let fileType = file.type;
+                let fileSize = file.size;
+                let match = ['image/jpeg', 'image/png', 'image/jpg'];
 
+                if (!((fileType == match[0]) || (fileType == match[1]) || (fileType == match[2]))) {
+                    alert('Please select a file to upload');
+                    $("#u-product-thumbnail").val('');
+                    return false;
+                }
+
+                if (fileSize > 5000000) {
+                    alert('Sorry! File size exceeds');
+                    return false;
+                }
+            })
+        })
+
+        $(document).on('click', '.upload-multi', function(e) {
+            // e.preventDefault();
+            $(this).change(function() {
+                let file = $(this).prop('files')[0];
+                let fileType = file.type;
+                let fileSize = file.size;
+                let match = ['image/jpeg', 'image/png', 'image/jpg'];
+
+                if (!((fileType == match[0]) || (fileType == match[1]) || (fileType == match[2]))) {
+                    alert('Please select a file to upload');
+                    $(".upload-multi").val('');
+                    return false;
+                }
+
+                if (fileSize > 5000000) {
+                    alert('Sorry! File size exceeds');
+                    return false;
+                }
+            })
+        })
+
+        $(document).on('click', '.del-img', function(e) {
+            let id = $(this).attr('id');
+            $.ajax({
+                url: 'admin/deleteImage',
+                type: 'POST',
+                data: {
+                    id: id,
+                    productId : $("#u-product-id").val(),
+                },
+                success: function(data) {
+                    alert(data);
+                    loadImages();
+                }
+            })
+        })
         function fetch_data(){
             $.ajax({
                 url: "admin/getDataPrd/<?=$data['product']['id']?>",

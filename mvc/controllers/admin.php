@@ -838,7 +838,51 @@
         }
 
         function updatePrd($id){
+            if (isset($_POST['u-product-id'])) {
 
+                $product_id = $_POST["u-product-id"];
+                $product_name = $_POST['u-product-name'];
+                $product_slug = to_slug($product_name);
+                
+                $product_description = $_POST["u-product-description"];
+                $product_parameters = $_POST["u-product-parameters"];
+                $product_status = $_POST["product-status"];
+                $format = array("JPG", "JPEG", "PNG", "GIF", "BMP", "jpg", "jpeg", "png", "gif", "bmp");
+                $storage = 'public/upload/'.$product_id.'/';
+    
+                if (!empty($_FILES['u-product-list-images'])) {
+                    foreach ($_FILES["u-product-list-images"]['tmp_name'] as $key => $value) {
+                        $filename = $_FILES['u-product-list-images']['name'][$key];
+                        $filename_tmp = $_FILES['u-product-list-images']['tmp_name'][$key];
+                        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    
+                        $filename = time().'_'.$filename;
+                        if (in_array($ext, $format)) {
+                            move_uploaded_file($filename_tmp, $storage . $filename);
+                            $this->admin->addProductImages($product_id, $filename);
+                        }
+                    }
+                }
+    
+                $product_thumbnail_origin = $this->admin->getProductById($_POST['u-product-id'])['thumbnail'];
+                if (isset($_FILES["product-thumbnail"]) && strlen($_FILES["product-thumbnail"]['name']) > 0) {
+                    $product_thumbnail = $_FILES["product-thumbnail"]['name'];
+                    $product_thumbnail_tmp = $_FILES["product-thumbnail"]['tmp_name'];
+    
+                    $exp3 = substr($product_thumbnail, strlen($product_thumbnail) - 3);
+                    $exp4 = substr($product_thumbnail, strlen($product_thumbnail) - 4);
+    
+                    if (in_array($exp3, $format) || in_array($exp4, $format)) {
+                        $product_thumbnail = time()."_".$product_thumbnail;
+                        move_uploaded_file($product_thumbnail_tmp, $storage . $product_thumbnail);
+                        unlink($storage.$product_thumbnail_origin);
+                    }
+                } else {
+                    $product_thumbnail = $product_thumbnail_origin;
+                }
+                // update product parent
+                $this->admin->updateProduct($product_name, $product_slug, $product_thumbnail, $product_description, $product_parameters, $product_status, $product_id);
+            }
             $this-> view("admin/index", [
                 "page" => "prd_update",
                 "product" => $this->admin->getProductById($id),
