@@ -236,8 +236,8 @@
 
 <script>
     $(document).ready(function(){
-        $("#u-product-name").change(function() {
-            let productId = $("#u-product-id").val();
+        $("#u-product-name").keyup(function() {
+            let productId = <?=$data['product']['id']?>;
             let productName = $(this).val();
             $.ajax({
                 url: 'admin/checkExistName',
@@ -248,7 +248,10 @@
                 },
                 success: function(data) {
                     if (data != '') {
-                        alert(data);
+                        notification({  title: 'Warning',
+                                    message: 'Tên sản phẩm đã tồn tại',
+                                    type: 'warning',
+                                    duration: 3000});
                     }
                 }
             })

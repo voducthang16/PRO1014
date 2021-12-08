@@ -282,5 +282,6 @@
         });
     </script>
     <script></script>
+    <script src="<?=BASE_URL?>public/assets/js/notification.js"></script>
 </body>
 </html>

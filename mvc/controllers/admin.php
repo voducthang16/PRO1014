@@ -953,13 +953,14 @@
                 $product_name = trim($product_name);
                 $check = $this->admin->checkExistName('products', $product_name, $product_id);
                 if ($check == 1) {
-                    $toast = array(
-                        'title' => 'Warning',
-                        'message' => "Tên sản phẩm đã tồn tại",
-                        'type' => "warning",
-                        'duration' => 3000
-                    );
-                    $_SESSION['toast_start'] = $toast;
+                    // $toast = array(
+                    //     'title' => 'Warning',
+                    //     'message' => "Tên sản phẩm đã tồn tại",
+                    //     'type' => "warning",
+                    //     'duration' => 3000
+                    // );
+                    // $_SESSION['toast_start'] = $toast;
+                    echo 123;
                 } else {
                     return;
                 }
