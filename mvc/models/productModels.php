@@ -134,5 +134,12 @@
             $result = $this->connect->prepare($qr);
             $result->execute();
         }
+
+        function checkWishList($id_member, $id_prd) {
+            $query = "SELECT * FROM products_wishlist WHERE member_id = $id_member AND product_id = $id_prd";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
     }
 ?>

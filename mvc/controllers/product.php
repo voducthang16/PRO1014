@@ -47,6 +47,12 @@
             $category_id = $this->product->getCategoryId($slug);
             $this->id = $this->product->getProductId($slug);
             $this->product->updateProductView($this->id);
+            if(isset($_SESSION["member-username"])){
+                $Id_member = $this->product->getProfile($_SESSION["member-username"]);
+                $check = $this->product->checkWishList($Id_member, $this->id);
+            } else {
+                $check = 0;
+            }
             $this -> view("index", [
                 "page" => "product",
                 "product" => $this->product->getProduct($slug),
@@ -55,7 +61,8 @@
                 "productSize" => $this->product->getProductAttribute("size", $this->id),
                 "productColor" => $this->product->getProductAttribute("color", $this->id),
                 "countAllProducts" => $this->product->countAllProducts($this->id),
-                "priceProduct" => $this->product->getProductPrice($this->id)
+                "priceProduct" => $this->product->getProductPrice($this->id),
+                "checkWishList" => $check
             ]);
         }
 

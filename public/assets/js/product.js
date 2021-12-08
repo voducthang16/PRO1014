@@ -114,6 +114,11 @@ $(document).ready(function() {
                     }
                 }
         });
+        if ($(this).hasClass('wishlist--status')){
+            $(this).removeClass("wishlist--status");
+        } else {
+            $(this).addClass("wishlist--status");
+        }
     })
 
     let url = window.location.href;

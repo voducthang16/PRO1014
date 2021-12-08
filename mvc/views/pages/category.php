@@ -9,6 +9,18 @@
             $result->execute();
             return $result->fetchAll();
         }
+        function checkWishList($id_member, $id_prd) {
+            $query = "SELECT * FROM products_wishlist WHERE member_id = $id_member AND product_id = $id_prd";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+        function getProfile($username) {
+            $qr = "SELECT id FROM members WHERE username = ?";
+            $result = $this->connect->prepare($qr);
+            $result->execute([$username]);
+            return $result->fetch()['id'];
+        }
     }
     $categoryDetail = new categoryDetail();
 ?>
@@ -61,7 +73,19 @@
                                 <input type="hidden" name="product-category-id" class="products-category-id" value="<?=$product["category_id"]?>">
                                 <div class="products-heart">
                                     <span>Add to wishlist</span>
-                                    <i class="btn-add-to-wishlist fal fa-heart"></i>
+                                    <?php
+                                        if (isset($_SESSION["member-username"])) {
+                                        $id_username = $categoryDetail->getProfile($_SESSION["member-username"]);
+                                        $check_wishlist = $categoryDetail->checkWishList($id_username,$product["id"]);
+                                        if ($check_wishlist == 0) {
+                                    ?>
+                                        <i class="fal fa-heart btn-add-to-wishlist"></i>
+                                    <?php } else { ?>
+                                        <i class="fal fa-heart btn-add-to-wishlist wishlist--status"></i>
+                                    <?php }} else { ?>
+                                        <i class="fal fa-heart btn-add-to-wishlist"></i>
+                                    <?php } ?>
+                                    <!-- <i class="btn-add-to-wishlist fal fa-heart"></i> -->
                                 </div>
                                 <a href="product/detail/<?=$product["slug"]?>" class="products-link">
                                     <img src="public/upload/<?=$product["id"]?>/<?=$product["thumbnail"]?>" alt="Product Image" class="products-img">

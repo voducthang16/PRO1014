@@ -48,7 +48,11 @@
                     <div class="product-heart">
                         <div class="product-heart-wrapper">
                             <span>Add to wishlist</span>
-                            <i class="fal fa-heart btn-add-to-wishlist"></i>
+                            <?php if($data['checkWishList'] == 0) { ?>
+                                <i class="fal fa-heart btn-add-to-wishlist"></i>
+                            <?php } else { ?>
+                                <i class="fal fa-heart btn-add-to-wishlist wishlist--status"></i>
+                            <?php } ?>
                         </div>  
                     </div>
                     <div class="product-price">
