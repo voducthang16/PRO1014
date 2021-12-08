@@ -609,8 +609,7 @@
                 let quantity = "";
                 sizeWColor.forEach(e => {
                     for (let i = 0; i < colorArray.length; i++) {
-                        color += `<div>
-                            ${colorArray[i]}
+                        color += `<div style="width: 30px; height: 20px; background-color: ${colorArray[i]}">
                         </div>`;
                     }
                     e.innerHTML = color;
