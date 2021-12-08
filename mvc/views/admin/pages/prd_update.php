@@ -236,6 +236,23 @@
 
 <script>
     $(document).ready(function(){
+        $("#u-product-name").change(function() {
+            let productId = $("#u-product-id").val();
+            let productName = $(this).val();
+            $.ajax({
+                url: 'admin/checkExistName',
+                type: 'POST',
+                data: {
+                    productName: productName,
+                    productId: productId
+                },
+                success: function(data) {
+                    if (data != '') {
+                        alert(data);
+                    }
+                }
+            })
+        })
         $(document).on('click', '#u-product-thumbnail', function(e) {
             // e.preventDefault();
             $(this).change(function() {
