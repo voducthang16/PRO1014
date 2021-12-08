@@ -10,6 +10,18 @@
             $result->execute();
             return $result->fetchAll();
         }
+        function checkWishList($id_member, $id_prd) {
+            $query = "SELECT * FROM products_wishlist WHERE member_id = $id_member AND product_id = $id_prd";
+            $result = $this->connect->prepare($query);
+            $result->execute();
+            return $result->rowCount();
+        }
+        function getProfile($username) {
+            $qr = "SELECT id FROM members WHERE username = ?";
+            $result = $this->connect->prepare($qr);
+            $result->execute([$username]);
+            return $result->fetch()['id'];
+        }
     }
     $homepage = new homepage();
 ?>
@@ -133,8 +145,28 @@
                         <input type="hidden" name="product-category-id" class="products-category-id" value="<?=$item["category_id"]?>">
                         <div class="products-heart">
                             <span>Thêm vào wishlist</span>
-                            <i class="fal fa-heart btn-add-to-wishlist"></i>
+                            <?php
+                                if (isset($_SESSION["member-username"])) {
+                                $id_username = $homepage->getProfile($_SESSION["member-username"]);
+                                $check_wishlist = $homepage->checkWishList($id_username,$item['id']);
+                                if ($check_wishlist == 0) {
+                            ?>
+                                <i class="fal fa-heart btn-add-to-wishlist"></i>
+                            <?php } else { ?>
+                                <i class="fal fa-heart btn-add-to-wishlist wishlist--status"></i>
+                            <?php }} else { ?>
+                                <i class="fal fa-heart btn-add-to-wishlist"></i>
+                            <?php } ?>
                         </div>
+                        <script>
+                            $('.btn-add-to-wishlist').click(function(){
+                                if ($(this).hasClass('wishlist--status')){
+                                    $(this).removeClass("wishlist--status");
+                                } else {
+                                    $(this).addClass("wishlist--status");
+                                }
+                            })
+                        </script>
                         <a href="product/detail/<?=$item["slug"]?>" class="products-link">
                             <img src="public/upload/<?=$item["id"]?>/<?=$item["thumbnail"]?>" alt="Product Image" class="products-img">
                         </a>

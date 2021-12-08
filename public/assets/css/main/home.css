@@ -680,6 +680,10 @@
     animation: opacity 0.2s linear;
 }
 
+.wishlist--status{
+    color: var(--primary-color);
+}
+
 
 
 @media (hover: hover) and (pointer: fine) {
@@ -716,3 +720,4 @@
         background-color: var(--third-color);
     }
 }
+

@@ -112,7 +112,6 @@ $(document).ready(function() {
                     }else if(data == 'sign'){
                         document.location.href = "sign";
                     }
-                    get_data();
                 }
         });
     })
