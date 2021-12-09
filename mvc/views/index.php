@@ -123,7 +123,10 @@
                             <i class="fas fa-times"></i>
                         </div>
                     `;
-                    main.appendChild(toast);    
+                    main.appendChild(toast);
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }  
                 }
             <?php
                 unset($_SESSION['toast_start']);
