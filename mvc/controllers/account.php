@@ -26,16 +26,31 @@
                 $re_new_password = filter_var($_POST['new-password-re']);
                 $check = $this->account->checkPassword($password,$this->id);
                 if($check->rowCount() == 0){
-                    echo "<script>notification('danger','Password sai, Vui lòng kiểm tra lại');<script>";
-                    return;
+                    $toast = array(
+                        'title' => 'Error',
+                        'message' => "Password sai, Vui lòng kiểm tra lại",
+                        'type' => "error",
+                        'duration' => 3000
+                    );
+                    $_SESSION['toast_start'] = $toast;
                 } else {
                     if($new_password != $re_new_password){
-                        echo "<script>notification('danger','Vui lòng kiểm tra lại 2 mật khẩu mới');<script>";
-                        return;
+                        $toast = array(
+                            'title' => 'Error',
+                            'message' => "Mật khẩu mới không trùng nhau !!!",
+                            'type' => "error",
+                            'duration' => 3000
+                        );
+                        $_SESSION['toast_start'] = $toast;
                     } else {
                         $this->account->UpdatePassword($new_password,$this->id);
-                        echo "<script>notification('success','Update password thành công');<script>";
-                        return;
+                        $toast = array(
+                            'title' => 'Success',
+                            'message' => "Đổi mật khẩu thành công",
+                            'type' => "success",
+                            'duration' => 3000
+                        );
+                        $_SESSION['toast_start'] = $toast;
                     }
                 }
             }
