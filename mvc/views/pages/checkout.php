@@ -25,40 +25,40 @@
                         <div class="col l-6 c-12">
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
-                                <input type="text" class="form-control" id="first_name" name="first_name">
+                                <input type="text" class="form-control" id="first_name" name="first_name" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email Address</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" class="form-control" id="email" name="email" required>
                             </div>
                             <div class="form-group">
                                 <label for="city">Tỉnh / Thành phố</label>
                                 <select id="city" class="form-control" name="city"></select>
-                                <input type="hidden" id="city_selected" name="city_selected">
+                                <input type="hidden" id="city_selected" name="city_selected" required>
                             </div>
                             <div class="form-group">
                                 <label for="ward">Phường</label>
                                 <select id="ward" class="form-control" name="ward"></select>
-                                <input type="hidden" id="ward_selected" name="ward_selected">
+                                <input type="hidden" id="ward_selected" name="ward_selected" required>
                             </div>
                         </div>
                         <div class="col l-6 c-12">
                             <div class="form-group">
                                 <label for="last_name">Last Name</label>
-                                <input type="text" class="form-control" id="last_name" name="last_name">
+                                <input type="text" class="form-control" id="last_name" name="last_name" required>
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone Number</label>
-                                <input type="number" class="form-control" id="phone" name="phone">
+                                <input type="number" class="form-control" id="phone" name="phone" required>
                             </div>
                             <div class="form-group">
                                 <label for="district">Quận / Huyện</label>
                                 <select id="district" class="form-control" name="district"></select>
-                                <input type="hidden" id="district_selected" name="district_selected">
+                                <input type="hidden" id="district_selected" name="district_selected" required>
                             </div>
                             <div class="form-group">
                                 <label for="street">Đường</label>
-                                <input type="text" class="form-control" id="street" name="street">
+                                <input type="text" class="form-control" id="street" name="street" required>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <label for="order_method">Phương thức thanh toán</label>
                         <select id="order_method" class="form-control" name="order_method">
-                            <option hidden selected>--- Chọn Phương Thức Thanh Toán ---</option>
+                            <option hidden selected required>--- Chọn Phương Thức Thanh Toán ---</option>
                             <?php foreach ($data['order_method'] as $method):?>
                                 <option value="<?=$method['id']?>"><?=$method['name']?></option>
                             <?php endforeach; ?>
