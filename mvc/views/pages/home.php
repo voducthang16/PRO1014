@@ -204,7 +204,7 @@
             ?>
         </div>
         <div class="home-product-btn">
-            <a href="#" class="btn home-product-all">Xem thêm<i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
+            <a href="<?=BASE_URL?>category/detail/all" class="btn home-product-all">Xem thêm<i style="margin-left: 8px" class="fal fa-chevron-right"></i></a>
         </div>
     </div>
 </div>
