@@ -18,14 +18,14 @@
                             <tr>
                                 <th class="text-left">#</th>
                                 <th></th>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Value</th>
-                                <th>Don hang toi thieu</th>
-                                <th>So luong</th>
-                                <th>Da su dung</th>
-                                <th>ngay bat dau</th>
-                                <th>ngay ket thuc</th>
+                                <th>Mã</th>
+                                <th>Loại</th>
+                                <th>Giá trị</th>
+                                <th>Đơn hàng tối thiểu</th>
+                                <th>Số lượng</th>
+                                <th>Đã sử dụng</th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Ngày kết thúc</th>
                                 <th class="text-right">Hành động</th>
                             </tr>
                         </thead>
@@ -90,31 +90,31 @@
                         </label>
                     </div>
                     <div class="form-group money d-none">
-                        <label for="coupon-value-money">So tien giảm giá</label>
-                        <input type="number" class="form-control" id="coupon-value-money" name="coupon-value-money" placeholder="Nhập so tien mã giảm giá" min="0" >
+                        <label for="coupon-value-money">Số tiền</label>
+                        <input type="number" class="form-control" id="coupon-value-money" name="coupon-value-money" placeholder="Nhập số tiền giảm giá" min="0" required>
                     </div>
                     <div class="form-group percent d-none">
                         <label for="coupon-value-percent">Phần trăm giảm giá</label>
-                        <input type="number" class="form-control" id="coupon-value-percent" name="coupon-value-percent" placeholder="Nhập % mã giảm giá" min="0" max="100" >
+                        <input type="number" class="form-control" id="coupon-value-percent" name="coupon-value-percent" placeholder="Nhập % giảm giá" min="0" max="100" required>
                     </div>
                     <div class="form-group min-order d-none">
-                        <label for="coupon-value-min-order">Don hang toi thieu</label>
-                        <input type="number" class="form-control" id="coupon-value-min-order" name="coupon-value-min-order" placeholder="Nhập Don hang toi thieu" min="1000"  >
+                        <label for="coupon-value-min-order">Đơn hàng tối thiểu</label>
+                        <input type="number" class="form-control" id="coupon-value-min-order" name="coupon-value-min-order" placeholder="Nhập đơn hàng tối thiểu" min="1000" required >
                     </div>
                     <div class="form-group quantity d-none">
-                        <label for="coupon-quantity">So lan giảm giá</label>
-                        <input type="number" class="form-control" id="coupon-quantity" name="coupon-quantity" placeholder="Nhập so lan mã giảm giá" min="0" >
+                        <label for="coupon-quantity">Số lần giảm giá</label>
+                        <input type="number" class="form-control" id="coupon-quantity" name="coupon-quantity" placeholder="Nhập số lần giảm giá" min="0" required>
                     </div>
                     <div class="form-group">
                         <label for="coupon-note">Miêu tả coupon</label>
                         <textarea class="form-control" name="coupon-note" rows="3" placeholder="Nhập miêu tả coupon"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="coupon-date-start">ngay bat dau</label>
+                        <label for="coupon-date-start">Ngày bắt đầu</label>
                         <input type="date" class="form-control coupon-date-start" id="coupon-date-start" name="coupon-date-start" min="<?=date("Y-m-d");?>" >
                     </div>
                     <div class="form-group">
-                        <label for="coupon-date-end">ngay ket thuc</label>
+                        <label for="coupon-date-end">Ngày kết thúc</label>
                         <input type="date" class="form-control coupon-date-end" id="coupon-date-end" name="coupon-date-end" min="<?=date("Y-m-d");?>"  disabled>
                     </div>
                 </div>

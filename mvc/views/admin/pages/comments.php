@@ -14,11 +14,11 @@
                             <tr>
                                 <th class="text-center">#</th>
                                 <th style="visibility: hidden"></th>
-                                <th>User's Name</th>
+                                <th>Tên</th>
                                 <th>ID SP</th>
                                 <th>Nội dung</th>
                                 <th>Sao</th>
-                                <th>Ngay BL</th>
+                                <th>Ngày BL</th>
                                 <th class="text-center">Trạng thái</th>
                                 <th class="text-right">Hành động</th>
                             </tr>
