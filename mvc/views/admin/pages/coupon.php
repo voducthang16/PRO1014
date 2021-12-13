@@ -36,7 +36,7 @@
                                     <td width="3%"><?=$count++?></td>
                                     <td style="visibility: hidden"><?=$item["id"]?></td>
                                     <td width="10%"><?=$item["name"]?></td>
-                                    <td width="10%"><?=$item['type'] == 1 ? '%' : 'bang tien'?></td>
+                                    <td width="10%"><?=$item['type'] == 1 ? 'phần trăm' : 'tiền'?></td>
                                     <td width="10%"><?=number_format($item["value"])?><?=$item['type'] == 1 ? '%' : 'đ'?></td>
                                     <td width="10%"><?=number_format($item["min_order"])?>đ</td>
                                     <td width="10%"><?=$item["quantity"]?></td>
@@ -91,19 +91,19 @@
                     </div>
                     <div class="form-group money d-none">
                         <label for="coupon-value-money">Số tiền</label>
-                        <input type="number" class="form-control" id="coupon-value-money" name="coupon-value-money" placeholder="Nhập số tiền giảm giá" min="0" required>
+                        <input type="number" class="form-control" id="coupon-value-money" name="coupon-value-money" placeholder="Nhập số tiền giảm giá" min="0" >
                     </div>
                     <div class="form-group percent d-none">
                         <label for="coupon-value-percent">Phần trăm giảm giá</label>
-                        <input type="number" class="form-control" id="coupon-value-percent" name="coupon-value-percent" placeholder="Nhập % giảm giá" min="0" max="100" required>
+                        <input type="number" class="form-control" id="coupon-value-percent" name="coupon-value-percent" placeholder="Nhập % giảm giá" min="0" max="100" >
                     </div>
                     <div class="form-group min-order d-none">
                         <label for="coupon-value-min-order">Đơn hàng tối thiểu</label>
-                        <input type="number" class="form-control" id="coupon-value-min-order" name="coupon-value-min-order" placeholder="Nhập đơn hàng tối thiểu" min="1000" required >
+                        <input type="number" class="form-control" id="coupon-value-min-order" name="coupon-value-min-order" placeholder="Nhập đơn hàng tối thiểu" min="1000"  >
                     </div>
                     <div class="form-group quantity d-none">
                         <label for="coupon-quantity">Số lần giảm giá</label>
-                        <input type="number" class="form-control" id="coupon-quantity" name="coupon-quantity" placeholder="Nhập số lần giảm giá" min="0" required>
+                        <input type="number" class="form-control" id="coupon-quantity" name="coupon-quantity" placeholder="Nhập số lần giảm giá" min="0" >
                     </div>
                     <div class="form-group">
                         <label for="coupon-note">Miêu tả coupon</label>
