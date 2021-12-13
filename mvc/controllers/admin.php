@@ -882,6 +882,14 @@
                 }
                 // update product parent
                 $this->admin->updateProduct($product_name, $product_slug, $product_thumbnail, $product_description, $product_parameters, $product_status, $product_id);
+                // $toast = array(
+                //     'title' => 'Success',
+                //     'message' => "Update sản phẩm thành công",
+                //     'type' => "success",
+                //     'duration' => 3000
+                // );
+                // $_SESSION['toast_start'] = $toast;
+                header('location: '.BASE_URL.'admin/product');
             }
             $this-> view("admin/index", [
                 "page" => "prd_update",
